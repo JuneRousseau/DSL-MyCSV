@@ -1,0 +1,105 @@
+grammar org.xtext.MyCsv with org.eclipse.xtext.common.Terminals
+
+generate myCsv "http://www.xtext.org/MyCsv"
+ 
+Programm:
+	stmts+=Statement*
+;
+
+Statement:
+	prim+=Primitive args+=Expression*
+;
+
+Primitive: 
+	  Load 
+	| Store
+	| ExportJson
+	| Delete
+	| Insert
+	| Modify
+	| Select
+	| Project
+	| Print
+;
+
+Print:
+	'Print'
+;
+
+Project:
+	'Projection'
+;
+
+Select:
+	'Select'
+;
+
+Modify:
+	'Modify'
+;
+
+Insert:
+	'Insert'
+;
+
+Delete:
+	'Delete'
+;
+
+ExportJson:
+	'ExportJson'
+;
+
+Store:
+	'Store'
+;
+
+Load:
+	'Load'
+;
+
+
+/*Addition :
+  lhs=Multiplication (('+'|'-') rhs+=Multiplication)*;
+
+Multiplication:
+  lhs=Expression (('*'|'/') rhs+=Expression)*;*/
+
+Expression:
+ 	  UnaryOp arg=Expression
+	| Aggregat arg=Field
+	| '(' lhs=Expression BinOp rhs=Expression ')'
+	| Const
+	| Field
+	| Path
+	| NbField
+	| '(' exp=Expression ')' 
+;
+
+NbField:
+	'NbField'
+;
+
+Path:
+	value=STRING
+;
+
+Const:
+	value=INT
+;
+
+Field:
+	value=ID
+;
+
+BinOp:
+	'+' | '-' | '*' | '/' | '=' | '<' | '<=' | '>' | '>=' | '!=' | 'and' | 'or'
+;
+
+Aggregat:
+	('Count' | 'Sum' | 'Prod')
+;
+
+UnaryOp:
+	'-' | 'not'
+;
