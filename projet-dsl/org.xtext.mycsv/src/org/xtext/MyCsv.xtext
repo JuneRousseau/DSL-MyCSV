@@ -1,0 +1,98 @@
+grammar org.xtext.MyCsv with org.eclipse.xtext.common.Terminals
+
+generate myCsv "http://www.xtext.org/MyCsv"
+ 
+Programm:
+	stmts+=Statement*
+;
+
+Statement:
+	prim+=Primitive args+=Expression*
+;
+
+Primitive: 
+	  Load 
+	| Store
+	| ExportJson
+	| Delete
+	| Insert
+	| Modify
+	| Select
+	| Project
+	| Print
+;
+
+Print:
+	'Print'
+;
+
+Project:
+	'Projection'
+;
+
+Select:
+	'Select'
+;
+
+Modify:
+	'Modify'
+;
+
+Insert:
+	'Insert'
+;
+
+Delete:
+	'Delete'
+;
+
+ExportJson:
+	'ExportJson'
+;
+
+Store:
+	'Store'
+;
+
+Load:
+	'Load'
+;
+
+Expression:
+ 	  UnaryOp arg=Expression
+	| '(' lhs=Expression BinOp rhs=Expression ')'
+	| Aggregat arg=Field
+	| Const
+	| Field
+	| Path
+	| NbField
+	| '[' exp=Expression ']' 
+;
+
+NbField:
+	'NbField'
+;
+
+Path:
+	value=STRING
+;
+
+Const:
+	value=INT
+;
+
+Field:
+	value=ID
+;
+
+BinOp:
+	'+' | '-' | '=' | '<' | '<='
+;
+
+Aggregat:
+	('Count' | 'Sum')
+;
+
+UnaryOp:
+	'-' | 'Not'
+;
