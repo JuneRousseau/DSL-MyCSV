@@ -12,22 +12,21 @@ FLOAT returns ecore::EFloat:
 	INT '.' INT
 ;
 
-
 LineIndex:
-	(cond=Expression | lines+=INT+)
-;
+	(cond=Expression | lines+=INT+) //Conflit entre le INT de lines et le INT reconnu par expression
+;									//Ajouter un mot clé si on veut une expression ? 'where' ??
 FieldIndex:
-	(fields+=Field+ | columns+= INT+)
+	(fields+=Field+ | columns+=INT+)
 ;
 CellIndex:
 	'(' line=INT ',' (colnum=INT | colname=Field) ')'
 ;
 
 Statement:
-	  Load Path (sep=STRING)?
-	| Store Path (sep=STRING)?
+	  Load Path (sep?=STRING)?
+	| Store Path (sep?=STRING)?
 	| ExportJson Path
-	| {Statement} Project (fields+=Field*) //On n'accepte que les csv AVEC header.
+	| Project field=FieldIndex
 	| Select LineIndex
 	| Delete
 	| Insert
@@ -71,6 +70,50 @@ Print:
 		'expr' exp=Expression
 		)
 ;
+
+
+NbField:
+	'NbField'
+;
+
+Path:
+	'path' '=' value=STRING
+;
+
+Const:
+	str=STRING //| num=INT | real=FLOAT
+;
+
+Field:
+	value=ID
+;
+
+Expression:
+	LitteralString
+	| Aggregat arg=Field
+	| {Expression} NbField
+	| '(' Expression ')'
+	//LitteralInt
+	//| LitteralFloat
+;
+
+
+
+
+LitteralString:
+	val=STRING
+;
+LitteralInt:
+	val=INT
+;
+LitteralFloat:
+	val=FLOAT
+;
+
+Aggregat:
+	'Count' | 'Sum' | 'Product' | 'Mean'
+
+
 /*
 BoolExpression:
 	UnaryOpLog arg=BoolExpression end=BoolExpressionEnd
@@ -79,33 +122,17 @@ BoolExpression:
 BoolExpressionEnd :
 	BinOpLog rhs=BoolExpression end=BoolExpressionEnd | {BoolExpressionEnd} 'boolExpressionEnd'
 ;
-*/
+
 Expression:
  	  UnaryOpLog arg=Expression
 	| '(' lhs=Expression BinOpLog rhs=Expression ')'
 	| Aggregat arg=Field
 	| Const
-	| Field
 	| Path
 	| {Expression} NbField
 //	| '[' exp=Expression ']' 
 ;
 
-NbField:
-	'NbField'
-;
-
-Path:
-	'path''=' value=STRING
-;
-
-Const:
-	str=STRING | num=INT | real=FLOAT
-;
-
-Field:
-	value=ID
-;
 
 BinOpAdd:
 	'+' | '-'
@@ -126,6 +153,5 @@ UnaryOpLog:
 	'not'
 ;
 
-Aggregat:
-	'Count' | 'Sum' | 'Product' | 'Mean'
+*/
 ;

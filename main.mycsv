@@ -1,0 +1,53 @@
+Load path = "/path/to/file.csv" ";"
+ExportJson path = "/path/to/file.json"
+
+
+Projection A B C
+Projection 1 2 3
+
+Select 1 2 3
+Select A>10
+Select A="name"
+
+
+Delete line 1 2 3
+Delete field 1 2 3
+Delete field A B C
+
+Insert line "A" "B" "C"
+Insert line 1 2 3
+Insert line 1.1 0.1 0.0
+Insert field A "A" "B" "C"
+Insert field B 1 2 3
+Insert field B 1.1 0.1 0.0
+
+Modify line 1 2 3 with "A" "B" "C"
+Modify line 1 2 3 with 1 2 3
+Modify line 1 2 3 with 1.1 0.1 0.0
+Modify field 1 2 3 with "A" "B" "C"
+Modify field 1 2 3 with 1 2 3
+Modify field 1 2 3 with 1.1 0.1 0.0
+Modify field A B C with 1 2 3
+Modify cell (1,A) with "A"
+Modify cell (1,A) with 1
+Modify cell (1,A) with 1.1
+Modify cell (1,1) with "A"
+
+Print table
+Print line 2 4 5
+Print field 1 2 3
+Print field A B C
+Print cell (1,A)
+Print cell (1,1)
+
+
+
+Print expr Count A
+Print expr Sum A
+Print expr Product A
+Print expr Mean A
+Print expr NbField
+
+
+
+Store path = "/path/to/file.csv"
