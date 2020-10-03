@@ -13,8 +13,8 @@ FLOAT returns ecore::EFloat:
 ;
 
 LineIndex:
-	(cond=Expression | lines+=INT+) //Conflit entre le INT de lines et le INT reconnu par expression
-;									//Ajouter un mot clé si on veut une expression ? 'where' ??
+	(cond=ExpressionBool | lines+=INT+)	
+;
 FieldIndex:
 	(fields+=Field+ | columns+=INT+)
 ;
@@ -53,6 +53,8 @@ Select:
 Delete:
 	'Delete' ('line' lines=LineIndex | 'field' fields+=FieldIndex)
 ;
+
+//Les valeurs sont-elles des Const ? Ou des expressions calculable?
 Insert:
 	'Insert' ('line' values+=Const+ |'field' fieldname=Field values+=Const+)
 ;
@@ -67,7 +69,7 @@ Print:
 		'field' field=FieldIndex |
 		'cell' cell=CellIndex |
 		'table' |
-		'expr' exp=Expression
+		'expr' exp=ExpressionCalcul
 		)
 ;
 
@@ -77,31 +79,59 @@ NbField:
 ;
 
 Path:
-	'path' '=' value=STRING
+	value=STRING //Est-ce qu'on garde le 'path' '=' ??
 ;
 
-Const:
-	str=STRING //| num=INT | real=FLOAT
-;
 
 Field:
 	value=ID
 ;
 
-Expression:
-	LitteralString
-	| Aggregat arg=Field
-	| {Expression} NbField
-	| '(' Expression ')'
-	//LitteralInt
-	//| LitteralFloat
+ExpressionBool:
+	'not' expr=ExpressionBool
+	| lhs=ExpressionRel (BinOpLogique rhs+=ExpressionRel)*
+	| '(' ExpressionBool ')'
+;
+
+BinOpLogique:
+	'and' | 'or' 
+;
+
+ExpressionRel:
+	field=Field BinOpRel val=Const
+;
+
+BinOpRel:
+	'>' | '<' | '>=' | '<=' | '==' | '!='
+;
+
+Const:
+	str=STRING | ent=INT | real=FLOAT
 ;
 
 
+ExpressionCalcul:
+	AdditiveExpression
+;
 
+AdditiveExpression:
+	lhs=MultiplicativeExpression (BinOpAdd rhs+=MultiplicativeExpression)*
+;
 
-LitteralString:
-	val=STRING
+MultiplicativeExpression:
+	lhs=UnaryExpression (BinOpMult rhs+=UnaryExpression)*
+;
+
+UnaryExpression:
+	('-')? expr=ExpressionCalculPrimary
+	;
+	
+ExpressionCalculPrimary:
+	{ExpressionCalcul} NbField
+	| Aggregat arg=Field
+	| val= LitteralInt
+	| val= LitteralFloat
+	| '(' expr=ExpressionCalcul ')'
 ;
 LitteralInt:
 	val=INT
@@ -112,46 +142,11 @@ LitteralFloat:
 
 Aggregat:
 	'Count' | 'Sum' | 'Product' | 'Mean'
-
-
-/*
-BoolExpression:
-	UnaryOpLog arg=BoolExpression end=BoolExpressionEnd
-	
 ;
-BoolExpressionEnd :
-	BinOpLog rhs=BoolExpression end=BoolExpressionEnd | {BoolExpressionEnd} 'boolExpressionEnd'
-;
-
-Expression:
- 	  UnaryOpLog arg=Expression
-	| '(' lhs=Expression BinOpLog rhs=Expression ')'
-	| Aggregat arg=Field
-	| Const
-	| Path
-	| {Expression} NbField
-//	| '[' exp=Expression ']' 
-;
-
 
 BinOpAdd:
 	'+' | '-'
 ;
 BinOpMult:
 	'*' | '/'
-;
-BinOpRel:
-	 '=' | '<' | '<='
-;
-BinOpLog:
-	'and' | 'or'
-;
-UnaryOpAdd:
-	'-'
-;
-UnaryOpLog:
-	'not'
-;
-
-*/
 ;
