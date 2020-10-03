@@ -4,14 +4,12 @@ import "http://www.eclipse.org/emf/2002/Ecore" as ecore
 
 generate myCsv "http://www.xtext.org/MyCsv"
 
+// Programm
 Programm:
 	stmts+=Statement+
 ;
 
-FLOAT returns ecore::EFloat:
-	INT '.' INT
-;
-
+// Useful indexes in CSV world
 LineIndex:
 	(cond=ExpressionLog | lines+=INT+)
 ;
@@ -22,6 +20,22 @@ CellIndex:
 	'(' line=INT ',' (colnum=INT | colname=Field) ')'
 ;
 
+// Common arguments
+Value:
+	expr=ExpressionCalcul |
+	str=STRING
+;
+Values:
+	('[')? first=Value (';' next+=Value)* (']')?
+;
+Path:
+	value=STRING
+;
+Field:
+	value=ID
+;
+
+// Statements and primitives
 Statement:
 	  Load path=Path ('sep' '=' sep?=STRING)?
 	| Store path=Path ('sep' '=' sep?=STRING)?
@@ -53,9 +67,8 @@ Select:
 Delete:
 	'Delete' ('line' lines=LineIndex | 'field' fields+=FieldIndex)
 ;
-
 Insert:
-	'Insert' ('line' values=Values |'field' fieldname=Field ':' values=Values)
+	'Insert' ('line' values=Values | 'field' fieldname=Field ':' values=Values)
 ;
 Modify:
 	'Modify' ('line' lines=LineIndex 'with' values=Values  |
@@ -63,7 +76,8 @@ Modify:
 			  'cell' cell=CellIndex 'with' value=Value)
 ;
 Print:
-	{Print} 'Print' (
+	{Print}
+	'Print' (
 		'line' lines=LineIndex |
 		'field' field=FieldIndex |
 		'cell' cell=CellIndex |
@@ -71,72 +85,46 @@ Print:
 		'expr' exp=Value
 		)
 ;
-Value:
-	expr=ExpressionCalcul |
-	str=STRING
-;
-Values:
-	('[')? first=Value (';' next+=Value)* (']')?
-;
 
-NbField:
-	'NbField'
-;
-
-Path:
-	value=STRING
-;
-
-
-Field:
-	value=ID
-;
-
+// Logical expressions
 ExpressionLog:
 	OrExpression
 ;
-
 OrExpression:
 	lhs=AndExpression ('or' rhs+=AndExpression)*
 ;
-
 AndExpression:
 	lhs=UnaryLogExpression ('and' rhs+=UnaryLogExpression)*
 ;
-
 UnaryLogExpression:
 	('not')? expr=ExpressionLogPrimary
 ;
-
 ExpressionLogPrimary:
 	  	exprRel=ExpressionRel
 	  | '(' expr=ExpressionLog ')'
 ;
 
+// Bridge between logical and numerical expressions
 ExpressionRel:
 	field=Field BinOpRel val=Value
 ;
-
 BinOpRel:
 	'>' | '<' | '>=' | '<=' | '==' | '!='
 ;
 
+// Numerical expressions
 ExpressionCalcul:
 	AdditiveExpression
 ;
-
 AdditiveExpression:
 	lhs=MultiplicativeExpression (BinOpAdd rhs+=MultiplicativeExpression)*
 ;
-
 MultiplicativeExpression:
 	lhs=UnaryExpression (BinOpMult rhs+=UnaryExpression)*
 ;
-
 UnaryExpression:
 	('-')? expr=ExpressionCalculPrimary
 ;
-
 ExpressionCalculPrimary:
 	{ExpressionCalcul} NbField
 	| Aggregat arg=Field
@@ -144,20 +132,27 @@ ExpressionCalculPrimary:
 	| val= LitteralFloat
 	| '(' expr=ExpressionCalcul ')'
 ;
+
+Aggregat:
+	'Count' | 'Sum' | 'Product' | 'Mean'
+;
+BinOpAdd:
+	'+' | '-'
+;
+BinOpMult:
+	'*' | '/'
+;
+
 LitteralInt:
 	val=INT
 ;
 LitteralFloat:
 	val=FLOAT
 ;
-
-Aggregat:
-	'Count' | 'Sum' | 'Product' | 'Mean'
+NbField:
+	'NbField'
 ;
 
-BinOpAdd:
-	'+' | '-'
-;
-BinOpMult:
-	'*' | '/'
+FLOAT returns ecore::EFloat:
+	INT '.' INT
 ;
