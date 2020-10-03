@@ -54,14 +54,13 @@ Delete:
 	'Delete' ('line' lines=LineIndex | 'field' fields+=FieldIndex)
 ;
 
-//Les valeurs sont-elles des Const ? Ou des expressions calculable?
 Insert:
-	'Insert' ('line' values+=Const+ |'field' fieldname=Field values+=Const+)
+	'Insert' ('line' values=Values |'field' fieldname=Field ':' values=Values)
 ;
 Modify:
-	'Modify' ('line' lines=LineIndex 'with' values+=Const+  |
-			  'field' field=FieldIndex 'with' values+=Const+  |
-			  'cell' cell=CellIndex 'with' value=Const)
+	'Modify' ('line' lines=LineIndex 'with' values=Values  |
+			  'field' field=FieldIndex 'with' values=Values  |
+			  'cell' cell=CellIndex 'with' value=Value)
 ;
 Print:
 	{Print} 'Print' (
@@ -69,10 +68,16 @@ Print:
 		'field' field=FieldIndex |
 		'cell' cell=CellIndex |
 		'table' |
-		'expr' exp=ExpressionCalcul
+		'expr' exp=Value
 		)
 ;
-
+Value:
+	expr=ExpressionCalcul |
+	str=STRING
+;
+Values:
+	('[')? first=Value (';' next+=Value)* (']')?
+;
 
 NbField:
 	'NbField'
@@ -109,17 +114,12 @@ ExpressionLogPrimary:
 ;
 
 ExpressionRel:
-	field=Field BinOpRel (val=ExpressionCalcul | str=STRING)
+	field=Field BinOpRel val=Value
 ;
 
 BinOpRel:
 	'>' | '<' | '>=' | '<=' | '==' | '!='
 ;
-
-Const:
-	str=STRING | ent=INT | real=FLOAT
-;
-
 
 ExpressionCalcul:
 	AdditiveExpression

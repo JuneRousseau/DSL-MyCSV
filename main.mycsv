@@ -15,20 +15,20 @@ Delete line 1 2 3
 Delete field 1 2 3
 Delete field A B C
 
-Insert line "A" "B" "C"
-Insert line 1 2 3
-Insert line 1.1 0.1 0.0
-Insert field A "A" "B" "C"
-Insert field B 1 2 3
-Insert field B 1.1 0.1 0.0
+Insert line "A"; "B"; "C"
+Insert line 1; 2; 3
+Insert line 1.1; 0.1; 0.0
+Insert field A : "A"; "B"; "C"
+Insert field B : 1; 2; 3]
+Insert field B : [1.1; 0.1; 0.0
 
-Modify line 1 2 with "A" "B" "C"
-Modify line B <= Mean B with 1 2 3
-Modify line 1 2 3 with 1.1 0.1 0.0
-Modify field 1 2 3 with "A" "B" "C"
-Modify field 1 2 3 with 1 2 3
-Modify field 1 2 3 with 1.1 0.1 0.0
-Modify field A B C with 1 2 3
+Modify line 1 2 with "A"; "B"; "C"
+Modify line B <= Mean B with 1; 2; 3
+Modify line 1 2 3 with 1.1; 0.1; 0.0
+Modify field 1 2 3 with "A"; "B"; "C"
+Modify field 1 2 3 with 1; 2; 3
+Modify field 1 2 3 with 1.1; 0.1; 0.0
+Modify field A B C with 1; 2; 3
 Modify cell (1,A) with "A"
 Modify cell (1,A) with 1
 Modify cell (1,A) with 1.1
