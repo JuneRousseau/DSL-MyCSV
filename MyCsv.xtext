@@ -13,7 +13,7 @@ FLOAT returns ecore::EFloat:
 ;
 
 LineIndex:
-	(cond=ExpressionBool | lines+=INT+)	
+	(cond=ExpressionLog | lines+=INT+)
 ;
 FieldIndex:
 	(fields+=Field+ | columns+=INT+)
@@ -23,11 +23,11 @@ CellIndex:
 ;
 
 Statement:
-	  Load Path (sep?=STRING)?
-	| Store Path (sep?=STRING)?
-	| ExportJson Path
+	  Load path=Path ('sep' '=' sep?=STRING)?
+	| Store path=Path ('sep' '=' sep?=STRING)?
+	| ExportJson path=Path
 	| Project field=FieldIndex
-	| Select LineIndex
+	| Select line=LineIndex
 	| Delete
 	| Insert
 	| Modify
@@ -79,7 +79,7 @@ NbField:
 ;
 
 Path:
-	value=STRING //Est-ce qu'on garde le 'path' '=' ??
+	value=STRING
 ;
 
 
@@ -87,18 +87,29 @@ Field:
 	value=ID
 ;
 
-ExpressionBool:
-	'not' expr=ExpressionBool
-	| lhs=ExpressionRel (BinOpLogique rhs+=ExpressionRel)*
-	| '(' ExpressionBool ')'
+ExpressionLog:
+	OrExpression
 ;
 
-BinOpLogique:
-	'and' | 'or' 
+OrExpression:
+	lhs=AndExpression ('or' rhs+=AndExpression)*
+;
+
+AndExpression:
+	lhs=UnaryLogExpression ('and' rhs+=UnaryLogExpression)*
+;
+
+UnaryLogExpression:
+	('not')? expr=ExpressionLogPrimary
+;
+
+ExpressionLogPrimary:
+	  	exprRel=ExpressionRel
+	  | '(' expr=ExpressionLog ')'
 ;
 
 ExpressionRel:
-	field=Field BinOpRel val=Const
+	field=Field BinOpRel (val=ExpressionCalcul | str=STRING)
 ;
 
 BinOpRel:
@@ -124,8 +135,8 @@ MultiplicativeExpression:
 
 UnaryExpression:
 	('-')? expr=ExpressionCalculPrimary
-	;
-	
+;
+
 ExpressionCalculPrimary:
 	{ExpressionCalcul} NbField
 	| Aggregat arg=Field
