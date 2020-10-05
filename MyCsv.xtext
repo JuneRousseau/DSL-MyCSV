@@ -37,7 +37,7 @@ Field:
 
 // Statements and primitives
 Statement:
-	  Load path=Path ('sep' '=' sep?=STRING)?
+	  Load path=Path ('sep' '=' sep?=STRING)? ('noheader')?
 	| Store path=Path ('sep' '=' sep?=STRING)?
 	| ExportJson path=Path
 	| Project field=FieldIndex
