@@ -5,7 +5,7 @@ import "http://www.eclipse.org/emf/2002/Ecore" as ecore
 generate myCsv "http://www.xtext.org/MyCsv"
 
 // Programm
-Programm:
+Model:
 	stmts+=Statement+
 ;
 
@@ -37,11 +37,11 @@ Field:
 
 // Statements and primitives
 Statement:
-	  Load path=Path ('sep' '=' sep?=STRING)? ('noheader')?
-	| Store path=Path ('sep' '=' sep?=STRING)?
-	| ExportJson path=Path
-	| Project field=FieldIndex
-	| Select line=LineIndex
+	  Load
+	| Store
+	| ExportJson
+	| Project
+	| Select
 	| Delete
 	| Insert
 	| Modify
@@ -49,19 +49,19 @@ Statement:
 ;
 
 Load:
-	'Load'
+	'Load' path=Path ('sep' '=' sep=STRING)? (header?='noheader')?
 ;
 Store:
-	'Store'
+	'Store' path=Path ('sep' '=' sep=STRING)?
 ;
 ExportJson:
-	'ExportJson'
+	'ExportJson' path=Path
 ;
 Project:
-	'Projection'
+	'Projection' field=FieldIndex
 ;
 Select:
-	'Select'
+	'Select' line=LineIndex
 ;
 
 Delete:
@@ -78,11 +78,11 @@ Modify:
 Print:
 	{Print}
 	'Print' (
-		'line' lines=LineIndex |
-		'field' field=FieldIndex |
-		'cell' cell=CellIndex |
-		'table' |
-		'expr' exp=Value
+		printType='line' lines=LineIndex |
+		printType='field' field=FieldIndex |
+		printType='cell' cell=CellIndex |
+		printType='table' |
+		printType='expr' exp=Value
 		)
 ;
 

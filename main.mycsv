@@ -1,4 +1,6 @@
 Load "/path/to/file.csv" sep=";"
+Load "/path/to/file2.csv"
+Load "/path/to/file3.csv" sep=";" noheader
 ExportJson "/path/to/file.json"
 
 
