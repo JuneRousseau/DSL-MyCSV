@@ -4,35 +4,50 @@ import "http://www.eclipse.org/emf/2002/Ecore" as ecore
 
 generate myCsv "http://www.xtext.org/MyCsv"
 
-// Programm
-Model:
+// Program
+Program:
 	stmts+=Statement+
 ;
 
 // Useful indexes in CSV world
 LineIndex:
-	(cond=ExpressionLog | lines+=INT+)
+	LineIndexCond | LineIndexNum
 ;
+LineIndexCond:
+	cond=ExpressionLog
+;
+LineIndexNum:
+	lines+=INT+
+;
+
 FieldIndex:
-	(fields+=Field+ | columns+=INT+)
+	FieldIndexName | FieldIndexNum
 ;
+FieldIndexName:
+	fields+=Field+
+;
+FieldIndexNum:
+	columns+=INT+
+;
+
 CellIndex:
 	'(' line=INT ',' (colnum=INT | colname=Field) ')'
 ;
 
 // Common arguments
 Value:
-	expr=ExpressionCalcul |
-	str=STRING
+	ExpressionCalcul |
+	LitteralString
 ;
 Values:
-	('[')? first=Value (';' next+=Value)* (']')?
+	('[')? values+=Value (';' values+=Value)* (']')?
 ;
 Path:
 	value=STRING
 ;
 Field:
 	value=ID
+	// /!\ We don't accept numbers as Field names.
 ;
 
 // Statements and primitives
@@ -40,7 +55,7 @@ Statement:
 	  Load
 	| Store
 	| ExportJson
-	| Project
+	| Projection
 	| Select
 	| Delete
 	| Insert
@@ -49,7 +64,7 @@ Statement:
 ;
 
 Load:
-	'Load' path=Path ('sep' '=' sep=STRING)? (header?='noheader')?
+	'Load' path=Path ('sep' '=' sep=STRING)? (noHeader?='noheader')?
 ;
 Store:
 	'Store' path=Path ('sep' '=' sep=STRING)?
@@ -57,7 +72,7 @@ Store:
 ExportJson:
 	'ExportJson' path=Path
 ;
-Project:
+Projection:
 	'Projection' field=FieldIndex
 ;
 Select:
@@ -65,26 +80,69 @@ Select:
 ;
 
 Delete:
-	'Delete' ('line' lines=LineIndex | 'field' fields+=FieldIndex)
+	'Delete' (
+		DeleteLine |
+		DeleteField
+	)
+;
+DeleteLine :
+	'line' lines=LineIndex
+;
+DeleteField:
+	'field' fields=FieldIndex
 ;
 Insert:
-	'Insert' ('line' values=Values | 'field' fieldname=Field ':' values=Values)
+	'Insert' (
+		InsertLine |
+		InsertField
+	)
+;
+InsertLine:
+	'line' values=Values
+;
+InsertField:
+	 'field' fieldname=Field ':' values=Values
 ;
 Modify:
-	'Modify' ('line' lines=LineIndex 'with' values=Values  |
-			  'field' field=FieldIndex 'with' values=Values  |
-			  'cell' cell=CellIndex 'with' value=Value)
+	'Modify' (
+		ModifyLine |
+		ModifyField |
+		ModifyCell
+	)
+;
+ModifyLine:
+	'line' lines=LineIndex 'with' values=Values
+;
+ModifyField:
+	'field' fields=FieldIndex 'with' values=Values
+;
+ModifyCell:
+	'cell' cell=CellIndex 'with' value=Value
 ;
 Print:
-	{Print}
-	'Print' (
-		printType='line' lines=LineIndex |
-		printType='field' field=FieldIndex |
-		printType='cell' cell=CellIndex |
-		printType='table' |
-		printType='expr' exp=Value
+	'Print' (PrintLine |
+			PrintField |
+			PrintCell |
+			{PrintTable} PrintTable |
+			PrintExpr
 		)
 ;
+PrintLine:
+	'line' lines=LineIndex
+;
+PrintField:
+	'field' fields=FieldIndex
+;
+PrintCell:
+	'cell' cell=CellIndex
+;
+PrintTable:
+	'table'
+;
+PrintExpr:
+	'expr' exp=Value
+;
+
 
 // Logical expressions
 ExpressionLog:
@@ -97,19 +155,26 @@ AndExpression:
 	lhs=UnaryLogExpression ('and' rhs+=UnaryLogExpression)*
 ;
 UnaryLogExpression:
-	('not')? expr=ExpressionLogPrimary
+	(not?='not')? expr=ExpressionLogPrimary
 ;
 ExpressionLogPrimary:
-	  	exprRel=ExpressionRel
-	  | '(' expr=ExpressionLog ')'
+	ExpressionRel | NestedLogExpression
+;
+NestedLogExpression:
+	'(' expr=ExpressionLog ')'
 ;
 
 // Bridge between logical and numerical expressions
 ExpressionRel:
-	field=Field BinOpRel val=Value
+	field=Field op=BinOpRel val=Value
 ;
-BinOpRel:
-	'>' | '<' | '>=' | '<=' | '==' | '!='
+enum BinOpRel:
+	gt='>'  |
+	lt='<'  |
+	ge='>=' |
+	le='<=' |
+	eq='==' |
+	neq='!='
 ;
 
 // Numerical expressions
@@ -117,38 +182,53 @@ ExpressionCalcul:
 	AdditiveExpression
 ;
 AdditiveExpression:
-	lhs=MultiplicativeExpression (BinOpAdd rhs+=MultiplicativeExpression)*
+	lhs=MultiplicativeExpression (op+=BinOpAdd rhs+=MultiplicativeExpression)*
 ;
 MultiplicativeExpression:
-	lhs=UnaryExpression (BinOpMult rhs+=UnaryExpression)*
+	lhs=UnaryExpression (op+=BinOpMult rhs+=UnaryExpression)*
 ;
 UnaryExpression:
-	('-')? expr=ExpressionCalculPrimary
+	(op?='-')? expr=ExpressionCalculPrimary
 ;
 ExpressionCalculPrimary:
-	{ExpressionCalcul} NbField
-	| Aggregat arg=Field
-	| val= LitteralInt
-	| val= LitteralFloat
-	| '(' expr=ExpressionCalcul ')'
+	{NbField} NbField |
+	AggregatExpression |
+	LitteralInt |
+	LitteralFloat |
+	NestedExpressionCalcul
 ;
 
-Aggregat:
-	'Count' | 'Sum' | 'Product' | 'Mean'
+AggregatExpression:
+	aggregatOp=Aggregat arg=Field 
 ;
-BinOpAdd:
-	'+' | '-'
-;
-BinOpMult:
-	'*' | '/'
-;
-
 LitteralInt:
 	val=INT
 ;
 LitteralFloat:
 	val=FLOAT
 ;
+LitteralString:
+	val=STRING
+;
+NestedExpressionCalcul:
+	'(' expr=ExpressionCalcul ')'
+;
+
+enum Aggregat:
+	count='Count' | 
+	sum='Sum' |
+	product='Product' |
+	mean='Mean'
+;
+enum BinOpAdd:
+	plus='+' |
+	minus='-'
+;
+enum BinOpMult:
+	times='*' |
+	div='/'
+;
+
 NbField:
 	'NbField'
 ;
