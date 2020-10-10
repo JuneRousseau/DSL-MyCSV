@@ -3,10 +3,8 @@
  */
 package org.xtext.tests
 
-import com.google.inject.Inject
 import org.eclipse.xtext.testing.InjectWith
 import org.eclipse.xtext.testing.extensions.InjectionExtension
-import org.eclipse.xtext.testing.util.ParseHelper
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.^extension.ExtendWith
@@ -14,12 +12,12 @@ import org.xtext.myCsv.Program
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
 import org.eclipse.emf.common.util.URI
 import org.xtext.MyCsvStandaloneSetupGenerated
-import org.xtext.generator.MyCsvVisitor
+import org.xtext.generator.MyCsvPrettyPrinter
 
 @ExtendWith(InjectionExtension)
 @InjectWith(MyCsvInjectorProvider)
 class MyCsvParsingTest {
-	/*
+	/*return "<exprCalcUnary>"
 	@Inject
 	ParseHelper<Program> parseHelper
 	*/
@@ -40,8 +38,10 @@ class MyCsvParsingTest {
 		val errors = result.eResource.errors
 		Assertions.assertTrue(errors.isEmpty, '''Unexpected errors: «errors.join(", ")»''')
 		
-		val prettyPrinter = new MyCsvVisitor
-		prettyPrinter.prettyPrint(result)
+		val prettyPrinter = new MyCsvPrettyPrinter
+		print(prettyPrinter.visit(result))
+		//val prettyPrinter = new MyCsvPrettyPrinterDraft	
+		//prettyPrinter.prettyPrint(result)
 	}
 	
 	def loadMyCSV(URI uri){
