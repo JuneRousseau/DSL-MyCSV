@@ -72,12 +72,12 @@ abstract class MyCsvVisitor {
 	abstract def String afterVisit(Program program)
 	
 	def String visit(LineIndex l){
-		val res = beforeVisit(l)
+		var res = beforeVisit(l)
 		if(l instanceof LineIndexCond){
-			(l as LineIndexCond).visit
+			res= res + (l as LineIndexCond).visit
 		}
 		if(l instanceof LineIndexNum){
-			(l as LineIndexNum).visit
+			res= res + (l as LineIndexNum).visit
 		}
 		return res + afterVisit(l)
 	}
@@ -89,12 +89,12 @@ abstract class MyCsvVisitor {
 	abstract def String visit(LineIndexNum f)
 	
 	def String visit(FieldIndex l){
-		val res = beforeVisit(l)
+		var res = beforeVisit(l)
 		if(l instanceof FieldIndexName){
-			(l as FieldIndexName).visit
+			res= res + (l as FieldIndexName).visit
 		}
 		if(l instanceof FieldIndexNum){
-			(l as FieldIndexNum).visit
+			res= res + (l as FieldIndexNum).visit
 		}
 		return res + afterVisit(l)
 	}
@@ -108,12 +108,12 @@ abstract class MyCsvVisitor {
 	abstract def String visit(CellIndex f)
 	
 	def String visit(Value l){
-		val res = beforeVisit(l)
+		var res = beforeVisit(l)
 		if(l instanceof ExpressionCalcul){
-			(l as ExpressionCalcul).visit
+			res= res + (l as ExpressionCalcul).visit
 		}
 		if(l instanceof LitteralString){
-			(l as LitteralString).visit
+			res= res + (l as LitteralString).visit
 		}
 		return res + afterVisit(l)
 	}
@@ -124,33 +124,33 @@ abstract class MyCsvVisitor {
 	abstract def String visit(Values v)
 	
 	def String visit(Statement l){
-		val res = beforeVisit(l)
+		var res = beforeVisit(l)
 		if(l instanceof Load){
-			(l as Load).visit
+			res= res + (l as Load).visit
 		}
 		if(l instanceof Store){
-			(l as Store).visit
+			res= res + (l as Store).visit
 		}
 		if(l instanceof ExportJson){
-			(l as ExportJson).visit
+			res= res + (l as ExportJson).visit
 		}
 		if(l instanceof Projection){
-			(l as Projection).visit
+			res= res + (l as Projection).visit
 		}
 		if(l instanceof Select){
-			(l as Select).visit
+			res= res + (l as Select).visit
 		}
 		if(l instanceof Delete){
-			(l as Delete).visit
+			res= res + (l as Delete).visit
 		}
 		if(l instanceof Insert){
-			(l as Insert).visit
+			res= res + (l as Insert).visit
 		}
 		if(l instanceof Modify){
-			(l as Modify).visit
+			res= res + (l as Modify).visit
 		}
 		if(l instanceof Print){
-			(l as Print).visit
+			res= res + (l as Print).visit
 		}
 		return res + afterVisit(l)
 	}
@@ -165,11 +165,11 @@ abstract class MyCsvVisitor {
 	abstract def String visit(Select l)
 	
 	def String visit(Delete l){
-		val res = beforeVisit(l)
+		var res = beforeVisit(l)
 		if(l instanceof DeleteField)
-			(l as DeleteField).visit
+			res= res + (l as DeleteField).visit
 		if(l instanceof DeleteLine)
-			(l as DeleteLine).visit
+			res= res + (l as DeleteLine).visit
 		return res + afterVisit(l)
 	}
 	
@@ -180,11 +180,11 @@ abstract class MyCsvVisitor {
 	abstract def String visit(DeleteLine l)
 	
 	def String visit(Insert l){
-		val res = beforeVisit(l)
+		var res = beforeVisit(l)
 		if(l instanceof InsertField)
-			(l as InsertField).visit
+			res= res + (l as InsertField).visit
 		if(l instanceof InsertLine)
-			(l as InsertLine).visit
+			res= res + (l as InsertLine).visit
 		return res + afterVisit(l)
 	}
 	
@@ -195,13 +195,13 @@ abstract class MyCsvVisitor {
 	abstract def String visit(InsertLine l)
 	
 	def String visit(Modify l){
-		val res = beforeVisit(l)
+		var res = beforeVisit(l)
 		if(l instanceof ModifyField)
-			(l as ModifyField).visit
+			res= res + (l as ModifyField).visit
 		if(l instanceof ModifyLine)
-			(l as ModifyLine).visit
+			res= res + (l as ModifyLine).visit
 		if(l instanceof ModifyCell)
-			(l as ModifyCell).visit
+			res= res + (l as ModifyCell).visit
 		return res + afterVisit(l)
 	}
 	
@@ -213,17 +213,17 @@ abstract class MyCsvVisitor {
 	abstract def String visit(ModifyCell l)
 	
 	def String visit(Print l){
-		val res = beforeVisit(l)
+		var res = beforeVisit(l)
 		if(l instanceof PrintField)
-			(l as PrintField).visit
+			res= res + (l as PrintField).visit
 		if(l instanceof PrintLine)
-			(l as PrintLine).visit
+			res= res + (l as PrintLine).visit
 		if(l instanceof PrintCell)
-			(l as PrintCell).visit
+			res= res + (l as PrintCell).visit
 		if(l instanceof PrintTable)
-			(l as PrintTable).visit
+			res= res + (l as PrintTable).visit
 		if(l instanceof PrintExpr)
-			(l as PrintExpr).visit
+			res= res + (l as PrintExpr).visit
 		return res + afterVisit(l)
 	}
 	
@@ -245,11 +245,11 @@ abstract class MyCsvVisitor {
 	abstract def String visit(UnaryLogExpression l)
 
 	def String visit(ExpressionLogPrimary l){
-		val res = beforeVisit(l)
+		var res = beforeVisit(l)
 		if(l instanceof ExpressionRel)
-			(l as ExpressionRel).visit
+			res= res + (l as ExpressionRel).visit
 		if(l instanceof NestedLogExpression)
-			(l as NestedLogExpression).visit
+			res= res + (l as NestedLogExpression).visit
 		return res + afterVisit(l)
 	}
 	
@@ -274,17 +274,17 @@ abstract class MyCsvVisitor {
 	abstract def String visit(UnaryExpression l)
 
 	def String visit(ExpressionCalculPrimary l){
-		val res = beforeVisit(l)
+		var res = beforeVisit(l)
 		if(l instanceof NbField)
-			(l as NbField).visit
+			res= res + (l as NbField).visit
 		if(l instanceof AggregatExpression)
-			(l as AggregatExpression).visit
+			res= res + (l as AggregatExpression).visit
 		if(l instanceof LitteralInt)
-			(l as LitteralInt).visit
+			res= res + (l as LitteralInt).visit
 		if(l instanceof LitteralFloat)
-			(l as LitteralFloat).visit
+			res= res + (l as LitteralFloat).visit
 		if(l instanceof NestedExpressionCalcul)
-			(l as NestedExpressionCalcul).visit
+			res= res + (l as NestedExpressionCalcul).visit
 		return res + afterVisit(l)
 	}
 	
