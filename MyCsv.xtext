@@ -64,10 +64,10 @@ Statement:
 ;
 
 Load:
-	'Load' path=Path ('sep' '=' sep=STRING)? (noHeader?='noheader')?
+	'Load' path=Path (sepDefined?='sep' '=' sep=STRING)? (noHeader?='noheader')?
 ;
 Store:
-	'Store' path=Path ('sep' '=' sep=STRING)?
+	'Store' path=Path (sepDefined?='sep' '=' sep=STRING)?
 ;
 ExportJson:
 	'ExportJson' path=Path
