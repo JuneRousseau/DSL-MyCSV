@@ -36,6 +36,7 @@ Print field 1 2 3
 Print field A B C
 Print cell (1,A)
 Print cell (1,1)
+Print expr -42+(2*3/2)-(Count A)
 Print expr Count A
 Print expr Sum A
 Print expr Product A

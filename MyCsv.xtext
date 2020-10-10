@@ -146,7 +146,7 @@ PrintExpr:
 
 // Logical expressions
 ExpressionLog:
-	OrExpression
+	expr=OrExpression
 ;
 OrExpression:
 	lhs=AndExpression ('or' rhs+=AndExpression)*
@@ -179,7 +179,7 @@ enum BinOpRel:
 
 // Numerical expressions
 ExpressionCalcul:
-	AdditiveExpression
+	expr=AdditiveExpression
 ;
 AdditiveExpression:
 	lhs=MultiplicativeExpression (rhs+=AdditiveExpressionRhs)*
