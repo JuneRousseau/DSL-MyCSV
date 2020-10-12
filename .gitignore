@@ -1,0 +1,5 @@
+bin/
+src-gen/
+.settings/
+*.preference
+.launch/
