@@ -1,5 +1,8 @@
 bin/
 src-gen/
+generated/
 .settings/
 *.preference
 .launch/
+test-bin/
+xtend-gen/
