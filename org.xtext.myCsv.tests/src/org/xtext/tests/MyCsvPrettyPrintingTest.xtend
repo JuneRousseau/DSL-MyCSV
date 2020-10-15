@@ -25,25 +25,14 @@ class MyCsvPrettyPrintingTest {
 	
 	@Test
 	def void loadModel() {
-		/*val result = parseHelper.parse('''
-			Load "mycsv.csv"
-			Load "mycsv12.csv" sep="'"
-			ExportJson "mycsv12.json"
-			Projection 1 2   33
-			Load "mycsv2.csv" noheader
-			Store "ici"
-			Store "labas" sep="("
-		''')*/
 		val result= loadMyCSV(URI.createURI("examples/test1.mycsv"))
 		Assertions.assertNotNull(result)
 		val errors = result.eResource.errors
 		Assertions.assertTrue(errors.isEmpty, '''Unexpected errors: «errors.join(", ")»''')
 		
-		//val prettyPrinter = new MyCsvPrettyPrinter
-		//print(prettyPrinter.visit(result))
-		val prettyPrinter = new MyCsvPrettyPrinterDraft	
-		prettyPrinter.prettyPrint(result)
-	}
+		val prettyPrinter = new MyCsvPrettyPrinter
+		print(prettyPrinter.prettyPrint(result))
+		}
 	
 	def loadMyCSV(URI uri){
 		new MyCsvStandaloneSetupGenerated().createInjectorAndDoEMFRegistration()

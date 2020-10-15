@@ -10,11 +10,8 @@ import org.xtext.myCsv.Delete
 import org.xtext.myCsv.Insert
 import org.xtext.myCsv.Modify
 import org.xtext.myCsv.Print
-import org.xtext.myCsv.Statement
-import org.xtext.myCsv.FieldIndex
 import org.xtext.myCsv.FieldIndexName
 import org.xtext.myCsv.FieldIndexNum
-import org.xtext.myCsv.LineIndex
 import org.xtext.myCsv.LineIndexCond
 import org.xtext.myCsv.LineIndexNum
 import org.xtext.myCsv.CellIndex
@@ -26,7 +23,6 @@ import org.xtext.myCsv.Values
 import org.xtext.myCsv.ModifyField
 import org.xtext.myCsv.ModifyLine
 import org.xtext.myCsv.ModifyCell
-import org.xtext.myCsv.Value
 import org.xtext.myCsv.PrintField
 import org.xtext.myCsv.PrintLine
 import org.xtext.myCsv.PrintCell
@@ -36,7 +32,6 @@ import org.xtext.myCsv.ExpressionLog
 import org.xtext.myCsv.OrExpression
 import org.xtext.myCsv.AndExpression
 import org.xtext.myCsv.UnaryLogExpression
-import org.xtext.myCsv.ExpressionLogPrimary
 import org.xtext.myCsv.NestedLogExpression
 import org.xtext.myCsv.ExpressionRel
 import org.xtext.myCsv.ExpressionCalcul
@@ -45,7 +40,6 @@ import org.xtext.myCsv.MultiplicativeExpression
 import org.xtext.myCsv.AdditiveExpressionRhs
 import org.xtext.myCsv.MultiplicativeExpressionRhs
 import org.xtext.myCsv.UnaryExpression
-import org.xtext.myCsv.ExpressionCalculPrimary
 import org.xtext.myCsv.NbField
 import org.xtext.myCsv.NestedExpressionCalcul
 import org.xtext.myCsv.AggregatExpression
@@ -59,29 +53,22 @@ import org.xtext.myCsv.LitteralString
  * See https://www.eclipse.org/Xtext/documentation/303_runtime_concepts.html#code-generation
  */ 
  
- class MyCsvPrettyPrinter extends MyCsvVisitor {
+ class MyCsvPrettyPrinter {
 
-		
-	 override String beforeVisit(Program program){
-		return ""
-	}
-	 override String afterVisit(Program program){
-		return ""
+	def dispatch String prettyPrint(Program p){
+		var res=""
+		for( stmt : p.stmts )
+		{
+			res+=stmt.prettyPrint + "\n"
+		}
+		return res
 	}
 	
-
-	 override String beforeVisit(LineIndex l){
-		return ""
-	}
-	 override String afterVisit(LineIndex l){
-		return ""
-	}
-	
-	 override String visit(LineIndexCond f){
-	 	return f.cond.visit
+	 def dispatch String prettyPrint(LineIndexCond f){
+	 	return f.cond.prettyPrint
 		
 	}
-	 override String visit(LineIndexNum f){
+	 def dispatch String prettyPrint(LineIndexNum f){
 		var res = ""
 		for(num : f.lines)
 		{
@@ -90,15 +77,7 @@ import org.xtext.myCsv.LitteralString
 		return res
 	}
 	
-	
-	 override String beforeVisit(FieldIndex l){
-		return ""
-	}
-	 override String afterVisit(FieldIndex l){
-		return ""
-	}
-	
-	 override String visit(FieldIndexName f){
+	 def dispatch String prettyPrint(FieldIndexName f){
 		var res = ""
 		for(field : f.fields)
 		{
@@ -106,7 +85,7 @@ import org.xtext.myCsv.LitteralString
 		}
 		return res
 	}
-	 override String visit(FieldIndexNum f){
+	 def dispatch String prettyPrint(FieldIndexNum f){
 		var res = ""
 		for(col : f.columns)
 		{
@@ -115,7 +94,7 @@ import org.xtext.myCsv.LitteralString
 		return res
 	}
 	
-	 override String visit(CellIndex f){
+	 def dispatch String prettyPrint(CellIndex f){
 		var res= "(" + f.line + ", "
 		if( f.colname === null) {
 			res= res + f.colnum
@@ -127,32 +106,17 @@ import org.xtext.myCsv.LitteralString
 	}
 	
 	
-	 override String beforeVisit(Value l){
-	 	return ""
-		
-	}
-	 override String afterVisit(Value l){
-		return ""
-	}
-	
-	 override String visit(Values v){
+	 def dispatch String prettyPrint(Values v){
 	 	var res = ""
 		for(value : v.values)
 		{
-			res= res + value.visit + " "
+			res= res + value.prettyPrint + " "
 		}
 		return res
 	}
+
 	
-	
-	 override String beforeVisit(Statement l){
-		return ""
-	}
-	 override String afterVisit(Statement l){
-		return "\n"
-	}
-	
-	 override String visit(Load l){
+	 def dispatch String prettyPrint(Load l){
 	 	var res = 'Load "' + l.getPath.value + '"'
 		if (l.isSepDefined()){
 			res = res + ' sep="' + l.sep + '"'
@@ -162,204 +126,176 @@ import org.xtext.myCsv.LitteralString
 		}
 		return res
 	}
-	 override String visit(Store l){
+	 def dispatch String prettyPrint(Store l){
 	 	var res = 'Store "' + l.getPath.value + '"'
 		if (l.isSepDefined()){
 			res = res + ' sep="' + l.sep + '"'
 		}
 		return res		
 	}
-	 override String visit(ExportJson l){
+	 def dispatch String prettyPrint(ExportJson l){
 		return 'ExportJson "' + l.getPath.value + '"'
 	}
-	 override String visit(Projection l){
-		return 'Projection '+ l.field.visit
+	 def dispatch String prettyPrint(Projection l){
+		return 'Projection '+ l.field.prettyPrint
 	}
-	 override String visit(Select l){
-		return 'Select '+ l.line.visit
-	}
-	
-	
-	 override String beforeVisit(Delete l){
-		return "Delete "
-	}
-	 override String afterVisit(Delete l){
-		return ""
-	}
-	
-	 override String visit(DeleteField l){
-		return "field "+ l.fields.visit
-	}
-	 override String visit(DeleteLine l){
-		return "line "+ l.lines.visit
+	 def dispatch String prettyPrint(Select l){
+		return 'Select '+ l.line.prettyPrint
 	}
 	
 	
-	 override String beforeVisit(Insert l){
-		return "Insert "
-	}
-	 override String afterVisit(Insert l){
-		return ""
+	 def dispatch String prettyPrint(Delete l){
+		return "Delete "+l.prettyPrint
 	}
 	
-	 override String visit(InsertField l){
-		return "field "+ l.fieldname.value +": "+ l.values.visit
+	 def dispatch String prettyPrint(DeleteField l){
+		return "field "+ l.fields.prettyPrint
 	}
-	 override String visit(InsertLine l){
-		return "line "+l.values.visit
-	}
-	
-	 override String beforeVisit(Modify l){
-		return "Modify "
-	}
-	 override String afterVisit(Modify l){
-		return ""
+	 def dispatch String prettyPrint(DeleteLine l){
+		return "line "+ l.lines.prettyPrint
 	}
 	
-	 override String visit(ModifyField l){
-		return "field "+ l.fields.visit + " with "+l.values.visit
-	}
-	 override String visit(ModifyLine l){
-		return "line "+ l.lines.visit + " with "+l.values.visit
-	}
-	 override String visit(ModifyCell l){
-		return "cell "+ l.cell.visit + " with "+l.value.visit
+	
+	 def dispatch String prettyPrint(Insert l){
+		return "Insert "+l.prettyPrint
 	}
 
 	
-	 override String beforeVisit(Print l){
-		return "Print "
+	 def dispatch String prettyPrint(InsertField l){
+		return "field "+ l.fieldname.value +": "+ l.values.prettyPrint
 	}
-	 override String afterVisit(Print l){
-		return ""
+	 def dispatch String prettyPrint(InsertLine l){
+		return "line "+l.values.prettyPrint
 	}
 	
-	 override String visit(PrintField l){
-		return "field "+ l.fields.visit
+	 def dispatch String prettyPrint(Modify l){
+		return "Modify "+l.prettyPrint
 	}
-	 override String visit(PrintLine l){
-		return "line "+ l.lines.visit
+	
+	 def dispatch String prettyPrint(ModifyField l){
+		return "field "+ l.fields.prettyPrint + " with "+l.values.prettyPrint
 	}
-	 override String visit(PrintCell l){
-		return "cell "+ l.cell.visit
+	 def dispatch String prettyPrint(ModifyLine l){
+		return "line "+ l.lines.prettyPrint + " with "+l.values.prettyPrint
 	}
-	 override String visit(PrintTable l){
+	 def dispatch String prettyPrint(ModifyCell l){
+		return "cell "+ l.cell.prettyPrint + " with "+l.value.prettyPrint
+	}
+
+	
+	 def dispatch String prettyPrint(Print l){
+		return "Print "+l.prettyPrint
+	}
+	
+	 def dispatch String prettyPrint(PrintField l){
+		return "field "+ l.fields.prettyPrint
+	}
+	 def dispatch String prettyPrint(PrintLine l){
+		return "line "+ l.lines.prettyPrint
+	}
+	 def dispatch String prettyPrint(PrintCell l){
+		return "cell "+ l.cell.prettyPrint
+	}
+	 def dispatch String prettyPrint(PrintTable l){
 		return "table "
 	}
-	 override String visit(PrintExpr l){
-		return "expr "+ l.exp.visit
+	 def dispatch String prettyPrint(PrintExpr l){
+		return "expr "+ l.exp.prettyPrint
 	}
 
-	 override String visit(ExpressionLog l){
-		return l.expr.visit
+	 def dispatch String prettyPrint(ExpressionLog l){
+		return l.expr.prettyPrint
 	}
 
-	 override String visit(OrExpression l){
-		var	res = l.lhs.visit
+	 def dispatch String prettyPrint(OrExpression l){
+		var	res = l.lhs.prettyPrint
 		for (expr : l.rhs)
 		{
-			res = res + " or " + expr.visit
+			res = res + " or " + expr.prettyPrint
 		}
 		return res	
 	}
 
-	 override String visit(AndExpression l){
-		var	res = l.lhs.visit
+	 def dispatch String prettyPrint(AndExpression l){
+		var	res = l.lhs.prettyPrint
 		for (expr : l.rhs)
 		{
-			res = res + " and " + expr.visit
+			res = res + " and " + expr.prettyPrint
 		}
 		return res	
 	}
 
-	 override String visit(UnaryLogExpression l){
+	 def dispatch String prettyPrint(UnaryLogExpression l){
 	 	var res = ""
 		if (l.isNot)
 		{
 			res = res + "not "
 		}
-		return res + l.expr.visit
-	}
-
-	
-	 override String beforeVisit(ExpressionLogPrimary l){
-		return ""
-	}
-		
-	 override String afterVisit(ExpressionLogPrimary l){
-		return ""
+		return res + l.expr.prettyPrint
 	}
 	
-	 override String visit(ExpressionRel l){
-		return l.field.value + l.op.toString + l.getVal.visit + " "
+	 def dispatch String prettyPrint(ExpressionRel l){
+		return l.field.value + l.op.toString + l.getVal.prettyPrint + " "
 	}
 
-	 override String visit(NestedLogExpression l){
-		return "(" + l.expr.visit + ")"
+	 def dispatch String prettyPrint(NestedLogExpression l){
+		return "(" + l.expr.prettyPrint + ")"
 	}
 
-	 override String visit(ExpressionCalcul l){
-		return l.expr.visit
+	 def dispatch String prettyPrint(ExpressionCalcul l){
+		return l.expr.prettyPrint
 	}
 
-	 override String visit(AdditiveExpression l){
-		var	res = l.lhs.visit
+	 def dispatch String prettyPrint(AdditiveExpression l){
+		var	res = l.lhs.prettyPrint
 		for (expr : l.rhs)
 		{
-			res = res + expr.visit
+			res = res + expr.prettyPrint
 		}
 		return res
 	}
 	
-	 override String visit(AdditiveExpressionRhs l){
-		return l.op.toString + ""+l.rhs.visit
+	 def dispatch String prettyPrint(AdditiveExpressionRhs l){
+		return l.op.toString + ""+l.rhs.prettyPrint
 	}
 
-	 override String visit(MultiplicativeExpression l){
-		var	res = l.lhs.visit
+	 def dispatch String prettyPrint(MultiplicativeExpression l){
+		var	res = l.lhs.prettyPrint
 		for (expr : l.rhs)
 		{
-			res = res + expr.visit
+			res = res + expr.prettyPrint
 		}
 		return res
 	}
 	
-	 override String visit(MultiplicativeExpressionRhs l){
-		return l.op.toString +""+ l.rhs.visit
+	 def dispatch String prettyPrint(MultiplicativeExpressionRhs l){
+		return l.op.toString +""+ l.rhs.prettyPrint
 	}
 
-	 override String visit(UnaryExpression l){
+	 def dispatch String prettyPrint(UnaryExpression l){
 		var res = ""
 		if (l.isOp) {res = res + "-"}
-		return res+l.expr.visit
-	}
-
-	
-	 override String beforeVisit(ExpressionCalculPrimary l){
-		return ""
-	}
-	 override String afterVisit(ExpressionCalculPrimary l){
-		return ""
+		return res+l.expr.prettyPrint
 	}
 	
-	 override String visit(NbField l){
+	 def dispatch String prettyPrint(NbField l){
 		return "NbField"
 	}
-	 override String visit(AggregatExpression l){
+	 def dispatch String prettyPrint(AggregatExpression l){
 		return l.aggregatOp.toString + " " +l.arg.value
 	}
-	 override String visit(LitteralInt l){
+	 def dispatch String prettyPrint(LitteralInt l){
 		return l.getVal+""
 		
 	}
-	 override String visit(LitteralFloat l){
+	 def dispatch String prettyPrint(LitteralFloat l){
 		return l.getVal+""
 	}
-	 override String visit(NestedExpressionCalcul l){
-		return "(" + l.expr.visit + ")"
+	 def dispatch String prettyPrint(NestedExpressionCalcul l){
+		return "(" + l.expr.prettyPrint + ")"
 	}
 	
-	 override String visit(LitteralString l){
+	 def dispatch String prettyPrint(LitteralString l){
 		return l.getVal+""
 	}	
 }
