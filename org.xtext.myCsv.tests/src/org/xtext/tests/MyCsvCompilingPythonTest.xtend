@@ -12,37 +12,22 @@ import org.xtext.myCsv.Program
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
 import org.eclipse.emf.common.util.URI
 import org.xtext.MyCsvStandaloneSetupGenerated
-import org.xtext.generator.MyCsvPrettyPrinter
-import org.xtext.generator.MyCsvPrettyPrinterDraft
+import org.xtext.generator.MyCsvCompilerPython
 
 @ExtendWith(InjectionExtension)
 @InjectWith(MyCsvInjectorProvider)
-class MyCsvParsingTest {
-	/*return "<exprCalcUnary>"
-	@Inject
-	ParseHelper<Program> parseHelper
-	*/
+class MyCsvCompilingPythonTest {
 	
 	@Test
 	def void loadModel() {
-		/*val result = parseHelper.parse('''
-			Load "mycsv.csv"
-			Load "mycsv12.csv" sep="'"
-			ExportJson "mycsv12.json"
-			Projection 1 2   33
-			Load "mycsv2.csv" noheader
-			Store "ici"
-			Store "labas" sep="("
-		''')*/
-		val result= loadMyCSV(URI.createURI("examples/test1.mycsv"))
-		Assertions.assertNotNull(result)
-		val errors = result.eResource.errors
+		val prog= loadMyCSV(URI.createURI("examples/compileSpec.mycsv"))
+		Assertions.assertNotNull(prog)
+		val errors = prog.eResource.errors
 		Assertions.assertTrue(errors.isEmpty, '''Unexpected errors: «errors.join(", ")»''')
 		
-		//val prettyPrinter = new MyCsvPrettyPrinter
-		//print(prettyPrinter.visit(result))
-		val prettyPrinter = new MyCsvPrettyPrinterDraft	
-		prettyPrinter.prettyPrint(result)
+		val pythonCompiler = new MyCsvCompilerPython
+		print(pythonCompiler.compile(prog))
+		
 	}
 	
 	def loadMyCSV(URI uri){

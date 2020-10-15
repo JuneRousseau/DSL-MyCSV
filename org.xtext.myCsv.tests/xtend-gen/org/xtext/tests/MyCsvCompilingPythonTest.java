@@ -11,37 +11,33 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.testing.InjectWith;
 import org.eclipse.xtext.testing.extensions.InjectionExtension;
+import org.eclipse.xtext.xbase.lib.InputOutput;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.xtext.MyCsvStandaloneSetupGenerated;
-import org.xtext.generator.MyCsvPrettyPrinterDraft;
+import org.xtext.generator.MyCsvCompilerPython;
 import org.xtext.myCsv.Program;
 import org.xtext.tests.MyCsvInjectorProvider;
 
 @ExtendWith(InjectionExtension.class)
 @InjectWith(MyCsvInjectorProvider.class)
 @SuppressWarnings("all")
-public class MyCsvParsingTest {
-  /**
-   * return "<exprCalcUnary>"
-   * @Inject
-   * ParseHelper<Program> parseHelper
-   */
+public class MyCsvCompilingPythonTest {
   @Test
   public void loadModel() {
-    final Program result = this.loadMyCSV(URI.createURI("examples/test1.mycsv"));
-    Assertions.assertNotNull(result);
-    final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
+    final Program prog = this.loadMyCSV(URI.createURI("examples/compileSpec.mycsv"));
+    Assertions.assertNotNull(prog);
+    final EList<Resource.Diagnostic> errors = prog.eResource().getErrors();
     boolean _isEmpty = errors.isEmpty();
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("Unexpected errors: ");
     String _join = IterableExtensions.join(errors, ", ");
     _builder.append(_join);
     Assertions.assertTrue(_isEmpty, _builder.toString());
-    final MyCsvPrettyPrinterDraft prettyPrinter = new MyCsvPrettyPrinterDraft();
-    prettyPrinter.prettyPrint(result);
+    final MyCsvCompilerPython pythonCompiler = new MyCsvCompilerPython();
+    InputOutput.<String>print(pythonCompiler.compile(prog));
   }
   
   public Program loadMyCSV(final URI uri) {

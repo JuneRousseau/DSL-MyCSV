@@ -10,11 +10,8 @@ import org.xtext.myCsv.Delete
 import org.xtext.myCsv.Insert
 import org.xtext.myCsv.Modify
 import org.xtext.myCsv.Print
-import org.xtext.myCsv.Statement
-import org.xtext.myCsv.FieldIndex
 import org.xtext.myCsv.FieldIndexName
 import org.xtext.myCsv.FieldIndexNum
-import org.xtext.myCsv.LineIndex
 import org.xtext.myCsv.LineIndexCond
 import org.xtext.myCsv.LineIndexNum
 import org.xtext.myCsv.CellIndex
@@ -43,6 +40,7 @@ class MyCsvPrettyPrinterDraft {
 	def dispatch prettyPrint(Program p){
 		for(stmt : p.stmts) {
 			stmt.prettyPrint();
+			println()
 		}
 	}
 	
@@ -54,7 +52,6 @@ class MyCsvPrettyPrinterDraft {
 		if (l.isNoHeader()){
 			print(" noheader")
 		}
-		println()
 	}
 	
 	def dispatch prettyPrint(Store l){
@@ -62,61 +59,57 @@ class MyCsvPrettyPrinterDraft {
 		if (l.isSepDefined()){
 			print(' sep="' + l.sep + '"')
 		}
-		println()
 	}
 	
 	def dispatch prettyPrint(ExportJson l){
-		println('ExportJson "' + l.getPath.value + '"')
+		print('ExportJson "' + l.getPath.value + '"')
 	}
 	
 	def dispatch prettyPrint(Projection l){
 		print("Projection ")
 		l.field.prettyPrint
-		println()
 	}
 	
 	def dispatch prettyPrint(Select l){
 		print("Select ")
 		l.line.prettyPrint
-		println()
 	}
 	
 	def dispatch prettyPrint(Delete l){
 		print('Delete ')
-		l.prettyPrint
-		println()
+		l.prettyPrintDelete
 	}
 	
-	def dispatch prettyPrint(DeleteField l){
+	def dispatch prettyPrintDelete(DeleteField l){
 		print('field ')
 		l.fields.prettyPrint
 	}
 	
-	def dispatch prettyPrint(DeleteLine l){
+	def dispatch prettyPrintDelete(DeleteLine l){
 		print('line ')
 		l.lines.prettyPrint
 	}
 	
 	def dispatch prettyPrint(Modify l){
 		print('Modify ')
-		l.prettyPrint
+		l.prettyPrintModify
 	}
 	
-	def dispatch prettyPrint(ModifyField l){
+	def dispatch prettyPrintModify(ModifyField l){
 		print('field ')
 		l.fields.prettyPrint
 		print(' with ')
 		l.values.prettyPrint
 	}
 	
-	def dispatch prettyPrint(ModifyLine l){
+	def dispatch prettyPrintModify(ModifyLine l){
 		print('line ')
 		l.lines.prettyPrint
 		print(' with ')
 		l.values.prettyPrint
 	}
 	
-	def dispatch prettyPrint(ModifyCell l){
+	def dispatch prettyPrintModify(ModifyCell l){
 		print('cell ')
 		l.cell.prettyPrint
 		print(' with ')
@@ -125,44 +118,44 @@ class MyCsvPrettyPrinterDraft {
 	
 	def dispatch prettyPrint(Insert l){
 		print('Insert ')
-		l.prettyPrint
+		l.prettyPrintInsert
 	}
 	
-	def dispatch prettyPrint(InsertField l){
+	def dispatch prettyPrintInsert(InsertField l){
 		print('field ' + l.fieldname.value + ': ')
 		l.values.prettyPrint
 	}
 	
-	def dispatch prettyPrint(InsertLine l){
+	def dispatch prettyPrintInsert(InsertLine l){
 		print('line ')
 		l.values.prettyPrint
 	}
 	
 	def dispatch prettyPrint(Print l){
 		print('Print ')
-		l.prettyPrint
+		l.prettyPrintPrint
 	}
 	
-	def dispatch prettyPrint(PrintField l){
+	def dispatch prettyPrintPrint(PrintField l){
 		print('field ')
 		l.fields.prettyPrint
 	}
 	
-	def dispatch prettyPrint(PrintLine l){
+	def dispatch prettyPrintPrint(PrintLine l){
 		print('line ')
 		l.lines.prettyPrint
 	}
 	
-	def dispatch prettyPrint(PrintCell l){
+	def dispatch prettyPrintPrint(PrintCell l){
 		print('cell ')
 		l.cell.prettyPrint
 	}
 	
-	def dispatch prettyPrint(PrintTable l){
+	def dispatch prettyPrintPrint(PrintTable l){
 		print('table')
 	}
 	
-	def dispatch prettyPrint(PrintExpr l){
+	def dispatch prettyPrintPrint(PrintExpr l){
 		print('expr ')
 		l.exp.prettyPrint
 	}
@@ -173,15 +166,6 @@ class MyCsvPrettyPrinterDraft {
 	
 	def dispatch prettyPrint(Value v){
 		print("<Value>")
-	}	
-	
-	def dispatch prettyPrint(Statement stmt){
-		stmt.prettyPrint
-		println()
-	}
-	
-	def dispatch prettyPrint(FieldIndex f){
-		f.prettyPrint
 	}
 	
 	def dispatch prettyPrint(FieldIndexName f){
@@ -192,10 +176,6 @@ class MyCsvPrettyPrinterDraft {
 		print('<fieldIndexNum>')
 	}
 	
-	def dispatch prettyPrint(LineIndex f){
-		f.prettyPrint
-	}
-	
 	def dispatch prettyPrint(LineIndexCond f){
 		print('<LineIndexCond>')
 	}
@@ -203,6 +183,7 @@ class MyCsvPrettyPrinterDraft {
 	def dispatch prettyPrint(LineIndexNum f){
 		print('<LineIndexNum>')
 	}
+
 	def dispatch prettyPrint(CellIndex f){
 		print("(" + f.line + ", ")
 		if( f.colname === null) {

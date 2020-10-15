@@ -1,0 +1,29 @@
+#INIT
+import csv
+data = []
+header = []
+
+#LOAD
+data = []
+header = []
+
+with open ("input.csv", newline='') as csvfile:
+	reader = csv.reader(csvfile, delimiter = ",")
+	
+	# IF NOHEADER=false
+	header = next(reader) # TODO convertir en dictionnaire
+	# ELSE	
+	#header = ??
+	
+	for line in reader:
+		data.append(line)
+
+		
+with open ("output.csv", 'w', newline='') as csvfile:
+	writer = csv.writer(csvfile, delimiter = ";")
+	
+	writer.writerow(header)
+	
+	for line in data:
+		writer.writerow(line)
+		

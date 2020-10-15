@@ -1,0 +1,5 @@
+
+
+Load "input.csv" sep=","
+
+Store "output.csv" sep=";"

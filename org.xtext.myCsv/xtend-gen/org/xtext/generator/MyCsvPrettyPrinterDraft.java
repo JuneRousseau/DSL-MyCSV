@@ -10,13 +10,11 @@ import org.xtext.myCsv.DeleteField;
 import org.xtext.myCsv.DeleteLine;
 import org.xtext.myCsv.ExportJson;
 import org.xtext.myCsv.Field;
-import org.xtext.myCsv.FieldIndex;
 import org.xtext.myCsv.FieldIndexName;
 import org.xtext.myCsv.FieldIndexNum;
 import org.xtext.myCsv.Insert;
 import org.xtext.myCsv.InsertField;
 import org.xtext.myCsv.InsertLine;
-import org.xtext.myCsv.LineIndex;
 import org.xtext.myCsv.LineIndexCond;
 import org.xtext.myCsv.LineIndexNum;
 import org.xtext.myCsv.Load;
@@ -48,76 +46,93 @@ public class MyCsvPrettyPrinterDraft {
   protected Object _prettyPrint(final Program p) {
     EList<Statement> _stmts = p.getStmts();
     for (final Statement stmt : _stmts) {
-      this.prettyPrint(stmt);
+      {
+        this.prettyPrint(stmt);
+        InputOutput.println();
+      }
     }
     return null;
   }
   
   protected Object _prettyPrint(final Load l) {
-    String _value = l.getPath().getValue();
-    String _plus = ("Load \"" + _value);
-    String _plus_1 = (_plus + "\"");
-    InputOutput.<String>print(_plus_1);
-    boolean _isSepDefined = l.isSepDefined();
-    if (_isSepDefined) {
-      String _sep = l.getSep();
-      String _plus_2 = (" sep=\"" + _sep);
-      String _plus_3 = (_plus_2 + "\"");
-      InputOutput.<String>print(_plus_3);
+    String _xblockexpression = null;
+    {
+      String _value = l.getPath().getValue();
+      String _plus = ("Load \"" + _value);
+      String _plus_1 = (_plus + "\"");
+      InputOutput.<String>print(_plus_1);
+      boolean _isSepDefined = l.isSepDefined();
+      if (_isSepDefined) {
+        String _sep = l.getSep();
+        String _plus_2 = (" sep=\"" + _sep);
+        String _plus_3 = (_plus_2 + "\"");
+        InputOutput.<String>print(_plus_3);
+      }
+      String _xifexpression = null;
+      boolean _isNoHeader = l.isNoHeader();
+      if (_isNoHeader) {
+        _xifexpression = InputOutput.<String>print(" noheader");
+      }
+      _xblockexpression = _xifexpression;
     }
-    boolean _isNoHeader = l.isNoHeader();
-    if (_isNoHeader) {
-      InputOutput.<String>print(" noheader");
-    }
-    InputOutput.println();
-    return null;
+    return _xblockexpression;
   }
   
   protected Object _prettyPrint(final Store l) {
-    String _value = l.getPath().getValue();
-    String _plus = ("Store \"" + _value);
-    String _plus_1 = (_plus + "\"");
-    InputOutput.<String>print(_plus_1);
-    boolean _isSepDefined = l.isSepDefined();
-    if (_isSepDefined) {
-      String _sep = l.getSep();
-      String _plus_2 = (" sep=\"" + _sep);
-      String _plus_3 = (_plus_2 + "\"");
-      InputOutput.<String>print(_plus_3);
+    String _xblockexpression = null;
+    {
+      String _value = l.getPath().getValue();
+      String _plus = ("Store \"" + _value);
+      String _plus_1 = (_plus + "\"");
+      InputOutput.<String>print(_plus_1);
+      String _xifexpression = null;
+      boolean _isSepDefined = l.isSepDefined();
+      if (_isSepDefined) {
+        String _sep = l.getSep();
+        String _plus_2 = (" sep=\"" + _sep);
+        String _plus_3 = (_plus_2 + "\"");
+        _xifexpression = InputOutput.<String>print(_plus_3);
+      }
+      _xblockexpression = _xifexpression;
     }
-    InputOutput.println();
-    return null;
+    return _xblockexpression;
   }
   
   protected Object _prettyPrint(final ExportJson l) {
     String _value = l.getPath().getValue();
     String _plus = ("ExportJson \"" + _value);
     String _plus_1 = (_plus + "\"");
-    return InputOutput.<String>println(_plus_1);
+    return InputOutput.<String>print(_plus_1);
   }
   
   protected Object _prettyPrint(final Projection l) {
-    InputOutput.<String>print("Projection ");
-    this.prettyPrint(l.getField());
-    InputOutput.println();
-    return null;
+    Object _xblockexpression = null;
+    {
+      InputOutput.<String>print("Projection ");
+      _xblockexpression = this.prettyPrint(l.getField());
+    }
+    return _xblockexpression;
   }
   
   protected Object _prettyPrint(final Select l) {
-    InputOutput.<String>print("Select ");
-    this.prettyPrint(l.getLine());
-    InputOutput.println();
-    return null;
+    Object _xblockexpression = null;
+    {
+      InputOutput.<String>print("Select ");
+      _xblockexpression = this.prettyPrint(l.getLine());
+    }
+    return _xblockexpression;
   }
   
   protected Object _prettyPrint(final Delete l) {
-    InputOutput.<String>print("Delete ");
-    this.prettyPrint(l);
-    InputOutput.println();
-    return null;
+    Object _xblockexpression = null;
+    {
+      InputOutput.<String>print("Delete ");
+      _xblockexpression = this.prettyPrintDelete(l);
+    }
+    return _xblockexpression;
   }
   
-  protected Object _prettyPrint(final DeleteField l) {
+  protected Object _prettyPrintDelete(final DeleteField l) {
     Object _xblockexpression = null;
     {
       InputOutput.<String>print("field ");
@@ -126,7 +141,7 @@ public class MyCsvPrettyPrinterDraft {
     return _xblockexpression;
   }
   
-  protected Object _prettyPrint(final DeleteLine l) {
+  protected Object _prettyPrintDelete(final DeleteLine l) {
     Object _xblockexpression = null;
     {
       InputOutput.<String>print("line ");
@@ -139,12 +154,12 @@ public class MyCsvPrettyPrinterDraft {
     Object _xblockexpression = null;
     {
       InputOutput.<String>print("Modify ");
-      _xblockexpression = this.prettyPrint(l);
+      _xblockexpression = this.prettyPrintModify(l);
     }
     return _xblockexpression;
   }
   
-  protected Object _prettyPrint(final ModifyField l) {
+  protected Object _prettyPrintModify(final ModifyField l) {
     Object _xblockexpression = null;
     {
       InputOutput.<String>print("field ");
@@ -155,7 +170,7 @@ public class MyCsvPrettyPrinterDraft {
     return _xblockexpression;
   }
   
-  protected Object _prettyPrint(final ModifyLine l) {
+  protected Object _prettyPrintModify(final ModifyLine l) {
     Object _xblockexpression = null;
     {
       InputOutput.<String>print("line ");
@@ -166,7 +181,7 @@ public class MyCsvPrettyPrinterDraft {
     return _xblockexpression;
   }
   
-  protected Object _prettyPrint(final ModifyCell l) {
+  protected Object _prettyPrintModify(final ModifyCell l) {
     Object _xblockexpression = null;
     {
       InputOutput.<String>print("cell ");
@@ -181,12 +196,12 @@ public class MyCsvPrettyPrinterDraft {
     Object _xblockexpression = null;
     {
       InputOutput.<String>print("Insert ");
-      _xblockexpression = this.prettyPrint(l);
+      _xblockexpression = this.prettyPrintInsert(l);
     }
     return _xblockexpression;
   }
   
-  protected Object _prettyPrint(final InsertField l) {
+  protected Object _prettyPrintInsert(final InsertField l) {
     Object _xblockexpression = null;
     {
       String _value = l.getFieldname().getValue();
@@ -198,7 +213,7 @@ public class MyCsvPrettyPrinterDraft {
     return _xblockexpression;
   }
   
-  protected Object _prettyPrint(final InsertLine l) {
+  protected Object _prettyPrintInsert(final InsertLine l) {
     Object _xblockexpression = null;
     {
       InputOutput.<String>print("line ");
@@ -211,12 +226,12 @@ public class MyCsvPrettyPrinterDraft {
     Object _xblockexpression = null;
     {
       InputOutput.<String>print("Print ");
-      _xblockexpression = this.prettyPrint(l);
+      _xblockexpression = this.prettyPrintPrint(l);
     }
     return _xblockexpression;
   }
   
-  protected Object _prettyPrint(final PrintField l) {
+  protected Object _prettyPrintPrint(final PrintField l) {
     Object _xblockexpression = null;
     {
       InputOutput.<String>print("field ");
@@ -225,7 +240,7 @@ public class MyCsvPrettyPrinterDraft {
     return _xblockexpression;
   }
   
-  protected Object _prettyPrint(final PrintLine l) {
+  protected Object _prettyPrintPrint(final PrintLine l) {
     Object _xblockexpression = null;
     {
       InputOutput.<String>print("line ");
@@ -234,7 +249,7 @@ public class MyCsvPrettyPrinterDraft {
     return _xblockexpression;
   }
   
-  protected Object _prettyPrint(final PrintCell l) {
+  protected Object _prettyPrintPrint(final PrintCell l) {
     Object _xblockexpression = null;
     {
       InputOutput.<String>print("cell ");
@@ -243,11 +258,11 @@ public class MyCsvPrettyPrinterDraft {
     return _xblockexpression;
   }
   
-  protected Object _prettyPrint(final PrintTable l) {
+  protected Object _prettyPrintPrint(final PrintTable l) {
     return InputOutput.<String>print("table");
   }
   
-  protected Object _prettyPrint(final PrintExpr l) {
+  protected Object _prettyPrintPrint(final PrintExpr l) {
     Object _xblockexpression = null;
     {
       InputOutput.<String>print("expr ");
@@ -264,26 +279,12 @@ public class MyCsvPrettyPrinterDraft {
     return InputOutput.<String>print("<Value>");
   }
   
-  protected Object _prettyPrint(final Statement stmt) {
-    this.prettyPrint(stmt);
-    InputOutput.println();
-    return null;
-  }
-  
-  protected Object _prettyPrint(final FieldIndex f) {
-    return this.prettyPrint(f);
-  }
-  
   protected Object _prettyPrint(final FieldIndexName f) {
     return InputOutput.<String>print("<fieldIndexName>");
   }
   
   protected Object _prettyPrint(final FieldIndexNum f) {
     return InputOutput.<String>print("<fieldIndexNum>");
-  }
-  
-  protected Object _prettyPrint(final LineIndex f) {
-    return this.prettyPrint(f);
   }
   
   protected Object _prettyPrint(final LineIndexCond f) {
@@ -314,31 +315,7 @@ public class MyCsvPrettyPrinterDraft {
   }
   
   public Object prettyPrint(final EObject l) {
-    if (l instanceof DeleteField) {
-      return _prettyPrint((DeleteField)l);
-    } else if (l instanceof DeleteLine) {
-      return _prettyPrint((DeleteLine)l);
-    } else if (l instanceof InsertField) {
-      return _prettyPrint((InsertField)l);
-    } else if (l instanceof InsertLine) {
-      return _prettyPrint((InsertLine)l);
-    } else if (l instanceof ModifyCell) {
-      return _prettyPrint((ModifyCell)l);
-    } else if (l instanceof ModifyField) {
-      return _prettyPrint((ModifyField)l);
-    } else if (l instanceof ModifyLine) {
-      return _prettyPrint((ModifyLine)l);
-    } else if (l instanceof PrintCell) {
-      return _prettyPrint((PrintCell)l);
-    } else if (l instanceof PrintExpr) {
-      return _prettyPrint((PrintExpr)l);
-    } else if (l instanceof PrintField) {
-      return _prettyPrint((PrintField)l);
-    } else if (l instanceof PrintLine) {
-      return _prettyPrint((PrintLine)l);
-    } else if (l instanceof PrintTable) {
-      return _prettyPrint((PrintTable)l);
-    } else if (l instanceof Delete) {
+    if (l instanceof Delete) {
       return _prettyPrint((Delete)l);
     } else if (l instanceof ExportJson) {
       return _prettyPrint((ExportJson)l);
@@ -366,18 +343,64 @@ public class MyCsvPrettyPrinterDraft {
       return _prettyPrint((Store)l);
     } else if (l instanceof CellIndex) {
       return _prettyPrint((CellIndex)l);
-    } else if (l instanceof FieldIndex) {
-      return _prettyPrint((FieldIndex)l);
-    } else if (l instanceof LineIndex) {
-      return _prettyPrint((LineIndex)l);
     } else if (l instanceof Program) {
       return _prettyPrint((Program)l);
-    } else if (l instanceof Statement) {
-      return _prettyPrint((Statement)l);
     } else if (l instanceof Value) {
       return _prettyPrint((Value)l);
     } else if (l instanceof Values) {
       return _prettyPrint((Values)l);
+    } else {
+      throw new IllegalArgumentException("Unhandled parameter types: " +
+        Arrays.<Object>asList(l).toString());
+    }
+  }
+  
+  public Object prettyPrintDelete(final Delete l) {
+    if (l instanceof DeleteField) {
+      return _prettyPrintDelete((DeleteField)l);
+    } else if (l instanceof DeleteLine) {
+      return _prettyPrintDelete((DeleteLine)l);
+    } else {
+      throw new IllegalArgumentException("Unhandled parameter types: " +
+        Arrays.<Object>asList(l).toString());
+    }
+  }
+  
+  public Object prettyPrintModify(final Modify l) {
+    if (l instanceof ModifyCell) {
+      return _prettyPrintModify((ModifyCell)l);
+    } else if (l instanceof ModifyField) {
+      return _prettyPrintModify((ModifyField)l);
+    } else if (l instanceof ModifyLine) {
+      return _prettyPrintModify((ModifyLine)l);
+    } else {
+      throw new IllegalArgumentException("Unhandled parameter types: " +
+        Arrays.<Object>asList(l).toString());
+    }
+  }
+  
+  public Object prettyPrintInsert(final Insert l) {
+    if (l instanceof InsertField) {
+      return _prettyPrintInsert((InsertField)l);
+    } else if (l instanceof InsertLine) {
+      return _prettyPrintInsert((InsertLine)l);
+    } else {
+      throw new IllegalArgumentException("Unhandled parameter types: " +
+        Arrays.<Object>asList(l).toString());
+    }
+  }
+  
+  public Object prettyPrintPrint(final Print l) {
+    if (l instanceof PrintCell) {
+      return _prettyPrintPrint((PrintCell)l);
+    } else if (l instanceof PrintExpr) {
+      return _prettyPrintPrint((PrintExpr)l);
+    } else if (l instanceof PrintField) {
+      return _prettyPrintPrint((PrintField)l);
+    } else if (l instanceof PrintLine) {
+      return _prettyPrintPrint((PrintLine)l);
+    } else if (l instanceof PrintTable) {
+      return _prettyPrintPrint((PrintTable)l);
     } else {
       throw new IllegalArgumentException("Unhandled parameter types: " +
         Arrays.<Object>asList(l).toString());
