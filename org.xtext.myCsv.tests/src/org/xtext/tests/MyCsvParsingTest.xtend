@@ -13,6 +13,7 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
 import org.eclipse.emf.common.util.URI
 import org.xtext.MyCsvStandaloneSetupGenerated
 import org.xtext.generator.MyCsvPrettyPrinter
+import org.xtext.generator.MyCsvPrettyPrinterDraft
 
 @ExtendWith(InjectionExtension)
 @InjectWith(MyCsvInjectorProvider)
@@ -38,10 +39,10 @@ class MyCsvParsingTest {
 		val errors = result.eResource.errors
 		Assertions.assertTrue(errors.isEmpty, '''Unexpected errors: «errors.join(", ")»''')
 		
-		val prettyPrinter = new MyCsvPrettyPrinter
-		print(prettyPrinter.visit(result))
-		//val prettyPrinter = new MyCsvPrettyPrinterDraft	
-		//prettyPrinter.prettyPrint(result)
+		//val prettyPrinter = new MyCsvPrettyPrinter
+		//print(prettyPrinter.visit(result))
+		val prettyPrinter = new MyCsvPrettyPrinterDraft	
+		prettyPrinter.prettyPrint(result)
 	}
 	
 	def loadMyCSV(URI uri){

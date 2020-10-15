@@ -40,13 +40,13 @@ import org.xtext.myCsv.PrintExpr
  */
 class MyCsvPrettyPrinterDraft {
 
-	def void prettyPrint(Program p){
+	def dispatch prettyPrint(Program p){
 		for(stmt : p.stmts) {
 			stmt.prettyPrint();
 		}
 	}
 	
-	def prettyPrint(Load l){
+	def dispatch prettyPrint(Load l){
 		print('Load "' + l.getPath.value + '"')
 		if (l.isSepDefined()){
 			print(' sep="' + l.sep + '"')
@@ -57,7 +57,7 @@ class MyCsvPrettyPrinterDraft {
 		println()
 	}
 	
-	def prettyPrint(Store l){
+	def dispatch prettyPrint(Store l){
 		print('Store "' + l.getPath.value + '"')
 		if (l.isSepDefined()){
 			print(' sep="' + l.sep + '"')
@@ -65,216 +65,145 @@ class MyCsvPrettyPrinterDraft {
 		println()
 	}
 	
-	def prettyPrint(ExportJson l){
+	def dispatch prettyPrint(ExportJson l){
 		println('ExportJson "' + l.getPath.value + '"')
 	}
 	
-	def prettyPrint(Projection l){
-		print("Projecion ")
+	def dispatch prettyPrint(Projection l){
+		print("Projection ")
 		l.field.prettyPrint
 		println()
 	}
 	
-	def prettyPrint(Select l){
+	def dispatch prettyPrint(Select l){
 		print("Select ")
 		l.line.prettyPrint
 		println()
 	}
 	
-	def prettyPrint(Delete l){
+	def dispatch prettyPrint(Delete l){
 		print('Delete ')
-		if(l instanceof DeleteField)
-			(l as DeleteField).prettyPrint
-		if(l instanceof DeleteLine)
-			(l as DeleteLine).prettyPrint
+		l.prettyPrint
 		println()
 	}
 	
-	def prettyPrint(DeleteField l){
+	def dispatch prettyPrint(DeleteField l){
 		print('field ')
 		l.fields.prettyPrint
 	}
 	
-	def prettyPrint(DeleteLine l){
+	def dispatch prettyPrint(DeleteLine l){
 		print('line ')
 		l.lines.prettyPrint
 	}
 	
-	def prettyPrint(Modify l){
+	def dispatch prettyPrint(Modify l){
 		print('Modify ')
-		if(l instanceof ModifyField)
-			(l as ModifyField).prettyPrint
-		if(l instanceof ModifyLine)
-			(l as ModifyLine).prettyPrint
-		if(l instanceof ModifyCell)
-			(l as ModifyCell).prettyPrint
-		println()
+		l.prettyPrint
 	}
 	
-	def prettyPrint(ModifyField l){
+	def dispatch prettyPrint(ModifyField l){
 		print('field ')
 		l.fields.prettyPrint
 		print(' with ')
 		l.values.prettyPrint
 	}
 	
-	def prettyPrint(ModifyLine l){
+	def dispatch prettyPrint(ModifyLine l){
 		print('line ')
 		l.lines.prettyPrint
 		print(' with ')
 		l.values.prettyPrint
 	}
 	
-	def prettyPrint(ModifyCell l){
+	def dispatch prettyPrint(ModifyCell l){
 		print('cell ')
 		l.cell.prettyPrint
 		print(' with ')
 		l.value.prettyPrint
 	}
 	
-	def prettyPrint(Insert l){
+	def dispatch prettyPrint(Insert l){
 		print('Insert ')
-		if(l instanceof InsertField)
-			(l as InsertField).prettyPrint
-		if(l instanceof InsertLine)
-			(l as InsertLine).prettyPrint
-		println()
+		l.prettyPrint
 	}
 	
-	def prettyPrint(InsertField l){
+	def dispatch prettyPrint(InsertField l){
 		print('field ' + l.fieldname.value + ': ')
 		l.values.prettyPrint
 	}
 	
-	def prettyPrint(InsertLine l){
+	def dispatch prettyPrint(InsertLine l){
 		print('line ')
 		l.values.prettyPrint
 	}
 	
-	def prettyPrint(Print l){
+	def dispatch prettyPrint(Print l){
 		print('Print ')
-		if(l instanceof PrintField)
-			(l as PrintField).prettyPrint
-		if(l instanceof PrintLine)
-			(l as PrintLine).prettyPrint
-		if(l instanceof PrintCell)
-			(l as PrintCell).prettyPrint
-		if(l instanceof PrintTable)
-			(l as PrintTable).prettyPrint
-		if(l instanceof PrintExpr)
-			(l as PrintExpr).prettyPrint
-		println()
+		l.prettyPrint
 	}
 	
-	def prettyPrint(PrintField l){
+	def dispatch prettyPrint(PrintField l){
 		print('field ')
 		l.fields.prettyPrint
 	}
 	
-	def prettyPrint(PrintLine l){
+	def dispatch prettyPrint(PrintLine l){
 		print('line ')
 		l.lines.prettyPrint
 	}
 	
-	def prettyPrint(PrintCell l){
+	def dispatch prettyPrint(PrintCell l){
 		print('cell ')
 		l.cell.prettyPrint
 	}
 	
-	def prettyPrint(PrintTable l){
+	def dispatch prettyPrint(PrintTable l){
 		print('table')
 	}
 	
-	def prettyPrint(PrintExpr l){
+	def dispatch prettyPrint(PrintExpr l){
 		print('expr ')
 		l.exp.prettyPrint
 	}
 	
-	def prettyPrint(Values v){
+	def dispatch prettyPrint(Values v){
 		print("<Values>")
 	}
 	
-	def prettyPrint(Value v){
+	def dispatch prettyPrint(Value v){
 		print("<Value>")
 	}	
 	
-	def prettyPrint(Statement stmt){
-		if(stmt instanceof Load){
-			val l = stmt as Load
-			l.prettyPrint
-		}
-		if(stmt instanceof Store){
-			val l = stmt as Store
-			l.prettyPrint
-		}
-		if(stmt instanceof ExportJson){
-			val l = stmt as ExportJson
-			l.prettyPrint
-		}
-		if(stmt instanceof Projection){
-			val l = stmt as Projection
-			l.prettyPrint
-		}
-		if(stmt instanceof Select){
-			val l = stmt as Select
-			l.prettyPrint
-		}
-		if(stmt instanceof Delete){
-			val l = stmt as Delete
-			l.prettyPrint
-		}
-		if(stmt instanceof Insert){
-			val l = stmt as Insert
-			l.prettyPrint
-		}
-		if(stmt instanceof Modify){
-			val l = stmt as Modify
-			l.prettyPrint
-		}
-		if(stmt instanceof Print){
-			val l = stmt as Print
-			l.prettyPrint
-		}
+	def dispatch prettyPrint(Statement stmt){
+		stmt.prettyPrint
+		println()
 	}
 	
-	def prettyPrint(FieldIndex f){
-		if(f instanceof FieldIndexName){
-			val x = f as FieldIndexName
-			x.prettyPrint
-		}
-		if(f instanceof FieldIndexNum){
-			val x = f as FieldIndexNum
-			x.prettyPrint
-		}
+	def dispatch prettyPrint(FieldIndex f){
+		f.prettyPrint
 	}
 	
-	def prettyPrint(FieldIndexName f){
+	def dispatch prettyPrint(FieldIndexName f){
 		print('<fieldIndexName>')
 	}
 	
-	def prettyPrint(FieldIndexNum f){
+	def dispatch prettyPrint(FieldIndexNum f){
 		print('<fieldIndexNum>')
 	}
 	
-	def prettyPrint(LineIndex f){
-		if(f instanceof LineIndexCond){
-			val x = f as LineIndexCond
-			x.prettyPrint
-		}
-		if(f instanceof LineIndexNum){
-			val x = f as LineIndexNum
-			x.prettyPrint
-		}
+	def dispatch prettyPrint(LineIndex f){
+		f.prettyPrint
 	}
 	
-	def prettyPrint(LineIndexCond f){
+	def dispatch prettyPrint(LineIndexCond f){
 		print('<LineIndexCond>')
 	}
 	
-	def prettyPrint(LineIndexNum f){
+	def dispatch prettyPrint(LineIndexNum f){
 		print('<LineIndexNum>')
 	}
-	def prettyPrint(CellIndex f){
+	def dispatch prettyPrint(CellIndex f){
 		print("(" + f.line + ", ")
 		if( f.colname === null) {
 			print(f.colnum)

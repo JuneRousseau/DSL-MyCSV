@@ -11,13 +11,12 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.testing.InjectWith;
 import org.eclipse.xtext.testing.extensions.InjectionExtension;
-import org.eclipse.xtext.xbase.lib.InputOutput;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.xtext.MyCsvStandaloneSetupGenerated;
-import org.xtext.generator.MyCsvPrettyPrinter;
+import org.xtext.generator.MyCsvPrettyPrinterDraft;
 import org.xtext.myCsv.Program;
 import org.xtext.tests.MyCsvInjectorProvider;
 
@@ -41,8 +40,8 @@ public class MyCsvParsingTest {
     String _join = IterableExtensions.join(errors, ", ");
     _builder.append(_join);
     Assertions.assertTrue(_isEmpty, _builder.toString());
-    final MyCsvPrettyPrinter prettyPrinter = new MyCsvPrettyPrinter();
-    InputOutput.<String>print(prettyPrinter.visit(result));
+    final MyCsvPrettyPrinterDraft prettyPrinter = new MyCsvPrettyPrinterDraft();
+    prettyPrinter.prettyPrint(result);
   }
   
   public Program loadMyCSV(final URI uri) {
