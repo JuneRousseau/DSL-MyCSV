@@ -13,6 +13,10 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
 import org.eclipse.emf.common.util.URI
 import org.xtext.MyCsvStandaloneSetupGenerated
 import org.xtext.generator.MyCsvCompilerPython
+import java.nio.file.Files
+import java.io.IOException
+import java.nio.file.Paths
+import java.nio.charset.StandardCharsets
 
 @ExtendWith(InjectionExtension)
 @InjectWith(MyCsvInjectorProvider)
@@ -20,13 +24,23 @@ class MyCsvCompilingPythonTest {
 	
 	@Test
 	def void loadModel() {
-		val prog= loadMyCSV(URI.createURI("examples/test1.mycsv"))
+		val inputTest= "examples/compileSpec.mycsv"
+		val outputTest= "examples/compileSpec.py"
+		val prog= loadMyCSV(URI.createURI(inputTest))
 		Assertions.assertNotNull(prog)
 		val errors = prog.eResource.errors
 		Assertions.assertTrue(errors.isEmpty, '''Unexpected errors: «errors.join(", ")»''')
 		
 		val pythonCompiler = new MyCsvCompilerPython
-		print(pythonCompiler.compile(prog))
+		
+		val compiledProg= pythonCompiler.compile(prog)
+		try {
+    		Files.writeString(Paths.get(outputTest), compiledProg, StandardCharsets.UTF_8);
+		} catch (IOException ex) {
+	// Handle exception
+		}
+
+		print(compiledProg)
 		
 	}
 	

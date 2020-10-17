@@ -3,6 +3,10 @@
  */
 package org.xtext.tests;
 
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -11,6 +15,7 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.testing.InjectWith;
 import org.eclipse.xtext.testing.extensions.InjectionExtension;
+import org.eclipse.xtext.xbase.lib.Exceptions;
 import org.eclipse.xtext.xbase.lib.InputOutput;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.junit.jupiter.api.Assertions;
@@ -27,7 +32,9 @@ import org.xtext.tests.MyCsvInjectorProvider;
 public class MyCsvCompilingPythonTest {
   @Test
   public void loadModel() {
-    final Program prog = this.loadMyCSV(URI.createURI("examples/test1.mycsv"));
+    final String inputTest = "examples/compileSpec.mycsv";
+    final String outputTest = "examples/compileSpec.py";
+    final Program prog = this.loadMyCSV(URI.createURI(inputTest));
     Assertions.assertNotNull(prog);
     final EList<Resource.Diagnostic> errors = prog.eResource().getErrors();
     boolean _isEmpty = errors.isEmpty();
@@ -37,7 +44,16 @@ public class MyCsvCompilingPythonTest {
     _builder.append(_join);
     Assertions.assertTrue(_isEmpty, _builder.toString());
     final MyCsvCompilerPython pythonCompiler = new MyCsvCompilerPython();
-    InputOutput.<String>print(pythonCompiler.compile(prog));
+    final String compiledProg = pythonCompiler.compile(prog);
+    try {
+      Files.writeString(Paths.get(outputTest), compiledProg, StandardCharsets.UTF_8);
+    } catch (final Throwable _t) {
+      if (_t instanceof IOException) {
+      } else {
+        throw Exceptions.sneakyThrow(_t);
+      }
+    }
+    InputOutput.<String>print(compiledProg);
   }
   
   public Program loadMyCSV(final URI uri) {

@@ -50,6 +50,13 @@ import org.xtext.myCsv.LitteralString
  * See https://www.eclipse.org/Xtext/documentation/303_runtime_concepts.html#code-generation
  */
 class MyCsvCompilerPython {
+	
+	/* USEFULL CODE pour la gestion des headers lors des projections/delete fields
+	 * 	res += "tmpHeaders = []\n"
+	 *	res += "\ttmpHeaders.append(header[line])\n"
+	 *	res += "header = tmpHeaders\n"
+	 *	res += "headerDict = headerListToDict(header)"
+	 */
 
 	def dispatch String compile(Program p){
 		var res = "# INTRO\n"
@@ -83,7 +90,13 @@ class MyCsvCompilerPython {
 		res += "\treturn Sum(x) / Count(x)\n\n"
 		
 		res += "def exportJSON(x):\n"
-		res += "\treturn 0 # TODO\n\n" // TO NOT DO
+		res += "\treturn 0 # TODO\n" // TO NOT DO
+		
+		res += "def headerListToDict(headerList):\n" //transforme une liste de headers en dictionnaire
+		res += "\theaderDictTmp={}\n"
+		res += "\tfor (i,head) in enumerate(headerList):\n"
+		res += '\t\theaderDictTmp[head]=i\n'
+		res += '\treturn headerDictTmp\n\n'
 		
 		for(stmt : p.stmts) {
 			res += stmt.compile() + "\n\n";
@@ -105,8 +118,8 @@ class MyCsvCompilerPython {
 		res += ")\n"
 		
 		if(!l.noHeader)
-			res += "\theader = next(reader) # TODO convertir en dictionnaire\n"
-		
+			res += "\theader = next(reader)\n"
+			res += "\theaderDict= headerListToDict(header)\n"
 		res += "\tfor line in reader:\n"
 		res += "\t\tdata.append(line)"
 		
@@ -226,7 +239,7 @@ class MyCsvCompilerPython {
 		res += "tmp = []\n"
 		res += "for line in lines:\n"
 		res += "\ttmp.append(data[line])\n"
-		res += "data = tmp"
+		res += "data = tmp\n"
 		return res
 	}
 	

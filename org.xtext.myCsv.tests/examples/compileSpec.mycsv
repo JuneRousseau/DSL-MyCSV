@@ -1,6 +1,9 @@
 
 
 Load "input.csv" sep=","
-Print table
-Print field 1 3 4
+Print line 0
+Print expr Count profession
+Select 1 2 3
+Store "output.csv" sep=";"
+Print field 1 3 5
 Store "output.csv" sep=";"
