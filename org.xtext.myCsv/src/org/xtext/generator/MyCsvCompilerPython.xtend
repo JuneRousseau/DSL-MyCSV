@@ -23,12 +23,30 @@ import org.xtext.myCsv.Values
 import org.xtext.myCsv.ModifyField
 import org.xtext.myCsv.ModifyLine
 import org.xtext.myCsv.ModifyCell
-import org.xtext.myCsv.Value
 import org.xtext.myCsv.PrintField
 import org.xtext.myCsv.PrintLine
 import org.xtext.myCsv.PrintCell
 import org.xtext.myCsv.PrintTable
 import org.xtext.myCsv.PrintExpr
+import org.xtext.myCsv.ExpressionLog
+import org.xtext.myCsv.OrExpression
+import org.xtext.myCsv.AndExpression
+import org.xtext.myCsv.UnaryLogExpression
+import org.xtext.myCsv.NestedLogExpression
+import org.xtext.myCsv.ExpressionRel
+import org.xtext.myCsv.ExpressionCalcul
+import org.xtext.myCsv.AdditiveExpression
+import org.xtext.myCsv.MultiplicativeExpression
+import org.xtext.myCsv.AdditiveExpressionRhs
+import org.xtext.myCsv.MultiplicativeExpressionRhs
+import org.xtext.myCsv.UnaryExpression
+import org.xtext.myCsv.NbField
+import org.xtext.myCsv.NestedExpressionCalcul
+import org.xtext.myCsv.AggregatExpression
+import org.xtext.myCsv.LitteralInt
+import org.xtext.myCsv.LitteralFloat
+import org.xtext.myCsv.LitteralString
+
 
 /**
  * Pretty-prints
@@ -42,10 +60,9 @@ class MyCsvCompilerPython {
 		res += "data = []\n"
 		res += "header = []\n"
 		res += "headerDict = {}\n"
-		// TODO initialiser un csv vide
 		// TODO definir les fonctions aggregatives
 		for(stmt : p.stmts) {
-			res += stmt.compile();
+			res += stmt.compile() + "\n";
 		}
 		res
 	}
@@ -89,136 +106,220 @@ class MyCsvCompilerPython {
 		res
 	}
 	
-	def dispatch String compile(ExportJson l){
-		print('ExportJson "' + l.getPath.value + '"')
+	def dispatch String compile(LineIndexCond f){
+	 	return f.cond.compile
+		
 	}
-	
-	def dispatch String compile(Projection l){
-		print("Projection ")
-		l.field.compile
-	}
-	
-	def dispatch String compile(Select l){
-		print("Select ")
-		l.line.compile
-	}
-	
-	def dispatch String compile(Delete l){
-		print('Delete ')
-		l.compileDelete
-	}
-	
-	def dispatch String compileDelete(DeleteField l){
-		print('field ')
-		l.fields.compile
-	}
-	
-	def dispatch String compileDelete(DeleteLine l){
-		print('line ')
-		l.lines.compile
-	}
-	
-	def dispatch String compile(Modify l){
-		print('Modify ')
-		l.compileModify
-	}
-	
-	def dispatch String compileModify(ModifyField l){
-		print('field ')
-		l.fields.compile
-		print(' with ')
-		l.values.compile
-	}
-	
-	def dispatch String compileModify(ModifyLine l){
-		print('line ')
-		l.lines.compile
-		print(' with ')
-		l.values.compile
-	}
-	
-	def dispatch String compileModify(ModifyCell l){
-		print('cell ')
-		l.cell.compile
-		print(' with ')
-		l.value.compile
-	}
-	
-	def dispatch String compile(Insert l){
-		print('Insert ')
-		l.compileInsert
-	}
-	
-	def dispatch String compileInsert(InsertField l){
-		print('field ' + l.fieldname.value + ': ')
-		l.values.compile
-	}
-	
-	def dispatch String compileInsert(InsertLine l){
-		print('line ')
-		l.values.compile
-	}
-	
-	def dispatch String compile(Print l){
-		print('Print ')
-		l.compilePrint
-	}
-	
-	def dispatch String compilePrint(PrintField l){
-		print('field ')
-		l.fields.compile
-	}
-	
-	def dispatch String compilePrint(PrintLine l){
-		print('line ')
-		l.lines.compile
-	}
-	
-	def dispatch String compilePrint(PrintCell l){
-		print('cell ')
-		l.cell.compile
-	}
-	
-	def dispatch String compilePrint(PrintTable l){
-		print('table')
-	}
-	
-	def dispatch String compilePrint(PrintExpr l){
-		print('expr ')
-		l.exp.compile
-	}
-	
-	def dispatch String compile(Values v){
-		print("<Values>")
-	}
-	
-	def dispatch String compile(Value v){
-		print("<Value>")
+	def dispatch String compile(LineIndexNum f){
+		var res = ""
+		for(num : f.lines)
+		{
+			res= res + num + " "
+		}
+		return res
 	}
 	
 	def dispatch String compile(FieldIndexName f){
-		print('<fieldIndexName>')
+		var res = ""
+		for(field : f.fields)
+		{
+			res= res + field.value + " "
+		}
+		return res
 	}
-	
 	def dispatch String compile(FieldIndexNum f){
-		print('<fieldIndexNum>')
+		var res = ""
+		for(col : f.columns)
+		{
+			res= res + col + " "
+		}
+		return res
 	}
 	
-	def dispatch String compile(LineIndexCond f){
-		print('<LineIndexCond>')
+	def dispatch String compile(CellIndex f){
+		var res= "(" + f.line + ", "
+		if( f.colname === null) {
+			res= res + f.colnum
+		} else {
+			res = res + f.colname.value
+		}
+		res = res + ")"
+		return res	
 	}
 	
-	def dispatch String compile(LineIndexNum f){
-		print('<LineIndexNum>')
+	
+	def dispatch String compile(Values v){
+	 	var res = ""
+		for(value : v.values)
+		{
+			res= res + value.compile + " "
+		}
+		return res
+	}
+	
+	def dispatch String compile(ExportJson l){
+		return 'ExportJson "' + l.getPath.value + '"'
+	}
+	def dispatch String compile(Projection l){
+		return 'Projection '+ l.field.compile
+	}
+	def dispatch String compile(Select l){
+		return 'Select '+ l.line.compile
+	}
+	
+	
+	def dispatch String compile(Delete l){
+		return "Delete "+l.compile
+	}
+	
+	def dispatch String compile(DeleteField l){
+		return "field "+ l.fields.compile
+	}
+	def dispatch String compile(DeleteLine l){
+		return "line "+ l.lines.compile
+	}
+	
+	
+	def dispatch String compile(Insert l){
+		return "Insert "+l.compile
 	}
 
-	def dispatch String compile(CellIndex f){
-		print("(" + f.line + ", ")
-		if( f.colname === null) {
-			print(f.colnum)
-		} else {
-			print(f.colname.value)
+	
+	def dispatch String compile(InsertField l){
+		return "field "+ l.fieldname.value +": "+ l.values.compile
+	}
+	def dispatch String compile(InsertLine l){
+		return "line "+l.values.compile
+	}
+	
+	def dispatch String compile(Modify l){
+		return "Modify "+l.compile
+	}
+	
+	def dispatch String compile(ModifyField l){
+		return "field "+ l.fields.compile + " with "+l.values.compile
+	}
+	def dispatch String compile(ModifyLine l){
+		return "line "+ l.lines.compile + " with "+l.values.compile
+	}
+	def dispatch String compile(ModifyCell l){
+		return "cell "+ l.cell.compile + " with "+l.value.compile
+	}
+
+	
+	def dispatch String compile(Print l){
+		return "Print "+l.compile
+	}
+	
+	def dispatch String compile(PrintField l){
+		return "field "+ l.fields.compile
+	}
+	def dispatch String compile(PrintLine l){
+		return "line "+ l.lines.compile
+	}
+	def dispatch String compile(PrintCell l){
+		return "# PRINT CELL\nprint(" + l.cell.compile + ")"
+	}
+	def dispatch String compile(PrintTable l){
+		return "# PRINT TABLE\nprint(header)\nfor row in data:\n\tprint(row)"
+	}
+	def dispatch String compile(PrintExpr l){
+		return "expr "+ l.exp.compile
+	}
+
+	def dispatch String compile(ExpressionLog l){
+		return l.expr.compile
+	}
+
+	def dispatch String compile(OrExpression l){
+		var	res = l.lhs.compile
+		for (expr : l.rhs)
+		{
+			res = res + " or " + expr.compile
 		}
-		print(")")		
+		return res	
+	}
+
+	def dispatch String compile(AndExpression l){
+		var	res = l.lhs.compile
+		for (expr : l.rhs)
+		{
+			res = res + " and " + expr.compile
+		}
+		return res	
+	}
+
+	def dispatch String compile(UnaryLogExpression l){
+	 	var res = ""
+		if (l.isNot)
+		{
+			res = res + "not "
+		}
+		return res + l.expr.compile
+	}
+	
+	def dispatch String compile(ExpressionRel l){
+		return l.field.value + l.op.toString + l.getVal.compile + " "
+	}
+
+	def dispatch String compile(NestedLogExpression l){
+		return "(" + l.expr.compile + ")"
+	}
+
+	def dispatch String compile(ExpressionCalcul l){
+		return l.expr.compile
+	}
+
+	def dispatch String compile(AdditiveExpression l){
+		var	res = l.lhs.compile
+		for (expr : l.rhs)
+		{
+			res = res + expr.compile
+		}
+		return res
+	}
+	
+	def dispatch String compile(AdditiveExpressionRhs l){
+		return l.op.toString + ""+l.rhs.compile
+	}
+
+	def dispatch String compile(MultiplicativeExpression l){
+		var	res = l.lhs.compile
+		for (expr : l.rhs)
+		{
+			res = res + expr.compile
+		}
+		return res
+	}
+	
+	def dispatch String compile(MultiplicativeExpressionRhs l){
+		return l.op.toString +""+ l.rhs.compile
+	}
+
+	def dispatch String compile(UnaryExpression l){
+		var res = ""
+		if (l.isOp) {res = res + "-"}
+		return res+l.expr.compile
+	}
+	
+	def dispatch String compile(NbField l){
+		return "NbField"
+	}
+	def dispatch String compile(AggregatExpression l){
+		return l.aggregatOp.toString + " " +l.arg.value
+	}
+	def dispatch String compile(LitteralInt l){
+		return l.getVal+""
+		
+	}
+	def dispatch String compile(LitteralFloat l){
+		return l.getVal+""
+	}
+	def dispatch String compile(NestedExpressionCalcul l){
+		return "(" + l.expr.compile + ")"
+	}
+	
+	def dispatch String compile(LitteralString l){
+		return l.getVal+""
 	}
 }

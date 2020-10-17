@@ -13,7 +13,6 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
 import org.eclipse.emf.common.util.URI
 import org.xtext.MyCsvStandaloneSetupGenerated
 import org.xtext.generator.MyCsvPrettyPrinter
-import org.xtext.generator.MyCsvPrettyPrinterDraft
 
 @ExtendWith(InjectionExtension)
 @InjectWith(MyCsvInjectorProvider)
