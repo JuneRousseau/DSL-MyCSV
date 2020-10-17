@@ -6,10 +6,6 @@ import org.xtext.myCsv.Store
 import org.xtext.myCsv.ExportJson
 import org.xtext.myCsv.Projection
 import org.xtext.myCsv.Select
-import org.xtext.myCsv.Delete
-import org.xtext.myCsv.Insert
-import org.xtext.myCsv.Modify
-import org.xtext.myCsv.Print
 import org.xtext.myCsv.FieldIndexName
 import org.xtext.myCsv.FieldIndexNum
 import org.xtext.myCsv.LineIndexCond
@@ -72,10 +68,16 @@ class MyCsvCompilerPython {
 		res += "\treturn len(data)\n\n"
 		
 		res += "def Sum(x):\n"
-		res += "\treturn 0 #TODO\n\n" //TODO
+		res += "\tres = 0\n"
+		res += "\tfor row in data:\n"
+		res += "\t\tres += row[x]\n"
+		res += "\treturn res\n\n"
 		
 		res += "def Product(x):\n"
-		res += "\treturn 1 #TODO\n\n" //TODO
+		res += "\tres = 1\n"
+		res += "\tfor row in data:\n"
+		res += "\t\tres *= row[x]\n"
+		res += "\treturn res\n\n"
 		
 		res += "def Mean(x):\n"
 		res += "\treturn Sum(x) / Count(x)\n\n"
@@ -83,7 +85,6 @@ class MyCsvCompilerPython {
 		res += "def exportJSON(x):\n"
 		res += "\treturn 0 # TODO\n\n" // TO NOT DO
 		
-		// TODO definir les fonctions aggregatives
 		for(stmt : p.stmts) {
 			res += stmt.compile() + "\n\n";
 		}
@@ -126,7 +127,7 @@ class MyCsvCompilerPython {
 		res += "\tfor line in data:\n"
 		res += "\t\twriter.writerow(line)\n"
 		
-		res
+		return res
 	}
 	
 	def dispatch String compile(LineIndexCond f){
@@ -181,23 +182,27 @@ class MyCsvCompilerPython {
 	def dispatch String compile(CellIndex f){
 		var res= "data[" + f.line + "]["
 		if( f.colname === null) {
-			res= res + f.colnum
+			res += f.colnum
 		} else {
-			res = res + 'headerDict["' + f.colname.value + '"]'
+			res += 'headerDict["' + f.colname.value + '"]'
 		}
-		res = res + "]"
+		res += "]"
 		return res	
 	}
 	
 	
 	def dispatch String compile(Values v){
-	 	return "" //TODO
-		/*var res = ""
+		var res = "values = ["
+		var first = true
 		for(value : v.values)
 		{
-			res= res + value.compile + " "
+			if(!first)
+				res += ", "
+			res += value.compile
+			first = false
 		}
-		return res */
+		res += "]\n"
+		return res
 	}
 	
 	def dispatch String compile(ExportJson l){
@@ -205,7 +210,14 @@ class MyCsvCompilerPython {
 		//return 'ExportJson "' + l.getPath.value + '"'
 	}
 	def dispatch String compile(Projection l){
-		return "" //TODO
+		var res = "# PROJECTION\n" //TODO
+		res += l.field.compile
+		res += "fields.sort(reverse=True)\n"
+		res += "for row in data:\n"
+		res += "\tfor field in fields:\n"
+		res += "\t\tdel row[field]\n"
+		//TODO : test it
+		return res
 		//return 'Projection '+ l.field.compile
 	}
 	def dispatch String compile(Select l){
