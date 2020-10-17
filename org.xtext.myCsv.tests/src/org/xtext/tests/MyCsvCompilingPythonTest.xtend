@@ -20,7 +20,7 @@ class MyCsvCompilingPythonTest {
 	
 	@Test
 	def void loadModel() {
-		val prog= loadMyCSV(URI.createURI("examples/compileSpec.mycsv"))
+		val prog= loadMyCSV(URI.createURI("examples/test1.mycsv"))
 		Assertions.assertNotNull(prog)
 		val errors = prog.eResource.errors
 		Assertions.assertTrue(errors.isEmpty, '''Unexpected errors: «errors.join(", ")»''')

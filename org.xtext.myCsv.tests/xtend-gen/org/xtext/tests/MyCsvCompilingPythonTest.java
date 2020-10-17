@@ -27,7 +27,7 @@ import org.xtext.tests.MyCsvInjectorProvider;
 public class MyCsvCompilingPythonTest {
   @Test
   public void loadModel() {
-    final Program prog = this.loadMyCSV(URI.createURI("examples/compileSpec.mycsv"));
+    final Program prog = this.loadMyCSV(URI.createURI("examples/test1.mycsv"));
     Assertions.assertNotNull(prog);
     final EList<Resource.Diagnostic> errors = prog.eResource().getErrors();
     boolean _isEmpty = errors.isEmpty();

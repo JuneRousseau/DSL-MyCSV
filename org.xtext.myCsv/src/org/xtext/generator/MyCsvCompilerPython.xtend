@@ -56,15 +56,38 @@ import org.xtext.myCsv.LitteralString
 class MyCsvCompilerPython {
 
 	def dispatch String compile(Program p){
-		var res = "from csv import *\n"
+		var res = "# INTRO\n"
+		res += "import csv\n\n"
+		res += "# Note, name convention is as follow:\n"
+		res += "# data is a two-dimensional tabular\n"
+		res += "# row is a one-dimensional tabular\n"
+		res += "# line is a line index\n"
+		res += "# field is a column index\n"
+		res += "# values is a one-dimensional tabular\n"
 		res += "data = []\n"
 		res += "header = []\n"
-		res += "headerDict = {}\n"
+		res += "headerDict = {}\n\n"
+		
+		res += "def Count(x):\n"
+		res += "\treturn len(data)\n\n"
+		
+		res += "def Sum(x):\n"
+		res += "\treturn 0 #TODO\n\n" //TODO
+		
+		res += "def Product(x):\n"
+		res += "\treturn 1 #TODO\n\n" //TODO
+		
+		res += "def Mean(x):\n"
+		res += "\treturn Sum(x) / Count(x)\n\n"
+		
+		res += "def exportJSON(x):\n"
+		res += "\treturn 0 # TODO\n\n" // TO NOT DO
+		
 		// TODO definir les fonctions aggregatives
 		for(stmt : p.stmts) {
-			res += stmt.compile() + "\n";
+			res += stmt.compile() + "\n\n";
 		}
-		res
+		return res
 	}
 	
 	def dispatch String compile(Load l){
@@ -76,7 +99,7 @@ class MyCsvCompilerPython {
 		
 		res += "\treader = csv.reader(csvfile"
 		if (l.isSepDefined()){
-			res += ', delimiter =" ' + l.sep + '"'
+			res += ', delimiter = "' + l.sep + '"'
 		}
 		res += ")\n"
 		
@@ -84,9 +107,9 @@ class MyCsvCompilerPython {
 			res += "\theader = next(reader) # TODO convertir en dictionnaire\n"
 		
 		res += "\tfor line in reader:\n"
-		res += "\t\tdata.append(line)\n"
+		res += "\t\tdata.append(line)"
 		
-		res
+		return res
 	}
 	
 	def dispatch String compile(Store l){
@@ -95,7 +118,7 @@ class MyCsvCompilerPython {
 		
 		res += "\twriter = csv.writer(csvfile"
 		if (l.isSepDefined()){
-			res += ', delimiter =" ' + l.sep + '"'
+			res += ', delimiter = "' + l.sep + '"'
 		}
 		res += ")\n"
 		
@@ -107,124 +130,155 @@ class MyCsvCompilerPython {
 	}
 	
 	def dispatch String compile(LineIndexCond f){
-	 	return f.cond.compile
-		
+	 	var res = "lines = []\n"
+	 	res += "for (i, row) in enumerate(data):\n"
+	 	res += "\tif (" + f.cond.compile +"):\n"
+	 	res += "\tlines.append(i)\n"
+	 	return res
 	}
+	
 	def dispatch String compile(LineIndexNum f){
-		var res = ""
-		for(num : f.lines)
+		var res = "lines = ["
+		var first = true
+		for(lineNum : f.lines)
 		{
-			res= res + num + " "
+			if(!first)
+				res += ", "
+			res += lineNum
+			first = false
 		}
+		res += "]\n"
 		return res
 	}
 	
 	def dispatch String compile(FieldIndexName f){
-		var res = ""
+		var res = "fields = ["
+		var first = true
 		for(field : f.fields)
 		{
-			res= res + field.value + " "
+			if(!first)
+				res += ", "
+			res += 'headerDict["' + field.value + '"]'
+			first = false
 		}
+		res += "]\n"
 		return res
 	}
 	def dispatch String compile(FieldIndexNum f){
-		var res = ""
-		for(col : f.columns)
+		var res = "fields = ["
+		var first = true
+		for(colNum : f.columns)
 		{
-			res= res + col + " "
+			if(!first)
+				res += ", "
+			res += colNum
+			first = false
 		}
+		res += "]\n"
 		return res
 	}
 	
 	def dispatch String compile(CellIndex f){
-		var res= "(" + f.line + ", "
+		var res= "data[" + f.line + "]["
 		if( f.colname === null) {
 			res= res + f.colnum
 		} else {
-			res = res + f.colname.value
+			res = res + 'headerDict["' + f.colname.value + '"]'
 		}
-		res = res + ")"
+		res = res + "]"
 		return res	
 	}
 	
 	
 	def dispatch String compile(Values v){
-	 	var res = ""
+	 	return "" //TODO
+		/*var res = ""
 		for(value : v.values)
 		{
 			res= res + value.compile + " "
 		}
-		return res
+		return res */
 	}
 	
 	def dispatch String compile(ExportJson l){
-		return 'ExportJson "' + l.getPath.value + '"'
+		return "" //TODO
+		//return 'ExportJson "' + l.getPath.value + '"'
 	}
 	def dispatch String compile(Projection l){
-		return 'Projection '+ l.field.compile
+		return "" //TODO
+		//return 'Projection '+ l.field.compile
 	}
 	def dispatch String compile(Select l){
-		return 'Select '+ l.line.compile
-	}
-	
-	
-	def dispatch String compile(Delete l){
-		return "Delete "+l.compile
+		var res = "# SELECT\n"
+		res += l.line.compile
+		res += "tmp = []\n"
+		res += "for line in lines:\n"
+		res += "\ttmp.append(data[line])\n"
+		res += "data = tmp"
+		return res
 	}
 	
 	def dispatch String compile(DeleteField l){
-		return "field "+ l.fields.compile
+		return "" //TODO
+		//return "field "+ l.fields.compile
 	}
 	def dispatch String compile(DeleteLine l){
-		return "line "+ l.lines.compile
+		return "" //TODO
+		//return "line "+ l.lines.compile
 	}
-	
-	
-	def dispatch String compile(Insert l){
-		return "Insert "+l.compile
-	}
-
 	
 	def dispatch String compile(InsertField l){
-		return "field "+ l.fieldname.value +": "+ l.values.compile
+		return "" //TODO
+		//return "field "+ l.fieldname.value +": "+ l.values.compile
 	}
 	def dispatch String compile(InsertLine l){
-		return "line "+l.values.compile
-	}
-	
-	def dispatch String compile(Modify l){
-		return "Modify "+l.compile
+		return "" //TODO
+		//return "line "+l.values.compile
 	}
 	
 	def dispatch String compile(ModifyField l){
-		return "field "+ l.fields.compile + " with "+l.values.compile
+		return "" //TODO
+		//return "field "+ l.fields.compile + " with "+l.values.compile
 	}
 	def dispatch String compile(ModifyLine l){
-		return "line "+ l.lines.compile + " with "+l.values.compile
+		return "" //TODO
+		//return "line "+ l.lines.compile + " with "+l.values.compile
 	}
 	def dispatch String compile(ModifyCell l){
-		return "cell "+ l.cell.compile + " with "+l.value.compile
-	}
-
-	
-	def dispatch String compile(Print l){
-		return "Print "+l.compile
+		return "" //TODO
+		//return "cell "+ l.cell.compile + " with "+l.value.compile
 	}
 	
 	def dispatch String compile(PrintField l){
-		return "field "+ l.fields.compile
+		var res = "# PRINT FIELD\n"
+		res += l.fields.compile
+		res += 'for field in fields:\n'
+		res += '\tprint("Field " + str(field) + ":")\n'
+		res += '\tfor row in data:\n'
+		res += '\t\tprint(row[field])'
+		return res
 	}
 	def dispatch String compile(PrintLine l){
-		return "line "+ l.lines.compile
+		var res = "# PRINT LINE\n"
+		res += l.lines.compile // "lines" contains now line indexes
+		res += 'for line in lines:\n'
+		res += '\tprint(data[line])'
+		return res
 	}
 	def dispatch String compile(PrintCell l){
-		return "# PRINT CELL\nprint(" + l.cell.compile + ")"
+		var res = "# PRINT CELL\n"
+		return res + "print(" + l.cell.compile + ")"
 	}
 	def dispatch String compile(PrintTable l){
-		return "# PRINT TABLE\nprint(header)\nfor row in data:\n\tprint(row)"
+		var res = "# PRINT TABLE\n"
+		res += "print(header)\n"
+		res += "for row in data:\n"
+		return res + "\tprint(row)"
 	}
 	def dispatch String compile(PrintExpr l){
-		return "expr "+ l.exp.compile
+		var res = "# PRINT EXPR\n"
+		res += "print(" + l.exp.compile + ")"
+		return res
 	}
 
 	def dispatch String compile(ExpressionLog l){
@@ -235,7 +289,7 @@ class MyCsvCompilerPython {
 		var	res = l.lhs.compile
 		for (expr : l.rhs)
 		{
-			res = res + " or " + expr.compile
+			res += " or " + expr.compile
 		}
 		return res	
 	}
@@ -244,22 +298,22 @@ class MyCsvCompilerPython {
 		var	res = l.lhs.compile
 		for (expr : l.rhs)
 		{
-			res = res + " and " + expr.compile
+			res += " and " + expr.compile
 		}
-		return res	
+		return res
 	}
 
 	def dispatch String compile(UnaryLogExpression l){
 	 	var res = ""
 		if (l.isNot)
 		{
-			res = res + "not "
+			res += "not "
 		}
 		return res + l.expr.compile
 	}
 	
 	def dispatch String compile(ExpressionRel l){
-		return l.field.value + l.op.toString + l.getVal.compile + " "
+		return 'row[headerDict["' + l.field.value + '"]]' + l.op.toString + l.getVal.compile //+ " " //?
 	}
 
 	def dispatch String compile(NestedLogExpression l){
@@ -274,13 +328,13 @@ class MyCsvCompilerPython {
 		var	res = l.lhs.compile
 		for (expr : l.rhs)
 		{
-			res = res + expr.compile
+			res = res + expr.compile // op is inside of expr
 		}
 		return res
 	}
 	
 	def dispatch String compile(AdditiveExpressionRhs l){
-		return l.op.toString + ""+l.rhs.compile
+		return " " + l.op.toString + " " + l.rhs.compile
 	}
 
 	def dispatch String compile(MultiplicativeExpression l){
@@ -293,33 +347,32 @@ class MyCsvCompilerPython {
 	}
 	
 	def dispatch String compile(MultiplicativeExpressionRhs l){
-		return l.op.toString +""+ l.rhs.compile
+		return " " + l.op.toString + " " + l.rhs.compile
 	}
 
 	def dispatch String compile(UnaryExpression l){
 		var res = ""
-		if (l.isOp) {res = res + "-"}
+		if (l.isOp) {res += "-"}
 		return res+l.expr.compile
 	}
 	
 	def dispatch String compile(NbField l){
-		return "NbField"
+		return "len(data[0])" // fail when data is empty
 	}
 	def dispatch String compile(AggregatExpression l){
-		return l.aggregatOp.toString + " " +l.arg.value
+		return l.aggregatOp.toString + '(headerDict["' + l.arg.value + '"])'
 	}
 	def dispatch String compile(LitteralInt l){
-		return l.getVal+""
+		return l.getVal.toString
 		
 	}
 	def dispatch String compile(LitteralFloat l){
-		return l.getVal+""
+		return l.getVal.toString
 	}
 	def dispatch String compile(NestedExpressionCalcul l){
 		return "(" + l.expr.compile + ")"
-	}
-	
+	}	
 	def dispatch String compile(LitteralString l){
-		return l.getVal+""
+		return '"' + l.getVal + '"'
 	}
 }

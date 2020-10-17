@@ -1,29 +1,208 @@
-#INIT
+# INTRO
 import csv
+
+# Note, name convention is as follow:
+# data is a two-dimensional tabular
+# row is a one-dimensional tabular
+# line is a line index
+# field is a column index
+# values is a one-dimensional tabular
 data = []
 header = []
+headerDict = {}
+
+def Count(x):
+	return len(data)
+
+def Sum(x):
+	return 0 #TODO
+
+def Product(x):
+	return 1 #TODO
+
+def Mean(x):
+	return Sum(x) / Count(x)
+
+def exportJSON(x):
+	return 0 # TODO
 
 #LOAD
 data = []
 header = []
-
-with open ("input.csv", newline='') as csvfile:
-	reader = csv.reader(csvfile, delimiter = ",")
-	
-	# IF NOHEADER=false
+headerDict = {}
+with open('/path/to/file.csv', newline='') as csvfile:
+	reader = csv.reader(csvfile, delimiter = ";")
 	header = next(reader) # TODO convertir en dictionnaire
-	# ELSE	
-	#header = ??
-	
 	for line in reader:
 		data.append(line)
 
-		
-with open ("output.csv", 'w', newline='') as csvfile:
-	writer = csv.writer(csvfile, delimiter = ";")
-	
+#LOAD
+data = []
+header = []
+headerDict = {}
+with open('/path/to/file2.csv', newline='') as csvfile:
+	reader = csv.reader(csvfile)
+	header = next(reader) # TODO convertir en dictionnaire
+	for line in reader:
+		data.append(line)
+
+#LOAD
+data = []
+header = []
+headerDict = {}
+with open('/path/to/file3.csv', newline='') as csvfile:
+	reader = csv.reader(csvfile, delimiter = ";")
+	for line in reader:
+		data.append(line)
+
+
+
+
+
+
+
+# SELECT
+lines = [1, 2, 3]
+tmp = []
+for line in lines:
+	tmp.append(data[line])
+data = tmp
+
+
+# SELECT
+lines = []
+for (i, row) in enumerate(data):
+	if (row[headerDict["A"]>10):
+	lines.append(i)
+tmp = []
+for line in lines:
+	tmp.append(data[line])
+data = tmp
+
+
+# SELECT
+lines = []
+for (i, row) in enumerate(data):
+	if (((not row[headerDict["A"]!="name") and row[headerDict["B"]!="Rate" or row[headerDict["C"]>=12)):
+	lines.append(i)
+tmp = []
+for line in lines:
+	tmp.append(data[line])
+data = tmp
+
+
+# SELECT
+lines = []
+for (i, row) in enumerate(data):
+	if (row[headerDict["B"]==48 + 5):
+	lines.append(i)
+tmp = []
+for line in lines:
+	tmp.append(data[line])
+data = tmp
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# PRINT TABLE
+print(header)
+for row in data:
+	print(row)
+
+# PRINT LINE
+lines = [2, 4, 5]
+for line in lines:
+	print(data[line])
+
+# PRINT LINE
+lines = []
+for (i, row) in enumerate(data):
+	if (row[headerDict["C"]>=Product(headerDict["A"])):
+	lines.append(i)
+for line in lines:
+	print(data[line])
+
+# PRINT FIELD
+fields = [1, 2, 3]
+for field in fields:
+	print("Field " + str(field) + ":")
+	for row in data:
+		print(row[field])
+
+# PRINT FIELD
+fields = [headerDict["A"], headerDict["B"], headerDict["C"]]
+for field in fields:
+	print("Field " + str(field) + ":")
+	for row in data:
+		print(row[field])
+
+# PRINT CELL
+print(data[1][headerDict["A"]])
+
+# PRINT CELL
+print(data[1][1])
+
+# PRINT EXPR
+print(-42 + (2 * 3 / 2) - (Count(headerDict["A"])))
+
+# PRINT EXPR
+print(Count(headerDict["A"]))
+
+# PRINT EXPR
+print(Sum(headerDict["A"]))
+
+# PRINT EXPR
+print(Product(headerDict["A"]))
+
+# PRINT EXPR
+print(Mean(headerDict["A"]))
+
+# PRINT EXPR
+print(len(data[0]))
+
+#STORE
+with open('/path/to/file.csv', 'w', newline='') as csvfile:
+	writer = csv.writer(csvfile)
 	writer.writerow(header)
-	
 	for line in data:
 		writer.writerow(line)
-		
+
+

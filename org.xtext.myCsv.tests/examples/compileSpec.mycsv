@@ -1,5 +1,6 @@
 
 
 Load "input.csv" sep=","
-
+Print table
+Print field 1 3 4
 Store "output.csv" sep=";"
