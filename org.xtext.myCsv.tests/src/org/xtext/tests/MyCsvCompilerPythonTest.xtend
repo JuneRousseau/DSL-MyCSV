@@ -20,7 +20,7 @@ import java.nio.charset.StandardCharsets
 
 @ExtendWith(InjectionExtension)
 @InjectWith(MyCsvInjectorProvider)
-class MyCsvCompilingPythonTest {
+class MyCsvCompilerPythonTest {
 	
 	@Test
 	def void loadModel() {

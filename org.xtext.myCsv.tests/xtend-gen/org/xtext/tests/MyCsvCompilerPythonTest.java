@@ -29,7 +29,7 @@ import org.xtext.tests.MyCsvInjectorProvider;
 @ExtendWith(InjectionExtension.class)
 @InjectWith(MyCsvInjectorProvider.class)
 @SuppressWarnings("all")
-public class MyCsvCompilingPythonTest {
+public class MyCsvCompilerPythonTest {
   @Test
   public void loadModel() {
     final String inputTest = "examples/compileSpec.mycsv";
