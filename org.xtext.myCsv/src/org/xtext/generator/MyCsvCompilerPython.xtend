@@ -50,13 +50,6 @@ import org.xtext.myCsv.LitteralString
  * See https://www.eclipse.org/Xtext/documentation/303_runtime_concepts.html#code-generation
  */
 class MyCsvCompilerPython {
-	
-	/* USEFULL CODE pour la gestion des headers lors des projections/delete fields
-	 * 	res += "tmpHeaders = []\n"
-	 *	res += "\ttmpHeaders.append(header[field])\n"
-	 *	res += "header = tmpHeaders\n"
-	 *	res += "headerDict = headerListToDict(header)"
-	 */
 
 	def dispatch String compile(Program p){
 		var res = "# INTRO\n"
@@ -108,6 +101,7 @@ class MyCsvCompilerPython {
 		res += '\tf.close()\n\n'
 
 		res += "def refreshHeaderDict():\n" //transforme une liste de headers en dictionnaire
+		res += "\tglobal headerDict\n"
 		res += "\theaderDict={}\n"
 		res += "\tfor (i,head) in enumerate(header):\n"
 		res += '\t\theaderDict[head]=i\n\n'
@@ -163,7 +157,7 @@ class MyCsvCompilerPython {
 	 	var res = "lines = []\n"
 	 	res += "for (i, row) in enumerate(data):\n"
 	 	res += "\tif (" + f.cond.compile +"):\n"
-	 	res += "\tlines.append(i)\n"
+	 	res += "\t\tlines.append(i)\n"
 	 	return res
 	}
 	

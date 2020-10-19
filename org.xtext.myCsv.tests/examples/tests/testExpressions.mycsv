@@ -1,0 +1,9 @@
+Load "examples-gen/input.csv" sep=","
+Print expr Count id
+Print expr Sum id
+Print expr Product id
+Print expr Mean id
+Print expr 40+2
+Print expr 21*2
+Print expr 2*20+2
+Print expr 4.5+1

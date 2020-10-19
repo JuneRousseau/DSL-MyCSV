@@ -3,7 +3,11 @@
  */
 package org.xtext.tests;
 
+import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -31,31 +35,63 @@ import org.xtext.tests.MyCsvInjectorProvider;
 @SuppressWarnings("all")
 public class MyCsvCompilerPythonTest {
   @Test
-  public void loadModel() {
-    final String inputTest = "examples/compileSpec.mycsv";
-    final String outputTest = "examples-gen/compileSpec.py";
-    final Program prog = this.loadMyCSV(URI.createURI(inputTest));
-    Assertions.assertNotNull(prog);
-    final EList<Resource.Diagnostic> errors = prog.eResource().getErrors();
-    boolean _isEmpty = errors.isEmpty();
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("Unexpected errors: ");
-    String _join = IterableExtensions.join(errors, ", ");
-    _builder.append(_join);
-    Assertions.assertTrue(_isEmpty, _builder.toString());
-    final MyCsvCompilerPython pythonCompiler = new MyCsvCompilerPython();
-    final String compiledProg = pythonCompiler.compile(prog);
-    try {
-      Files.writeString(Paths.get(outputTest), compiledProg, StandardCharsets.UTF_8);
-    } catch (final Throwable _t) {
-      if (_t instanceof IOException) {
-        final IOException ex = (IOException)_t;
-        InputOutput.<String>print((("Exception occured: " + ex) + "\n----------------------\n\n\n\n\n"));
-      } else {
-        throw Exceptions.sneakyThrow(_t);
+  public void compileTests() {
+    final File directoryPath = new File("examples/tests/");
+    String[] _list = directoryPath.list();
+    for (final String testFile : _list) {
+      {
+        final String basename = testFile.substring(0, testFile.indexOf("."));
+        final String inputTest = (("examples/tests/" + basename) + ".mycsv");
+        final String outputTest = (("examples-gen/" + basename) + ".py");
+        final Program prog = this.loadMyCSV(URI.createURI(inputTest));
+        Assertions.assertNotNull(prog);
+        final EList<Resource.Diagnostic> errors = prog.eResource().getErrors();
+        boolean _isEmpty = errors.isEmpty();
+        StringConcatenation _builder = new StringConcatenation();
+        _builder.append("Unexpected errors: ");
+        String _join = IterableExtensions.join(errors, ", ");
+        _builder.append(_join);
+        Assertions.assertTrue(_isEmpty, _builder.toString());
+        final MyCsvCompilerPython pythonCompiler = new MyCsvCompilerPython();
+        final String compiledProg = pythonCompiler.compile(prog);
+        try {
+          Files.writeString(Paths.get(outputTest), compiledProg, StandardCharsets.UTF_8);
+        } catch (final Throwable _t) {
+          if (_t instanceof IOException) {
+            final IOException ex = (IOException)_t;
+            InputOutput.<String>print((("Exception occured: " + ex) + "\n----------------------\n\n\n\n\n"));
+          } else {
+            throw Exceptions.sneakyThrow(_t);
+          }
+        }
+        final String cmd = (("python3 examples-gen/" + basename) + ".py");
+        InputOutput.<String>print((("\n\n\n---------Test de " + basename) + "---------\n\n"));
+        final Runtime rt = Runtime.getRuntime();
+        try {
+          final Process pr = rt.exec(cmd);
+          InputStream _inputStream = pr.getInputStream();
+          InputStreamReader _inputStreamReader = new InputStreamReader(_inputStream);
+          final BufferedReader bfr = new BufferedReader(_inputStreamReader);
+          String line = null;
+          while (((line = bfr.readLine()) != null)) {
+            InputOutput.<String>println(("STDOUT: " + line));
+          }
+          InputStream _errorStream = pr.getErrorStream();
+          InputStreamReader _inputStreamReader_1 = new InputStreamReader(_errorStream);
+          final BufferedReader bfre = new BufferedReader(_inputStreamReader_1);
+          while (((line = bfre.readLine()) != null)) {
+            InputOutput.<String>println(("STDERR: " + line));
+          }
+        } catch (final Throwable _t) {
+          if (_t instanceof IOException) {
+            final IOException ex = (IOException)_t;
+            System.out.println((("Error: execution script Python aborted " + ex) + "\n"));
+          } else {
+            throw Exceptions.sneakyThrow(_t);
+          }
+        }
       }
     }
-    InputOutput.<String>print(compiledProg);
   }
   
   public Program loadMyCSV(final URI uri) {

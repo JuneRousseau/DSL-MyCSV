@@ -1,0 +1,2 @@
+Load "examples-gen/input.csv" sep=","
+Store "examples-gen/output.csv" sep=";"

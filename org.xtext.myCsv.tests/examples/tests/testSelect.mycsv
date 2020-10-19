@@ -1,0 +1,4 @@
+Load "examples-gen/input.csv" sep=","
+Select profession=="doctor"
+Select id<"150"
+Store "examples-gen/output.csv" sep=";"
