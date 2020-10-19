@@ -186,26 +186,26 @@ public class MyCsvPrettyPrinter {
   }
   
   protected String _prettyPrint(final Delete l) {
-    String _prettyPrint = this.prettyPrint(l);
-    return ("Delete " + _prettyPrint);
+    String _prettyPrintDelete = this.prettyPrintDelete(l);
+    return ("Delete " + _prettyPrintDelete);
   }
   
-  protected String _prettyPrint(final DeleteField l) {
+  protected String _prettyPrintDelete(final DeleteField l) {
     String _prettyPrint = this.prettyPrint(l.getFields());
     return ("field " + _prettyPrint);
   }
   
-  protected String _prettyPrint(final DeleteLine l) {
+  protected String _prettyPrintDelete(final DeleteLine l) {
     String _prettyPrint = this.prettyPrint(l.getLines());
     return ("line " + _prettyPrint);
   }
   
   protected String _prettyPrint(final Insert l) {
-    String _prettyPrint = this.prettyPrint(l);
-    return ("Insert " + _prettyPrint);
+    String _prettyPrintInsert = this.prettyPrintInsert(l);
+    return ("Insert " + _prettyPrintInsert);
   }
   
-  protected String _prettyPrint(final InsertField l) {
+  protected String _prettyPrintInsert(final InsertField l) {
     String _value = l.getFieldname().getValue();
     String _plus = ("field " + _value);
     String _plus_1 = (_plus + ": ");
@@ -213,17 +213,17 @@ public class MyCsvPrettyPrinter {
     return (_plus_1 + _prettyPrint);
   }
   
-  protected String _prettyPrint(final InsertLine l) {
+  protected String _prettyPrintInsert(final InsertLine l) {
     String _prettyPrint = this.prettyPrint(l.getValues());
     return ("line " + _prettyPrint);
   }
   
   protected String _prettyPrint(final Modify l) {
-    String _prettyPrint = this.prettyPrint(l);
-    return ("Modify " + _prettyPrint);
+    String _prettyPrintModify = this.prettyPrintModify(l);
+    return ("Modify " + _prettyPrintModify);
   }
   
-  protected String _prettyPrint(final ModifyField l) {
+  protected String _prettyPrintModify(final ModifyField l) {
     String _prettyPrint = this.prettyPrint(l.getFields());
     String _plus = ("field " + _prettyPrint);
     String _plus_1 = (_plus + " with ");
@@ -231,7 +231,7 @@ public class MyCsvPrettyPrinter {
     return (_plus_1 + _prettyPrint_1);
   }
   
-  protected String _prettyPrint(final ModifyLine l) {
+  protected String _prettyPrintModify(final ModifyLine l) {
     String _prettyPrint = this.prettyPrint(l.getLines());
     String _plus = ("line " + _prettyPrint);
     String _plus_1 = (_plus + " with ");
@@ -239,7 +239,7 @@ public class MyCsvPrettyPrinter {
     return (_plus_1 + _prettyPrint_1);
   }
   
-  protected String _prettyPrint(final ModifyCell l) {
+  protected String _prettyPrintModify(final ModifyCell l) {
     String _prettyPrint = this.prettyPrint(l.getCell());
     String _plus = ("cell " + _prettyPrint);
     String _plus_1 = (_plus + " with ");
@@ -248,30 +248,30 @@ public class MyCsvPrettyPrinter {
   }
   
   protected String _prettyPrint(final Print l) {
-    String _prettyPrint = this.prettyPrint(l);
-    return ("Print " + _prettyPrint);
+    String _prettyPrintPrint = this.prettyPrintPrint(l);
+    return ("Print " + _prettyPrintPrint);
   }
   
-  protected String _prettyPrint(final PrintField l) {
+  protected String _prettyPrintPrint(final PrintField l) {
     String _prettyPrint = this.prettyPrint(l.getFields());
     return ("field " + _prettyPrint);
   }
   
-  protected String _prettyPrint(final PrintLine l) {
+  protected String _prettyPrintPrint(final PrintLine l) {
     String _prettyPrint = this.prettyPrint(l.getLines());
     return ("line " + _prettyPrint);
   }
   
-  protected String _prettyPrint(final PrintCell l) {
+  protected String _prettyPrintPrint(final PrintCell l) {
     String _prettyPrint = this.prettyPrint(l.getCell());
     return ("cell " + _prettyPrint);
   }
   
-  protected String _prettyPrint(final PrintTable l) {
+  protected String _prettyPrintPrint(final PrintTable l) {
     return "table ";
   }
   
-  protected String _prettyPrint(final PrintExpr l) {
+  protected String _prettyPrintPrint(final PrintExpr l) {
     String _prettyPrint = this.prettyPrint(l.getExp());
     return ("expr " + _prettyPrint);
   }
@@ -314,11 +314,12 @@ public class MyCsvPrettyPrinter {
   
   protected String _prettyPrint(final ExpressionRel l) {
     String _value = l.getField().getValue();
+    String _plus = (_value + " ");
     String _string = l.getOp().toString();
-    String _plus = (_value + _string);
+    String _plus_1 = (_plus + _string);
+    String _plus_2 = (_plus_1 + " ");
     String _prettyPrint = this.prettyPrint(l.getVal());
-    String _plus_1 = (_plus + _prettyPrint);
-    return (_plus_1 + " ");
+    return (_plus_2 + _prettyPrint);
   }
   
   protected String _prettyPrint(final NestedLogExpression l) {
@@ -344,9 +345,10 @@ public class MyCsvPrettyPrinter {
   
   protected String _prettyPrint(final AdditiveExpressionRhs l) {
     String _string = l.getOp().toString();
-    String _plus = (_string + "");
+    String _plus = (" " + _string);
+    String _plus_1 = (_plus + " ");
     String _prettyPrint = this.prettyPrint(l.getRhs());
-    return (_plus + _prettyPrint);
+    return (_plus_1 + _prettyPrint);
   }
   
   protected String _prettyPrint(final MultiplicativeExpression l) {
@@ -362,9 +364,10 @@ public class MyCsvPrettyPrinter {
   
   protected String _prettyPrint(final MultiplicativeExpressionRhs l) {
     String _string = l.getOp().toString();
-    String _plus = (_string + "");
+    String _plus = (" " + _string);
+    String _plus_1 = (_plus + " ");
     String _prettyPrint = this.prettyPrint(l.getRhs());
-    return (_plus + _prettyPrint);
+    return (_plus_1 + _prettyPrint);
   }
   
   protected String _prettyPrint(final UnaryExpression l) {
@@ -406,35 +409,12 @@ public class MyCsvPrettyPrinter {
   
   protected String _prettyPrint(final LitteralString l) {
     String _val = l.getVal();
-    return (_val + "");
+    String _plus = ("\"" + _val);
+    return (_plus + "\"");
   }
   
   public String prettyPrint(final EObject l) {
-    if (l instanceof DeleteField) {
-      return _prettyPrint((DeleteField)l);
-    } else if (l instanceof DeleteLine) {
-      return _prettyPrint((DeleteLine)l);
-    } else if (l instanceof InsertField) {
-      return _prettyPrint((InsertField)l);
-    } else if (l instanceof InsertLine) {
-      return _prettyPrint((InsertLine)l);
-    } else if (l instanceof ModifyCell) {
-      return _prettyPrint((ModifyCell)l);
-    } else if (l instanceof ModifyField) {
-      return _prettyPrint((ModifyField)l);
-    } else if (l instanceof ModifyLine) {
-      return _prettyPrint((ModifyLine)l);
-    } else if (l instanceof PrintCell) {
-      return _prettyPrint((PrintCell)l);
-    } else if (l instanceof PrintExpr) {
-      return _prettyPrint((PrintExpr)l);
-    } else if (l instanceof PrintField) {
-      return _prettyPrint((PrintField)l);
-    } else if (l instanceof PrintLine) {
-      return _prettyPrint((PrintLine)l);
-    } else if (l instanceof PrintTable) {
-      return _prettyPrint((PrintTable)l);
-    } else if (l instanceof AggregatExpression) {
+    if (l instanceof AggregatExpression) {
       return _prettyPrint((AggregatExpression)l);
     } else if (l instanceof Delete) {
       return _prettyPrint((Delete)l);
@@ -502,6 +482,58 @@ public class MyCsvPrettyPrinter {
       return _prettyPrint((UnaryLogExpression)l);
     } else if (l instanceof Values) {
       return _prettyPrint((Values)l);
+    } else {
+      throw new IllegalArgumentException("Unhandled parameter types: " +
+        Arrays.<Object>asList(l).toString());
+    }
+  }
+  
+  public String prettyPrintDelete(final Delete l) {
+    if (l instanceof DeleteField) {
+      return _prettyPrintDelete((DeleteField)l);
+    } else if (l instanceof DeleteLine) {
+      return _prettyPrintDelete((DeleteLine)l);
+    } else {
+      throw new IllegalArgumentException("Unhandled parameter types: " +
+        Arrays.<Object>asList(l).toString());
+    }
+  }
+  
+  public String prettyPrintInsert(final Insert l) {
+    if (l instanceof InsertField) {
+      return _prettyPrintInsert((InsertField)l);
+    } else if (l instanceof InsertLine) {
+      return _prettyPrintInsert((InsertLine)l);
+    } else {
+      throw new IllegalArgumentException("Unhandled parameter types: " +
+        Arrays.<Object>asList(l).toString());
+    }
+  }
+  
+  public String prettyPrintModify(final Modify l) {
+    if (l instanceof ModifyCell) {
+      return _prettyPrintModify((ModifyCell)l);
+    } else if (l instanceof ModifyField) {
+      return _prettyPrintModify((ModifyField)l);
+    } else if (l instanceof ModifyLine) {
+      return _prettyPrintModify((ModifyLine)l);
+    } else {
+      throw new IllegalArgumentException("Unhandled parameter types: " +
+        Arrays.<Object>asList(l).toString());
+    }
+  }
+  
+  public String prettyPrintPrint(final Print l) {
+    if (l instanceof PrintCell) {
+      return _prettyPrintPrint((PrintCell)l);
+    } else if (l instanceof PrintExpr) {
+      return _prettyPrintPrint((PrintExpr)l);
+    } else if (l instanceof PrintField) {
+      return _prettyPrintPrint((PrintField)l);
+    } else if (l instanceof PrintLine) {
+      return _prettyPrintPrint((PrintLine)l);
+    } else if (l instanceof PrintTable) {
+      return _prettyPrintPrint((PrintTable)l);
     } else {
       throw new IllegalArgumentException("Unhandled parameter types: " +
         Arrays.<Object>asList(l).toString());

@@ -24,7 +24,7 @@ class MyCsvPrettyPrintingTest {
 	
 	@Test
 	def void loadModel() {
-		val result= loadMyCSV(URI.createURI("examples/compileSpec.mycsv"))
+		val result= loadMyCSV(URI.createURI("examples/test1.mycsv"))
 		Assertions.assertNotNull(result)
 		val errors = result.eResource.errors
 		Assertions.assertTrue(errors.isEmpty, '''Unexpected errors: «errors.join(", ")»''')

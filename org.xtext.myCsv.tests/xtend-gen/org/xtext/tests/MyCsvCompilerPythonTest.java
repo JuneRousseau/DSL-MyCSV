@@ -33,7 +33,7 @@ public class MyCsvCompilerPythonTest {
   @Test
   public void loadModel() {
     final String inputTest = "examples/compileSpec.mycsv";
-    final String outputTest = "examples/compileSpec.py";
+    final String outputTest = "examples-gen/compileSpec.py";
     final Program prog = this.loadMyCSV(URI.createURI(inputTest));
     Assertions.assertNotNull(prog);
     final EList<Resource.Diagnostic> errors = prog.eResource().getErrors();
@@ -49,6 +49,8 @@ public class MyCsvCompilerPythonTest {
       Files.writeString(Paths.get(outputTest), compiledProg, StandardCharsets.UTF_8);
     } catch (final Throwable _t) {
       if (_t instanceof IOException) {
+        final IOException ex = (IOException)_t;
+        InputOutput.<String>print((("Exception occured: " + ex) + "\n----------------------\n\n\n\n\n"));
       } else {
         throw Exceptions.sneakyThrow(_t);
       }

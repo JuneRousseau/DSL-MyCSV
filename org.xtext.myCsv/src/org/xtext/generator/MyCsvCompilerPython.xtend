@@ -53,20 +53,21 @@ class MyCsvCompilerPython {
 	
 	/* USEFULL CODE pour la gestion des headers lors des projections/delete fields
 	 * 	res += "tmpHeaders = []\n"
-	 *	res += "\ttmpHeaders.append(header[line])\n"
+	 *	res += "\ttmpHeaders.append(header[field])\n"
 	 *	res += "header = tmpHeaders\n"
 	 *	res += "headerDict = headerListToDict(header)"
 	 */
 
 	def dispatch String compile(Program p){
 		var res = "# INTRO\n"
-		res += "import csv\n\n"
+		res += "import csv\n"
+		res += "import json\n\n"
 		res += "# Note, name convention is as follow:\n"
-		res += "# data is a two-dimensional tabular\n"
-		res += "# row is a one-dimensional tabular\n"
-		res += "# line is a line index\n"
-		res += "# field is a column index\n"
-		res += "# values is a one-dimensional tabular\n"
+		res += "# - data is a two-dimensional tabular\n"
+		res += "# - row is a one-dimensional tabular\n"
+		res += "# - line is a line index\n"
+		res += "# - field is a column index\n"
+		res += "# - values is a one-dimensional tabular\n\n"
 		res += "data = []\n"
 		res += "header = []\n"
 		res += "headerDict = {}\n\n"
@@ -89,14 +90,27 @@ class MyCsvCompilerPython {
 		res += "def Mean(x):\n"
 		res += "\treturn Sum(x) / Count(x)\n\n"
 		
-		res += "def exportJSON(x):\n"
-		res += "\treturn 0 # TODO\n" // TO NOT DO
-		
-		res += "def headerListToDict(headerList):\n" //transforme une liste de headers en dictionnaire
-		res += "\theaderDictTmp={}\n"
-		res += "\tfor (i,head) in enumerate(headerList):\n"
-		res += '\t\theaderDictTmp[head]=i\n'
-		res += '\treturn headerDictTmp\n\n'
+		res += 'def exportJson(x):\n'
+		res += '\tjsonText=""\n'
+		res += '\tjsonText+="[\\n"\n'
+		res += '\tfor i in range(len(data)-1):\n'
+		res += '\t\tobjDict={}\n'
+		res += '\t\trow=data[i]\n'
+		res += '\t\tfor (i,head) in enumerate(header):\n'
+		res += '\t\t\tobjDict[head]=row[i]\n'
+		res += '\t\tjsonText+= json.dumps(objDict, indent=4)+",\\n"\n'
+		res += '\tfor (i,head) in enumerate(header):\n'
+		res += '\t\tobjDict[head]=data[-1][i]\n'
+		res += '\tjsonText+= json.dumps(objDict, indent=4)+"\\n"\n'
+		res += '\tjsonText+="]"\n'
+		res += '\tf = open(x, "w")\n'
+		res += '\tf.write(jsonText)\n'
+		res += '\tf.close()\n\n'
+
+		res += "def refreshHeaderDict():\n" //transforme une liste de headers en dictionnaire
+		res += "\theaderDict={}\n"
+		res += "\tfor (i,head) in enumerate(header):\n"
+		res += '\t\theaderDict[head]=i\n\n'
 		
 		for(stmt : p.stmts) {
 			res += stmt.compile() + "\n\n";
@@ -105,6 +119,8 @@ class MyCsvCompilerPython {
 	}
 	
 	def dispatch String compile(Load l){
+		// Note : loading .csv with header sharing names happens badly
+		// TODO : detect and differentiate strings and floats and ints
 		var res = "#LOAD\n"
 		res += "data = []\n"
 		res += "header = []\n"
@@ -119,7 +135,7 @@ class MyCsvCompilerPython {
 		
 		if(!l.noHeader)
 			res += "\theader = next(reader)\n"
-			res += "\theaderDict= headerListToDict(header)\n"
+			res += "\trefreshHeaderDict()\n"
 		res += "\tfor line in reader:\n"
 		res += "\t\tdata.append(line)"
 		
@@ -219,19 +235,20 @@ class MyCsvCompilerPython {
 	}
 	
 	def dispatch String compile(ExportJson l){
-		return "" //TODO
-		//return 'ExportJson "' + l.getPath.value + '"'
+		var res = "# EXPORT JSON\n"
+		return res + "exportJson('" + l.getPath.value + "')"
 	}
 	def dispatch String compile(Projection l){
-		var res = "# PROJECTION\n" //TODO
+		var res = "# PROJECTION\n"
 		res += l.field.compile
 		res += "fields.sort(reverse=True)\n"
-		res += "for row in data:\n"
-		res += "\tfor field in fields:\n"
-		res += "\t\tdel row[field]\n"
-		//TODO : test it
+		res += "for i in range(len(header):\n"
+		res += "\tif !(i in field):\n"
+		res += "\t\tdel header[i]\n"
+		res += "\t\tfor row in data:\n"
+		res += "\t\t\tdel row[i]\n"
+		res += "refreshHeaderDict()\n"
 		return res
-		//return 'Projection '+ l.field.compile
 	}
 	def dispatch String compile(Select l){
 		var res = "# SELECT\n"
@@ -244,34 +261,61 @@ class MyCsvCompilerPython {
 	}
 	
 	def dispatch String compile(DeleteField l){
-		return "" //TODO
-		//return "field "+ l.fields.compile
+		var res = "# DELETE FIELD\n"
+		res += l.fields.compile
+		res += "fields.sort(reverse=True)\n"
+		res += "for field in fields:\n"
+		res += "\tdel header[field]\n"
+		res += "\tfor row in data:\n"
+		res += "\t\tdel row[field]\n"
+		res += "refreshHeaderDict()\n"
+		return res
 	}
 	def dispatch String compile(DeleteLine l){
-		return "" //TODO
-		//return "line "+ l.lines.compile
+		var res = "# DELETE LINE\n"
+		res += l.lines.compile
+		res += "lines.sort(reverse=True)\n"
+		res += "for line in lines:\n"
+		res += "\tdel data[line]\n"
+		return res
 	}
 	
 	def dispatch String compile(InsertField l){
-		return "" //TODO
-		//return "field "+ l.fieldname.value +": "+ l.values.compile
+		var res = "# INSERT FIELD\n"
+		res += l.values.compile
+		res += "for (i, row) in enumerate(data):\n"
+		res += "\trow.append(values[i % len(values)]) #little trick to get correct semantics\n"
+		res += 'header.append("' + l.fieldname.value + '")\n'
+		res += 'refreshHeaderDict()\n'
+		return res
 	}
 	def dispatch String compile(InsertLine l){
-		return "" //TODO
-		//return "line "+l.values.compile
+		var res = "# INSERT LINE\n"
+		res += l.values.compile
+		res += "data.append(values)\n"
+		return res
 	}
 	
 	def dispatch String compile(ModifyField l){
-		return "" //TODO
-		//return "field "+ l.fields.compile + " with "+l.values.compile
+		var res = "# MODIFY FIELD\n"
+		res += l.values.compile
+		res += l.fields.compile
+		res += "for (i, row) in enumerate(data):\n"
+		res += "\tfor field in fields:\n"
+		res += "\t\trow[field] = values[i % len(values)] #little trick to get correct semantics\n"
+		return res
 	}
 	def dispatch String compile(ModifyLine l){
-		return "" //TODO
-		//return "line "+ l.lines.compile + " with "+l.values.compile
+		var res = "# MODIFY LINE\n"
+		res += l.values.compile
+		res += l.lines.compile
+		res += "for line in lines:\n"
+		res += "\tdata[line] = values.copy() # copy is needed\n"
+		return res
 	}
 	def dispatch String compile(ModifyCell l){
-		return "" //TODO
-		//return "cell "+ l.cell.compile + " with "+l.value.compile
+		var res = "# MODIFY CELL\n"
+		return res + l.cell.compile + " = " + l.value.compile
 	}
 	
 	def dispatch String compile(PrintField l){
@@ -285,7 +329,7 @@ class MyCsvCompilerPython {
 	}
 	def dispatch String compile(PrintLine l){
 		var res = "# PRINT LINE\n"
-		res += l.lines.compile // "lines" contains now line indexes
+		res += l.lines.compile
 		res += 'for line in lines:\n'
 		res += '\tprint(data[line])'
 		return res

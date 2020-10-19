@@ -1,4 +1,5 @@
 
+
 Load "/path/to/file.csv" sep=";"
 Load "/path/to/file2.csv"
 Load "/path/to/file3.csv" sep=";" noheader
@@ -15,7 +16,7 @@ Delete field A B C
 Insert line "A"; "B"; "C"
 Insert line 1; 2; 3
 Insert line 1.1; 0.1; 0.0
-Insert field A : "A"; "B"; "C"
+Insert field A : "A"; "B"; "C"; "d"
 Insert field B : 1; 2; 3]
 Insert field B : [1.1; 0.1; 0.0
 Modify line 1 2 with "A"; "B"; "C"

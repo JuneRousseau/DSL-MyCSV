@@ -64,11 +64,11 @@ import org.xtext.myCsv.LitteralString
 		return res
 	}
 	
-	 def dispatch String prettyPrint(LineIndexCond f){
+	def dispatch String prettyPrint(LineIndexCond f){
 	 	return f.cond.prettyPrint
 		
 	}
-	 def dispatch String prettyPrint(LineIndexNum f){
+	def dispatch String prettyPrint(LineIndexNum f){
 		var res = ""
 		for(num : f.lines)
 		{
@@ -77,7 +77,7 @@ import org.xtext.myCsv.LitteralString
 		return res
 	}
 	
-	 def dispatch String prettyPrint(FieldIndexName f){
+	def dispatch String prettyPrint(FieldIndexName f){
 		var res = ""
 		for(field : f.fields)
 		{
@@ -85,7 +85,7 @@ import org.xtext.myCsv.LitteralString
 		}
 		return res
 	}
-	 def dispatch String prettyPrint(FieldIndexNum f){
+	def dispatch String prettyPrint(FieldIndexNum f){
 		var res = ""
 		for(col : f.columns)
 		{
@@ -94,7 +94,7 @@ import org.xtext.myCsv.LitteralString
 		return res
 	}
 	
-	 def dispatch String prettyPrint(CellIndex f){
+	def dispatch String prettyPrint(CellIndex f){
 		var res= "(" + f.line + ", "
 		if( f.colname === null) {
 			res= res + f.colnum
@@ -106,7 +106,7 @@ import org.xtext.myCsv.LitteralString
 	}
 	
 	
-	 def dispatch String prettyPrint(Values v){
+	def dispatch String prettyPrint(Values v){
 	 	var res = ""
 		for(value : v.values)
 		{
@@ -116,7 +116,7 @@ import org.xtext.myCsv.LitteralString
 	}
 
 	
-	 def dispatch String prettyPrint(Load l){
+	def dispatch String prettyPrint(Load l){
 	 	var res = 'Load "' + l.getPath.value + '"'
 		if (l.isSepDefined()){
 			res = res + ' sep="' + l.sep + '"'
@@ -126,88 +126,88 @@ import org.xtext.myCsv.LitteralString
 		}
 		return res
 	}
-	 def dispatch String prettyPrint(Store l){
+	def dispatch String prettyPrint(Store l){
 	 	var res = 'Store "' + l.getPath.value + '"'
 		if (l.isSepDefined()){
 			res = res + ' sep="' + l.sep + '"'
 		}
 		return res		
 	}
-	 def dispatch String prettyPrint(ExportJson l){
+	def dispatch String prettyPrint(ExportJson l){
 		return 'ExportJson "' + l.getPath.value + '"'
 	}
-	 def dispatch String prettyPrint(Projection l){
+	def dispatch String prettyPrint(Projection l){
 		return 'Projection '+ l.field.prettyPrint
 	}
-	 def dispatch String prettyPrint(Select l){
+	def dispatch String prettyPrint(Select l){
 		return 'Select '+ l.line.prettyPrint
 	}
 	
 	
-	 def dispatch String prettyPrint(Delete l){
-		return "Delete "+l.prettyPrint
+	def dispatch String prettyPrint(Delete l){
+		return "Delete "+l.prettyPrintDelete
 	}
 	
-	 def dispatch String prettyPrint(DeleteField l){
+	def dispatch String prettyPrintDelete(DeleteField l){
 		return "field "+ l.fields.prettyPrint
 	}
-	 def dispatch String prettyPrint(DeleteLine l){
+	def dispatch String prettyPrintDelete(DeleteLine l){
 		return "line "+ l.lines.prettyPrint
 	}
 	
 	
-	 def dispatch String prettyPrint(Insert l){
-		return "Insert "+l.prettyPrint
+	def dispatch String prettyPrint(Insert l){
+		return "Insert "+l.prettyPrintInsert
 	}
 
 	
-	 def dispatch String prettyPrint(InsertField l){
+	def dispatch String prettyPrintInsert(InsertField l){
 		return "field "+ l.fieldname.value +": "+ l.values.prettyPrint
 	}
-	 def dispatch String prettyPrint(InsertLine l){
+	def dispatch String prettyPrintInsert(InsertLine l){
 		return "line "+l.values.prettyPrint
 	}
 	
-	 def dispatch String prettyPrint(Modify l){
-		return "Modify "+l.prettyPrint
+	def dispatch String prettyPrint(Modify l){
+		return "Modify "+l.prettyPrintModify
 	}
 	
-	 def dispatch String prettyPrint(ModifyField l){
+	def dispatch String prettyPrintModify(ModifyField l){
 		return "field "+ l.fields.prettyPrint + " with "+l.values.prettyPrint
 	}
-	 def dispatch String prettyPrint(ModifyLine l){
+	def dispatch String prettyPrintModify(ModifyLine l){
 		return "line "+ l.lines.prettyPrint + " with "+l.values.prettyPrint
 	}
-	 def dispatch String prettyPrint(ModifyCell l){
+	def dispatch String prettyPrintModify(ModifyCell l){
 		return "cell "+ l.cell.prettyPrint + " with "+l.value.prettyPrint
 	}
 
 	
-	 def dispatch String prettyPrint(Print l){
-		return "Print "+l.prettyPrint
+	def dispatch String prettyPrint(Print l){
+		return "Print "+l.prettyPrintPrint
 	}
 	
-	 def dispatch String prettyPrint(PrintField l){
+	def dispatch String prettyPrintPrint(PrintField l){
 		return "field "+ l.fields.prettyPrint
 	}
-	 def dispatch String prettyPrint(PrintLine l){
+	def dispatch String prettyPrintPrint(PrintLine l){
 		return "line "+ l.lines.prettyPrint
 	}
-	 def dispatch String prettyPrint(PrintCell l){
+	def dispatch String prettyPrintPrint(PrintCell l){
 		return "cell "+ l.cell.prettyPrint
 	}
-	 def dispatch String prettyPrint(PrintTable l){
+	def dispatch String prettyPrintPrint(PrintTable l){
 		return "table "
 	}
-	 def dispatch String prettyPrint(PrintExpr l){
+	def dispatch String prettyPrintPrint(PrintExpr l){
 		return "expr "+ l.exp.prettyPrint
 	}
 
-	 def dispatch String prettyPrint(ExpressionLog l){
+	def dispatch String prettyPrint(ExpressionLog l){
 		return l.expr.prettyPrint
 	}
 
-	 def dispatch String prettyPrint(OrExpression l){
+	def dispatch String prettyPrint(OrExpression l){
 		var	res = l.lhs.prettyPrint
 		for (expr : l.rhs)
 		{
@@ -216,7 +216,7 @@ import org.xtext.myCsv.LitteralString
 		return res	
 	}
 
-	 def dispatch String prettyPrint(AndExpression l){
+	def dispatch String prettyPrint(AndExpression l){
 		var	res = l.lhs.prettyPrint
 		for (expr : l.rhs)
 		{
@@ -225,7 +225,7 @@ import org.xtext.myCsv.LitteralString
 		return res	
 	}
 
-	 def dispatch String prettyPrint(UnaryLogExpression l){
+	def dispatch String prettyPrint(UnaryLogExpression l){
 	 	var res = ""
 		if (l.isNot)
 		{
@@ -234,19 +234,19 @@ import org.xtext.myCsv.LitteralString
 		return res + l.expr.prettyPrint
 	}
 	
-	 def dispatch String prettyPrint(ExpressionRel l){
-		return l.field.value + l.op.toString + l.getVal.prettyPrint + " "
+	def dispatch String prettyPrint(ExpressionRel l){
+		return l.field.value + " " + l.op.toString + " " + l.getVal.prettyPrint
 	}
 
-	 def dispatch String prettyPrint(NestedLogExpression l){
+	def dispatch String prettyPrint(NestedLogExpression l){
 		return "(" + l.expr.prettyPrint + ")"
 	}
 
-	 def dispatch String prettyPrint(ExpressionCalcul l){
+	def dispatch String prettyPrint(ExpressionCalcul l){
 		return l.expr.prettyPrint
 	}
 
-	 def dispatch String prettyPrint(AdditiveExpression l){
+	def dispatch String prettyPrint(AdditiveExpression l){
 		var	res = l.lhs.prettyPrint
 		for (expr : l.rhs)
 		{
@@ -255,11 +255,11 @@ import org.xtext.myCsv.LitteralString
 		return res
 	}
 	
-	 def dispatch String prettyPrint(AdditiveExpressionRhs l){
-		return l.op.toString + ""+l.rhs.prettyPrint
+	def dispatch String prettyPrint(AdditiveExpressionRhs l){
+		return " " + l.op.toString + " " + l.rhs.prettyPrint
 	}
 
-	 def dispatch String prettyPrint(MultiplicativeExpression l){
+	def dispatch String prettyPrint(MultiplicativeExpression l){
 		var	res = l.lhs.prettyPrint
 		for (expr : l.rhs)
 		{
@@ -268,34 +268,34 @@ import org.xtext.myCsv.LitteralString
 		return res
 	}
 	
-	 def dispatch String prettyPrint(MultiplicativeExpressionRhs l){
-		return l.op.toString +""+ l.rhs.prettyPrint
+	def dispatch String prettyPrint(MultiplicativeExpressionRhs l){
+		return " " + l.op.toString + " " + l.rhs.prettyPrint
 	}
 
-	 def dispatch String prettyPrint(UnaryExpression l){
+	def dispatch String prettyPrint(UnaryExpression l){
 		var res = ""
 		if (l.isOp) {res = res + "-"}
 		return res+l.expr.prettyPrint
 	}
 	
-	 def dispatch String prettyPrint(NbField l){
+	def dispatch String prettyPrint(NbField l){
 		return "NbField"
 	}
-	 def dispatch String prettyPrint(AggregatExpression l){
+	def dispatch String prettyPrint(AggregatExpression l){
 		return l.aggregatOp.toString + " " +l.arg.value
 	}
-	 def dispatch String prettyPrint(LitteralInt l){
+	def dispatch String prettyPrint(LitteralInt l){
 		return l.getVal+""
 		
 	}
-	 def dispatch String prettyPrint(LitteralFloat l){
+	def dispatch String prettyPrint(LitteralFloat l){
 		return l.getVal+""
 	}
-	 def dispatch String prettyPrint(NestedExpressionCalcul l){
+	def dispatch String prettyPrint(NestedExpressionCalcul l){
 		return "(" + l.expr.prettyPrint + ")"
 	}
 	
-	 def dispatch String prettyPrint(LitteralString l){
-		return l.getVal+""
+	def dispatch String prettyPrint(LitteralString l){
+		return '"' + l.getVal + '"' 
 	}	
 }

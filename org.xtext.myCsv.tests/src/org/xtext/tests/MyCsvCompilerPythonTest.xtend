@@ -25,7 +25,7 @@ class MyCsvCompilerPythonTest {
 	@Test
 	def void loadModel() {
 		val inputTest= "examples/compileSpec.mycsv"
-		val outputTest= "examples/compileSpec.py"
+		val outputTest= "examples-gen/compileSpec.py"
 		val prog= loadMyCSV(URI.createURI(inputTest))
 		Assertions.assertNotNull(prog)
 		val errors = prog.eResource.errors
@@ -37,10 +37,13 @@ class MyCsvCompilerPythonTest {
 		try {
     		Files.writeString(Paths.get(outputTest), compiledProg, StandardCharsets.UTF_8);
 		} catch (IOException ex) {
-	// Handle exception
+			print("Exception occured: " + ex + "\n----------------------\n\n\n\n\n")
 		}
 
 		print(compiledProg)
+		
+		// TODO : execute python result
+		// TODO : moooore tests
 		
 	}
 	
