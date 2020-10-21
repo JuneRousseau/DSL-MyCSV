@@ -11,6 +11,7 @@ import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Scanner;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -37,12 +38,18 @@ public class MyCsvCompilerPythonTest {
   @Test
   public void compileTests() {
     final File directoryPath = new File("examples/tests/");
+    final Scanner s = new Scanner(System.in);
+    InputOutput.<String>println("----------TESTS----------");
+    InputOutput.<String>println("<Please print enter between each tests>");
     String[] _list = directoryPath.list();
     for (final String testFile : _list) {
       {
         final String basename = testFile.substring(0, testFile.indexOf("."));
         final String inputTest = (("examples/tests/" + basename) + ".mycsv");
         final String outputTest = (("examples-gen/" + basename) + ".py");
+        final String cmd = (("python3 examples-gen/" + basename) + ".py");
+        InputOutput.<String>print((("\n---------Test de " + basename) + "---------\n"));
+        s.nextLine();
         final Program prog = this.loadMyCSV(URI.createURI(inputTest));
         Assertions.assertNotNull(prog);
         final EList<Resource.Diagnostic> errors = prog.eResource().getErrors();
@@ -59,13 +66,11 @@ public class MyCsvCompilerPythonTest {
         } catch (final Throwable _t) {
           if (_t instanceof IOException) {
             final IOException ex = (IOException)_t;
-            InputOutput.<String>print((("Exception occured: " + ex) + "\n----------------------\n\n\n\n\n"));
+            InputOutput.<String>print((("Exception occured: " + ex) + "\n----------------------\n\n\n\n"));
           } else {
             throw Exceptions.sneakyThrow(_t);
           }
         }
-        final String cmd = (("python3 examples-gen/" + basename) + ".py");
-        InputOutput.<String>print((("\n\n\n---------Test de " + basename) + "---------\n\n"));
         final Runtime rt = Runtime.getRuntime();
         try {
           final Process pr = rt.exec(cmd);
