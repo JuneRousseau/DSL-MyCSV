@@ -1,0 +1,5 @@
+Load "examples-gen/input.csv" sep=","
+Select 0 1 2 3 4 5
+Insert line 42;"prenom";"nom";"mail"
+Insert field age: 40;41;42
+Store "examples-gen/outputInsert.csv"

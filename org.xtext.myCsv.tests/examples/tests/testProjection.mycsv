@@ -1,0 +1,3 @@
+Load "examples-gen/input.csv" sep=","
+Projection firstname lastname profession
+Store "examples-gen/outputProjection.csv" sep=";"

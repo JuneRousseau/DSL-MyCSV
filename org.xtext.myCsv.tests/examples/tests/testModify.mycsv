@@ -1,0 +1,6 @@
+Load "examples-gen/input.csv" sep=","
+Select 0 1 2 3 4 5
+Modify cell (0,lastname) with "Bisounours"
+Modify line 1 with ["42"; "PasDePrenom"; "PasDeNom"; "SAMF@pasmail.com"; "sansadresse@mailfixe.nulpart"; "personne"]
+Modify field firstname with "prenom1"; "prenom2"
+Store "examples-gen/outputModify.csv" sep=";"

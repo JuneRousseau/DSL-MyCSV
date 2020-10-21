@@ -2,5 +2,4 @@ Load "examples-gen/input.csv" sep=","
 Print field 0
 Print line 0
 Print cell (0,0)
-Print table
 Print expr "Hello World"

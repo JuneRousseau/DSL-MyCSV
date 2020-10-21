@@ -20,6 +20,7 @@ import java.nio.charset.StandardCharsets
 import java.io.File
 import java.io.BufferedReader
 import java.io.InputStreamReader
+import java.util.Scanner
 
 @ExtendWith(InjectionExtension)
 @InjectWith(MyCsvInjectorProvider)
@@ -28,13 +29,22 @@ class MyCsvCompilerPythonTest {
 	@Test
 	def void compileTests() {
 		val File directoryPath = new File("examples/tests/")
+		val s = new Scanner(System.in);
 		
+		println("----------TESTS----------")
+		println("<Please print enter between each tests>")
+			
 		for (testFile : directoryPath.list())
 		{
-			
 			val basename= testFile.substring(0, testFile.indexOf("."))
 			val inputTest= "examples/tests/"+basename+".mycsv"
 			val outputTest= "examples-gen/"+basename+".py"
+			
+			val String cmd = "python3 examples-gen/"+basename+".py"
+			print("\n---------Test de "+basename+"---------\n")
+			s.nextLine()
+			
+				
 			val prog= loadMyCSV(URI.createURI(inputTest))
 			Assertions.assertNotNull(prog)
 			val errors = prog.eResource.errors
@@ -46,12 +56,8 @@ class MyCsvCompilerPythonTest {
 			try {
     			Files.writeString(Paths.get(outputTest), compiledProg, StandardCharsets.UTF_8);
 			} catch (IOException ex) {
-				print("Exception occured: " + ex + "\n----------------------\n\n\n\n\n")
+				print("Exception occured: " + ex + "\n----------------------\n\n\n\n")
 			}
-			
-			
-			val String cmd = "python3 examples-gen/"+basename+".py"
-			print("\n\n\n---------Test de "+basename+"---------\n\n")
 			
 			val Runtime rt = Runtime.getRuntime();
 			try
@@ -74,9 +80,7 @@ class MyCsvCompilerPythonTest {
 			{
 				System.out.println("Error: execution script Python aborted "+ex+"\n");
 			}
-			
-
-			//print(compiledProg)
+			//Ajouter la vérification sur un outputs oracle
 		
 			}
 		}
