@@ -4,6 +4,6 @@ Print expr Sum id
 Print expr Product id
 Print expr Mean id
 Print expr 40+2
-Print expr 21*2
-Print expr 2*20+2
+Print expr 22*2
+Print expr 2*20+1
 Print expr 4.5+1

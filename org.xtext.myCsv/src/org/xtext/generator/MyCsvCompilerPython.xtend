@@ -106,6 +106,15 @@ class MyCsvCompilerPython {
 		res += "\tfor (i,head) in enumerate(header):\n"
 		res += '\t\theaderDict[head]=i\n\n'
 		
+		res += 'def parseValue(s):\n'
+		res += '\ttry:\n'
+		res += '\t\treturn int(s)\n'
+		res += '\texcept:\n'
+		res += '\t\ttry:\n'
+		res += '\t\t\treturn float(s)\n'
+		res += '\t\texcept:\n'
+		res += '\t\t\treturn s\n\n'
+		
 		for(stmt : p.stmts) {
 			res += stmt.compile() + "\n\n";
 		}
@@ -131,7 +140,10 @@ class MyCsvCompilerPython {
 			res += "\theader = next(reader)\n"
 			res += "\trefreshHeaderDict()\n"
 		res += "\tfor line in reader:\n"
-		res += "\t\tdata.append(line)"
+		res += "\t\ttmprow=[]\n"
+		res += "\t\tfor ele in line:\n"
+		res += "\t\t\ttmprow.append(parseValue(ele))\n"
+		res += "\t\tdata.append(tmprow)"
 		
 		return res
 	}
@@ -236,8 +248,8 @@ class MyCsvCompilerPython {
 		var res = "# PROJECTION\n"
 		res += l.field.compile
 		res += "fields.sort(reverse=True)\n"
-		res += "for i in range(len(header):\n"
-		res += "\tif !(i in field):\n"
+		res += "for i in range(len(header)):\n"
+		res += "\tif not(i in fields):\n"
 		res += "\t\tdel header[i]\n"
 		res += "\t\tfor row in data:\n"
 		res += "\t\t\tdel row[i]\n"
