@@ -136,9 +136,13 @@ class MyCsvCompilerPython {
 		}
 		res += ")\n"
 		
-		if(!l.noHeader)
+		if(!l.noHeader){
 			res += "\theader = next(reader)\n"
 			res += "\trefreshHeaderDict()\n"
+		} else {
+			res += "\traise Exception('Not yet implemented. (handling .csv without header)')\n"
+		}
+		
 		res += "\tfor line in reader:\n"
 		res += "\t\ttmprow=[]\n"
 		res += "\t\tfor ele in line:\n"
@@ -248,7 +252,7 @@ class MyCsvCompilerPython {
 		var res = "# PROJECTION\n"
 		res += l.field.compile
 		res += "fields.sort(reverse=True)\n"
-		res += "for i in range(len(header)):\n"
+		res += "for i in range(len(header)-1, -1, -1):\n"
 		res += "\tif not(i in fields):\n"
 		res += "\t\tdel header[i]\n"
 		res += "\t\tfor row in data:\n"
