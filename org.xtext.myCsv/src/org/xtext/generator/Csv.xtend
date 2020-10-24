@@ -4,6 +4,11 @@ import java.io.File
 import java.util.Scanner
 import java.util.ArrayList
 import java.util.HashMap
+import org.xtext.myCsv.Path
+import java.nio.file.Files
+import java.nio.file.Paths
+import java.nio.charset.StandardCharsets
+import java.io.IOException
 
 class Csv {
 	
@@ -73,6 +78,26 @@ class Csv {
 		return sum(fieldId) / count(fieldId)
 	}
 	
+	def storeCsv(String path, String sep) {
+		var str=""
+		for (line : data)
+		{
+			var first= true
+			for (value : line)
+			{
+				if(!first) str+=sep
+				str+=value.toString
+				first=false
+			}
+			str+="\n"
+		}
+		try {
+    		Files.writeString(Paths.get(path), str, StandardCharsets.UTF_8);
+		} catch (IOException ex) {
+			print("Exception occured: " + ex + "\n----------------------\n\n\n\n")
+		}	
+	}
+	
 	
 }
 
@@ -102,7 +127,21 @@ class Value {
 	}
 	
 	def static build(String s) {
-		return new Value(s) // TODO : scan it, type it.
+		var Scanner sc= new Scanner(s)
+			if (sc.hasNextInt) return new Value(sc.nextInt)
+			else if (sc.hasNextDouble) return new Value(sc.nextDouble)
+			else new Value(s)
 	}
 	
+	override toString() {
+		switch type
+		{
+			case "i":
+				return i.toString
+			case "d":
+				return d.toString
+			case "str":
+				return s.toString
+		}	
+	}
 }

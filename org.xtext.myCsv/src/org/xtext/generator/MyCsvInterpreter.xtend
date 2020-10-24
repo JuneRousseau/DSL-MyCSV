@@ -50,7 +50,7 @@ import java.util.HashMap
  */
 class MyCsvInterpreter {
 	
-	var Csv currentCsv = new Csv	
+	var Csv currentCsv = new Csv
 
 	def void interpretProgram(Program p){
 		for(stmt : p.stmts) {
@@ -67,7 +67,11 @@ class MyCsvInterpreter {
 	}
 	
 	def dispatch void interpret(Store l){
-			
+		var sep= ","
+		if (l.isSepDefined()){
+			sep = l.sep
+		}
+		currentCsv.storeCsv(l.path.value, sep)
 	}
 	
 	def dispatch void interpret(LineIndexCond f){

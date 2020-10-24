@@ -1,5 +1,7 @@
 Load "examples-gen/input.csv" sep=","
+Select 0 1 2 3 4 5 6 7 8 9 10
 Print field 0
 Print line 0
 Print cell (0,0)
+Print table
 Print expr "Hello World"
