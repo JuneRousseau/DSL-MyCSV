@@ -95,6 +95,7 @@ public class MyCsvCompilerPythonTest {
             throw Exceptions.sneakyThrow(_t);
           }
         }
+        InputOutput.<String>print("DONE");
       }
     }
   }

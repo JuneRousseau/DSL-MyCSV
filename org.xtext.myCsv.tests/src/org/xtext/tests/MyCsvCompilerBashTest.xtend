@@ -15,32 +15,75 @@ import java.nio.file.Files
 import java.io.IOException
 import java.nio.file.Paths
 import java.nio.charset.StandardCharsets
+import java.io.File
+import java.io.BufferedReader
+import java.io.InputStreamReader
+import java.util.Scanner
+
 
 @ExtendWith(InjectionExtension)
 @InjectWith(MyCsvInjectorProvider)
 class MyCsvCompilerBashTest {
 	
 	@Test
-	def void loadModel() {
-		val inputTest= "examples/compileSpec.mycsv"
-		val outputTest= "examples/compileSpec.sh"
-		val prog= loadMyCSV(URI.createURI(inputTest))
-		Assertions.assertNotNull(prog)
-		val errors = prog.eResource.errors
-		Assertions.assertTrue(errors.isEmpty, '''Unexpected errors: «errors.join(", ")»''')
+	def void compileTests() {
+		val File directoryPath = new File("examples/tests/")
+		val s = new Scanner(System.in);
 		
-		val pythonCompiler = new MyCsvCompilerBash
+		println("----------TESTS----------")
+		println("<Please print enter between each tests>")
+			
+		for (testFile : directoryPath.list())
+		{
+			val basename= testFile.substring(0, testFile.indexOf("."))
+			val inputTest= "examples/tests/"+basename+".mycsv"
+			val outputTest= "examples-gen/"+basename+".sh"
+			
+			val String cmd = "./examples-gen/"+basename+".sh"
+			print("\n---------Test de "+basename+"---------\n")
+			s.nextLine()
+			
+				
+			val prog= loadMyCSV(URI.createURI(inputTest))
+			Assertions.assertNotNull(prog)
+			val errors = prog.eResource.errors
+			Assertions.assertTrue(errors.isEmpty, '''Unexpected errors: «errors.join(", ")»''')
 		
-		val compiledProg= pythonCompiler.compile(prog)
-		try {
-    		Files.writeString(Paths.get(outputTest), compiledProg, StandardCharsets.UTF_8);
-		} catch (IOException ex) {
-	// Handle exception
+			val bashCompiler = new MyCsvCompilerBash
+		
+			val compiledProg= bashCompiler.compile(prog)
+			try {
+    			Files.writeString(Paths.get(outputTest), compiledProg, StandardCharsets.UTF_8);
+			} catch (IOException ex) {
+				print("Exception occured: " + ex + "\n----------------------\n\n\n\n")
+			}
+			
+			val Runtime rt = Runtime.getRuntime();
+			try
+			{
+				val Process prChMod = rt.exec("chmod +x "+cmd);
+				val Process pr = rt.exec(cmd);
+				val BufferedReader bfr = new BufferedReader(new InputStreamReader(pr.getInputStream()));
+				var String line;
+				while ((line = bfr.readLine()) !== null)
+				{
+					println("STDOUT: " + line);
+				}
+				
+				val BufferedReader bfre = new BufferedReader(new InputStreamReader(pr.getErrorStream()));
+				while ((line = bfre.readLine()) !== null)
+				{
+					println("STDERR: " + line);
+				}
+				
+			} catch (IOException ex)
+			{
+				System.out.println("Error: execution script Python aborted "+ex+"\n");
+			}
+			//Ajouter la vérification sur un outputs oracle
+			print("DONE")
+			}
 		}
-
-		print(compiledProg)
-		
-	}
 	
 	def loadMyCSV(URI uri){
 		new MyCsvStandaloneSetupGenerated().createInjectorAndDoEMFRegistration()

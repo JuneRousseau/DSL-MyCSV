@@ -51,31 +51,45 @@ import org.xtext.myCsv.LitteralString
  */
 class MyCsvCompilerBash {
 
+	val tmpCompilerPath="/tmp/myCsvCompilerBash/"	
+	val tmpCsv= tmpCompilerPath+"tmpCsv.csv"
+	static String sep= ','
+		
 	def dispatch String compile(Program p){
 		var res = "#!/bin/bash\n"
-
+		res += "mkdir -p "+tmpCompilerPath+"\n"
+		res += "sep=','\n\n"	
 		for(stmt : p.stmts) {
-			res += stmt.compile
+			res += stmt.compile+"\n"
 		}
+		
+		res += "rm "+tmpCompilerPath+"*\n"
+		res += "rmdir "+tmpCompilerPath+"\n"
 		return res
 	}
 	
 	def dispatch String compile(Load l){
-		var res = ""
+		var res = "# LOAD\n"
+		res += "cp "+l.path.value+" "+tmpCsv+"\n"
 
 		if (l.isSepDefined()){
-			res += ""
+			MyCsvCompilerBash.sep=l.sep
+			res += "sep='"+l.sep+"'\n"
 		}
 		
 		if(!l.noHeader)
+			//throw new IllegalArgumentException("Not Implemented yet. (handling .csv without header)")
 			res += ""
 		
 		return res
 	}
 	
 	def dispatch String compile(Store l){
-		var res = ""
-
+		var res = "# STORE\n"
+		
+		if (l.isSepDefined()){
+			res += "sed 's/$sep/"+l.sep+"/g' "+tmpCsv+" > "+l.path.value+"\n"
+		}
 		
 		return res
 	}
@@ -128,67 +142,68 @@ class MyCsvCompilerBash {
 	}
 	
 	def dispatch String compile(ExportJson l){
-		var res = ""
+		var res = "# EXPORT JSON\n"
 	 	return res
 	}
 	def dispatch String compile(Projection l){
-		var res = ""
+		var res = "# PROJECTION\n"
 	 	return res
 	}
 	def dispatch String compile(Select l){
-		var res = ""
+		var res = "# SELECT\n"
 	 	return res
 	}
 	
 	def dispatch String compile(DeleteField l){
-		var res = ""
+		var res = "# DELETE FIELD\n"
 	 	return res
 	}
 	def dispatch String compile(DeleteLine l){
-		var res = ""
+		var res = "# DELETE LINE\n"
 	 	return res
 	}
 	
 	def dispatch String compile(InsertField l){
-		var res = ""
+		var res = "# INSERT FIELDS\n"
 	 	return res
 	}
 	def dispatch String compile(InsertLine l){
-		var res = ""
+		var res = "# INSERT LINE\n"
 	 	return res
 	}
 	
 	def dispatch String compile(ModifyField l){
-		var res = ""
+		var res = "# MODIFY FIELDS\n"
 	 	return res
 	}
 	def dispatch String compile(ModifyLine l){
-		var res = ""
+		var res = "# MODIFY LINE\n"
 	 	return res
 	}
 	def dispatch String compile(ModifyCell l){
-		var res = ""
+		var res = "# MODIFY CELL\n"
 	 	return res
 	}
 	
 	def dispatch String compile(PrintField l){
-		var res = ""
+		var res = "# PRINT FIELDS\n"
 	 	return res
 	}
 	def dispatch String compile(PrintLine l){
-		var res = ""
+		var res = "# PRINT LINE\n"
 	 	return res
 	}
 	def dispatch String compile(PrintCell l){
-		var res = ""
+		var res = "# PRINT CELL\n"
 	 	return res
 	}
 	def dispatch String compile(PrintTable l){
-		var res = ""
+		var res = "# PRINT TABLE\n"
+		res += "cat "+tmpCsv+"\n"
 	 	return res
 	}
 	def dispatch String compile(PrintExpr l){
-		var res = ""
+		var res = "# PRINT EXPR\n"
 	 	return res
 	}
 

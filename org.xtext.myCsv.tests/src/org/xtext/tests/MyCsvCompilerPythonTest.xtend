@@ -81,7 +81,7 @@ class MyCsvCompilerPythonTest {
 				System.out.println("Error: execution script Python aborted "+ex+"\n");
 			}
 			//Ajouter la vérification sur un outputs oracle
-		
+			print("DONE")
 			}
 		}
 		
