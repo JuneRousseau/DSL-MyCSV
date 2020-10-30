@@ -138,16 +138,14 @@ class MyCsvInterpreter {
 	}
 	
 	def dispatch void interpret(InsertField l){
-		
-	 	
+		currentCsv.insertField(l.fieldname.value, l.values.interpretValues)
 	}
 	def dispatch void interpret(InsertLine l){
-		
+		currentCsv.insertLine(l.values.interpretValues)
 	}
 	
 	def dispatch void interpret(ModifyField l){
 		
-	 	
 	}
 	def dispatch void interpret(ModifyLine l){
 		

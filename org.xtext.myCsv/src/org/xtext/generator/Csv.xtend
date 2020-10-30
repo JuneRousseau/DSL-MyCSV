@@ -51,7 +51,7 @@ class Csv {
 		}
 	}
 	
-	def private refreshHeaderDict(){
+	def refreshHeaderDict(){
 		headerDict = new HashMap
 		for(var int i = 0 ; i < header.length() ; i++){
 			headerDict.put(header.get(i), i)
@@ -150,6 +150,22 @@ class Csv {
 		for(index : lineIndex){
 			data.remove(index.intValue)
 		}
+	}
+	
+	def insertField(String fieldName, ArrayList<Value> values) {
+		for(var i = 0 ; i < data.length ; i++){
+			data.get(i).add(values.get(i % values.length))
+		}
+		header.add(fieldName)
+		refreshHeaderDict
+	}
+	
+	def insertLine(ArrayList<Value> values) {
+		val newLine = new ArrayList<Value>
+		for(var i = 0 ; i < header.length ; i++){
+			newLine.add(values.get(i % values.length))
+		}
+		data.add(newLine)
 	}
 	
 	
