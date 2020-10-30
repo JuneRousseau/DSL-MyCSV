@@ -75,8 +75,8 @@ class MyCsvInterpreter {
 	
 	def dispatch ArrayList<Integer> interpretLineIndex(LineIndexCond f){
 		val res = new ArrayList<Integer> 
-	 	for(var i = 0 ; i<currentCsv.data.length ; i++){
-	 		val row = currentCsv.data.get(i)
+	 	for(var i = 0 ; i<currentCsv.nbLines ; i++){
+	 		val row = currentCsv.getRow(i)
 	 		if(f.cond.interpretLogicalExpression(row)) res.add(i)
 	 	}
 	 	return res
@@ -90,7 +90,7 @@ class MyCsvInterpreter {
 		val res = new ArrayList<Integer>
 		for(field : f.fields)
 		{
-			res.add(currentCsv.headerDict.get(field.value))
+			res.add(currentCsv.getFieldNum(field.value))
 		}
 		return res
 	}
@@ -102,7 +102,7 @@ class MyCsvInterpreter {
 		if(f.colname === null) {
 			return new Pair<Integer, Integer>(f.line, f.colnum)
 		} else {
-			val colnum = currentCsv.headerDict.get(f.colname.value)
+			val colnum = currentCsv.getFieldNum(f.colname.value)
 			return new Pair<Integer, Integer>(f.line, colnum)
 		}
 	}
@@ -154,27 +154,27 @@ class MyCsvInterpreter {
 	}
 	def dispatch void interpret(ModifyCell l){
 		var cell = l.cell.interpretCellIndex
-	 	currentCsv.data.get(cell.key).set(cell.value, l.value.interpretValue)
+	 	currentCsv.setCell(cell.key, cell.value, l.value.interpretValue)
 	}
 	
 	def dispatch void interpret(PrintField l){
 		val cols = l.fields.interpretFieldIndex
 		for(index : cols){
 			println("Field " + index + ":")
-			for(row : currentCsv.data){
-				println(row.get(index))
+			for(el : currentCsv.getField(index)){
+				println(el)
 			}
 		}
 	}
 	def dispatch void interpret(PrintLine l){
 		val lines = l.lines.interpretLineIndex
 		for(index : lines){
-			println(currentCsv.data.get(index)) // TODO : print avec le bon séparateur ?
+			println(currentCsv.getRow(index)) // TODO : print avec le bon séparateur ?
 		}
 	}
 	def dispatch void interpret(PrintCell l){
 		var cell = l.cell.interpretCellIndex
-		println(currentCsv.data.get(cell.key).get(cell.value))
+		println(currentCsv.getCell(cell.key, cell.value))
 	}
 	def dispatch void interpret(PrintTable l){
 		print(currentCsv.toString)
@@ -214,7 +214,7 @@ class MyCsvInterpreter {
 	}
 	
 	def dispatch boolean interpretLogicalExpression(ExpressionRel l, ArrayList<Value> row){
-		val field = currentCsv.headerDict.get(l.field.value)
+		val field = currentCsv.getFieldNum(l.field.value)
 		val fieldValue = row.get(field)
 		val exprValue = l.getVal.interpretValue
 		return fieldValue.compare(l.op, exprValue)
@@ -276,7 +276,7 @@ class MyCsvInterpreter {
 	}
 	
 	def dispatch double interpretExpressionCalcul(NbField l){
-		return currentCsv.data.length
+		return currentCsv.nbLines
 	}
 	
 	def dispatch double interpretExpressionCalcul(AggregatExpression l){

@@ -13,10 +13,10 @@ import org.xtext.myCsv.BinOpRel
 
 class Csv {
 	
-	public var ArrayList<ArrayList<Value>> data
-	public var ArrayList<String> header
-	public var HashMap<String, Integer> headerDict
-	public var String sep
+	var ArrayList<ArrayList<Value>> data
+	var ArrayList<String> header
+	var HashMap<String, Integer> headerDict
+	var String sep
 	
 	new (){
 		data = new ArrayList
@@ -236,6 +236,38 @@ class Csv {
 		{
 			data.set(line, newLine)
 		}
+	}
+	
+	def nbFields(){
+		return header.length
+	}
+	
+	def nbLines(){
+		return data.length
+	}
+	
+	def getCell(int line, int col){
+		return data.get(line).get(col)
+	}
+	
+	def setCell(int line, int col, Value value) {
+		data.get(line).set(col, value)
+	}
+	
+	def getRow(int index){
+		return data.get(index)
+	}
+	
+	def getField(int index){
+		var col= new ArrayList<Value>
+		for(row : data){
+			col.add(row.get(index))
+		}
+		return col
+	}
+	
+	def getFieldNum(String fieldName) {
+		return headerDict.get(fieldName)
 	}
 	
 	
