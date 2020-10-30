@@ -137,6 +137,60 @@ class Csv {
 		}
 	}
 	
+		
+	def private prettyPrintJSON() {
+		var output= ""
+		
+		output+="[\n"
+		var first=true
+		for(row : data)
+		{
+			if(!first) output+=",\n"
+			output+=prettyPrintJSONObject(row)
+			first=false
+		}
+		
+		output+="]"
+		return output
+	}
+	
+	def private prettyPrintJSONObject(ArrayList<Value> row)
+	{
+		var output=""
+		output+="{\n"
+		var first=true
+		for(var i=0; i<header.length; i++)
+		{
+			if(!first) output+=",\n"
+			output+='\t"'+header.get(i)+'"'+": "
+			
+			val value=row.get(i)
+			if(value.type=="str")
+			{
+				output+='"'+value.toString+'"'
+			}
+			else
+			{
+				output+=value.toString
+			}
+			first=false
+		}
+		
+		output+="\n}"	
+		return output
+	}
+	
+	
+	def exportJson(String path) {
+		var output=prettyPrintJSON()
+		
+		try {
+    		Files.writeString(Paths.get(path), output, StandardCharsets.UTF_8);
+		} catch (IOException ex) {
+			print("Exception occured: " + ex + "\n----------------------\n\n\n\n")
+		}
+	}
+	
 	def void select(ArrayList<Integer> lineIndex) {
 		var tmpData = new ArrayList<ArrayList<Value>>
 		for(index : lineIndex){
@@ -269,7 +323,6 @@ class Csv {
 	def getFieldNum(String fieldName) {
 		return headerDict.get(fieldName)
 	}
-	
 	
 	
 }

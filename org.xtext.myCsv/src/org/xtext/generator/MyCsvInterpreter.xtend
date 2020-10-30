@@ -118,7 +118,7 @@ class MyCsvInterpreter {
 	}
 	
 	def dispatch void interpret(ExportJson l){
-		
+		currentCsv.exportJson(l.path.value)
 	 	
 	}
 	def dispatch void interpret(Projection l){
