@@ -7,3 +7,5 @@ Print expr 40+2
 Print expr 22*2
 Print expr 2*20+1
 Print expr 4.5+1
+Print expr 4.5+ -1
+Print expr 4.5+-1

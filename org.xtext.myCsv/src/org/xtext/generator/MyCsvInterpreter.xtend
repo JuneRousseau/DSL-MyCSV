@@ -43,7 +43,6 @@ import org.xtext.myCsv.LitteralInt
 import org.xtext.myCsv.LitteralFloat
 import org.xtext.myCsv.LitteralString
 import java.util.ArrayList
-import java.util.HashMap
 
 /**
  * Interpreter for MyCsv
@@ -59,7 +58,7 @@ class MyCsvInterpreter {
 	}
 	
 	def dispatch void interpret(Load l){
-		var sep = ","
+		var sep = Csv.defaultSep
 		if (l.isSepDefined()){
 			sep = l.sep
 		}
@@ -67,52 +66,55 @@ class MyCsvInterpreter {
 	}
 	
 	def dispatch void interpret(Store l){
-		var sep= ","
+		var sep = Csv.defaultSep
 		if (l.isSepDefined()){
 			sep = l.sep
 		}
 		currentCsv.storeCsv(l.path.value, sep)
 	}
 	
-	def dispatch void interpret(LineIndexCond f){
-	 	
-	 	
+	def dispatch ArrayList<Integer> interpretLineIndex(LineIndexCond f){
+		val res = new ArrayList<Integer> 
+	 	for(var i = 0 ; i<currentCsv.data.length ; i++){
+	 		val row = currentCsv.data.get(i)
+	 		if(f.cond.interpretLogicalExpression(row)) res.add(i)
+	 	}
+	 	return res
 	}
 	
-	def dispatch void interpret(LineIndexNum f){
-		
-		
+	def dispatch ArrayList<Integer> interpretLineIndex(LineIndexNum f){
+		return new ArrayList<Integer>(f.lines)
 	}
 	
-	def dispatch void interpret(FieldIndexName f){
-		
+	def dispatch ArrayList<Integer> interpretFieldIndex(FieldIndexName f){
+		val res = new ArrayList<Integer>
 		for(field : f.fields)
 		{
+			res.add(currentCsv.headerDict.get(field.value))
 		}
-		
+		return res
 	}
-	def dispatch void interpret(FieldIndexNum f){
-		
-		for(colNum : f.columns)
-		{
-		}
-		
+	def dispatch ArrayList<Integer> interpretFieldIndex(FieldIndexNum f){
+		return new ArrayList<Integer>(f.columns)
 	}
 	
-	def dispatch void interpret(CellIndex f){
-		if( f.colname === null) {
+	def Pair<Integer, Integer> interpretCellIndex(CellIndex f){
+		if(f.colname === null) {
+			return new Pair<Integer, Integer>(f.line, f.colnum)
 		} else {
+			val colnum = currentCsv.headerDict.get(f.colname.value)
+			return new Pair<Integer, Integer>(f.line, colnum)
 		}
-			
 	}
 	
 	
-	def dispatch void interpret(Values v){
-		
+	def ArrayList<Value> interpretValues(Values v){
+		val res = new ArrayList
 		for(value : v.values)
 		{
+			res.add(value.interpretValue)
 		}
-		
+		return res
 	}
 	
 	def dispatch void interpret(ExportJson l){
@@ -124,8 +126,7 @@ class MyCsvInterpreter {
 	 	
 	}
 	def dispatch void interpret(Select l){
-		
-	 	
+		currentCsv.select(l.line.interpretLineIndex)
 	}
 	
 	def dispatch void interpret(DeleteField l){
@@ -133,8 +134,7 @@ class MyCsvInterpreter {
 	 	
 	}
 	def dispatch void interpret(DeleteLine l){
-		
-	 	
+		currentCsv.deleteLine(l.lines.interpretLineIndex)
 	}
 	
 	def dispatch void interpret(InsertField l){
@@ -143,7 +143,6 @@ class MyCsvInterpreter {
 	}
 	def dispatch void interpret(InsertLine l){
 		
-	 	
 	}
 	
 	def dispatch void interpret(ModifyField l){
@@ -160,118 +159,156 @@ class MyCsvInterpreter {
 	}
 	
 	def dispatch void interpret(PrintField l){
-		
-	 	
+		val cols = l.fields.interpretFieldIndex
+		for(index : cols){
+			println("Field " + index + ":")
+			for(row : currentCsv.data){
+				println(row.get(index))
+			}
+		}
 	}
 	def dispatch void interpret(PrintLine l){
-		
-	 	
+		val lines = l.lines.interpretLineIndex
+		for(index : lines){
+			println(currentCsv.data.get(index)) // TODO : print avec le bon séparateur ?
+		}
 	}
 	def dispatch void interpret(PrintCell l){
-		
-	 	
+		var cell = l.cell.interpretCellIndex
+		println(currentCsv.data.get(cell.key).get(cell.value))
 	}
 	def dispatch void interpret(PrintTable l){
-		
-	 	
+		print(currentCsv.toString)
 	}
+	
 	def dispatch void interpret(PrintExpr l){
-		
-	 	
+		println(l.exp.interpretValue)
 	}
 
-	def dispatch void interpret(ExpressionLog l){
-		
-	 	
+	def dispatch boolean interpretLogicalExpression(ExpressionLog l, ArrayList<Value> row){	 	
+		return l.expr.interpretLogicalExpression(row)
 	}
 
-	def dispatch void interpret(OrExpression l){
-		
-	 	
+	def dispatch boolean interpretLogicalExpression(OrExpression l, ArrayList<Value> row){
+		var res =l.lhs.interpretLogicalExpression(row)
+		for(expr : l.rhs){
+			res = res || expr.interpretLogicalExpression(row)  
+		} 
+		return res
 	}
 
-	def dispatch void interpret(AndExpression l){
-		
-	 	
+	def dispatch boolean interpretLogicalExpression(AndExpression l, ArrayList<Value> row){
+		var res =l.lhs.interpretLogicalExpression(row)
+		for(expr : l.rhs){
+			res = res && expr.interpretLogicalExpression(row)  
+		} 
+		return res
 	}
 
-	def dispatch void interpret(UnaryLogExpression l){
-	 	
+	def dispatch boolean interpretLogicalExpression(UnaryLogExpression l, ArrayList<Value> row){
+		var res = l.expr.interpretLogicalExpression(row)
 		if (l.isNot)
 		{
-			
+			res = !res
 		}
-		
+		return res
 	}
 	
-	def dispatch void interpret(ExpressionRel l){
-		
+	def dispatch boolean interpretLogicalExpression(ExpressionRel l, ArrayList<Value> row){
+		val field = currentCsv.headerDict.get(l.field.value)
+		val fieldValue = row.get(field)
+		val exprValue = l.getVal.interpretValue
+		return fieldValue.compare(l.op, exprValue)
+	}
+
+	def dispatch boolean interpretLogicalExpression(NestedLogExpression l, ArrayList<Value> row){
+		return l.expr.interpretLogicalExpression(row)
+	}
+
+	def dispatch Value interpretValue(ExpressionCalcul l){
+		return new Value(l.expr.interpretExpressionCalcul)
 	 	
 	}
 
-	def dispatch void interpret(NestedLogExpression l){
-		
-	 	
-	}
-
-	def dispatch void interpret(ExpressionCalcul l){
-		
-	 	
-	}
-
-	def dispatch void interpret(AdditiveExpression l){
-		
+	def dispatch double interpretExpressionCalcul(AdditiveExpression l){
+		var res = l.lhs.interpretExpressionCalcul
 		for (expr : l.rhs)
 		{
-			
+			res += expr.interpretExpressionCalcul // dont worry about substraction, it works
 		}
-		
+		return res
 	}
 	
-	def dispatch void interpret(AdditiveExpressionRhs l){
-		
-	 	
+	def dispatch double interpretExpressionCalcul(AdditiveExpressionRhs l){
+		var res = l.rhs.interpretExpressionCalcul
+		switch (l.op) {
+			case MINUS: {
+				res = -res // that's why it works ;)
+			}
+			default: {}
+		}
+		return res
 	}
 
-	def dispatch void interpret(MultiplicativeExpression l){
-		
+	def dispatch double interpretExpressionCalcul(MultiplicativeExpression l){
+		var res = l.lhs.interpretExpressionCalcul
 		for (expr : l.rhs)
 		{
-			
+			res *= expr.interpretExpressionCalcul // dont worry about division, it works
 		}
-		
+		return res
 	}
 	
-	def dispatch void interpret(MultiplicativeExpressionRhs l){
-		
-	 	
+	def dispatch double interpretExpressionCalcul(MultiplicativeExpressionRhs l){
+		var res = l.rhs.interpretExpressionCalcul
+		switch (l.op) {
+			case DIV: {
+				res = 1/res // that's why it works ;)
+			}
+			default: {}
+		}
+		return res
 	}
 
-	def dispatch void interpret(UnaryExpression l){
-		
-		if (l.isOp) {}
-		
+	def dispatch double interpretExpressionCalcul(UnaryExpression l){
+		var res = l.expr.interpretExpressionCalcul
+		if (l.isOp) {res = -res}
+		return res
 	}
 	
-	def dispatch void interpret(NbField l){
-		
-	 	
+	def dispatch double interpretExpressionCalcul(NbField l){
+		return currentCsv.data.length
 	}
-	def dispatch void interpret(AggregatExpression l){
-		
-	 	
+	
+	def dispatch double interpretExpressionCalcul(AggregatExpression l){
+		switch (l.aggregatOp) {
+			case COUNT: {
+				return currentCsv.count(l.arg.value)
+			}
+			case SUM: {
+				return currentCsv.sum(l.arg.value)
+			}
+			case PRODUCT: {
+				return currentCsv.product(l.arg.value)
+			}
+			case MEAN: {
+				return currentCsv.mean(l.arg.value)
+			}
+			default: {
+				throw new IllegalArgumentException("Aggregative expression implemented are only Count, Sum, Product, and Mean.")
+			}
+		}
 	}
-	def dispatch void interpret(LitteralInt l){
-		
+	def dispatch double interpretExpressionCalcul(LitteralInt l){
+		return l.getVal
 	}
-	def dispatch void interpret(LitteralFloat l){
+	def dispatch double interpretExpressionCalcul(LitteralFloat l){
+		return l.getVal
 	}
-	def dispatch void interpret(NestedExpressionCalcul l){
-		
-	 	
+	def dispatch double interpretExpressionCalcul(NestedExpressionCalcul l){
+		return l.expr.interpretExpressionCalcul
 	}	
-	def dispatch void interpret(LitteralString l){
-
+	def dispatch Value interpretValue(LitteralString l){
+		return new Value(l.getVal)
 	}
-
 }

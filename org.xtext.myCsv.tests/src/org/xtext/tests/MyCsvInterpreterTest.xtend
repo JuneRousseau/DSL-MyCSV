@@ -12,24 +12,13 @@ import org.xtext.myCsv.Program
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
 import org.eclipse.emf.common.util.URI
 import org.xtext.MyCsvStandaloneSetupGenerated
-import org.xtext.generator.MyCsvCompilerPython
-import java.nio.file.Files
-import java.io.IOException
-import java.nio.file.Paths
-import java.nio.charset.StandardCharsets
 import java.io.File
-import java.io.BufferedReader
-import java.io.InputStreamReader
 import java.util.Scanner
-import org.eclipse.xtext.testing.util.ParseHelper
-import javax.inject.Inject
 import org.xtext.generator.MyCsvInterpreter
 
 @ExtendWith(InjectionExtension)
 @InjectWith(MyCsvInjectorProvider)
 class MyCsvInterpreterTest {
-	@Inject
-	ParseHelper<Program> parseHelper
 	
 	@Test
 	def void interpreterTest() {
@@ -46,7 +35,7 @@ class MyCsvInterpreterTest {
 			val inputTest= "examples/tests/"+basename+".mycsv"
 			
 			print("\n---------Test de "+basename+"---------\n")
-			s.nextLine()
+			//s.nextLine()
 			
 				
 			val prog= loadMyCSV(URI.createURI(inputTest))

@@ -4,42 +4,66 @@ import java.io.File
 import java.util.Scanner
 import java.util.ArrayList
 import java.util.HashMap
-import org.xtext.myCsv.Path
 import java.nio.file.Files
 import java.nio.file.Paths
 import java.nio.charset.StandardCharsets
 import java.io.IOException
+import java.util.Comparator
+import org.xtext.myCsv.BinOpRel
 
 class Csv {
 	
 	public var ArrayList<ArrayList<Value>> data
 	public var ArrayList<String> header
 	public var HashMap<String, Integer> headerDict
+	public var String sep
 	
 	new (){
 		data = new ArrayList
 		header = new ArrayList
 		headerDict = new HashMap
+		sep = defaultSep
 	}
 	
 	new (String path, String sep, boolean noHeader){
 		data = new ArrayList
-		
+		header = new ArrayList
+		this.sep = sep
+				
 		try {
 			val file = new File(path)
+			val scan = new Scanner(file)
+			
 			if(noHeader){
 				throw new IllegalArgumentException("Not Implemented yet. (handling .csv without header)")
+			} else {
+				val line = scan.nextLine
+				header = parseHeader(line, sep)
 			}
-			val scan = new Scanner(file)
 			
 			while(scan.hasNextLine){
 				val line = scan.nextLine
 				data.add(parseCsvLine(line, sep))
 			}
-			
+			refreshHeaderDict			
 		} catch (Exception e) {
 			e.printStackTrace // TODO : test wether it stops the programm
 		}
+	}
+	
+	def private refreshHeaderDict(){
+		headerDict = new HashMap
+		for(var int i = 0 ; i < header.length() ; i++){
+			headerDict.put(header.get(i), i)
+		}
+	}
+	
+	def static String defaultSep(){
+		return ","
+	}
+	
+	def static private ArrayList<String> parseHeader(String line, String sep) {
+		return new ArrayList(line.split(sep))
 	}
 	
 	def static private ArrayList<Value> parseCsvLine(String line, String sep) {
@@ -78,11 +102,19 @@ class Csv {
 		return sum(fieldId) / count(fieldId)
 	}
 	
-	def storeCsv(String path, String sep) {
+	override toString(){
 		var str=""
+		var first = true
+		for (head : header)
+		{
+			if(!first) str += sep
+			str += head
+			first=false
+		}
+		str+="\n"
 		for (line : data)
 		{
-			var first= true
+			first= true
 			for (value : line)
 			{
 				if(!first) str+=sep
@@ -91,11 +123,33 @@ class Csv {
 			}
 			str+="\n"
 		}
+		return str
+	}
+	
+	def storeCsv(String path, String sep) {
+		this.sep = sep
+		val output = toString()
+		
 		try {
-    		Files.writeString(Paths.get(path), str, StandardCharsets.UTF_8);
+    		Files.writeString(Paths.get(path), output, StandardCharsets.UTF_8);
 		} catch (IOException ex) {
 			print("Exception occured: " + ex + "\n----------------------\n\n\n\n")
-		}	
+		}
+	}
+	
+	def void select(ArrayList<Integer> lineIndex) {
+		var tmpData = new ArrayList<ArrayList<Value>>
+		for(index : lineIndex){
+			tmpData.add(data.get(index))
+		}
+		data = tmpData
+	}
+	
+	def deleteLine(ArrayList<Integer> lineIndex) {
+		lineIndex.sort(Comparator.reverseOrder())
+		for(index : lineIndex){
+			data.remove(index.intValue)
+		}
 	}
 	
 	
@@ -142,6 +196,80 @@ class Value {
 				return d.toString
 			case "str":
 				return s.toString
+			default:
+				return "NA"
 		}	
+	}
+	
+	def boolean compare(BinOpRel rel, Value v) {
+		if(type.equals("str")){
+			if(!v.type.equals("str")){
+				throw new IllegalArgumentException("Cannot compare a string with a number.")
+			}
+			switch (rel) {
+				// s1.compareTo(s2) is positive iff s1 >= s2
+				case GT: {
+					return s.compareTo(v.s) > 0
+				}
+				case LT: {
+					return s.compareTo(v.s) < 0
+				}
+				case GE: {
+					return s.compareTo(v.s) >= 0
+				}
+				case LE: {
+					return s.compareTo(v.s) <= 0
+				}
+				case EQ: {
+					return s.compareTo(v.s) == 0
+				}
+				case NEQ: {
+					return s.compareTo(v.s) != 0
+				}
+				default: {
+					throw new IllegalArgumentException("Implemented binary comparison operations are only >, <, >=, <=, == and !=.")
+				}
+			}
+		} else {
+			if(v.type.equals("str")){
+				throw new IllegalArgumentException("Cannot compare a number with a string.")
+			}
+			var double v1
+			if(type.equals("d")){
+				v1 = d
+			} else {
+				v1 = i
+			}
+			var double v2
+			if(v.type.equals("d")){
+				v2 = v.d
+			} else {
+				v2 = v.i
+			}
+			switch (rel) {
+				// s1.compareTo(s2) is positive iff s1 >= s2
+				case GT: {
+					return v1 > v2
+				}
+				case LT: {
+					return v1 < v2
+				}
+				case GE: {
+					return v1 >= v2
+				}
+				case LE: {
+					return v1 <= v2
+				}
+				case EQ: {
+					return v1 == v2
+				}
+				case NEQ: {
+					return v1 != v2
+				}
+				default: {
+					throw new IllegalArgumentException("Implemented binary comparison operations are only >, <, >=, <=, == and !=.")
+				}
+			}
+		}
 	}
 }

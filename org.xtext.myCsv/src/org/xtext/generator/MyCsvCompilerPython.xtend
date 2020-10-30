@@ -341,7 +341,7 @@ class MyCsvCompilerPython {
 		var res = "# PRINT LINE\n"
 		res += l.lines.compile
 		res += 'for line in lines:\n'
-		res += '\tprint(data[line])'
+		res += '\tprint(data[line])' //TODO : print avec le bon séparateur ?
 		return res
 	}
 	def dispatch String compile(PrintCell l){
