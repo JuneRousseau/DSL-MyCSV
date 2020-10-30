@@ -145,11 +145,61 @@ class Csv {
 		data = tmpData
 	}
 	
+	def projection(ArrayList<Integer> fieldIndex) {
+		var tmpData = new ArrayList<ArrayList<Value>>
+		for(row : data){
+			var tmpRow=new ArrayList<Value>			
+			for (var i=0; i<row.length ; i++)
+			{
+				if(fieldIndex.contains(i)){
+					tmpRow.add(row.get(i))
+				}
+			}
+			tmpData.add(tmpRow)
+		}
+		data=tmpData
+		
+		var tmpHeaders=new ArrayList<String>			
+		for (var i=0; i<header.length ; i++)
+		{
+			if(fieldIndex.contains(i)){
+				tmpHeaders.add(header.get(i))
+			}
+		}
+		header=tmpHeaders
+		refreshHeaderDict
+	}	
+	
 	def deleteLine(ArrayList<Integer> lineIndex) {
 		lineIndex.sort(Comparator.reverseOrder())
 		for(index : lineIndex){
 			data.remove(index.intValue)
 		}
+	}
+	
+	def deleteField(ArrayList<Integer> fieldIndex) {
+		var tmpData = new ArrayList<ArrayList<Value>>
+		for(row : data){
+			var tmpRow=new ArrayList<Value>			
+			for (var i=0; i<row.length ; i++)
+			{
+				if(!fieldIndex.contains(i)){
+					tmpRow.add(row.get(i))
+				}
+			}
+			tmpData.add(tmpRow)
+		}
+		data=tmpData
+		
+		var tmpHeaders=new ArrayList<String>			
+		for (var i=0; i<header.length ; i++)
+		{
+			if(!fieldIndex.contains(i)){
+				tmpHeaders.add(header.get(i))
+			}
+		}
+		header=tmpHeaders
+		refreshHeaderDict
 	}
 	
 	def insertField(String fieldName, ArrayList<Value> values) {
@@ -167,6 +217,27 @@ class Csv {
 		}
 		data.add(newLine)
 	}
+	
+	def modifyField(ArrayList<Integer> fields, ArrayList<Value> values) {
+		for (field : fields){
+			for(var i = 0 ; i < data.length ; i++){
+			data.get(i).set(field, (values.get(i % values.length)))
+			}
+		}		
+	}
+	
+	def modifyLine(ArrayList<Integer> lines, ArrayList<Value> values) {
+		val newLine = new ArrayList<Value>
+		for(var i = 0 ; i < header.length ; i++){
+			newLine.add(values.get(i % values.length))
+		}
+		
+		for(line : lines)
+		{
+			data.set(line, newLine)
+		}
+	}
+	
 	
 	
 }

@@ -122,6 +122,7 @@ class MyCsvInterpreter {
 	 	
 	}
 	def dispatch void interpret(Projection l){
+		currentCsv.projection(l.field.interpretFieldIndex)
 		
 	 	
 	}
@@ -130,7 +131,7 @@ class MyCsvInterpreter {
 	}
 	
 	def dispatch void interpret(DeleteField l){
-		
+		currentCsv.deleteField(l.fields.interpretFieldIndex)
 	 	
 	}
 	def dispatch void interpret(DeleteLine l){
@@ -145,15 +146,15 @@ class MyCsvInterpreter {
 	}
 	
 	def dispatch void interpret(ModifyField l){
-		
+		currentCsv.modifyField(l.fields.interpretFieldIndex, l.values.interpretValues)
 	}
 	def dispatch void interpret(ModifyLine l){
-		
+		currentCsv.modifyLine(l.lines.interpretLineIndex, l.values.interpretValues)
 	 	
 	}
 	def dispatch void interpret(ModifyCell l){
-		
-	 	
+		var cell = l.cell.interpretCellIndex
+	 	currentCsv.data.get(cell.key).set(cell.value, l.value.interpretValue)
 	}
 	
 	def dispatch void interpret(PrintField l){
