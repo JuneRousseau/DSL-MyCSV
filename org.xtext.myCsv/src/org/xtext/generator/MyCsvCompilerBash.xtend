@@ -53,16 +53,15 @@ class MyCsvCompilerBash {
 
 	val tmpCompilerPath="/tmp/myCsvCompilerBash/"	
 	val tmpCsv= tmpCompilerPath+"tmpCsv.csv"
-	static String sep= ','
+	var String sep = Csv.defaultSep
 		
 	def dispatch String compile(Program p){
 		var res = "#!/bin/bash\n"
 		res += "mkdir -p "+tmpCompilerPath+"\n"
-		res += "sep=','\n\n"	
+		res += "sep='" + Csv.defaultSep + "'\n\n"	
 		for(stmt : p.stmts) {
 			res += stmt.compile+"\n"
-		}
-		
+		}		
 		res += "rm "+tmpCompilerPath+"*\n"
 		res += "rmdir "+tmpCompilerPath+"\n"
 		return res
@@ -73,14 +72,17 @@ class MyCsvCompilerBash {
 		res += "cp "+l.path.value+" "+tmpCsv+"\n"
 
 		if (l.isSepDefined()){
-			MyCsvCompilerBash.sep=l.sep
+			sep=l.sep
 			res += "sep='"+l.sep+"'\n"
 		}
 		
 		if(!l.noHeader)
 			//throw new IllegalArgumentException("Not Implemented yet. (handling .csv without header)")
 			res += ""
-		
+
+		res += "string=$(head -n 1 "+ tmpCsv +")\n"
+		res += "nbField=$(awk -F\"${sep}\" '{print NF}' <<< \"${string}\")\n"
+		//                awk -F"${sep}" '{print NF}' <<< "${string}"
 		return res
 	}
 	
@@ -88,7 +90,7 @@ class MyCsvCompilerBash {
 		var res = "# STORE\n"
 		
 		if (l.isSepDefined()){
-			res += "sed 's/$sep/"+l.sep+"/g' "+tmpCsv+" > "+l.path.value+"\n"
+			res += "sed 's/"+ sep + "/"+l.sep+"/g' "+tmpCsv+" > "+l.path.value+"\n"
 		}
 		
 		return res
@@ -204,102 +206,118 @@ class MyCsvCompilerBash {
 	}
 	def dispatch String compile(PrintExpr l){
 		var res = "# PRINT EXPR\n"
-	 	return res
+	 	return res + "echo " + l.exp.compileValue
 	}
 
 	def dispatch String compile(ExpressionLog l){
-		var res = ""
-	 	return res
+		return l.expr.compile
 	}
 
 	def dispatch String compile(OrExpression l){
-		var res = ""
-	 	return res
+		var	res = l.lhs.compile
+		for (expr : l.rhs)
+		{
+			res += " or " + expr.compile
+		}
+		return res	
 	}
 
 	def dispatch String compile(AndExpression l){
-		var res = ""
-	 	return res
+		var	res = l.lhs.compile
+		for (expr : l.rhs)
+		{
+			res += " and " + expr.compile
+		}
+		return res
 	}
 
 	def dispatch String compile(UnaryLogExpression l){
 	 	var res = ""
 		if (l.isNot)
 		{
-			res += ""
+			res += "not "
 		}
-		return res
+		return res + l.expr.compile
 	}
 	
 	def dispatch String compile(ExpressionRel l){
-		var res = ""
-	 	return res
+		return "" //TODO
 	}
 
 	def dispatch String compile(NestedLogExpression l){
-		var res = ""
-	 	return res
+		return "(" + l.expr.compile + ")"
 	}
 
-	def dispatch String compile(ExpressionCalcul l){
-		var res = ""
-	 	return res
+	def dispatch String compileValue(ExpressionCalcul l){
+		return "$(echo scale=10\\;" + l.expr.compileExpressionCalcul + "| bc)"
 	}
 
-	def dispatch String compile(AdditiveExpression l){
-		var	res = ""
+	def dispatch String compileExpressionCalcul(AdditiveExpression l){
+		var	res = l.lhs.compileExpressionCalcul
 		for (expr : l.rhs)
 		{
-			res+=""
+			res = res + expr.compileExpressionCalcul // op is inside of expr
 		}
 		return res
 	}
 	
-	def dispatch String compile(AdditiveExpressionRhs l){
-		var res = ""
-	 	return res
+	def dispatch String compileExpressionCalcul(AdditiveExpressionRhs l){
+		return " " + l.op.toString + " " + l.rhs.compileExpressionCalcul
 	}
 
-	def dispatch String compile(MultiplicativeExpression l){
-		var	res = ""
+	def dispatch String compileExpressionCalcul(MultiplicativeExpression l){
+		var	res = l.lhs.compileExpressionCalcul
 		for (expr : l.rhs)
 		{
-			res += ""
+			res = res + expr.compileExpressionCalcul
 		}
 		return res
 	}
 	
-	def dispatch String compile(MultiplicativeExpressionRhs l){
-		var res = ""
-	 	return res
+	def dispatch String compileExpressionCalcul(MultiplicativeExpressionRhs l){
+		return " \\" + l.op.toString + " " + l.rhs.compileExpressionCalcul
+		// We escape the "*" operator so that it's a "times" and not the * from bash.
+		// Escapting the "/" doesn't matter...
 	}
 
-	def dispatch String compile(UnaryExpression l){
+	def dispatch String compileExpressionCalcul(UnaryExpression l){
 		var res = ""
-		if (l.isOp) {res += ""}
-		return res
+		if (l.isOp) {res += "-"}
+		return res+l.expr.compileExpressionCalcul
 	}
 	
-	def dispatch String compile(NbField l){
-		var res = ""
-	 	return res
+	def dispatch String compileExpressionCalcul(NbField l){
+		return "$nbField"
 	}
-	def dispatch String compile(AggregatExpression l){
-		var res = ""
-	 	return res
+	def dispatch String compileExpressionCalcul(AggregatExpression l){
+		switch (l.aggregatOp) {
+			case COUNT: {//wc -l input.csv | cut -d " " -f 1
+				return "$(wc -l "+ tmpCsv +" | cut -d \" \" -f 1)"
+			}
+			case SUM: {
+				return "0" //TODO
+			}
+			case PRODUCT: {
+				return "0" //TODO
+			}
+			case MEAN: {
+				return "0" //TODO
+			}
+			default: {
+				throw new IllegalArgumentException("Aggregative expression implemented are only Count, Sum, Product, and Mean.")
+			}
+		}
 	}
-	def dispatch String compile(LitteralInt l){
+	def dispatch String compileExpressionCalcul(LitteralInt l){
 		return l.getVal.toString
-		
 	}
-	def dispatch String compile(LitteralFloat l){
+	def dispatch String compileExpressionCalcul(LitteralFloat l){
 		return l.getVal.toString
 	}
-	def dispatch String compile(NestedExpressionCalcul l){
-		var res = ""
-	 	return res
-	}	
-	def dispatch String compile(LitteralString l){
+	def dispatch String compileExpressionCalcul(NestedExpressionCalcul l){
+		return "(" + l.expr.compileExpressionCalcul + ")"
+	}
+	def dispatch String compileValue(LitteralString l){
 		return '"' + l.getVal + '"'
 	}
 }

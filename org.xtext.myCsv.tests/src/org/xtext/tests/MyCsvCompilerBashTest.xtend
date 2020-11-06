@@ -10,7 +10,6 @@ import org.xtext.myCsv.Program
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
 import org.eclipse.emf.common.util.URI
 import org.xtext.MyCsvStandaloneSetupGenerated
-import org.xtext.generator.MyCsvCompilerBash
 import java.nio.file.Files
 import java.io.IOException
 import java.nio.file.Paths
@@ -19,7 +18,7 @@ import java.io.File
 import java.io.BufferedReader
 import java.io.InputStreamReader
 import java.util.Scanner
-
+import org.xtext.generator.MyCsvCompilerBash
 
 @ExtendWith(InjectionExtension)
 @InjectWith(MyCsvInjectorProvider)
@@ -58,10 +57,14 @@ class MyCsvCompilerBashTest {
 				print("Exception occured: " + ex + "\n----------------------\n\n\n\n")
 			}
 			
+			val File file = new File(outputTest)
+			file.setExecutable(true);
+			
 			val Runtime rt = Runtime.getRuntime();
 			try
 			{
-				val Process prChMod = rt.exec("chmod +x "+cmd);
+				//rt.exec("chmod +x "+cmd);
+				//rt.exec("chmod +x "+outputTest);
 				val Process pr = rt.exec(cmd);
 				val BufferedReader bfr = new BufferedReader(new InputStreamReader(pr.getInputStream()));
 				var String line;
@@ -78,7 +81,7 @@ class MyCsvCompilerBashTest {
 				
 			} catch (IOException ex)
 			{
-				System.out.println("Error: execution script Python aborted "+ex+"\n");
+				System.out.println("Error: execution script Bash aborted "+ex+"\n");
 			}
 			//Ajouter la vérification sur un outputs oracle
 			print("DONE")

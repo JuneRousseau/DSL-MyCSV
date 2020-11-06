@@ -450,8 +450,9 @@ class MyCsvCompilerPython {
 	}
 	def dispatch String compile(NestedExpressionCalcul l){
 		return "(" + l.expr.compile + ")"
-	}	
+	}
 	def dispatch String compile(LitteralString l){
 		return '"' + l.getVal + '"'
 	}
+		
 }
