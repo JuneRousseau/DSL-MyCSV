@@ -57,11 +57,13 @@ class MyCsvCompilerBash {
 		
 	def dispatch String compile(Program p){
 		var res = "#!/bin/bash\n"
+		res += "# INTRO\n"
 		res += "mkdir -p "+tmpCompilerPath+"\n"
 		res += "sep='" + Csv.defaultSep + "'\n\n"	
 		for(stmt : p.stmts) {
 			res += stmt.compile+"\n"
 		}		
+		res += "# OUTRO\n"
 		res += "rm "+tmpCompilerPath+"*\n"
 		res += "rmdir "+tmpCompilerPath+"\n"
 		return res
@@ -91,6 +93,8 @@ class MyCsvCompilerBash {
 		
 		if (l.isSepDefined()){
 			res += "sed 's/"+ sep + "/"+l.sep+"/g' "+tmpCsv+" > "+l.path.value+"\n"
+		} else {
+			res += "cp "+tmpCsv+" "+l.path.value+"\n"
 		}
 		
 		return res

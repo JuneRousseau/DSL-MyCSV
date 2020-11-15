@@ -1,7 +1,7 @@
-Load "examples-gen/input.csv" sep=","
+Load "../input.csv" sep=","
 Delete line 1 2 3 4
 Delete line id>125 and id<1095
 Delete field email2
 Delete field 2 4
 Print table
-Store "examples-gen/outputDelete.csv" sep=";"
+Store "outputDelete.csv" sep=";"

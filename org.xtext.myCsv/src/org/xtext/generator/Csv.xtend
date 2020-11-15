@@ -25,13 +25,23 @@ class Csv {
 		sep = defaultSep
 	}
 	
+	new (String path){
+		this(path, defaultSep, false)
+	}
+	
 	new (String path, String sep, boolean noHeader){
 		data = new ArrayList
 		header = new ArrayList
 		this.sep = sep
 				
 		try {
-			val file = new File(path)
+			println("coucou")
+			println(System.getProperty("user.dir", "fail"))
+			
+			val file = new File(System.getProperty("user.dir") + "/" + path)
+			println(path)
+			println(file.absolutePath)
+			
 			val scan = new Scanner(file)
 			
 			if(noHeader){
@@ -129,9 +139,9 @@ class Csv {
 	def storeCsv(String path, String sep) {
 		this.sep = sep
 		val output = toString()
-		
+		val pathStr = System.getProperty("user.dir") + "/" + path
 		try {
-    		Files.writeString(Paths.get(path), output, StandardCharsets.UTF_8);
+    		Files.writeString(Paths.get(pathStr), output, StandardCharsets.UTF_8);
 		} catch (IOException ex) {
 			print("Exception occured: " + ex + "\n----------------------\n\n\n\n")
 		}
@@ -323,8 +333,6 @@ class Csv {
 	def getFieldNum(String fieldName) {
 		return headerDict.get(fieldName)
 	}
-	
-	
 }
 
 class Value {
@@ -365,7 +373,15 @@ class Value {
 			case "i":
 				return i.toString
 			case "d":
-				return d.toString
+				{	// FIXME: it doesn't work. TODO
+					// We check if the double should be printed as an Int
+					val double test = Math.round(d * 100000d) / 100000d;
+					if (test == d){
+						return d.intValue.toString	
+					} else {
+						return d.toString
+					}
+				}
 			case "str":
 				return s.toString
 			default:

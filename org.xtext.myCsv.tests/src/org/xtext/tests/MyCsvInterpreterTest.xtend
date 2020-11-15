@@ -24,7 +24,7 @@ class MyCsvInterpreterTest {
 	def void interpreterTest() {
 
 		val File directoryPath = new File("examples/tests/")
-		//val s = new Scanner(System.in);
+		val s = new Scanner(System.in);
 		
 		println("----------TESTS----------")
 		println("<Please print enter between each tests>")
@@ -35,7 +35,7 @@ class MyCsvInterpreterTest {
 			val inputTest= "examples/tests/"+basename+".mycsv"
 			
 			print("\n---------Test de "+basename+"---------\n")
-			//s.nextLine()
+			s.nextLine()
 			
 				
 			val prog= loadMyCSV(URI.createURI(inputTest))

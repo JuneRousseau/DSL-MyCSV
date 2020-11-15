@@ -1,2 +1,2 @@
-Load "examples-gen/input.csv" sep=","
-ExportJson "examples-gen/output.json"
+Load "../input.csv" sep=","
+ExportJson "outputExportJson.json"

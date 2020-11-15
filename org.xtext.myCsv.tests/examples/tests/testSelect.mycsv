@@ -1,4 +1,4 @@
-Load "examples-gen/input.csv" sep=","
+Load "../input.csv" sep=","
 Select profession=="doctor" or profession=="firefighter"
 Select id<150
-Store "examples-gen/outputSelect.csv" sep=";"
+Store "outputSelect.csv" sep=";"

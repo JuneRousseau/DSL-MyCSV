@@ -1,2 +1,2 @@
-Load "examples-gen/input.csv" sep=","
-Store "examples-gen/output.csv" sep=";"
+Load "../input.csv" sep=","
+Store "outputLoadStore.csv" sep=";"

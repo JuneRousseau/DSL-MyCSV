@@ -302,7 +302,10 @@ class MyCsvCompilerPython {
 	def dispatch String compile(InsertLine l){
 		var res = "# INSERT LINE\n"
 		res += l.values.compile
-		res += "data.append(values)\n"
+		res += "valuesBis = []\n"
+		res += "for i in range(len(header)):\n"
+		res += "\tvaluesBis.append(values[i % len(values)]) #little trick to get correct semantics\n"
+		res += "data.append(valuesBis.copy())\n"
 		return res
 	}
 	
@@ -319,8 +322,11 @@ class MyCsvCompilerPython {
 		var res = "# MODIFY LINE\n"
 		res += l.values.compile
 		res += l.lines.compile
+		res += "valuesBis = []\n"
+		res += "for i in range(len(header)):\n"
+		res += "\tvaluesBis.append(values[i % len(values)]) #little trick to get correct semantics\n"
 		res += "for line in lines:\n"
-		res += "\tdata[line] = values.copy() # copy is needed\n"
+		res += "\tdata[line] = valuesBis.copy() # copy is needed\n"
 		return res
 	}
 	def dispatch String compile(ModifyCell l){
