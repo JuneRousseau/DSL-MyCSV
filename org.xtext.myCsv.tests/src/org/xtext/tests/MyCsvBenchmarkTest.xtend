@@ -22,6 +22,9 @@ import java.io.InputStreamReader
 import org.xtext.generator.MyCsvCompilerBash
 import org.xtext.generator.MyCsvInterpreter
 import java.io.PrintStream
+import org.xtext.generator.Csv
+import org.json.simple.parser.JSONParser
+import java.io.FileReader
 
 @ExtendWith(InjectionExtension)
 @InjectWith(MyCsvInjectorProvider)
@@ -62,6 +65,9 @@ class MyCsvBenchmarkTest {
 				val outputPyPath= "examples-gen/python/"+outputBasename+".csv"
 				val outputShPath= "examples-gen/bash/"+outputBasename+".csv"
 				val outputInterpreterPath= "examples-gen/interpreter/"+outputBasename+".csv"
+				val outputJsonPyPath= "examples-gen/python/"+outputBasename+".json"
+				val outputJsonShPath= "examples-gen/bash/"+outputBasename+".json"
+				val outputJsonInterpreterPath= "examples-gen/interpreter/"+outputBasename+".json"
 				
 				// GETTING MYCSV AST
 				val prog = loadMyCSV(URI.createURI(inputMyCsv))
@@ -116,6 +122,7 @@ class MyCsvBenchmarkTest {
 					outStream.flush()
 				} catch (Exception e){
 					interpReturnCode = 1
+					e.printStackTrace
 				}
 				
 				// restoring context
@@ -126,17 +133,17 @@ class MyCsvBenchmarkTest {
 							
 				// Executions should fail together
 				
-				//Assertions.assertEquals(prPy.waitFor == 0, prSh.waitFor == 0) 
 				Assertions.assertEquals(interpReturnCode == 0, prPy.waitFor == 0) 
 				//Assertions.assertEquals(interpReturnCode == 0, prSh.waitFor == 0)
 				
 				// Output should be the same
+				val csvInterpreter = new Csv(outputInterpreterPath)
+				Assertions.assertEquals(csvInterpreter, new Csv(outputPyPath))
+				//Assertions.assertEquals(csvInterpreter, new Csv(outputShPath))		
 				
-				//Assertions.assertTrue(compareOutput(outputPyPath, outputShPath))
-				Assertions.assertTrue(compareOutput(outputInterpreterPath, outputPyPath))
-				//Assertions.assertTrue(compareOutput(outputInterpreterPath, outputShPath))				
-				
-				// TODO compare Json output
+				// Compare Json output
+				Assertions.assertTrue(compareJson(outputJsonInterpreterPath, outputJsonPyPath))
+				//Assertions.assertTrue(compareJson(outputJsonInterpreterPath, outputJsonShPath))
 				
 				// Remark: stdout comparison is done manually because MyCsv doesn't specify the exact way to print.
 				
@@ -151,26 +158,28 @@ class MyCsvBenchmarkTest {
 		}
 	}
 	
-	def compareOutput(String outPath1, String outPath2) {
+	def compareJson(String outPath1, String outPath2) {
 		if(!new File(outPath1).exists && !new File(outPath2).exists){
 			return true
 		}
-		
-		// We use "-Z" option of "diff" to ignore differences of line ending.
-		// We use "-N" option of "diff" to successfully compare absent files
-		// exitValue
-		val diffCmd = "diff -N -Z "+ outPath1 + " " + outPath2
-		//println(diffCmd)
-		val Process prDiff = Runtime.getRuntime().exec(diffCmd)
-		
-		// Weird fix: it seems that "diff" want to be heard...
-		val BufferedReader bfrSh = new BufferedReader(new InputStreamReader(prDiff.getInputStream()));
-		while (bfrSh.readLine() !== null)
-		{
-			//println(line);
+		if(!new File(outPath1).exists || !new File(outPath2).exists){
+			return false
 		}
-		
-		return prDiff.waitFor == 0
+		return new Csv(outPath1).equals(new Csv(outPath2))
+	}
+	
+	def compareCsv(String outPath1, String outPath2) {
+		if(!new File(outPath1).exists && !new File(outPath2).exists){
+			return true
+		}
+		if(!new File(outPath1).exists || !new File(outPath2).exists){
+			return false
+		}
+		val JSONParser jParser = new JSONParser
+		val json1 = jParser.parse(new FileReader(outPath1));
+		val json2 = jParser.parse(new FileReader(outPath2));
+				
+		return json1.equals(json2)
 	}
 		
 	def loadMyCSV(URI uri){

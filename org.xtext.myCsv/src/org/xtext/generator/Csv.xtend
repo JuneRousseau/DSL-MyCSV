@@ -10,6 +10,7 @@ import java.nio.charset.StandardCharsets
 import java.io.IOException
 import java.util.Comparator
 import org.xtext.myCsv.BinOpRel
+import java.io.FileNotFoundException
 
 class Csv {
 	
@@ -35,13 +36,7 @@ class Csv {
 		this.sep = sep
 				
 		try {
-			println("coucou")
-			println(System.getProperty("user.dir", "fail"))
-			
 			val file = new File(System.getProperty("user.dir") + "/" + path)
-			println(path)
-			println(file.absolutePath)
-			
 			val scan = new Scanner(file)
 			
 			if(noHeader){
@@ -55,10 +50,10 @@ class Csv {
 				val line = scan.nextLine
 				data.add(parseCsvLine(line, sep))
 			}
-			refreshHeaderDict			
-		} catch (Exception e) {
-			e.printStackTrace // TODO : test wether it stops the programm
+		} catch (FileNotFoundException e) {
+			//Absent file results into empty Csv Object, no problem ;)
 		}
+		refreshHeaderDict
 	}
 	
 	def refreshHeaderDict(){
@@ -94,7 +89,7 @@ class Csv {
 		val field = headerDict.get(fieldId)
 		var res = 0.0
 		for(row : data){
-			res += row.get(field).i // TODO : better
+			res += row.get(field).d
 		}
 		return res
 	}
@@ -103,7 +98,7 @@ class Csv {
 		val field = headerDict.get(fieldId)
 		var res = 1.0
 		for(row : data){
-			res *= row.get(field).i // TODO : better
+			res *= row.get(field).d
 		}
 		return res
 	}
@@ -160,7 +155,7 @@ class Csv {
 			first=false
 		}
 		
-		output+="]"
+		output+="\n]"
 		return output
 	}
 	
@@ -172,7 +167,7 @@ class Csv {
 		for(var i=0; i<header.length; i++)
 		{
 			if(!first) output+=",\n"
-			output+='\t"'+header.get(i)+'"'+": "
+			output+='    "'+header.get(i)+'"'+": "
 			
 			val value=row.get(i)
 			if(value.type=="str")
@@ -194,8 +189,9 @@ class Csv {
 	def exportJson(String path) {
 		var output=prettyPrintJSON()
 		
+		val pathStr = System.getProperty("user.dir") + "/" + path
 		try {
-    		Files.writeString(Paths.get(path), output, StandardCharsets.UTF_8);
+    		Files.writeString(Paths.get(pathStr), output, StandardCharsets.UTF_8);
 		} catch (IOException ex) {
 			print("Exception occured: " + ex + "\n----------------------\n\n\n\n")
 		}
@@ -333,6 +329,16 @@ class Csv {
 	def getFieldNum(String fieldName) {
 		return headerDict.get(fieldName)
 	}
+	
+	override equals(Object o){
+		if(!(o instanceof Csv)){
+			return false
+		}
+		val Csv other = o as Csv
+		return sep.equals(other.sep)
+			&& data.equals(other.data)
+			&& header.equals(other.header)		
+	}
 }
 
 class Value {
@@ -343,7 +349,7 @@ class Value {
 	
 	new (Integer ii){
 		i = ii
-		d = null
+		d = ii as double
 		s = null
 		type = "i"
 	}
@@ -375,8 +381,7 @@ class Value {
 			case "d":
 				{	// FIXME: it doesn't work. TODO
 					// We check if the double should be printed as an Int
-					val double test = Math.round(d * 100000d) / 100000d;
-					if (test == d){
+					if (d.intValue == d){
 						return d.intValue.toString	
 					} else {
 						return d.toString
@@ -459,5 +464,13 @@ class Value {
 				}
 			}
 		}
+	}
+	
+	override equals(Object o){
+		if(!(o instanceof Value)){
+			return false
+		}
+		val Value other = o as Value
+		return this.compare(BinOpRel.EQ, other)
 	}
 }

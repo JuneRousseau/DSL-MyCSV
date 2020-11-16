@@ -5,6 +5,7 @@ package org.xtext.tests;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
@@ -22,10 +23,12 @@ import org.eclipse.xtext.testing.extensions.InjectionExtension;
 import org.eclipse.xtext.xbase.lib.Exceptions;
 import org.eclipse.xtext.xbase.lib.InputOutput;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
+import org.json.simple.parser.JSONParser;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.xtext.MyCsvStandaloneSetupGenerated;
+import org.xtext.generator.Csv;
 import org.xtext.generator.MyCsvCompilerBash;
 import org.xtext.generator.MyCsvCompilerPython;
 import org.xtext.generator.MyCsvInterpreter;
@@ -64,6 +67,9 @@ public class MyCsvBenchmarkTest {
           final String outputPyPath = (("examples-gen/python/" + outputBasename) + ".csv");
           final String outputShPath = (("examples-gen/bash/" + outputBasename) + ".csv");
           final String outputInterpreterPath = (("examples-gen/interpreter/" + outputBasename) + ".csv");
+          final String outputJsonPyPath = (("examples-gen/python/" + outputBasename) + ".json");
+          final String outputJsonShPath = (("examples-gen/bash/" + outputBasename) + ".json");
+          final String outputJsonInterpreterPath = (("examples-gen/interpreter/" + outputBasename) + ".json");
           final Program prog = this.loadMyCSV(URI.createURI(inputMyCsv));
           Assertions.assertNotNull(prog);
           final EList<Resource.Diagnostic> errors = prog.eResource().getErrors();
@@ -111,7 +117,9 @@ public class MyCsvBenchmarkTest {
             outStream.flush();
           } catch (final Throwable _t) {
             if (_t instanceof Exception) {
+              final Exception e = (Exception)_t;
               interpReturnCode = 1;
+              e.printStackTrace();
             } else {
               throw Exceptions.sneakyThrow(_t);
             }
@@ -121,7 +129,10 @@ public class MyCsvBenchmarkTest {
           int _waitFor = prPy.waitFor();
           boolean _equals = (_waitFor == 0);
           Assertions.assertEquals(Boolean.valueOf((interpReturnCode == 0)), Boolean.valueOf(_equals));
-          Assertions.assertTrue(this.compareOutput(outputInterpreterPath, outputPyPath));
+          final Csv csvInterpreter = new Csv(outputInterpreterPath);
+          Csv _csv = new Csv(outputPyPath);
+          Assertions.assertEquals(csvInterpreter, _csv);
+          Assertions.assertTrue(this.compareJson(outputJsonInterpreterPath, outputJsonPyPath));
           InputOutput.<String>println("DONE\n");
         } catch (final Throwable _t) {
           if (_t instanceof Exception) {
@@ -137,20 +148,32 @@ public class MyCsvBenchmarkTest {
     }
   }
   
-  public boolean compareOutput(final String outPath1, final String outPath2) {
+  public boolean compareJson(final String outPath1, final String outPath2) {
+    if (((!new File(outPath1).exists()) && (!new File(outPath2).exists()))) {
+      return true;
+    }
+    if (((!new File(outPath1).exists()) || (!new File(outPath2).exists()))) {
+      return false;
+    }
+    Csv _csv = new Csv(outPath1);
+    Csv _csv_1 = new Csv(outPath2);
+    return _csv.equals(_csv_1);
+  }
+  
+  public boolean compareCsv(final String outPath1, final String outPath2) {
     try {
       if (((!new File(outPath1).exists()) && (!new File(outPath2).exists()))) {
         return true;
       }
-      final String diffCmd = ((("diff -N -Z " + outPath1) + " ") + outPath2);
-      final Process prDiff = Runtime.getRuntime().exec(diffCmd);
-      InputStream _inputStream = prDiff.getInputStream();
-      InputStreamReader _inputStreamReader = new InputStreamReader(_inputStream);
-      final BufferedReader bfrSh = new BufferedReader(_inputStreamReader);
-      while ((bfrSh.readLine() != null)) {
+      if (((!new File(outPath1).exists()) || (!new File(outPath2).exists()))) {
+        return false;
       }
-      int _waitFor = prDiff.waitFor();
-      return (_waitFor == 0);
+      final JSONParser jParser = new JSONParser();
+      FileReader _fileReader = new FileReader(outPath1);
+      final Object json1 = jParser.parse(_fileReader);
+      FileReader _fileReader_1 = new FileReader(outPath2);
+      final Object json2 = jParser.parse(_fileReader_1);
+      return json1.equals(json2);
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
