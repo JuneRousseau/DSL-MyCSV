@@ -52,7 +52,7 @@ import org.xtext.myCsv.LitteralString
 class MyCsvCompilerBash {
 
 	val tmpCompilerPath="/tmp/myCsvCompilerBash/"	
-	val tmpCsv= tmpCompilerPath+"tmpCsv.csv"
+	val currentCsvPath= tmpCompilerPath+"current.csv"
 	var String sep = Csv.defaultSep
 		
 	def dispatch String compile(Program p){
@@ -71,20 +71,33 @@ class MyCsvCompilerBash {
 	
 	def dispatch String compile(Load l){
 		var res = "# LOAD\n"
-		res += "cp "+l.path.value+" "+tmpCsv+"\n"
+		res += "cp "+l.path.value+" "+currentCsvPath+"\n"
 
+		var localSep = ""
 		if (l.isSepDefined()){
-			sep=l.sep
-			res += "sep='"+l.sep+"'\n"
+			localSep = l.sep
+		} else {
+			localSep = sep
 		}
+		res += "sep='"+localSep+"'\n"
 		
 		if(!l.noHeader)
 			//throw new IllegalArgumentException("Not Implemented yet. (handling .csv without header)")
 			res += ""
 
-		res += "string=$(head -n 1 "+ tmpCsv +")\n"
-		res += "nbField=$(awk -F\"${sep}\" '{print NF}' <<< \"${string}\")\n"
-		//                awk -F"${sep}" '{print NF}' <<< "${string}"
+		res += "headerString=$(head -n 1 "+ currentCsvPath +")\n"
+		res += "nbField=$(awk -F\"${sep}\" '{print NF}' <<< \"${headerString}\")\n"
+		//                awk -F"${sep}" '{print NF}' <<< "${headerString}"
+		
+		// Creating variable header
+		res += "unset header\n"
+		res += "declare header\n"
+		res += "for n in `seq $nbField` ; do header[$(($n - 1))]=$(echo $headerString | cut -d $sep -f $n) ;  done\n"
+		// Creating variable headerDict, we just reverse key and value
+		res += "unset headerDict\n"
+		res += "declare -A headerDict\n"
+		res += "for n in `seq $nbField` ; do headerDict[$(echo $headerString | cut -d $sep -f $n)]=$(($n - 1)) ;  done\n"
+		
 		return res
 	}
 	
@@ -92,21 +105,28 @@ class MyCsvCompilerBash {
 		var res = "# STORE\n"
 		
 		if (l.isSepDefined()){
-			res += "sed 's/"+ sep + "/"+l.sep+"/g' "+tmpCsv+" > "+l.path.value+"\n"
+			res += "sed 's/"+ sep + "/"+l.sep+"/g' "+currentCsvPath+" > "+l.path.value+"\n"
 		} else {
-			res += "cp "+tmpCsv+" "+l.path.value+"\n"
+			res += "cp "+currentCsvPath+" "+l.path.value+"\n"
 		}
 		
 		return res
 	}
 	
 	def dispatch String compile(LineIndexCond f){
-	 	var res = ""
-	 	return res
+		var res = "unset lineIndex\n"
+		res += "declare lineIndex\n"
+	 	return res + "#TODO\n" // TODO
 	}
 	
 	def dispatch String compile(LineIndexNum f){
-		var res = ""
+		var res = "unset lineIndex\n"
+		res += "declare lineIndex\n"
+		var c = 0
+		for(i : f.lines){
+			res += "lineIndex["+c+"]="+(i+2)+"\n"
+			c++
+		}
 		return res
 	}
 	
@@ -119,21 +139,32 @@ class MyCsvCompilerBash {
 		return res
 	}
 	def dispatch String compile(FieldIndexNum f){
-		var res = ""
+		var res = "unset fieldIndex\n"
+		res += "declare fieldIndex\n"
 		for(colNum : f.columns)
 		{
-			res+=""
+			res+="fieldIndex["+colNum+"]="+colNum+"\n"
+			// /!\ watch it
+			// implementation of anti-redondance for FieldIndexNum
 		}
 		return res
 	}
 	
 	def dispatch String compile(CellIndex f){
-		var res= ""
-		if( f.colname === null) {
-			res+=""
+		var res = "unset cellIndex\n"
+		res += "declare -A cellIndex\n"
+		var colIndexString = ""
+		if(f.colname === null) {
+			colIndexString = f.colnum.toString
 		} else {
-			res+=""
+			colIndexString = "${headerDict["+ f.colname.value +"]}"
 		}
+		// "+2" and "+1" are conversion from abstract to concrete indexation
+		// Abstract indexation always starts at 0
+		// 1 more offset is needed for line concrete indexation because of the header line
+		res+="cellIndex[line]="+(f.line + 2)+"\n" // /!\ watch it
+		res+="cellIndex[col]="+"$(("+ colIndexString + " + 1))\n" // /!\ watch it
+		
 		return res	
 	}
 	
@@ -157,6 +188,14 @@ class MyCsvCompilerBash {
 	}
 	def dispatch String compile(Select l){
 		var res = "# SELECT\n"
+		res += l.line.compile
+		val tmpCsvSelect = tmpCompilerPath + "tmpSelect.csv"
+		res += "echo $headerString >> "+ tmpCsvSelect + "\n"
+		res += "touch "+ tmpCsvSelect + "\n"
+		res += "for i in ${lineIndex[@]} ; do head -n $i "+ currentCsvPath + " | tail -n 1 >> "+ tmpCsvSelect + "; done\n"
+		
+		res += "cp "+ tmpCsvSelect+ " "+ currentCsvPath +"\n"
+		res += "rm "+ tmpCsvSelect + "\n"
 	 	return res
 	}
 	
@@ -201,11 +240,13 @@ class MyCsvCompilerBash {
 	}
 	def dispatch String compile(PrintCell l){
 		var res = "# PRINT CELL\n"
+		res += l.cell.compile
+		res += "head -n ${cellIndex[line]} "+ currentCsvPath +" | tail -n 1 | cut -d $sep -f ${cellIndex[col]}\n"
 	 	return res
 	}
 	def dispatch String compile(PrintTable l){
 		var res = "# PRINT TABLE\n"
-		res += "cat "+tmpCsv+"\n"
+		res += "cat "+currentCsvPath+"\n"
 	 	return res
 	}
 	def dispatch String compile(PrintExpr l){
@@ -296,7 +337,7 @@ class MyCsvCompilerBash {
 	def dispatch String compileExpressionCalcul(AggregatExpression l){
 		switch (l.aggregatOp) {
 			case COUNT: {//wc -l input.csv | cut -d " " -f 1
-				return "$(wc -l "+ tmpCsv +" | cut -d \" \" -f 1)"
+				return "$(wc -l "+ currentCsvPath +" | cut -d \" \" -f 1)"
 			}
 			case SUM: {
 				return "0" //TODO

@@ -10,3 +10,4 @@ Print expr 2*20+1
 Print expr 4.5+1
 Print expr 4.5+ -1
 Print expr 4.5+-1
+Print expr 4.5*NbField
