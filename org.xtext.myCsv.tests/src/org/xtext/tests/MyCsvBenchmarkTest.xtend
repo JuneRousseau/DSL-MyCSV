@@ -25,14 +25,38 @@ import java.io.PrintStream
 import org.xtext.generator.Csv
 import org.json.simple.parser.JSONParser
 import java.io.FileReader
+import java.util.ArrayList
 
 @ExtendWith(InjectionExtension)
 @InjectWith(MyCsvInjectorProvider)
 class MyCsvBenchmarkTest {
 	
+	//create directories for the outputs, if they don't already exist
+	def prepareDirectories()
+	{
+		val ArrayList<String> listFiles =  new ArrayList<String>()
+		
+		listFiles.add("examples-gen")
+		listFiles.add("examples-gen/interpreter")
+		listFiles.add("examples-gen/python")
+		listFiles.add("examples-gen/bash")
+		listFiles.add("examples-gen/stdout")
+		
+		for(String s : listFiles)
+		{
+			val f = new File(s)
+			if (!f.exists && !f.directory){
+			Files.createDirectory(Paths.get(s))
+			}
+		}
+		
+	}
+	
 	@Test
 	def void compileTests() {
 		val File directoryPath = new File("examples/tests/")
+		
+		prepareDirectories()
 		
 		println("----------TESTS----------")
 		

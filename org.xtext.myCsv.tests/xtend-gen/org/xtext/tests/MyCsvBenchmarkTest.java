@@ -12,6 +12,7 @@ import java.io.PrintStream;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -39,9 +40,31 @@ import org.xtext.tests.MyCsvInjectorProvider;
 @InjectWith(MyCsvInjectorProvider.class)
 @SuppressWarnings("all")
 public class MyCsvBenchmarkTest {
+  public void prepareDirectories() {
+    try {
+      final ArrayList<String> listFiles = new ArrayList<String>();
+      listFiles.add("examples-gen");
+      listFiles.add("examples-gen/interpreter");
+      listFiles.add("examples-gen/python");
+      listFiles.add("examples-gen/bash");
+      listFiles.add("examples-gen/stdout");
+      for (final String s : listFiles) {
+        {
+          final File f = new File(s);
+          if (((!f.exists()) && (!f.isDirectory()))) {
+            Files.createDirectory(Paths.get(s));
+          }
+        }
+      }
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+  
   @Test
   public void compileTests() {
     final File directoryPath = new File("examples/tests/");
+    this.prepareDirectories();
     InputOutput.<String>println("----------TESTS----------");
     final MyCsvCompilerPython pythonCompiler = new MyCsvCompilerPython();
     final MyCsvCompilerBash bashCompiler = new MyCsvCompilerBash();

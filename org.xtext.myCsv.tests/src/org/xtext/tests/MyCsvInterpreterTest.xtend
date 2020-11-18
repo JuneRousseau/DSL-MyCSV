@@ -15,6 +15,7 @@ import org.xtext.MyCsvStandaloneSetupGenerated
 import java.io.File
 import java.util.Scanner
 import org.xtext.generator.MyCsvInterpreter
+import java.io.PrintStream
 
 @ExtendWith(InjectionExtension)
 @InjectWith(MyCsvInjectorProvider)
@@ -26,32 +27,51 @@ class MyCsvInterpreterTest {
 		val File directoryPath = new File("examples/tests/")
 		val s = new Scanner(System.in);
 		
+		val interpreter = new MyCsvInterpreter
+		
+		// Runtime settings
+		val PrintStream mainOut = System.out
+		val String mainPath = System.getProperty("user.dir")
+		val String interpreterPath = new File("examples-gen/interpreter").absolutePath
+		
 		println("----------TESTS----------")
 		println("<Please print enter between each tests>")
 			
 		for (testFile : directoryPath.list())
 		{
+			
 			val basename= testFile.substring(0, testFile.indexOf("."))
-			val inputTest= "examples/tests/"+basename+".mycsv"
+			val outputBasename = "output"+basename.substring("test".length, basename.length())
+			val inputMyCsv= "examples/tests/"+basename+".mycsv"
+			val stdoutInterpreterPath= "examples-gen/stdout/"+basename+"-Interpreter.stdout.txt"
 			
-			print("\n---------Test de "+basename+"---------\n")
-			s.nextLine()
+			try{	
 			
+				println("TESTING "+ basename +"...")
+				s.nextLine()
 				
-			val prog= loadMyCSV(URI.createURI(inputTest))
-			Assertions.assertNotNull(prog)
-			val errors = prog.eResource.errors
-			if(!errors.isEmpty){print("!!!! ERROR PARSER!!!\n")}
-			else
-			{
-			//Assertions.assertTrue(errors.isEmpty, '''Unexpected errors: «errors.join(", ")»''')
-		
-				val interpreter = new MyCsvInterpreter
-				interpreter.interpretProgram(prog)
+					
+				val prog= loadMyCSV(URI.createURI(inputMyCsv))
+				Assertions.assertNotNull(prog)
+				val errors = prog.eResource.errors
+				if(!errors.isEmpty){print("!!!! ERROR PARSER!!!\n")}//Assertions.assertTrue(errors.isEmpty, '''Unexpected errors: «errors.join(", ")»''')
+				else{
+					// changing context
+					System.setProperty("user.dir", interpreterPath)
+					
+					// EXECUTE INTERPRETER	
+					interpreter.interpretProgram(prog)
+					// restoring context
+					System.setProperty("user.dir", mainPath)
+				}
+				print("DONE\n")
+				
+			} catch (Exception e) {
+				System.out.println("ERROR: test of " + basename + " aborted:\n"+e+"\n");
+				e.printStackTrace
+				Assertions.fail("Exception occured.")
 			}
 		}
-		print("Done")	
-			//Ajouter la vérification sur un outputs oracle	
 	}
 	
 	def loadMyCSV(URI uri){

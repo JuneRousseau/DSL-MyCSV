@@ -14,7 +14,6 @@ import org.eclipse.emf.common.util.URI
 import org.xtext.MyCsvStandaloneSetupGenerated
 import org.xtext.generator.MyCsvCompilerPython
 import java.nio.file.Files
-import java.io.IOException
 import java.nio.file.Paths
 import java.nio.charset.StandardCharsets
 import java.io.File
@@ -33,57 +32,62 @@ class MyCsvCompilerPythonTest {
 		
 		println("----------TESTS----------")
 		println("<Please print enter between each tests>")
+		val pythonCompiler = new MyCsvCompilerPython
+		var String line;
+		
 			
 		for (testFile : directoryPath.list())
 		{
 			val basename= testFile.substring(0, testFile.indexOf("."))
-			val inputTest= "examples/tests/"+basename+".mycsv"
-			val outputTest= "examples-gen/"+basename+".py"
-			
-			val String cmd = "python3 examples-gen/"+basename+".py"
-			print("\n---------Test de "+basename+"---------\n")
-			s.nextLine()
-			
-				
-			val prog= loadMyCSV(URI.createURI(inputTest))
-			Assertions.assertNotNull(prog)
-			val errors = prog.eResource.errors
-			Assertions.assertTrue(errors.isEmpty, '''Unexpected errors: «errors.join(", ")»''')
-		
-			val pythonCompiler = new MyCsvCompilerPython
-		
-			val compiledProg= pythonCompiler.compile(prog)
+			val outputBasename = "output"+basename.substring("test".length, basename.length())
 			try {
-    			Files.writeString(Paths.get(outputTest), compiledProg, StandardCharsets.UTF_8);
-			} catch (IOException ex) {
-				print("Exception occured: " + ex + "\n----------------------\n\n\n\n")
-			}
-			
-			val Runtime rt = Runtime.getRuntime();
-			try
-			{
-				val Process pr = rt.exec(cmd);
-				val BufferedReader bfr = new BufferedReader(new InputStreamReader(pr.getInputStream()));
-				var String line;
-				while ((line = bfr.readLine()) !== null)
-				{
+				
+				// PREPARING testfile
+				println("TESTING "+ basename +"...")
+				s.nextLine()
+				
+				val inputMyCsv= "examples/tests/"+basename+".mycsv"
+				val compiledPyPath= "examples-gen/python/"+basename+".py"
+				val outputPyPath= "examples-gen/python/"+outputBasename+".csv"
+				val outputJsonPyPath= "examples-gen/python/"+outputBasename+".json"
+				
+				// GETTING MYCSV AST
+				val prog = loadMyCSV(URI.createURI(inputMyCsv))
+				Assertions.assertNotNull(prog)
+				val errors = prog.eResource.errors
+				Assertions.assertTrue(errors.isEmpty, '''Unexpected errors: «errors.join(", ")»''')
+				
+				// COMPILING AND WRITING RESULTS
+				val compiledPy = pythonCompiler.compile(prog)
+				Files.writeString(Paths.get(compiledPyPath), compiledPy, StandardCharsets.UTF_8);
+	    		
+	    		// PREPARE EXECUTION
+				val Runtime rt = Runtime.getRuntime();
+				val String cmdExecPy = "python3 "+basename+".py"
+				
+				// EXECUTE PYTHON
+				val Process prPy = rt.exec(cmdExecPy, null, new File("examples-gen/python"));
+				val BufferedReader bfrPy = new BufferedReader(new InputStreamReader(prPy.getInputStream()));
+				while ((line = bfrPy.readLine()) !== null) {
 					println("STDOUT: " + line);
 				}
-				
-				val BufferedReader bfre = new BufferedReader(new InputStreamReader(pr.getErrorStream()));
-				while ((line = bfre.readLine()) !== null)
-				{
+
+				val BufferedReader bfre = new BufferedReader(new InputStreamReader(prPy.getErrorStream()));
+				while ((line = bfre.readLine()) !== null) {
 					println("STDERR: " + line);
 				}
 				
-			} catch (IOException ex)
-			{
-				System.out.println("Error: execution script Python aborted "+ex+"\n");
+	    		// DONE
+				println("DONE\n")
+	    		
+			} catch (Exception e) {
+				System.out.println("ERROR: test of " + basename + " aborted:\n"+e+"\n");
+				e.printStackTrace
+				Assertions.fail("Exception occured.")
 			}
-			//Ajouter la vérification sur un outputs oracle
-			print("DONE")
-			}
+		
 		}
+}
 		
 	def loadMyCSV(URI uri){
 		new MyCsvStandaloneSetupGenerated().createInjectorAndDoEMFRegistration()
