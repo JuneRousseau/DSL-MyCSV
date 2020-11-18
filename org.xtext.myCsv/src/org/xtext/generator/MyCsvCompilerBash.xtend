@@ -58,8 +58,36 @@ class MyCsvCompilerBash {
 	def dispatch String compile(Program p){
 		var res = "#!/bin/bash\n"
 		res += "# INTRO\n"
+		res += ""
 		res += "mkdir -p "+tmpCompilerPath+"\n"
 		res += "sep='" + Csv.defaultSep + "'\n\n"	
+		
+		// Some useful functions (two is some)
+		res += "refreshHeaderMetaInfo () {\n"
+			res += "\theaderString=$(head -n 1 "+ currentCsvPath +")\n"
+			res += "\tnbField=$(awk -F\"${sep}\" '{print NF}' <<< \"${headerString}\")\n"
+			//                awk -F"${sep}" '{print NF}' <<< "${headerString}"
+			
+			// Creating variable header
+			res += "\tunset header\n"
+			res += "\tdeclare header\n"
+			res += "\tfor n in `seq $nbField` ; do header[$(($n - 1))]=$(echo $headerString | cut -d $sep -f $n) ; done\n"
+			// Creating variable headerDict, we just reverse key and value
+			res += "\tunset headerDict\n"
+			res += "\tdeclare -A headerDict\n"
+			res += "\tfor n in `seq $nbField` ; do headerDict[$(echo $headerString | cut -d $sep -f $n)]=$(($n - 1)) ; done\n"
+		res += "}\n"
+		
+		res += "countLines () {\n"
+			res += "awk 'END{print NR - 1}' "+currentCsvPath+"\n"
+			//```wc -l input.csv | cut -d " " -f 1``` doesn't work!! (because of wether there is a \n a the end of the file...)
+		res += "}\n"
+		
+		res += "sum () {\n"
+			res += "echo 0\n"
+		res += "}\n"
+		
+		
 		for(stmt : p.stmts) {
 			res += stmt.compile+"\n"
 		}		
@@ -85,19 +113,7 @@ class MyCsvCompilerBash {
 			//throw new IllegalArgumentException("Not Implemented yet. (handling .csv without header)")
 			res += ""
 
-		res += "headerString=$(head -n 1 "+ currentCsvPath +")\n"
-		res += "nbField=$(awk -F\"${sep}\" '{print NF}' <<< \"${headerString}\")\n"
-		//                awk -F"${sep}" '{print NF}' <<< "${headerString}"
-		
-		// Creating variable header
-		res += "unset header\n"
-		res += "declare header\n"
-		res += "for n in `seq $nbField` ; do header[$(($n - 1))]=$(echo $headerString | cut -d $sep -f $n) ;  done\n"
-		// Creating variable headerDict, we just reverse key and value
-		res += "unset headerDict\n"
-		res += "declare -A headerDict\n"
-		res += "for n in `seq $nbField` ; do headerDict[$(echo $headerString | cut -d $sep -f $n)]=$(($n - 1)) ;  done\n"
-		
+		res += "refreshHeaderMetaInfo\n"
 		return res
 	}
 	
@@ -131,10 +147,11 @@ class MyCsvCompilerBash {
 	}
 	
 	def dispatch String compile(FieldIndexName f){
-		var res = ""
+		var res = "unset fieldIndex\n"
+		res += "declare -A fieldIndex\n"
 		for(field : f.fields)
 		{
-			res+=""
+			res+="fieldIndex["+field.value+"]="+"$((${headerDict["+ field.value +"]} + 1))"+"\n"
 		}
 		return res
 	}
@@ -143,9 +160,12 @@ class MyCsvCompilerBash {
 		res += "declare fieldIndex\n"
 		for(colNum : f.columns)
 		{
-			res+="fieldIndex["+colNum+"]="+colNum+"\n"
+			res+="fieldIndex["+colNum+"]="+(colNum+1)+"\n"
 			// /!\ watch it
 			// implementation of anti-redondance for FieldIndexNum
+			// /!\ watch it
+			// "+1" here to go from abstract indexation (colNum) (starting at 0)
+			// to concrete indexation (colnum+1) (starting at 1) (that's for cut :) )
 		}
 		return res
 	}
@@ -184,6 +204,10 @@ class MyCsvCompilerBash {
 	}
 	def dispatch String compile(Projection l){
 		var res = "# PROJECTION\n"
+		res += l.field.compile()
+		res += "cut -d $sep -f $(echo ${fieldIndex[@]} | sed 's/\\ /,/g') "+currentCsvPath
+				+" > "+currentCsvPath+"\n"
+		res += "refreshHeaderMetaInfo\n"
 	 	return res
 	}
 	def dispatch String compile(Select l){
@@ -191,7 +215,6 @@ class MyCsvCompilerBash {
 		res += l.line.compile
 		val tmpCsvSelect = tmpCompilerPath + "tmpSelect.csv"
 		res += "echo $headerString >> "+ tmpCsvSelect + "\n"
-		res += "touch "+ tmpCsvSelect + "\n"
 		res += "for i in ${lineIndex[@]} ; do head -n $i "+ currentCsvPath + " | tail -n 1 >> "+ tmpCsvSelect + "; done\n"
 		
 		res += "cp "+ tmpCsvSelect+ " "+ currentCsvPath +"\n"
@@ -201,10 +224,20 @@ class MyCsvCompilerBash {
 	
 	def dispatch String compile(DeleteField l){
 		var res = "# DELETE FIELD\n"
+		res += l.fields.compile()
+		res += "#some clever instruction" //TODO
+		
+		res += "refreshHeaderMetaInfo\n"
 	 	return res
 	}
 	def dispatch String compile(DeleteLine l){
 		var res = "# DELETE LINE\n"
+		res += l.lines.compile
+		val tmpCsvSelect = tmpCompilerPath + "tmpSelect.csv"
+		//res += "for i in `seq $(countLines)`; if bonne condition do (((do head -n $i "+ currentCsvPath + " | tail -n 1 >> "+ tmpCsvSelect + "))) else queudal; done\n"
+		//TODO
+		res += "cp "+ tmpCsvSelect+ " "+ currentCsvPath +"\n"
+		res += "rm "+ tmpCsvSelect + "\n"
 	 	return res
 	}
 	
@@ -232,11 +265,15 @@ class MyCsvCompilerBash {
 	
 	def dispatch String compile(PrintField l){
 		var res = "# PRINT FIELDS\n"
+		res += l.fields.compile()
+		res += "for i in ${fieldIndex[@]} ; do echo Field $(($i -1)):; tail -n $(($(countLines)-1)) "+currentCsvPath+" | cut -d $sep -f $i; done\n"
 	 	return res
 	}
 	def dispatch String compile(PrintLine l){
 		var res = "# PRINT LINE\n"
-	 	return res
+		res += l.lines.compile
+		res += "for i in ${lineIndex[@]} ; do head -n $i "+ currentCsvPath + " | tail -n 1 ; done\n"
+		return res
 	}
 	def dispatch String compile(PrintCell l){
 		var res = "# PRINT CELL\n"
@@ -336,11 +373,11 @@ class MyCsvCompilerBash {
 	}
 	def dispatch String compileExpressionCalcul(AggregatExpression l){
 		switch (l.aggregatOp) {
-			case COUNT: {//wc -l input.csv | cut -d " " -f 1
-				return "$(wc -l "+ currentCsvPath +" | cut -d \" \" -f 1)"
+			case COUNT: {
+				return "$(countLines)"
 			}
 			case SUM: {
-				return "0" //TODO
+				return "$(sum "+l.arg.value+")" //TODO
 			}
 			case PRODUCT: {
 				return "0" //TODO
