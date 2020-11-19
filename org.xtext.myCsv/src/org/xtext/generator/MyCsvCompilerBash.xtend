@@ -226,10 +226,13 @@ class MyCsvCompilerBash {
 	
 	def dispatch String compile(Values v){
 		var res = ""
+		res+="unset values\n"
+		res+="values=( "
 		for(value : v.values)
 		{
-			res+= ""
+			res+= value.compileValue+" "
 		}
+		res+=")\n"
 		return res
 	}
 	
@@ -290,16 +293,36 @@ class MyCsvCompilerBash {
 		res += "for i in ${lines[@]} ; do\n"
 			res += "\thead -n $i "+ currentCsvPath + " | tail -n 1 >> "+ tmpCsvDelete + "\n"
 		res += "done\n"
-		res += "mv "+ tmpCsvDelete + " "+ currentCsvPath +"\n"
+		res += "mv "+tmpCsvDelete +" "+ currentCsvPath +"\n"
 	 	return res
 	}
 	
 	def dispatch String compile(InsertField l){
 		var res = "# INSERT FIELDS\n"
+		res += l.values.compile
+		val tmpCsvInsert = tmpCompilerPath + "tmpInsert.csv"
+		res += "echo $(echo ${headerString} | sed \"s/.$//\")${sep}"+l.fieldname.value+">>"+ tmpCsvInsert + "\n"
+		res += "len_values=${#values[@]}\n"
+		res += "for i in `seq $(countLines)` ; do\n"
+			res += "\tj=$(($i-1))\n"
+			res += "\tindex=$(echo $j%$len_values | bc)\n"
+			res += "\tvalue=${values[$index]}\n"
+			res += "\thead -n $(($i+1)) "+currentCsvPath+" | tail -n 1 | sed \"s/[[:space:]]*$/$sep$value/\">>"+tmpCsvInsert+"\n"
+		res +="done\n"
+		res +="mv "+tmpCsvInsert+" "+ currentCsvPath +"\n"
 	 	return res
 	}
-	def dispatch String compile(InsertLine l){
+	def dispatch String
+	 compile(InsertLine l){
 		var res = "# INSERT LINE\n"
+		res += l.values.compile
+		res += "len_values=${#values[@]}\n"
+		res += "new_line=\"\"\n"
+		res += "for i in `seq 0 $nbField` ; do\n"
+			res += "\tindex=$(echo $i%$len_values | bc)\n"
+			res += "\tnew_line=$(echo $new_line ${values[$index]})\n"
+		res+="done\n"
+		res+="echo $new_line | sed \"s/\\ /$sep/g\" >> "+currentCsvPath+"\n"
 	 	return res
 	}
 	
