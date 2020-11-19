@@ -71,12 +71,8 @@ class MyCsvCompilerBash {
 			//                awk -F"${sep}" '{print NF}' <<< "${headerString}"
 			
 			// Creating variable header
-			res += "\tunset header\n"
-			res += "\tdeclare header\n"
 			res += "\tfor n in `seq $nbField` ; do header[$(($n - 1))]=$(echo $headerString | cut -d $sep -f $n) ; done\n"
 			// Creating variable headerDict, we just reverse key and value
-			res += "\tunset headerDict\n"
-			res += "\tdeclare -A headerDict\n"
 			res += "\tfor n in `seq $nbField` ; do headerDict[$(echo $headerString | cut -d $sep -f $n)]=$(($n - 1)) ; done\n"
 		res += "}\n\n"
 		
@@ -101,35 +97,27 @@ class MyCsvCompilerBash {
 		  res+="\techo 0\n"
 		res+="}\n\n"
 		
-		res += "# Test list mumbership of $1 (a number) in $2 (a list of natural).\n"
-		res+="member() {\n"
-		    res+="\tl=$2\n"
-		    res+="\tfor el in ${l[@]}\n"
-		    res+="\tdo\n"
-		    res+="\tif [ $1 = $el ]\n"
-		    res+="\tthen\n"
-		        res+="\techo 1;return 0\n"
-		    res+="\tfi\n"
-		    res+="\tdone\n"
-		    res+="\techo 0;return 0\n"
-		res+="}\n\n"
-		
 		res += "# Takes a number n and a list l of natural under n.\n"
 		res += "# returns the complement of l in [[1;n]].\n"
-		res+= "difference() {\n"
-		    res+= "\tunset n; declare n\n"
-		    res+= "\tcpt=1\n"
-		    res+= "\tfor e in `seq $1`\n"
-		    res+= "\tdo\n"
-		    res+= "\tm=$(member $e $2)\n"
-		    res+= "\tif [ $m -eq 0 ]\n"
-		    res+= "\tthen\n"
-		        res+= "\t\tn[$cpt]=$e\n"
-		        res+= "\t\tcpt=$(($cpt+1))\n"
-		    res+= "\tfi\n"
-		    res+= "\tdone\n"
-		    res+= "\techo ${n[@]}; return 0\n"
-		res+="}\n"
+		res+="difference() {\n"
+			res+="\tunset n; declare n\n"
+			res+="\tcpt=1\n"
+
+			res+="\tname=$2[@]\n"
+			res+="\tl=(\"${!name}\")\n"
+
+			res+="\tfor e in `seq $1` ; do\n"
+			res+="\tif [[ ! \" ${l[@]} \" =~ \" ${e} \" ]]\n"
+			res+="\tthen\n"
+			res+="\tn[$cpt]=$e\n"
+
+			res+="\tcpt=$(($cpt+1))\n"
+			res+="\tfi\n"
+
+			res+="\tdone\n"
+			res+="\techo ${n[@]}; return 0\n"
+
+			res+="}\n\n"
 
 		for(stmt : p.stmts) {
 			res += stmt.compile+"\n"
@@ -156,7 +144,10 @@ class MyCsvCompilerBash {
 		if(!l.noHeader)
 			//throw new IllegalArgumentException("Not Implemented yet. (handling .csv without header)")
 			res += ""
-
+		res += "unset header\n"
+		res += "declare header\n"
+		res += "unset headerDict\n"
+		res += "declare -A headerDict\n"
 		res += "refreshHeaderMetaInfo\n"
 		return res
 	}
@@ -253,6 +244,10 @@ class MyCsvCompilerBash {
 		res += "cut -d $sep -f $(echo ${fieldIndex[@]} | sed 's/\\ /,/g') "+currentCsvPath
 				+" > "+tmpCsvProjection+"\n"
 		res += "mv "+tmpCsvProjection+" "+ currentCsvPath+"\n"
+		res += "unset header\n"
+		res += "declare header\n"
+		res += "unset headerDict\n"
+		res += "declare -A headerDict\n"
 		res += "refreshHeaderMetaInfo\n"
 	 	return res
 	}
@@ -274,10 +269,14 @@ class MyCsvCompilerBash {
 		res += "unset fields\n"
 		val tmpCsvDelete = tmpCompilerPath + "tmpDelete.csv"
 		res += "declare -a fields\n"
-		res += "fields=$(difference $nbField ${fieldIndex[@]})\n"
+		res += "fields=$(difference $nbField fieldIndex)\n"
 		res += "cut -d $sep -f $(echo ${fields[@]} | sed 's/\\ /,/g') "+currentCsvPath
 				+" > "+tmpCsvDelete+"\n"
 		res += "mv "+tmpCsvDelete+" "+currentCsvPath+"\n"
+		res += "unset header\n"
+		res += "declare header\n"
+		res += "unset headerDict\n"
+		res += "declare -A headerDict\n"
 		res += "refreshHeaderMetaInfo\n"
 	 	return res
 	}
@@ -287,7 +286,7 @@ class MyCsvCompilerBash {
 		val tmpCsvDelete = tmpCompilerPath + "tmpDelete.csv"
 		res += "unset lines\n"
 		res += "declare -a lines\n"
-		res += "lines=$(difference $(countLines) ${lineIndex[@]})\n"
+		res += "lines=$(difference $(countLines) lineIndex)\n"
 		res += "for i in ${lines[@]} ; do\n"
 			res += "\thead -n $i "+ currentCsvPath + " | tail -n 1 >> "+ tmpCsvDelete + "\n"
 		res += "done\n"
