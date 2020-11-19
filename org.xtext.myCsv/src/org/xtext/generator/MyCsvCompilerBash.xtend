@@ -57,12 +57,14 @@ class MyCsvCompilerBash {
 		
 	def dispatch String compile(Program p){
 		var res = "#!/bin/bash\n"
-		res += "# INTRO\n"
-		res += ""
+		res += "# INTRO\n\n"
+		res += "# Workspace\n"
 		res += "mkdir -p "+tmpCompilerPath+"\n"
 		res += "sep='" + Csv.defaultSep + "'\n\n"	
 		
 		// Some useful functions (two is some)
+		res += "# FUNCTIONS\n"
+		res += "# Update some global variables\n\n"
 		res += "refreshHeaderMetaInfo () {\n"
 			res += "\theaderString=$(head -n 1 "+ currentCsvPath +")\n"
 			res += "\tnbField=$(awk -F\"${sep}\" '{print NF}' <<< \"${headerString}\")\n"
@@ -76,22 +78,64 @@ class MyCsvCompilerBash {
 			res += "\tunset headerDict\n"
 			res += "\tdeclare -A headerDict\n"
 			res += "\tfor n in `seq $nbField` ; do headerDict[$(echo $headerString | cut -d $sep -f $n)]=$(($n - 1)) ; done\n"
-		res += "}\n"
+		res += "}\n\n"
 		
+		res += "# Aggregative function counting lines of data\n"
 		res += "countLines () {\n"
-			res += "awk 'END{print NR - 1}' "+currentCsvPath+"\n"
+			res += "\tawk 'END{print NR - 1}' "+currentCsvPath+"\n"
 			//```wc -l input.csv | cut -d " " -f 1``` doesn't work!! (because of wether there is a \n a the end of the file...)
-		res += "}\n"
+		res += "}\n\n"
 		
+		res += "# Aggregative function summing over a field\n"
 		res += "sum () {\n"
-			res += "echo 0\n"
-		res += "}\n"
+			res += "\techo 0\n"
+		res += "}\n\n"
 		
+		res += "# Aggregative function making the product over a field\n"
+		res+="product() {\n"
+		  res+="\techo 0\n"
+		res+="}\n\n"
 		
+		res += "# Aggregative function computing the mean of a field\n"
+		res+="mean() {\n"
+		  res+="\techo 0\n"
+		res+="}\n\n"
+		
+		res += "# Test list mumbership of $1 (a number) in $2 (a list of natural).\n"
+		res+="member() {\n"
+		    res+="\tl=$2\n"
+		    res+="\tfor el in ${l[@]}\n"
+		    res+="\tdo\n"
+		    res+="\tif [ $1 = $el ]\n"
+		    res+="\tthen\n"
+		        res+="\techo 1;return 0\n"
+		    res+="\tfi\n"
+		    res+="\tdone\n"
+		    res+="\techo 0;return 0\n"
+		res+="}\n\n"
+		
+		res += "# Takes a number n and a list l of natural under n.\n"
+		res += "# returns the complement of l in [[1;n]].\n"
+		res+= "difference() {\n"
+		    res+= "\tunset n; declare n\n"
+		    res+= "\tcpt=1\n"
+		    res+= "\tfor e in `seq $1`\n"
+		    res+= "\tdo\n"
+		    res+= "\tm=$(member $e $2)\n"
+		    res+= "\tif [ $m -eq 0 ]\n"
+		    res+= "\tthen\n"
+		        res+= "\t\tn[$cpt]=$e\n"
+		        res+= "\t\tcpt=$(($cpt+1))\n"
+		    res+= "\tfi\n"
+		    res+= "\tdone\n"
+		    res+= "\techo ${n[@]}; return 0\n"
+		res+="}\n"
+
 		for(stmt : p.stmts) {
 			res += stmt.compile+"\n"
 		}		
 		res += "# OUTRO\n"
+		res += "# Cleaning workspace\n"
 		res += "rm "+tmpCompilerPath+"*\n"
 		res += "rmdir "+tmpCompilerPath+"\n"
 		return res
@@ -205,8 +249,10 @@ class MyCsvCompilerBash {
 	def dispatch String compile(Projection l){
 		var res = "# PROJECTION\n"
 		res += l.field.compile()
+		val tmpCsvProjection = tmpCompilerPath + "tmpProjection.csv"
 		res += "cut -d $sep -f $(echo ${fieldIndex[@]} | sed 's/\\ /,/g') "+currentCsvPath
-				+" > "+currentCsvPath+"\n"
+				+" > "+tmpCsvProjection+"\n"
+		res += "mv "+tmpCsvProjection+" "+ currentCsvPath+"\n"
 		res += "refreshHeaderMetaInfo\n"
 	 	return res
 	}
@@ -215,29 +261,37 @@ class MyCsvCompilerBash {
 		res += l.line.compile
 		val tmpCsvSelect = tmpCompilerPath + "tmpSelect.csv"
 		res += "echo $headerString >> "+ tmpCsvSelect + "\n"
-		res += "for i in ${lineIndex[@]} ; do head -n $i "+ currentCsvPath + " | tail -n 1 >> "+ tmpCsvSelect + "; done\n"
-		
-		res += "cp "+ tmpCsvSelect+ " "+ currentCsvPath +"\n"
-		res += "rm "+ tmpCsvSelect + "\n"
-	 	return res
+		res += "for i in ${lineIndex[@]} ; do"
+			res += "\thead -n $i "+ currentCsvPath + " | tail -n 1 >> "+ tmpCsvSelect + "\n"
+		res += "done\n"
+		res += "mv "+tmpCsvSelect+" "+currentCsvPath+"\n"
+		return res
 	}
 	
 	def dispatch String compile(DeleteField l){
 		var res = "# DELETE FIELD\n"
 		res += l.fields.compile()
-		res += "#some clever instruction" //TODO
-		
+		res += "unset fields\n"
+		val tmpCsvDelete = tmpCompilerPath + "tmpDelete.csv"
+		res += "declare -a fields\n"
+		res += "fields=$(difference $nbField ${fieldIndex[@]})\n"
+		res += "cut -d $sep -f $(echo ${fields[@]} | sed 's/\\ /,/g') "+currentCsvPath
+				+" > "+tmpCsvDelete+"\n"
+		res += "mv "+tmpCsvDelete+" "+currentCsvPath+"\n"
 		res += "refreshHeaderMetaInfo\n"
 	 	return res
 	}
 	def dispatch String compile(DeleteLine l){
 		var res = "# DELETE LINE\n"
 		res += l.lines.compile
-		val tmpCsvSelect = tmpCompilerPath + "tmpSelect.csv"
-		//res += "for i in `seq $(countLines)`; if bonne condition do (((do head -n $i "+ currentCsvPath + " | tail -n 1 >> "+ tmpCsvSelect + "))) else queudal; done\n"
-		//TODO
-		res += "cp "+ tmpCsvSelect+ " "+ currentCsvPath +"\n"
-		res += "rm "+ tmpCsvSelect + "\n"
+		val tmpCsvDelete = tmpCompilerPath + "tmpDelete.csv"
+		res += "unset lines\n"
+		res += "declare -a lines\n"
+		res += "lines=$(difference $(countLines) ${lineIndex[@]})\n"
+		res += "for i in ${lines[@]} ; do\n"
+			res += "\thead -n $i "+ currentCsvPath + " | tail -n 1 >> "+ tmpCsvDelete + "\n"
+		res += "done\n"
+		res += "mv "+ tmpCsvDelete + " "+ currentCsvPath +"\n"
 	 	return res
 	}
 	
