@@ -167,6 +167,7 @@ class MyCsvCompilerBash {
 	def dispatch String compile(LineIndexCond f){
 		var res = "unset lineIndex\n"
 		res += "declare lineIndex\n"
+		
 	 	return res + "#TODO\n" // TODO
 	}
 	
@@ -318,7 +319,7 @@ class MyCsvCompilerBash {
 		res += l.values.compile
 		res += "len_values=${#values[@]}\n"
 		res += "new_line=\"\"\n"
-		res += "for i in `seq 0 $nbField` ; do\n"
+		res += "for i in `seq 0 $(($nbField-1))` ; do\n"
 			res += "\tindex=$(echo $i%$len_values | bc)\n"
 			res += "\tnew_line=$(echo $new_line ${values[$index]})\n"
 		res+="done\n"
@@ -328,14 +329,77 @@ class MyCsvCompilerBash {
 	
 	def dispatch String compile(ModifyField l){
 		var res = "# MODIFY FIELDS\n"
+		val tmpCsvModify = tmpCompilerPath + "tmpModify.csv"
+		res += l.values.compile //result in $values
+		res += l.fields.compile //result in $fieldIndex
+		
+		res += "echo ${headerString} >>"+ tmpCsvModify + "\n"
+		res += "len_values=${#values[@]}\n"
+		res += "for l in `seq 1 $(countLines)` ; do\n" //for each line
+			res += "\tnew_line=\"\"\n" //create new line
+			res +="\tfor f in `seq $nbField` ; do\n" //for each fields
+				res += "\t\tif [[ \" ${fieldIndex[@]} \" =~ \" ${f} \" ]]\n" //if we need to modify the field
+				res += "\t\tthen\n"
+				res += "\t\t\tindex=$(echo \\($l-1\\)%$len_values | bc)\n"
+				res += "\t\t\tvalue=${values[$index]}\n" //get the value into the compiled values
+				res += "\t\telse\n"
+				res += "\t\t\tvalue=$(head -n $(($l+1)) "+currentCsvPath+" | tail -n 1 | cut -d $sep -f $f)\n" //get the value into the source line
+				res += "\t\tfi\n"
+				res += "\t\tnew_line=$(echo \"${new_line}${value}${sep}\")\n" //add the good value
+			res += "\tdone\n"
+			res += "\techo $new_line | sed \"s/\\ /$sep/g\" | sed 's/.$//' >> "+tmpCsvModify+"\n"
+		res +="done\n"
+		
+		res +="mv "+tmpCsvModify+" "+ currentCsvPath +"\n"
 	 	return res
 	}
 	def dispatch String compile(ModifyLine l){
 		var res = "# MODIFY LINE\n"
+		val tmpCsvModify = tmpCompilerPath + "tmpModify.csv"
+		res += l.values.compile
+		res += "len_values=${#values[@]}\n"
+		res += "new_line=\"\"\n"
+		res += "for i in `seq 0 $(($nbField-1))` ; do\n"
+			res += "\tindex=$(echo $i%$len_values | bc)\n"
+			res += "\tnew_line=$(echo $new_line ${values[$index]})\n"
+		res +="done\n"
+		res += l.lines.compile
+		res += "for i in `seq 0 $(($(countLines)+1))` ; do\n"
+			res += "\tif [[ \" ${lineIndex[@]} \" =~ \" ${i} \" ]]\n" //si i est dans lineIndex
+			res += "\tthen\n"
+			res += "\t\techo $new_line | sed \"s/\\ /$sep/g\" >> "+tmpCsvModify+"\n"
+			res += "\telse\n"
+			res += "\t\thead -n $i "+currentCsvPath+" | tail -n 1 >> "+tmpCsvModify+"\n"
+			res += "\tfi\n"
+		res +="done\n"
+	 	res +="mv "+tmpCsvModify+" "+ currentCsvPath +"\n"
 	 	return res
 	}
 	def dispatch String compile(ModifyCell l){
 		var res = "# MODIFY CELL\n"
+		val tmpCsvModify = tmpCompilerPath + "tmpModify.csv"
+		res += "value="+l.value.compileValue+"\n"
+		res += l.cell.compile // cellIndex[line] and cellIndex[col]
+		res += "for l in `seq $(($(countLines)+1))` ; do \n"
+			res += "\tif [ $l = ${cellIndex[line]} ]\n"
+			res += "\tthen\n" //if the right line
+				res += "\t\tnew_line=\"\"\n"
+				res += "\t\tfor f in `seq $nbField` ; do\n"
+					res += "\t\t\tif [ $f = ${cellIndex[col]} ]\n" //if the right field
+					res += "\t\t\tthen\n"
+						res += "\t\t\t\tnew_val=$value\n"
+					res += "\t\t\telse\n"
+						res += "\t\t\t\tnew_val=$(head -n $l "+currentCsvPath+" | tail -n 1 | cut -d $sep -f $f)\n"
+					res += "\t\t\tfi\n"
+					res += "\t\t\t\tnew_line=$(echo \"${new_line}${new_val}${sep}\")\n"
+				res += "\t\tdone\n"
+				res += "\t\techo $new_line | sed 's/.$//' >>"+tmpCsvModify+"\n"
+			res += "\telse\n" //if not the right line
+				res += "\t\thead -n $l "+currentCsvPath+" | tail -n 1 >> "+tmpCsvModify+"\n" //just add line
+			res += "\tfi\n"
+		
+		res +="done\n"
+		res +="mv "+tmpCsvModify+" "+ currentCsvPath +"\n"
 	 	return res
 	}
 	
