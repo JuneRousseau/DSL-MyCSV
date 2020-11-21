@@ -64,6 +64,15 @@ class MyCsvCompilerBash {
 		
 		// Some useful functions (two is some)
 		res += "# FUNCTIONS\n"
+		res += "# Check if the parameters is a number or not\n"
+		res += "isNumber () {\n"
+		res += "\tvGreped=$(echo $1 | grep -E '[[:alpha:]]+')\n"
+		res += "\tif [ $(echo 0$vGreped) = 0 ] ; then \n"
+		res += "\t\techo 1\n" //it's a number
+		res += "\telse\n"
+		res += "\t\techo 0\n" //it isn't a number
+		res += "\tfi\n"
+		res += "}\n\n"
 		res += "# Update some global variables\n\n"
 		res += "refreshHeaderMetaInfo () {\n"
 			res += "\theaderString=$(head -n 1 "+ currentCsvPath +" | sed 's/\\r//g')\n"
@@ -261,11 +270,21 @@ class MyCsvCompilerBash {
 			res += "\tline=$(head -n $l "+ currentCsvPath + " | tail -n 1 | sed 's/\\r//g')\n"
 			res += "\tfor f in `seq 1 $(($nbField-1))` ; do\n"
 				res += "\t\tvalue=$(echo $line | cut -d $sep -f $f)\n"
-				res += "\t\techo -e '\t'\\\"${header[$(($f-1))]}\\\": \\\"$value\\\", >> "+path+"\n"
+				res += "\t\tif [ $(isNumber $value) = 1 ] ; then\n"
+					res += "\t\t\tquote=''\n"
+				res += "\t\telse\n"
+					res += "\t\t\tquote='\"'\n"
+				res += "\t\tfi\n"
+				res += "\t\techo -e '\t'\\\"${header[$(($f-1))]}\\\": $quote$value$quote, >> "+path+"\n"
 			res += "\tdone\n"
 			// Last field
 			res += "\tvalue=$(echo $line | cut -d $sep -f $nbField)\n"
-			res += "\techo -e '\t'\\\"${header[$(($nbField-1))]}\\\": \\\"$value\\\" >> "+path+"\n"
+			res += "\tif [ $(isNumber $value) = 1 ] ; then\n"
+				res += "\t\tquote=''\n"
+			res += "\telse\n"
+				res += "\t\tquote='\"'\n"
+			res += "\tfi\n"
+			res += "\techo -e '\t'\\\"${header[$(($nbField-1))]}\\\": $quote$value$quote >> "+path+"\n"
 			res += "\techo }, >> " + path + "\n"
 		res += "done\n"
 		
@@ -274,11 +293,21 @@ class MyCsvCompilerBash {
 		res += "line=$(tail -n 1 "+currentCsvPath+" | sed 's/\\r//g')\n"
 		res += "for f in `seq 1 $(($nbField-1))` ; do\n"
 			res += "\tvalue=$(echo $line | cut -d $sep -f $f)\n"
-			res += "\techo -e '\t'\\\"${header[$(($f-1))]}\\\": \\\"$value\\\", >> "+path+"\n"
+			res += "\tif [ $(isNumber $value) = 1 ] ; then\n"
+				res += "\t\tquote=''\n"
+			res += "\telse\n"
+				res += "\t\tquote='\"'\n"
+			res += "\tfi\n"
+			res += "\techo -e '\t'\\\"${header[$(($f-1))]}\\\": $quote$value$quote, >> "+path+"\n"
 		res += "done\n"
 		// Last field
 		res += "value=$(echo $line | cut -d $sep -f $nbField)\n"
-		res += "echo -e '\t'\\\"${header[$(($nbField-1))]}\\\": \\\"$value\\\" >> "+path+"\n"
+		res += "if [ $(isNumber $value) = 1 ] ; then\n"
+				res += "\tquote=''\n"
+			res += "else\n"
+				res += "\tquote='\"'\n"
+			res += "fi\n"
+		res += "echo -e '\t'\\\"${header[$(($nbField-1))]}\\\": $quote$value$quote >> "+path+"\n"
 		res += "echo } >> " + path + "\n"
 		
 		
