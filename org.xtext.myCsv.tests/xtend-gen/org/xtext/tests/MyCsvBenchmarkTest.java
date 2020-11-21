@@ -161,6 +161,7 @@ public class MyCsvBenchmarkTest {
           Csv _csv_1 = new Csv(outputShPath);
           Assertions.assertEquals(csvInterpreter, _csv_1);
           Assertions.assertTrue(this.compareJson(outputJsonInterpreterPath, outputJsonPyPath));
+          Assertions.assertTrue(this.compareJson(outputJsonInterpreterPath, outputJsonShPath));
           InputOutput.<String>println("DONE\n");
         } catch (final Throwable _t) {
           if (_t instanceof Exception) {
@@ -176,7 +177,7 @@ public class MyCsvBenchmarkTest {
     }
   }
   
-  public boolean compareJson(final String outPath1, final String outPath2) {
+  public boolean compareCsv(final String outPath1, final String outPath2) {
     if (((!new File(outPath1).exists()) && (!new File(outPath2).exists()))) {
       return true;
     }
@@ -188,7 +189,7 @@ public class MyCsvBenchmarkTest {
     return _csv.equals(_csv_1);
   }
   
-  public boolean compareCsv(final String outPath1, final String outPath2) {
+  public boolean compareJson(final String outPath1, final String outPath2) {
     try {
       if (((!new File(outPath1).exists()) && (!new File(outPath2).exists()))) {
         return true;

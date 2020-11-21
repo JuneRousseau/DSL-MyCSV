@@ -155,15 +155,6 @@ class MyCsvCompilerBash {
 			//throw new IllegalArgumentException("Not Implemented yet. (handling .csv without header)")
 			res += ""
 		res += refreshRoutine()
-		
-		// TODO remove it
-		res += "echo ${headerDict[@]}\n"
-		res += "echo ${!headerDict[@]}\n"
-		res += "echo The one we want:\n"
-		res += "echo ${headerDict[profession]}\n"
-		res += "echo The one we don\\'t want:\n"
-		res += "echo ${headerDict[\"profession\r\"]}\n"
-		
 		return res
 	}
 	
@@ -260,6 +251,39 @@ class MyCsvCompilerBash {
 	
 	def dispatch String compile(ExportJson l){
 		var res = "# EXPORT JSON\n"
+		val path = l.path.value
+		res += "rm -f "+path+"\n"
+		res += "touch "+path+"\n"
+		
+		res += "echo [ >> " + path + "\n"
+		res += "for l in `seq 2 $(countLines)` ; do\n"
+			res += "\techo { >> " + path + "\n"
+			res += "\tline=$(head -n $l "+ currentCsvPath + " | tail -n 1 | sed 's/\\r//g')\n"
+			res += "\tfor f in `seq 1 $(($nbField-1))` ; do\n"
+				res += "\t\tvalue=$(echo $line | cut -d $sep -f $f)\n"
+				res += "\t\techo -e '\t'\\\"${header[$(($f-1))]}\\\": \\\"$value\\\", >> "+path+"\n"
+			res += "\tdone\n"
+			// Last field
+			res += "\tvalue=$(echo $line | cut -d $sep -f $nbField)\n"
+			res += "\techo -e '\t'\\\"${header[$(($nbField-1))]}\\\": \\\"$value\\\" >> "+path+"\n"
+			res += "\techo }, >> " + path + "\n"
+		res += "done\n"
+		
+		// Last line
+		res += "echo { >> " + path + "\n"
+		res += "line=$(tail -n 1 "+currentCsvPath+" | sed 's/\\r//g')\n"
+		res += "for f in `seq 1 $(($nbField-1))` ; do\n"
+			res += "\tvalue=$(echo $line | cut -d $sep -f $f)\n"
+			res += "\techo -e '\t'\\\"${header[$(($f-1))]}\\\": \\\"$value\\\", >> "+path+"\n"
+		res += "done\n"
+		// Last field
+		res += "value=$(echo $line | cut -d $sep -f $nbField)\n"
+		res += "echo -e '\t'\\\"${header[$(($nbField-1))]}\\\": \\\"$value\\\" >> "+path+"\n"
+		res += "echo } >> " + path + "\n"
+		
+		
+		res += "echo ] >> " + path + "\n"
+		
 	 	return res
 	}
 	def dispatch String compile(Projection l){

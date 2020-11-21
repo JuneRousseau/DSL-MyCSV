@@ -167,7 +167,7 @@ class MyCsvBenchmarkTest {
 				
 				// Compare Json output
 				Assertions.assertTrue(compareJson(outputJsonInterpreterPath, outputJsonPyPath))
-				//Assertions.assertTrue(compareJson(outputJsonInterpreterPath, outputJsonShPath))
+				Assertions.assertTrue(compareJson(outputJsonInterpreterPath, outputJsonShPath))
 				
 				// Remark: stdout comparison is done manually because MyCsv doesn't specify the exact way to print.
 				
@@ -182,7 +182,7 @@ class MyCsvBenchmarkTest {
 		}
 	}
 	
-	def compareJson(String outPath1, String outPath2) {
+	def compareCsv(String outPath1, String outPath2) {
 		if(!new File(outPath1).exists && !new File(outPath2).exists){
 			return true
 		}
@@ -192,7 +192,7 @@ class MyCsvBenchmarkTest {
 		return new Csv(outPath1).equals(new Csv(outPath2))
 	}
 	
-	def compareCsv(String outPath1, String outPath2) {
+	def compareJson(String outPath1, String outPath2) {
 		if(!new File(outPath1).exists && !new File(outPath2).exists){
 			return true
 		}
