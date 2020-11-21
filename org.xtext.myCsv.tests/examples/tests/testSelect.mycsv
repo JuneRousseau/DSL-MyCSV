@@ -1,7 +1,3 @@
 Load "../input.csv" sep=","
-Select profession=="doctor" or profession=="firefighter"
-Select id<150
-Store "outputSelect.csv" sep=";"
-Load "../input.csv" sep=","
-Select 9 9
+Select id<105
 Store "outputSelect.csv" sep=";"

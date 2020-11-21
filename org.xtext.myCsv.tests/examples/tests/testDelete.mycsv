@@ -1,7 +1,8 @@
 Load "../input.csv" sep=","
-Select 0 1 2 3 4 5 995 996 997 998
-Delete line id>125 and id<1095
+Delete line id>105 and id<1095
 Delete line 1 2 3 4
+Print table
+Delete line 1
 Print table
 Delete field email2
 Delete field 2 4

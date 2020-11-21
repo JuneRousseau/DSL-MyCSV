@@ -158,12 +158,12 @@ class MyCsvBenchmarkTest {
 				// Executions should fail together
 				
 				Assertions.assertEquals(interpReturnCode == 0, prPy.waitFor == 0) 
-				//Assertions.assertEquals(interpReturnCode == 0, prSh.waitFor == 0)
+				Assertions.assertEquals(interpReturnCode == 0, prSh.waitFor == 0)
 				
 				// Output should be the same
 				val csvInterpreter = new Csv(outputInterpreterPath)
 				Assertions.assertEquals(csvInterpreter, new Csv(outputPyPath))
-				//Assertions.assertEquals(csvInterpreter, new Csv(outputShPath))		
+				Assertions.assertEquals(csvInterpreter, new Csv(outputShPath))		
 				
 				// Compare Json output
 				Assertions.assertTrue(compareJson(outputJsonInterpreterPath, outputJsonPyPath))

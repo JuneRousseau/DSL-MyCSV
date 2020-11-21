@@ -50,6 +50,7 @@ class MyCsvCompilerBashTest {
 
 				val bashCompiler = new MyCsvCompilerBash
 				val compiledProg = bashCompiler.compile(prog)
+				println("Compilation OK.")
 
 				Files.writeString(Paths.get(compiledShPath), compiledProg, StandardCharsets.UTF_8);
 				

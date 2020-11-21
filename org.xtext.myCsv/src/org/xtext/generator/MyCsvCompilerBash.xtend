@@ -66,7 +66,7 @@ class MyCsvCompilerBash {
 		res += "# FUNCTIONS\n"
 		res += "# Update some global variables\n\n"
 		res += "refreshHeaderMetaInfo () {\n"
-			res += "\theaderString=$(head -n 1 "+ currentCsvPath +")\n"
+			res += "\theaderString=$(head -n 1 "+ currentCsvPath +" | sed 's/\\r//g')\n"
 			res += "\tnbField=$(awk -F\"${sep}\" '{print NF}' <<< \"${headerString}\")\n"
 			//                awk -F"${sep}" '{print NF}' <<< "${headerString}"
 			
@@ -129,6 +129,16 @@ class MyCsvCompilerBash {
 		return res
 	}
 	
+	def String refreshRoutine(){
+		var res = ""
+		res += "unset header\n"
+		res += "declare header\n"
+		res += "unset headerDict\n"
+		res += "declare -A headerDict\n"
+		res += "refreshHeaderMetaInfo\n"
+		return res
+	}
+	
 	def dispatch String compile(Load l){
 		var res = "# LOAD\n"
 		res += "cp "+l.path.value+" "+currentCsvPath+"\n"
@@ -144,11 +154,16 @@ class MyCsvCompilerBash {
 		if(!l.noHeader)
 			//throw new IllegalArgumentException("Not Implemented yet. (handling .csv without header)")
 			res += ""
-		res += "unset header\n"
-		res += "declare header\n"
-		res += "unset headerDict\n"
-		res += "declare -A headerDict\n"
-		res += "refreshHeaderMetaInfo\n"
+		res += refreshRoutine()
+		
+		// TODO remove it
+		res += "echo ${headerDict[@]}\n"
+		res += "echo ${!headerDict[@]}\n"
+		res += "echo The one we want:\n"
+		res += "echo ${headerDict[profession]}\n"
+		res += "echo The one we don\\'t want:\n"
+		res += "echo ${headerDict[\"profession\r\"]}\n"
+		
 		return res
 	}
 	
@@ -167,8 +182,14 @@ class MyCsvCompilerBash {
 	def dispatch String compile(LineIndexCond f){
 		var res = "unset lineIndex\n"
 		res += "declare lineIndex\n"
-		
-	 	return res + "#TODO\n" // TODO
+		res += "for indexLine in `seq 2 $(($(countLines) + 1))` ; do\n"
+			res += "\tline=$(head -n $indexLine "+ currentCsvPath + " | tail -n 1)\n"
+			res += "\ttest=" + f.cond.compileExpressionLog+ "\n"
+			res += "\tif [ $test = 1 ] ; then\n"
+				res += "\t\tlineIndex[$indexLine]=$indexLine\n"
+			res+= "\tfi\n"
+		res += "done\n"
+	 	return res
 	}
 	
 	def dispatch String compile(LineIndexNum f){
@@ -248,11 +269,7 @@ class MyCsvCompilerBash {
 		res += "cut -d $sep -f $(echo ${fieldIndex[@]} | sed 's/\\ /,/g') "+currentCsvPath
 				+" > "+tmpCsvProjection+"\n"
 		res += "mv "+tmpCsvProjection+" "+ currentCsvPath+"\n"
-		res += "unset header\n"
-		res += "declare header\n"
-		res += "unset headerDict\n"
-		res += "declare -A headerDict\n"
-		res += "refreshHeaderMetaInfo\n"
+		res += refreshRoutine()
 	 	return res
 	}
 	def dispatch String compile(Select l){
@@ -277,11 +294,7 @@ class MyCsvCompilerBash {
 		res += "cut -d $sep -f $(echo ${fields[@]} | sed 's/\\ /,/g') "+currentCsvPath
 				+" > "+tmpCsvDelete+"\n"
 		res += "mv "+tmpCsvDelete+" "+currentCsvPath+"\n"
-		res += "unset header\n"
-		res += "declare header\n"
-		res += "unset headerDict\n"
-		res += "declare -A headerDict\n"
-		res += "refreshHeaderMetaInfo\n"
+		res += refreshRoutine()
 	 	return res
 	}
 	def dispatch String compile(DeleteLine l){
@@ -290,7 +303,7 @@ class MyCsvCompilerBash {
 		val tmpCsvDelete = tmpCompilerPath + "tmpDelete.csv"
 		res += "unset lines\n"
 		res += "declare -a lines\n"
-		res += "lines=$(difference $(countLines) lineIndex)\n"
+		res += "lines=$(difference $(($(countLines)+1)) lineIndex)\n"
 		res += "for i in ${lines[@]} ; do\n"
 			res += "\thead -n $i "+ currentCsvPath + " | tail -n 1 >> "+ tmpCsvDelete + "\n"
 		res += "done\n"
@@ -302,7 +315,7 @@ class MyCsvCompilerBash {
 		var res = "# INSERT FIELDS\n"
 		res += l.values.compile
 		val tmpCsvInsert = tmpCompilerPath + "tmpInsert.csv"
-		res += "echo $(echo ${headerString} | sed \"s/.$//\")${sep}"+l.fieldname.value+">>"+ tmpCsvInsert + "\n"
+		res += "echo $(echo ${headerString})${sep}"+l.fieldname.value+">>"+ tmpCsvInsert + "\n"
 		res += "len_values=${#values[@]}\n"
 		res += "for i in `seq $(countLines)` ; do\n"
 			res += "\tj=$(($i-1))\n"
@@ -311,6 +324,7 @@ class MyCsvCompilerBash {
 			res += "\thead -n $(($i+1)) "+currentCsvPath+" | tail -n 1 | sed \"s/[[:space:]]*$/$sep$value/\">>"+tmpCsvInsert+"\n"
 		res +="done\n"
 		res +="mv "+tmpCsvInsert+" "+ currentCsvPath +"\n"
+		res += refreshRoutine()
 	 	return res
 	}
 	def dispatch String
@@ -431,16 +445,16 @@ class MyCsvCompilerBash {
 	 	return res + "echo " + l.exp.compileValue
 	}
 
-	def dispatch String compile(ExpressionLog l){
-		return l.expr.compile
+	def String compileExpressionLog(ExpressionLog l){
+		return "$(echo scale=10\\;" + l.expr.compile + "| bc)"
 	}
 
 	def dispatch String compile(OrExpression l){
 		var	res = l.lhs.compile
 		for (expr : l.rhs)
 		{
-			res += " or " + expr.compile
-		}
+			res += " \\|\\| " + expr.compile
+		}	// /!\ Whatch it: Escaping escape !
 		return res	
 	}
 
@@ -448,7 +462,7 @@ class MyCsvCompilerBash {
 		var	res = l.lhs.compile
 		for (expr : l.rhs)
 		{
-			res += " and " + expr.compile
+			res += " \\&\\& " + expr.compile
 		}
 		return res
 	}
@@ -457,13 +471,17 @@ class MyCsvCompilerBash {
 	 	var res = ""
 		if (l.isNot)
 		{
-			res += "not "
+			res += "!"
 		}
 		return res + l.expr.compile
 	}
 	
 	def dispatch String compile(ExpressionRel l){
-		return "" //TODO
+		// awk is our best friend
+		// echo <fieldValue> <expressionValue> | awk '{ print ($1 <op> $2) }'"
+		// "$line" is available thanks to LineIndexCond compilation
+		val fieldValue = "$(echo $line | cut -d $sep -f $((${headerDict["+l.field.value+"]} + 1)))"
+		return "$(echo " + fieldValue + " "+l.getVal.compileValue+" | awk '{ print ($1 "+l.op.toString+" $2) }')"
 	}
 
 	def dispatch String compile(NestedLogExpression l){

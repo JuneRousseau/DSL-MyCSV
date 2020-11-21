@@ -152,9 +152,14 @@ public class MyCsvBenchmarkTest {
           int _waitFor = prPy.waitFor();
           boolean _equals = (_waitFor == 0);
           Assertions.assertEquals(Boolean.valueOf((interpReturnCode == 0)), Boolean.valueOf(_equals));
+          int _waitFor_1 = prSh.waitFor();
+          boolean _equals_1 = (_waitFor_1 == 0);
+          Assertions.assertEquals(Boolean.valueOf((interpReturnCode == 0)), Boolean.valueOf(_equals_1));
           final Csv csvInterpreter = new Csv(outputInterpreterPath);
           Csv _csv = new Csv(outputPyPath);
           Assertions.assertEquals(csvInterpreter, _csv);
+          Csv _csv_1 = new Csv(outputShPath);
+          Assertions.assertEquals(csvInterpreter, _csv_1);
           Assertions.assertTrue(this.compareJson(outputJsonInterpreterPath, outputJsonPyPath));
           InputOutput.<String>println("DONE\n");
         } catch (final Throwable _t) {
