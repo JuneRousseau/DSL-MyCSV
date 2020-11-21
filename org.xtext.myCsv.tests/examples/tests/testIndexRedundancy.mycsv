@@ -1,5 +1,6 @@
 Load "../input.csv" sep=","
 Select 9 9 10 10 0 0
+Print table
 Projection 1 3 3
 Projection firstname firstname email
 Store "outputIndexRedundancy.csv" sep=";"

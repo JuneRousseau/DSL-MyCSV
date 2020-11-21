@@ -43,12 +43,6 @@ import org.xtext.myCsv.LitteralInt
 import org.xtext.myCsv.LitteralFloat
 import org.xtext.myCsv.LitteralString
 
-
-/**
- * Pretty-prints
- * 
- * See https://www.eclipse.org/Xtext/documentation/303_runtime_concepts.html#code-generation
- */
 class MyCsvCompilerPython {
 
 	def dispatch String compile(Program p){
@@ -192,7 +186,7 @@ class MyCsvCompilerPython {
 	}
 	
 	def dispatch String compile(FieldIndexName f){
-		var res = "fields = ["
+		var res = "fields = list(set(["
 		var first = true
 		for(field : f.fields)
 		{
@@ -201,11 +195,11 @@ class MyCsvCompilerPython {
 			res += 'headerDict["' + field.value + '"]'
 			first = false
 		}
-		res += "]\n"
+		res += "]))\n"
 		return res
 	}
 	def dispatch String compile(FieldIndexNum f){
-		var res = "fields = ["
+		var res = "fields = list(set(["
 		var first = true
 		for(colNum : f.columns)
 		{
@@ -214,7 +208,7 @@ class MyCsvCompilerPython {
 			res += colNum
 			first = false
 		}
-		res += "]\n"
+		res += "]))\n"
 		return res
 	}
 	
@@ -265,7 +259,7 @@ class MyCsvCompilerPython {
 		res += l.line.compile
 		res += "tmp = []\n"
 		res += "for line in lines:\n"
-		res += "\ttmp.append(data[line])\n"
+		res += "\ttmp.append(data[line].copy())\n"
 		res += "data = tmp\n"
 		return res
 	}
