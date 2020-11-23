@@ -113,7 +113,10 @@ class MyCsvBenchmarkTest {
 				bashFile.setExecutable(true);
 				
 				// EXECUTE PYTHON
+				val tstart_python = System.nanoTime()
 				val Process prPy = rt.exec(cmdExecPy, null, new File("examples-gen/python"));
+				val pyTerm=prPy.waitFor
+				val tend_python = System.nanoTime()
 				val BufferedReader bfrPy = new BufferedReader(new InputStreamReader(prPy.getInputStream()));
 				var stdoutPy = new StringBuilder
 				while ((line = bfrPy.readLine()) !== null)
@@ -123,7 +126,10 @@ class MyCsvBenchmarkTest {
 				Files.writeString(Paths.get(stdoutPyPath), stdoutPy.toString, StandardCharsets.UTF_8);
 				
 				// EXECUTE BASH
+				val tstart_bash = System.nanoTime()
 				val Process prSh = rt.exec(cmdExecSh, null, new File("examples-gen/bash"));
+				val shTerm=prSh.waitFor
+				val tend_bash = System.nanoTime()
 				val BufferedReader bfrSh = new BufferedReader(new InputStreamReader(prSh.getInputStream()));
 				var stdoutSh = new StringBuilder
 				while ((line = bfrSh.readLine()) !== null)
@@ -141,8 +147,12 @@ class MyCsvBenchmarkTest {
 				
 				// execution
 				var int interpReturnCode = 0
+				var long tstart_interp=0
+				var long tend_interp=0
 				try {
+					tstart_interp = System.nanoTime()
 					interpreter.interpretProgram(prog)
+					tend_interp = System.nanoTime()
 					outStream.flush()
 				} catch (Exception e){
 					interpReturnCode = 1
@@ -154,11 +164,20 @@ class MyCsvBenchmarkTest {
 				System.setProperty("user.dir", mainPath)
 				
 				// ASSERTIONS
+				
+				println("Execution time:")
+				val pyTime=tend_python-tstart_python
+				val shTime=tend_bash-tstart_bash
+				val interpTime=tend_interp-tstart_interp
+				
+				println("\tpython: "+pyTime+" ns ("+pyTime/1000000+" ms)")
+				println("\tbash: "+shTime+" ns ("+shTime/1000000+" ms)")
+				println("\tinterpreter: "+interpTime+" ns ("+interpTime/1000000+" ms)")
 							
 				// Executions should fail together
 				
-				Assertions.assertEquals(interpReturnCode == 0, prPy.waitFor == 0) 
-				Assertions.assertEquals(interpReturnCode == 0, prSh.waitFor == 0)
+				Assertions.assertEquals(interpReturnCode == 0, pyTerm == 0) 
+				Assertions.assertEquals(interpReturnCode == 0, shTerm == 0)
 				
 				// Output should be the same
 				val csvInterpreter = new Csv(outputInterpreterPath, ";", false)

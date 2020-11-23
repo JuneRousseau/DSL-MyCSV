@@ -111,8 +111,11 @@ public class MyCsvBenchmarkTest {
           final String cmdExecSh = (("./" + basename) + ".sh");
           final File bashFile = new File(compiledShPath);
           bashFile.setExecutable(true);
+          final long tstart_python = System.nanoTime();
           File _file = new File("examples-gen/python");
           final Process prPy = rt.exec(cmdExecPy, null, _file);
+          final int pyTerm = prPy.waitFor();
+          final long tend_python = System.nanoTime();
           InputStream _inputStream = prPy.getInputStream();
           InputStreamReader _inputStreamReader = new InputStreamReader(_inputStream);
           final BufferedReader bfrPy = new BufferedReader(_inputStreamReader);
@@ -121,8 +124,11 @@ public class MyCsvBenchmarkTest {
             stdoutPy.append((line + "\n"));
           }
           Files.writeString(Paths.get(stdoutPyPath), stdoutPy.toString(), StandardCharsets.UTF_8);
+          final long tstart_bash = System.nanoTime();
           File _file_1 = new File("examples-gen/bash");
           final Process prSh = rt.exec(cmdExecSh, null, _file_1);
+          final int shTerm = prSh.waitFor();
+          final long tend_bash = System.nanoTime();
           InputStream _inputStream_1 = prSh.getInputStream();
           InputStreamReader _inputStreamReader_1 = new InputStreamReader(_inputStream_1);
           final BufferedReader bfrSh = new BufferedReader(_inputStreamReader_1);
@@ -135,8 +141,12 @@ public class MyCsvBenchmarkTest {
           final PrintStream outStream = new PrintStream(stdoutInterpreterPath);
           System.setOut(outStream);
           int interpReturnCode = 0;
+          long tstart_interp = 0;
+          long tend_interp = 0;
           try {
+            tstart_interp = System.nanoTime();
             interpreter.interpretProgram(prog);
+            tend_interp = System.nanoTime();
             outStream.flush();
           } catch (final Throwable _t) {
             if (_t instanceof Exception) {
@@ -149,12 +159,15 @@ public class MyCsvBenchmarkTest {
           }
           System.setOut(mainOut);
           System.setProperty("user.dir", mainPath);
-          int _waitFor = prPy.waitFor();
-          boolean _equals = (_waitFor == 0);
-          Assertions.assertEquals(Boolean.valueOf((interpReturnCode == 0)), Boolean.valueOf(_equals));
-          int _waitFor_1 = prSh.waitFor();
-          boolean _equals_1 = (_waitFor_1 == 0);
-          Assertions.assertEquals(Boolean.valueOf((interpReturnCode == 0)), Boolean.valueOf(_equals_1));
+          InputOutput.<String>println("Execution time:");
+          final long pyTime = (tend_python - tstart_python);
+          final long shTime = (tend_bash - tstart_bash);
+          final long interpTime = (tend_interp - tstart_interp);
+          InputOutput.<String>println((((("\tpython: " + Long.valueOf(pyTime)) + " ns (") + Long.valueOf((pyTime / 1000000))) + " ms)"));
+          InputOutput.<String>println((((("\tbash: " + Long.valueOf(shTime)) + " ns (") + Long.valueOf((shTime / 1000000))) + " ms)"));
+          InputOutput.<String>println((((("\tinterpreter: " + Long.valueOf(interpTime)) + " ns (") + Long.valueOf((interpTime / 1000000))) + " ms)"));
+          Assertions.assertEquals(Boolean.valueOf((interpReturnCode == 0)), Boolean.valueOf((pyTerm == 0)));
+          Assertions.assertEquals(Boolean.valueOf((interpReturnCode == 0)), Boolean.valueOf((shTerm == 0)));
           final Csv csvInterpreter = new Csv(outputInterpreterPath, ";", false);
           Csv _csv = new Csv(outputPyPath, ";", false);
           Assertions.assertEquals(csvInterpreter, _csv);
