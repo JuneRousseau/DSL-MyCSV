@@ -606,7 +606,7 @@ public class MyCsvSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     Load returns Load
 	 *
 	 * Constraint:
-	 *     (path=Path (sepDefined?='sep' sep=STRING)? noHeader?='noheader'?)
+	 *     (path=Path (sepDefined?='sep' sep=STRING)? noHeader?='no'?)
 	 */
 	protected void sequence_Load(ISerializationContext context, Load semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -932,7 +932,7 @@ public class MyCsvSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     Store returns Store
 	 *
 	 * Constraint:
-	 *     (path=Path (sepDefined?='sep' sep=STRING)?)
+	 *     (path=Path (sepDefined?='sep' sep=STRING)? noHeader?='no'?)
 	 */
 	protected void sequence_Store(ISerializationContext context, Store semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

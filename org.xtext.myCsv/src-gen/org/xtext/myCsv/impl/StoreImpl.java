@@ -26,6 +26,7 @@ import org.xtext.myCsv.Store;
  *   <li>{@link org.xtext.myCsv.impl.StoreImpl#getPath <em>Path</em>}</li>
  *   <li>{@link org.xtext.myCsv.impl.StoreImpl#isSepDefined <em>Sep Defined</em>}</li>
  *   <li>{@link org.xtext.myCsv.impl.StoreImpl#getSep <em>Sep</em>}</li>
+ *   <li>{@link org.xtext.myCsv.impl.StoreImpl#isNoHeader <em>No Header</em>}</li>
  * </ul>
  *
  * @generated
@@ -81,6 +82,26 @@ public class StoreImpl extends StatementImpl implements Store
    * @ordered
    */
   protected String sep = SEP_EDEFAULT;
+
+  /**
+   * The default value of the '{@link #isNoHeader() <em>No Header</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isNoHeader()
+   * @generated
+   * @ordered
+   */
+  protected static final boolean NO_HEADER_EDEFAULT = false;
+
+  /**
+   * The cached value of the '{@link #isNoHeader() <em>No Header</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isNoHeader()
+   * @generated
+   * @ordered
+   */
+  protected boolean noHeader = NO_HEADER_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -209,6 +230,31 @@ public class StoreImpl extends StatementImpl implements Store
    * @generated
    */
   @Override
+  public boolean isNoHeader()
+  {
+    return noHeader;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setNoHeader(boolean newNoHeader)
+  {
+    boolean oldNoHeader = noHeader;
+    noHeader = newNoHeader;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, MyCsvPackage.STORE__NO_HEADER, oldNoHeader, noHeader));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
     switch (featureID)
@@ -235,6 +281,8 @@ public class StoreImpl extends StatementImpl implements Store
         return isSepDefined();
       case MyCsvPackage.STORE__SEP:
         return getSep();
+      case MyCsvPackage.STORE__NO_HEADER:
+        return isNoHeader();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -257,6 +305,9 @@ public class StoreImpl extends StatementImpl implements Store
         return;
       case MyCsvPackage.STORE__SEP:
         setSep((String)newValue);
+        return;
+      case MyCsvPackage.STORE__NO_HEADER:
+        setNoHeader((Boolean)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -281,6 +332,9 @@ public class StoreImpl extends StatementImpl implements Store
       case MyCsvPackage.STORE__SEP:
         setSep(SEP_EDEFAULT);
         return;
+      case MyCsvPackage.STORE__NO_HEADER:
+        setNoHeader(NO_HEADER_EDEFAULT);
+        return;
     }
     super.eUnset(featureID);
   }
@@ -301,6 +355,8 @@ public class StoreImpl extends StatementImpl implements Store
         return sepDefined != SEP_DEFINED_EDEFAULT;
       case MyCsvPackage.STORE__SEP:
         return SEP_EDEFAULT == null ? sep != null : !SEP_EDEFAULT.equals(sep);
+      case MyCsvPackage.STORE__NO_HEADER:
+        return noHeader != NO_HEADER_EDEFAULT;
     }
     return super.eIsSet(featureID);
   }
@@ -320,6 +376,8 @@ public class StoreImpl extends StatementImpl implements Store
     result.append(sepDefined);
     result.append(", sep: ");
     result.append(sep);
+    result.append(", noHeader: ");
+    result.append(noHeader);
     result.append(')');
     return result.toString();
   }

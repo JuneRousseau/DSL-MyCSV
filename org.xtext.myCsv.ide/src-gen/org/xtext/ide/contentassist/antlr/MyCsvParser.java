@@ -51,8 +51,10 @@ public class MyCsvParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getValuesAccess().getGroup_2(), "rule__Values__Group_2__0");
 			builder.put(grammarAccess.getLoadAccess().getGroup(), "rule__Load__Group__0");
 			builder.put(grammarAccess.getLoadAccess().getGroup_2(), "rule__Load__Group_2__0");
+			builder.put(grammarAccess.getLoadAccess().getGroup_3(), "rule__Load__Group_3__0");
 			builder.put(grammarAccess.getStoreAccess().getGroup(), "rule__Store__Group__0");
 			builder.put(grammarAccess.getStoreAccess().getGroup_2(), "rule__Store__Group_2__0");
+			builder.put(grammarAccess.getStoreAccess().getGroup_3(), "rule__Store__Group_3__0");
 			builder.put(grammarAccess.getExportJsonAccess().getGroup(), "rule__ExportJson__Group__0");
 			builder.put(grammarAccess.getProjectionAccess().getGroup(), "rule__Projection__Group__0");
 			builder.put(grammarAccess.getSelectAccess().getGroup(), "rule__Select__Group__0");
@@ -103,10 +105,11 @@ public class MyCsvParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getLoadAccess().getPathAssignment_1(), "rule__Load__PathAssignment_1");
 			builder.put(grammarAccess.getLoadAccess().getSepDefinedAssignment_2_0(), "rule__Load__SepDefinedAssignment_2_0");
 			builder.put(grammarAccess.getLoadAccess().getSepAssignment_2_2(), "rule__Load__SepAssignment_2_2");
-			builder.put(grammarAccess.getLoadAccess().getNoHeaderAssignment_3(), "rule__Load__NoHeaderAssignment_3");
+			builder.put(grammarAccess.getLoadAccess().getNoHeaderAssignment_3_0(), "rule__Load__NoHeaderAssignment_3_0");
 			builder.put(grammarAccess.getStoreAccess().getPathAssignment_1(), "rule__Store__PathAssignment_1");
 			builder.put(grammarAccess.getStoreAccess().getSepDefinedAssignment_2_0(), "rule__Store__SepDefinedAssignment_2_0");
 			builder.put(grammarAccess.getStoreAccess().getSepAssignment_2_2(), "rule__Store__SepAssignment_2_2");
+			builder.put(grammarAccess.getStoreAccess().getNoHeaderAssignment_3_0(), "rule__Store__NoHeaderAssignment_3_0");
 			builder.put(grammarAccess.getExportJsonAccess().getPathAssignment_1(), "rule__ExportJson__PathAssignment_1");
 			builder.put(grammarAccess.getProjectionAccess().getFieldAssignment_1(), "rule__Projection__FieldAssignment_1");
 			builder.put(grammarAccess.getSelectAccess().getLineAssignment_1(), "rule__Select__LineAssignment_1");

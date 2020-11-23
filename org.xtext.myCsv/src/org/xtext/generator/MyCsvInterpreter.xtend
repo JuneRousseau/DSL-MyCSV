@@ -71,7 +71,7 @@ class MyCsvInterpreter {
 		if (l.isSepDefined()){
 			sep = l.sep
 		}
-		currentCsv.storeCsv(l.path.value, sep)
+		currentCsv.storeCsv(l.path.value, sep, l.noHeader)
 	}
 	
 	def dispatch ArrayList<Integer> interpretLineIndex(LineIndexCond f){

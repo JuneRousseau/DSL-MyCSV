@@ -16,6 +16,7 @@ package org.xtext.myCsv;
  *   <li>{@link org.xtext.myCsv.Store#getPath <em>Path</em>}</li>
  *   <li>{@link org.xtext.myCsv.Store#isSepDefined <em>Sep Defined</em>}</li>
  *   <li>{@link org.xtext.myCsv.Store#getSep <em>Sep</em>}</li>
+ *   <li>{@link org.xtext.myCsv.Store#isNoHeader <em>No Header</em>}</li>
  * </ul>
  *
  * @see org.xtext.myCsv.MyCsvPackage#getStore()
@@ -89,5 +90,27 @@ public interface Store extends Statement
    * @generated
    */
   void setSep(String value);
+
+  /**
+   * Returns the value of the '<em><b>No Header</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>No Header</em>' attribute.
+   * @see #setNoHeader(boolean)
+   * @see org.xtext.myCsv.MyCsvPackage#getStore_NoHeader()
+   * @model
+   * @generated
+   */
+  boolean isNoHeader();
+
+  /**
+   * Sets the value of the '{@link org.xtext.myCsv.Store#isNoHeader <em>No Header</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>No Header</em>' attribute.
+   * @see #isNoHeader()
+   * @generated
+   */
+  void setNoHeader(boolean value);
 
 } // Store

@@ -918,6 +918,17 @@ public class MyCsvPackageImpl extends EPackageImpl implements MyCsvPackage
    * @generated
    */
   @Override
+  public EAttribute getStore_NoHeader()
+  {
+    return (EAttribute)storeEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public EClass getExportJson()
   {
     return exportJsonEClass;
@@ -1958,6 +1969,7 @@ public class MyCsvPackageImpl extends EPackageImpl implements MyCsvPackage
     createEReference(storeEClass, STORE__PATH);
     createEAttribute(storeEClass, STORE__SEP_DEFINED);
     createEAttribute(storeEClass, STORE__SEP);
+    createEAttribute(storeEClass, STORE__NO_HEADER);
 
     exportJsonEClass = createEClass(EXPORT_JSON);
     createEReference(exportJsonEClass, EXPORT_JSON__PATH);
@@ -2201,6 +2213,7 @@ public class MyCsvPackageImpl extends EPackageImpl implements MyCsvPackage
     initEReference(getStore_Path(), this.getPath(), null, "path", null, 0, 1, Store.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getStore_SepDefined(), ecorePackage.getEBoolean(), "sepDefined", null, 0, 1, Store.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getStore_Sep(), ecorePackage.getEString(), "sep", null, 0, 1, Store.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getStore_NoHeader(), ecorePackage.getEBoolean(), "noHeader", null, 0, 1, Store.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(exportJsonEClass, ExportJson.class, "ExportJson", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getExportJson_Path(), this.getPath(), null, "path", null, 0, 1, ExportJson.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

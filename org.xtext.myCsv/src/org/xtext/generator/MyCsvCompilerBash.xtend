@@ -73,6 +73,7 @@ class MyCsvCompilerBash {
 		res += "\t\techo 0\n" //it isn't a number
 		res += "\tfi\n"
 		res += "}\n\n"
+		
 		res += "# Update some global variables\n\n"
 		res += "refreshHeaderMetaInfo () {\n"
 			res += "\theaderString=$(head -n 1 "+ currentCsvPath +" | sed 's/\\r//g')\n"
@@ -164,8 +165,9 @@ class MyCsvCompilerBash {
 	
 	def dispatch String compile(Load l){
 		var res = "# LOAD\n"
-		res += "cp "+l.path.value+" "+currentCsvPath+"\n"
-
+		
+		res += "rm -f "+currentCsvPath+"\n"
+		
 		var localSep = ""
 		if (l.isSepDefined()){
 			localSep = l.sep
@@ -175,8 +177,12 @@ class MyCsvCompilerBash {
 		res += "sep='"+localSep+"'\n"
 		
 		if(!l.noHeader)
-			//throw new IllegalArgumentException("Not Implemented yet. (handling .csv without header)")
-			res += ""
+			res += "nbField=$(awk -F\"${sep}\" '{print NF}' <<< \"${headerString}\")"
+			res += "headerLine=$(echo `seq $nbField` | sed 's/ /$sep/g' )"
+			res += "echo $headerLine >> "+currentCsvPath+"\n"
+		
+		res += "cat "+l.path.value+" >> "+currentCsvPath+"\n"
+
 		res += refreshRoutine()
 		return res
 	}
@@ -188,6 +194,11 @@ class MyCsvCompilerBash {
 			res += "sed 's/"+ sep + "/"+l.sep+"/g' "+currentCsvPath+" > "+l.path.value+"\n"
 		} else {
 			res += "cp "+currentCsvPath+" "+l.path.value+"\n"
+		}
+		if (l.noHeader){
+			val tmpPath = tmpCompilerPath+"tmp"
+			res += "tail -n $(countLines) "+currentCsvPath+" > "+tmpPath+"\n"
+			res += "cp "+tmpPath+" "+l.path.value+"\n"
 		}
 		
 		return res

@@ -759,17 +759,23 @@ ruleLoad returns [EObject current=null]
 		)?
 		(
 			(
-				lv_noHeader_5_0='noheader'
-				{
-					newLeafNode(lv_noHeader_5_0, grammarAccess.getLoadAccess().getNoHeaderNoheaderKeyword_3_0());
-				}
-				{
-					if ($current==null) {
-						$current = createModelElement(grammarAccess.getLoadRule());
+				(
+					lv_noHeader_5_0='no'
+					{
+						newLeafNode(lv_noHeader_5_0, grammarAccess.getLoadAccess().getNoHeaderNoKeyword_3_0_0());
 					}
-					setWithLastConsumed($current, "noHeader", lv_noHeader_5_0 != null, "noheader");
-				}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getLoadRule());
+						}
+						setWithLastConsumed($current, "noHeader", lv_noHeader_5_0 != null, "no");
+					}
+				)
 			)
+			otherlv_6='header'
+			{
+				newLeafNode(otherlv_6, grammarAccess.getLoadAccess().getHeaderKeyword_3_1());
+			}
 		)?
 	)
 ;
@@ -850,6 +856,26 @@ ruleStore returns [EObject current=null]
 					}
 				)
 			)
+		)?
+		(
+			(
+				(
+					lv_noHeader_5_0='no'
+					{
+						newLeafNode(lv_noHeader_5_0, grammarAccess.getStoreAccess().getNoHeaderNoKeyword_3_0_0());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getStoreRule());
+						}
+						setWithLastConsumed($current, "noHeader", lv_noHeader_5_0 != null, "no");
+					}
+				)
+			)
+			otherlv_6='header'
+			{
+				newLeafNode(otherlv_6, grammarAccess.getStoreAccess().getHeaderKeyword_3_1());
+			}
 		)?
 	)
 ;

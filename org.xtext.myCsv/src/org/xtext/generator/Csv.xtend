@@ -40,7 +40,17 @@ class Csv {
 			val scan = new Scanner(file)
 			
 			if(noHeader){
-				throw new IllegalArgumentException("Not Implemented yet. (handling .csv without header)")
+				if (scan.hasNextLine){
+					val line = scan.nextLine
+					val ind = parseCsvLine(line, sep)
+					data.add(ind)
+					header = new ArrayList<String>
+					for(var i = 0; i < ind.length ; i++){
+						header.add(i.toString)
+					}
+				} else {
+					throw new IllegalArgumentException("Empty CSV not handled.")
+				}
 			} else {
 				val line = scan.nextLine
 				header = parseHeader(line, sep)
@@ -106,16 +116,19 @@ class Csv {
 		return sum(fieldId) / count(fieldId)
 	}
 	
-	override toString(){
+	def toStringOpt(boolean noheader){
 		var str=""
 		var first = true
-		for (head : header)
-		{
-			if(!first) str += sep
-			str += head
-			first=false
+		
+		if(!noheader) {
+			for (head : header)
+			{
+				if(!first) str += sep
+				str += head
+				first=false
+			}
+			str+="\n"
 		}
-		str+="\n"
 		for (line : data)
 		{
 			first= true
@@ -130,9 +143,13 @@ class Csv {
 		return str
 	}
 	
-	def storeCsv(String path, String sep) {
+	override toString(){
+		return toStringOpt(false)
+	}
+	
+	def storeCsv(String path, String sep, boolean noheader) {
 		this.sep = sep
-		val output = toString()
+		val output = toStringOpt(noheader)
 		val pathStr = System.getProperty("user.dir") + "/" + path
 		try {
     		Files.writeString(Paths.get(pathStr), output, StandardCharsets.UTF_8);

@@ -354,14 +354,16 @@ public class MyCsvGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final Keyword cEqualsSignKeyword_2_1 = (Keyword)cGroup_2.eContents().get(1);
 		private final Assignment cSepAssignment_2_2 = (Assignment)cGroup_2.eContents().get(2);
 		private final RuleCall cSepSTRINGTerminalRuleCall_2_2_0 = (RuleCall)cSepAssignment_2_2.eContents().get(0);
-		private final Assignment cNoHeaderAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final Keyword cNoHeaderNoheaderKeyword_3_0 = (Keyword)cNoHeaderAssignment_3.eContents().get(0);
+		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
+		private final Assignment cNoHeaderAssignment_3_0 = (Assignment)cGroup_3.eContents().get(0);
+		private final Keyword cNoHeaderNoKeyword_3_0_0 = (Keyword)cNoHeaderAssignment_3_0.eContents().get(0);
+		private final Keyword cHeaderKeyword_3_1 = (Keyword)cGroup_3.eContents().get(1);
 		
 		//Load:
-		//	'Load' path=Path (sepDefined?='sep' '=' sep=STRING)? noHeader?='noheader'?;
+		//	'Load' path=Path (sepDefined?='sep' '=' sep=STRING)? (noHeader?='no' 'header')?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'Load' path=Path (sepDefined?='sep' '=' sep=STRING)? noHeader?='noheader'?
+		//'Load' path=Path (sepDefined?='sep' '=' sep=STRING)? (noHeader?='no' 'header')?
 		public Group getGroup() { return cGroup; }
 		
 		//'Load'
@@ -391,11 +393,17 @@ public class MyCsvGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//STRING
 		public RuleCall getSepSTRINGTerminalRuleCall_2_2_0() { return cSepSTRINGTerminalRuleCall_2_2_0; }
 		
-		//noHeader?='noheader'?
-		public Assignment getNoHeaderAssignment_3() { return cNoHeaderAssignment_3; }
+		//(noHeader?='no' 'header')?
+		public Group getGroup_3() { return cGroup_3; }
 		
-		//'noheader'
-		public Keyword getNoHeaderNoheaderKeyword_3_0() { return cNoHeaderNoheaderKeyword_3_0; }
+		//noHeader?='no'
+		public Assignment getNoHeaderAssignment_3_0() { return cNoHeaderAssignment_3_0; }
+		
+		//'no'
+		public Keyword getNoHeaderNoKeyword_3_0_0() { return cNoHeaderNoKeyword_3_0_0; }
+		
+		//'header'
+		public Keyword getHeaderKeyword_3_1() { return cHeaderKeyword_3_1; }
 	}
 	public class StoreElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.MyCsv.Store");
@@ -409,12 +417,16 @@ public class MyCsvGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final Keyword cEqualsSignKeyword_2_1 = (Keyword)cGroup_2.eContents().get(1);
 		private final Assignment cSepAssignment_2_2 = (Assignment)cGroup_2.eContents().get(2);
 		private final RuleCall cSepSTRINGTerminalRuleCall_2_2_0 = (RuleCall)cSepAssignment_2_2.eContents().get(0);
+		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
+		private final Assignment cNoHeaderAssignment_3_0 = (Assignment)cGroup_3.eContents().get(0);
+		private final Keyword cNoHeaderNoKeyword_3_0_0 = (Keyword)cNoHeaderAssignment_3_0.eContents().get(0);
+		private final Keyword cHeaderKeyword_3_1 = (Keyword)cGroup_3.eContents().get(1);
 		
 		//Store:
-		//	'Store' path=Path (sepDefined?='sep' '=' sep=STRING)?;
+		//	'Store' path=Path (sepDefined?='sep' '=' sep=STRING)? (noHeader?='no' 'header')?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'Store' path=Path (sepDefined?='sep' '=' sep=STRING)?
+		//'Store' path=Path (sepDefined?='sep' '=' sep=STRING)? (noHeader?='no' 'header')?
 		public Group getGroup() { return cGroup; }
 		
 		//'Store'
@@ -443,6 +455,18 @@ public class MyCsvGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		
 		//STRING
 		public RuleCall getSepSTRINGTerminalRuleCall_2_2_0() { return cSepSTRINGTerminalRuleCall_2_2_0; }
+		
+		//(noHeader?='no' 'header')?
+		public Group getGroup_3() { return cGroup_3; }
+		
+		//noHeader?='no'
+		public Assignment getNoHeaderAssignment_3_0() { return cNoHeaderAssignment_3_0; }
+		
+		//'no'
+		public Keyword getNoHeaderNoKeyword_3_0_0() { return cNoHeaderNoKeyword_3_0_0; }
+		
+		//'header'
+		public Keyword getHeaderKeyword_3_1() { return cHeaderKeyword_3_1; }
 	}
 	public class ExportJsonElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.MyCsv.ExportJson");
@@ -1945,7 +1969,7 @@ public class MyCsvGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//Load:
-	//	'Load' path=Path (sepDefined?='sep' '=' sep=STRING)? noHeader?='noheader'?;
+	//	'Load' path=Path (sepDefined?='sep' '=' sep=STRING)? (noHeader?='no' 'header')?;
 	public LoadElements getLoadAccess() {
 		return pLoad;
 	}
@@ -1955,7 +1979,7 @@ public class MyCsvGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//Store:
-	//	'Store' path=Path (sepDefined?='sep' '=' sep=STRING)?;
+	//	'Store' path=Path (sepDefined?='sep' '=' sep=STRING)? (noHeader?='no' 'header')?;
 	public StoreElements getStoreAccess() {
 		return pStore;
 	}

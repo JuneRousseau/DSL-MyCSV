@@ -497,13 +497,22 @@ public interface MyCsvPackage extends EPackage
   int STORE__SEP = STATEMENT_FEATURE_COUNT + 2;
 
   /**
+   * The feature id for the '<em><b>No Header</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int STORE__NO_HEADER = STATEMENT_FEATURE_COUNT + 3;
+
+  /**
    * The number of structural features of the '<em>Store</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int STORE_FEATURE_COUNT = STATEMENT_FEATURE_COUNT + 3;
+  int STORE_FEATURE_COUNT = STATEMENT_FEATURE_COUNT + 4;
 
   /**
    * The meta object id for the '{@link org.xtext.myCsv.impl.ExportJsonImpl <em>Export Json</em>}' class.
@@ -2059,6 +2068,17 @@ public interface MyCsvPackage extends EPackage
   EAttribute getStore_Sep();
 
   /**
+   * Returns the meta object for the attribute '{@link org.xtext.myCsv.Store#isNoHeader <em>No Header</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>No Header</em>'.
+   * @see org.xtext.myCsv.Store#isNoHeader()
+   * @see #getStore()
+   * @generated
+   */
+  EAttribute getStore_NoHeader();
+
+  /**
    * Returns the meta object for class '{@link org.xtext.myCsv.ExportJson <em>Export Json</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -3299,6 +3319,14 @@ public interface MyCsvPackage extends EPackage
      * @generated
      */
     EAttribute STORE__SEP = eINSTANCE.getStore_Sep();
+
+    /**
+     * The meta object literal for the '<em><b>No Header</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute STORE__NO_HEADER = eINSTANCE.getStore_NoHeader();
 
     /**
      * The meta object literal for the '{@link org.xtext.myCsv.impl.ExportJsonImpl <em>Export Json</em>}' class.

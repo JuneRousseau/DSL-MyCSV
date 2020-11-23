@@ -39,7 +39,6 @@ class MyCsvCompilerPythonTest {
 		for (testFile : directoryPath.list())
 		{
 			val basename= testFile.substring(0, testFile.indexOf("."))
-			val outputBasename = "output"+basename.substring("test".length, basename.length())
 			try {
 				
 				// PREPARING testfile
@@ -48,8 +47,6 @@ class MyCsvCompilerPythonTest {
 				
 				val inputMyCsv= "examples/tests/"+basename+".mycsv"
 				val compiledPyPath= "examples-gen/python/"+basename+".py"
-				val outputPyPath= "examples-gen/python/"+outputBasename+".csv"
-				val outputJsonPyPath= "examples-gen/python/"+outputBasename+".json"
 				
 				// GETTING MYCSV AST
 				val prog = loadMyCSV(URI.createURI(inputMyCsv))

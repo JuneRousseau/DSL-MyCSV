@@ -71,6 +71,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyCsv.ecore#//Store/path"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyCsv.ecore#//Store/sepDefined"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyCsv.ecore#//Store/sep"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyCsv.ecore#//Store/noHeader"/>
     </genClasses>
     <genClasses ecoreClass="MyCsv.ecore#//ExportJson">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyCsv.ecore#//ExportJson/path"/>

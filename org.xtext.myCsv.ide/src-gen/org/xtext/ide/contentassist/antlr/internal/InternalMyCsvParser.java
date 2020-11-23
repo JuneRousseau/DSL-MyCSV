@@ -22,7 +22,7 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_INT", "RULE_STRING", "RULE_ID", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'table'", "'NbField'", "'>'", "'<'", "'>='", "'<='", "'=='", "'!='", "'Count'", "'Sum'", "'Product'", "'Mean'", "'+'", "'-'", "'*'", "'/'", "'('", "','", "')'", "'['", "']'", "';'", "'Load'", "'='", "'Store'", "'ExportJson'", "'Projection'", "'Select'", "'Delete'", "'line'", "'field'", "'Insert'", "':'", "'Modify'", "'with'", "'cell'", "'Print'", "'expr'", "'or'", "'and'", "'.'", "'sep'", "'noheader'", "'not'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_INT", "RULE_STRING", "RULE_ID", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'table'", "'NbField'", "'>'", "'<'", "'>='", "'<='", "'=='", "'!='", "'Count'", "'Sum'", "'Product'", "'Mean'", "'+'", "'-'", "'*'", "'/'", "'('", "','", "')'", "'['", "']'", "';'", "'Load'", "'='", "'header'", "'Store'", "'ExportJson'", "'Projection'", "'Select'", "'Delete'", "'line'", "'field'", "'Insert'", "':'", "'Modify'", "'with'", "'cell'", "'Print'", "'expr'", "'or'", "'and'", "'.'", "'sep'", "'no'", "'not'"
     };
     public static final int T__50=50;
     public static final int T__19=19;
@@ -31,6 +31,7 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
     public static final int T__17=17;
     public static final int T__18=18;
     public static final int T__11=11;
+    public static final int T__55=55;
     public static final int T__12=12;
     public static final int T__13=13;
     public static final int T__14=14;
@@ -184,7 +185,7 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
                 int alt1=2;
                 int LA1_0 = input.LA(1);
 
-                if ( (LA1_0==33||(LA1_0>=35 && LA1_0<=39)||LA1_0==42||LA1_0==44||LA1_0==47) ) {
+                if ( (LA1_0==33||(LA1_0>=36 && LA1_0<=40)||LA1_0==43||LA1_0==45||LA1_0==48) ) {
                     alt1=1;
                 }
 
@@ -4698,7 +4699,7 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
             int alt5=2;
             int LA5_0 = input.LA(1);
 
-            if ( (LA5_0==RULE_ID||LA5_0==27||LA5_0==54) ) {
+            if ( (LA5_0==RULE_ID||LA5_0==27||LA5_0==55) ) {
                 alt5=1;
             }
             else if ( (LA5_0==RULE_INT) ) {
@@ -5030,42 +5031,42 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
                 alt9=1;
                 }
                 break;
-            case 35:
+            case 36:
                 {
                 alt9=2;
                 }
                 break;
-            case 36:
+            case 37:
                 {
                 alt9=3;
                 }
                 break;
-            case 37:
+            case 38:
                 {
                 alt9=4;
                 }
                 break;
-            case 38:
+            case 39:
                 {
                 alt9=5;
                 }
                 break;
-            case 39:
+            case 40:
                 {
                 alt9=6;
                 }
                 break;
-            case 42:
+            case 43:
                 {
                 alt9=7;
                 }
                 break;
-            case 44:
+            case 45:
                 {
                 alt9=8;
                 }
                 break;
-            case 47:
+            case 48:
                 {
                 alt9=9;
                 }
@@ -5277,10 +5278,10 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
             int alt10=2;
             int LA10_0 = input.LA(1);
 
-            if ( (LA10_0==40) ) {
+            if ( (LA10_0==41) ) {
                 alt10=1;
             }
-            else if ( (LA10_0==41) ) {
+            else if ( (LA10_0==42) ) {
                 alt10=2;
             }
             else {
@@ -5356,10 +5357,10 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
             int alt11=2;
             int LA11_0 = input.LA(1);
 
-            if ( (LA11_0==40) ) {
+            if ( (LA11_0==41) ) {
                 alt11=1;
             }
-            else if ( (LA11_0==41) ) {
+            else if ( (LA11_0==42) ) {
                 alt11=2;
             }
             else {
@@ -5434,17 +5435,17 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
             // InternalMyCsv.g:1712:1: ( ( ruleModifyLine ) | ( ruleModifyField ) | ( ruleModifyCell ) )
             int alt12=3;
             switch ( input.LA(1) ) {
-            case 40:
+            case 41:
                 {
                 alt12=1;
                 }
                 break;
-            case 41:
+            case 42:
                 {
                 alt12=2;
                 }
                 break;
-            case 46:
+            case 47:
                 {
                 alt12=3;
                 }
@@ -5541,17 +5542,17 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
             // InternalMyCsv.g:1739:1: ( ( rulePrintLine ) | ( rulePrintField ) | ( rulePrintCell ) | ( ( rule__Print__Group_1_3__0 ) ) | ( rulePrintExpr ) )
             int alt13=5;
             switch ( input.LA(1) ) {
-            case 40:
+            case 41:
                 {
                 alt13=1;
                 }
                 break;
-            case 41:
+            case 42:
                 {
                 alt13=2;
                 }
                 break;
-            case 46:
+            case 47:
                 {
                 alt13=3;
                 }
@@ -5561,7 +5562,7 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
                 alt13=4;
                 }
                 break;
-            case 48:
+            case 49:
                 {
                 alt13=5;
                 }
@@ -5798,11 +5799,11 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
                 {
                 int LA15_3 = input.LA(2);
 
-                if ( (LA15_3==51) ) {
-                    alt15=4;
-                }
-                else if ( (LA15_3==EOF||(LA15_3>=23 && LA15_3<=26)||LA15_3==29||(LA15_3>=31 && LA15_3<=33)||(LA15_3>=35 && LA15_3<=39)||LA15_3==42||(LA15_3>=44 && LA15_3<=45)||LA15_3==47||(LA15_3>=49 && LA15_3<=50)) ) {
+                if ( (LA15_3==EOF||(LA15_3>=23 && LA15_3<=26)||LA15_3==29||(LA15_3>=31 && LA15_3<=33)||(LA15_3>=36 && LA15_3<=40)||LA15_3==43||(LA15_3>=45 && LA15_3<=46)||LA15_3==48||(LA15_3>=50 && LA15_3<=51)) ) {
                     alt15=3;
+                }
+                else if ( (LA15_3==52) ) {
+                    alt15=4;
                 }
                 else {
                     NoViableAltException nvae =
@@ -7567,7 +7568,7 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
             int alt23=2;
             int LA23_0 = input.LA(1);
 
-            if ( (LA23_0==52) ) {
+            if ( (LA23_0==53) ) {
                 alt23=1;
             }
             switch (alt23) {
@@ -7641,32 +7642,32 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Load__Group__3__Impl"
-    // InternalMyCsv.g:2343:1: rule__Load__Group__3__Impl : ( ( rule__Load__NoHeaderAssignment_3 )? ) ;
+    // InternalMyCsv.g:2343:1: rule__Load__Group__3__Impl : ( ( rule__Load__Group_3__0 )? ) ;
     public final void rule__Load__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:2347:1: ( ( ( rule__Load__NoHeaderAssignment_3 )? ) )
-            // InternalMyCsv.g:2348:1: ( ( rule__Load__NoHeaderAssignment_3 )? )
+            // InternalMyCsv.g:2347:1: ( ( ( rule__Load__Group_3__0 )? ) )
+            // InternalMyCsv.g:2348:1: ( ( rule__Load__Group_3__0 )? )
             {
-            // InternalMyCsv.g:2348:1: ( ( rule__Load__NoHeaderAssignment_3 )? )
-            // InternalMyCsv.g:2349:2: ( rule__Load__NoHeaderAssignment_3 )?
+            // InternalMyCsv.g:2348:1: ( ( rule__Load__Group_3__0 )? )
+            // InternalMyCsv.g:2349:2: ( rule__Load__Group_3__0 )?
             {
-             before(grammarAccess.getLoadAccess().getNoHeaderAssignment_3()); 
-            // InternalMyCsv.g:2350:2: ( rule__Load__NoHeaderAssignment_3 )?
+             before(grammarAccess.getLoadAccess().getGroup_3()); 
+            // InternalMyCsv.g:2350:2: ( rule__Load__Group_3__0 )?
             int alt24=2;
             int LA24_0 = input.LA(1);
 
-            if ( (LA24_0==53) ) {
+            if ( (LA24_0==54) ) {
                 alt24=1;
             }
             switch (alt24) {
                 case 1 :
-                    // InternalMyCsv.g:2350:3: rule__Load__NoHeaderAssignment_3
+                    // InternalMyCsv.g:2350:3: rule__Load__Group_3__0
                     {
                     pushFollow(FOLLOW_2);
-                    rule__Load__NoHeaderAssignment_3();
+                    rule__Load__Group_3__0();
 
                     state._fsp--;
 
@@ -7676,7 +7677,7 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
             }
 
-             after(grammarAccess.getLoadAccess().getNoHeaderAssignment_3()); 
+             after(grammarAccess.getLoadAccess().getGroup_3()); 
 
             }
 
@@ -7938,15 +7939,170 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__Load__Group_2__2__Impl"
 
 
+    // $ANTLR start "rule__Load__Group_3__0"
+    // InternalMyCsv.g:2440:1: rule__Load__Group_3__0 : rule__Load__Group_3__0__Impl rule__Load__Group_3__1 ;
+    public final void rule__Load__Group_3__0() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalMyCsv.g:2444:1: ( rule__Load__Group_3__0__Impl rule__Load__Group_3__1 )
+            // InternalMyCsv.g:2445:2: rule__Load__Group_3__0__Impl rule__Load__Group_3__1
+            {
+            pushFollow(FOLLOW_16);
+            rule__Load__Group_3__0__Impl();
+
+            state._fsp--;
+
+            pushFollow(FOLLOW_2);
+            rule__Load__Group_3__1();
+
+            state._fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__Load__Group_3__0"
+
+
+    // $ANTLR start "rule__Load__Group_3__0__Impl"
+    // InternalMyCsv.g:2452:1: rule__Load__Group_3__0__Impl : ( ( rule__Load__NoHeaderAssignment_3_0 ) ) ;
+    public final void rule__Load__Group_3__0__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalMyCsv.g:2456:1: ( ( ( rule__Load__NoHeaderAssignment_3_0 ) ) )
+            // InternalMyCsv.g:2457:1: ( ( rule__Load__NoHeaderAssignment_3_0 ) )
+            {
+            // InternalMyCsv.g:2457:1: ( ( rule__Load__NoHeaderAssignment_3_0 ) )
+            // InternalMyCsv.g:2458:2: ( rule__Load__NoHeaderAssignment_3_0 )
+            {
+             before(grammarAccess.getLoadAccess().getNoHeaderAssignment_3_0()); 
+            // InternalMyCsv.g:2459:2: ( rule__Load__NoHeaderAssignment_3_0 )
+            // InternalMyCsv.g:2459:3: rule__Load__NoHeaderAssignment_3_0
+            {
+            pushFollow(FOLLOW_2);
+            rule__Load__NoHeaderAssignment_3_0();
+
+            state._fsp--;
+
+
+            }
+
+             after(grammarAccess.getLoadAccess().getNoHeaderAssignment_3_0()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__Load__Group_3__0__Impl"
+
+
+    // $ANTLR start "rule__Load__Group_3__1"
+    // InternalMyCsv.g:2467:1: rule__Load__Group_3__1 : rule__Load__Group_3__1__Impl ;
+    public final void rule__Load__Group_3__1() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalMyCsv.g:2471:1: ( rule__Load__Group_3__1__Impl )
+            // InternalMyCsv.g:2472:2: rule__Load__Group_3__1__Impl
+            {
+            pushFollow(FOLLOW_2);
+            rule__Load__Group_3__1__Impl();
+
+            state._fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__Load__Group_3__1"
+
+
+    // $ANTLR start "rule__Load__Group_3__1__Impl"
+    // InternalMyCsv.g:2478:1: rule__Load__Group_3__1__Impl : ( 'header' ) ;
+    public final void rule__Load__Group_3__1__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalMyCsv.g:2482:1: ( ( 'header' ) )
+            // InternalMyCsv.g:2483:1: ( 'header' )
+            {
+            // InternalMyCsv.g:2483:1: ( 'header' )
+            // InternalMyCsv.g:2484:2: 'header'
+            {
+             before(grammarAccess.getLoadAccess().getHeaderKeyword_3_1()); 
+            match(input,35,FOLLOW_2); 
+             after(grammarAccess.getLoadAccess().getHeaderKeyword_3_1()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__Load__Group_3__1__Impl"
+
+
     // $ANTLR start "rule__Store__Group__0"
-    // InternalMyCsv.g:2440:1: rule__Store__Group__0 : rule__Store__Group__0__Impl rule__Store__Group__1 ;
+    // InternalMyCsv.g:2494:1: rule__Store__Group__0 : rule__Store__Group__0__Impl rule__Store__Group__1 ;
     public final void rule__Store__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:2444:1: ( rule__Store__Group__0__Impl rule__Store__Group__1 )
-            // InternalMyCsv.g:2445:2: rule__Store__Group__0__Impl rule__Store__Group__1
+            // InternalMyCsv.g:2498:1: ( rule__Store__Group__0__Impl rule__Store__Group__1 )
+            // InternalMyCsv.g:2499:2: rule__Store__Group__0__Impl rule__Store__Group__1
             {
             pushFollow(FOLLOW_13);
             rule__Store__Group__0__Impl();
@@ -7977,20 +8133,20 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Store__Group__0__Impl"
-    // InternalMyCsv.g:2452:1: rule__Store__Group__0__Impl : ( 'Store' ) ;
+    // InternalMyCsv.g:2506:1: rule__Store__Group__0__Impl : ( 'Store' ) ;
     public final void rule__Store__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:2456:1: ( ( 'Store' ) )
-            // InternalMyCsv.g:2457:1: ( 'Store' )
+            // InternalMyCsv.g:2510:1: ( ( 'Store' ) )
+            // InternalMyCsv.g:2511:1: ( 'Store' )
             {
-            // InternalMyCsv.g:2457:1: ( 'Store' )
-            // InternalMyCsv.g:2458:2: 'Store'
+            // InternalMyCsv.g:2511:1: ( 'Store' )
+            // InternalMyCsv.g:2512:2: 'Store'
             {
              before(grammarAccess.getStoreAccess().getStoreKeyword_0()); 
-            match(input,35,FOLLOW_2); 
+            match(input,36,FOLLOW_2); 
              after(grammarAccess.getStoreAccess().getStoreKeyword_0()); 
 
             }
@@ -8014,16 +8170,16 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Store__Group__1"
-    // InternalMyCsv.g:2467:1: rule__Store__Group__1 : rule__Store__Group__1__Impl rule__Store__Group__2 ;
+    // InternalMyCsv.g:2521:1: rule__Store__Group__1 : rule__Store__Group__1__Impl rule__Store__Group__2 ;
     public final void rule__Store__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:2471:1: ( rule__Store__Group__1__Impl rule__Store__Group__2 )
-            // InternalMyCsv.g:2472:2: rule__Store__Group__1__Impl rule__Store__Group__2
+            // InternalMyCsv.g:2525:1: ( rule__Store__Group__1__Impl rule__Store__Group__2 )
+            // InternalMyCsv.g:2526:2: rule__Store__Group__1__Impl rule__Store__Group__2
             {
-            pushFollow(FOLLOW_16);
+            pushFollow(FOLLOW_14);
             rule__Store__Group__1__Impl();
 
             state._fsp--;
@@ -8052,21 +8208,21 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Store__Group__1__Impl"
-    // InternalMyCsv.g:2479:1: rule__Store__Group__1__Impl : ( ( rule__Store__PathAssignment_1 ) ) ;
+    // InternalMyCsv.g:2533:1: rule__Store__Group__1__Impl : ( ( rule__Store__PathAssignment_1 ) ) ;
     public final void rule__Store__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:2483:1: ( ( ( rule__Store__PathAssignment_1 ) ) )
-            // InternalMyCsv.g:2484:1: ( ( rule__Store__PathAssignment_1 ) )
+            // InternalMyCsv.g:2537:1: ( ( ( rule__Store__PathAssignment_1 ) ) )
+            // InternalMyCsv.g:2538:1: ( ( rule__Store__PathAssignment_1 ) )
             {
-            // InternalMyCsv.g:2484:1: ( ( rule__Store__PathAssignment_1 ) )
-            // InternalMyCsv.g:2485:2: ( rule__Store__PathAssignment_1 )
+            // InternalMyCsv.g:2538:1: ( ( rule__Store__PathAssignment_1 ) )
+            // InternalMyCsv.g:2539:2: ( rule__Store__PathAssignment_1 )
             {
              before(grammarAccess.getStoreAccess().getPathAssignment_1()); 
-            // InternalMyCsv.g:2486:2: ( rule__Store__PathAssignment_1 )
-            // InternalMyCsv.g:2486:3: rule__Store__PathAssignment_1
+            // InternalMyCsv.g:2540:2: ( rule__Store__PathAssignment_1 )
+            // InternalMyCsv.g:2540:3: rule__Store__PathAssignment_1
             {
             pushFollow(FOLLOW_2);
             rule__Store__PathAssignment_1();
@@ -8099,17 +8255,22 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Store__Group__2"
-    // InternalMyCsv.g:2494:1: rule__Store__Group__2 : rule__Store__Group__2__Impl ;
+    // InternalMyCsv.g:2548:1: rule__Store__Group__2 : rule__Store__Group__2__Impl rule__Store__Group__3 ;
     public final void rule__Store__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:2498:1: ( rule__Store__Group__2__Impl )
-            // InternalMyCsv.g:2499:2: rule__Store__Group__2__Impl
+            // InternalMyCsv.g:2552:1: ( rule__Store__Group__2__Impl rule__Store__Group__3 )
+            // InternalMyCsv.g:2553:2: rule__Store__Group__2__Impl rule__Store__Group__3
             {
-            pushFollow(FOLLOW_2);
+            pushFollow(FOLLOW_14);
             rule__Store__Group__2__Impl();
+
+            state._fsp--;
+
+            pushFollow(FOLLOW_2);
+            rule__Store__Group__3();
 
             state._fsp--;
 
@@ -8132,29 +8293,29 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Store__Group__2__Impl"
-    // InternalMyCsv.g:2505:1: rule__Store__Group__2__Impl : ( ( rule__Store__Group_2__0 )? ) ;
+    // InternalMyCsv.g:2560:1: rule__Store__Group__2__Impl : ( ( rule__Store__Group_2__0 )? ) ;
     public final void rule__Store__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:2509:1: ( ( ( rule__Store__Group_2__0 )? ) )
-            // InternalMyCsv.g:2510:1: ( ( rule__Store__Group_2__0 )? )
+            // InternalMyCsv.g:2564:1: ( ( ( rule__Store__Group_2__0 )? ) )
+            // InternalMyCsv.g:2565:1: ( ( rule__Store__Group_2__0 )? )
             {
-            // InternalMyCsv.g:2510:1: ( ( rule__Store__Group_2__0 )? )
-            // InternalMyCsv.g:2511:2: ( rule__Store__Group_2__0 )?
+            // InternalMyCsv.g:2565:1: ( ( rule__Store__Group_2__0 )? )
+            // InternalMyCsv.g:2566:2: ( rule__Store__Group_2__0 )?
             {
              before(grammarAccess.getStoreAccess().getGroup_2()); 
-            // InternalMyCsv.g:2512:2: ( rule__Store__Group_2__0 )?
+            // InternalMyCsv.g:2567:2: ( rule__Store__Group_2__0 )?
             int alt25=2;
             int LA25_0 = input.LA(1);
 
-            if ( (LA25_0==52) ) {
+            if ( (LA25_0==53) ) {
                 alt25=1;
             }
             switch (alt25) {
                 case 1 :
-                    // InternalMyCsv.g:2512:3: rule__Store__Group_2__0
+                    // InternalMyCsv.g:2567:3: rule__Store__Group_2__0
                     {
                     pushFollow(FOLLOW_2);
                     rule__Store__Group_2__0();
@@ -8189,15 +8350,106 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__Store__Group__2__Impl"
 
 
+    // $ANTLR start "rule__Store__Group__3"
+    // InternalMyCsv.g:2575:1: rule__Store__Group__3 : rule__Store__Group__3__Impl ;
+    public final void rule__Store__Group__3() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalMyCsv.g:2579:1: ( rule__Store__Group__3__Impl )
+            // InternalMyCsv.g:2580:2: rule__Store__Group__3__Impl
+            {
+            pushFollow(FOLLOW_2);
+            rule__Store__Group__3__Impl();
+
+            state._fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__Store__Group__3"
+
+
+    // $ANTLR start "rule__Store__Group__3__Impl"
+    // InternalMyCsv.g:2586:1: rule__Store__Group__3__Impl : ( ( rule__Store__Group_3__0 )? ) ;
+    public final void rule__Store__Group__3__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalMyCsv.g:2590:1: ( ( ( rule__Store__Group_3__0 )? ) )
+            // InternalMyCsv.g:2591:1: ( ( rule__Store__Group_3__0 )? )
+            {
+            // InternalMyCsv.g:2591:1: ( ( rule__Store__Group_3__0 )? )
+            // InternalMyCsv.g:2592:2: ( rule__Store__Group_3__0 )?
+            {
+             before(grammarAccess.getStoreAccess().getGroup_3()); 
+            // InternalMyCsv.g:2593:2: ( rule__Store__Group_3__0 )?
+            int alt26=2;
+            int LA26_0 = input.LA(1);
+
+            if ( (LA26_0==54) ) {
+                alt26=1;
+            }
+            switch (alt26) {
+                case 1 :
+                    // InternalMyCsv.g:2593:3: rule__Store__Group_3__0
+                    {
+                    pushFollow(FOLLOW_2);
+                    rule__Store__Group_3__0();
+
+                    state._fsp--;
+
+
+                    }
+                    break;
+
+            }
+
+             after(grammarAccess.getStoreAccess().getGroup_3()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__Store__Group__3__Impl"
+
+
     // $ANTLR start "rule__Store__Group_2__0"
-    // InternalMyCsv.g:2521:1: rule__Store__Group_2__0 : rule__Store__Group_2__0__Impl rule__Store__Group_2__1 ;
+    // InternalMyCsv.g:2602:1: rule__Store__Group_2__0 : rule__Store__Group_2__0__Impl rule__Store__Group_2__1 ;
     public final void rule__Store__Group_2__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:2525:1: ( rule__Store__Group_2__0__Impl rule__Store__Group_2__1 )
-            // InternalMyCsv.g:2526:2: rule__Store__Group_2__0__Impl rule__Store__Group_2__1
+            // InternalMyCsv.g:2606:1: ( rule__Store__Group_2__0__Impl rule__Store__Group_2__1 )
+            // InternalMyCsv.g:2607:2: rule__Store__Group_2__0__Impl rule__Store__Group_2__1
             {
             pushFollow(FOLLOW_15);
             rule__Store__Group_2__0__Impl();
@@ -8228,21 +8480,21 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Store__Group_2__0__Impl"
-    // InternalMyCsv.g:2533:1: rule__Store__Group_2__0__Impl : ( ( rule__Store__SepDefinedAssignment_2_0 ) ) ;
+    // InternalMyCsv.g:2614:1: rule__Store__Group_2__0__Impl : ( ( rule__Store__SepDefinedAssignment_2_0 ) ) ;
     public final void rule__Store__Group_2__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:2537:1: ( ( ( rule__Store__SepDefinedAssignment_2_0 ) ) )
-            // InternalMyCsv.g:2538:1: ( ( rule__Store__SepDefinedAssignment_2_0 ) )
+            // InternalMyCsv.g:2618:1: ( ( ( rule__Store__SepDefinedAssignment_2_0 ) ) )
+            // InternalMyCsv.g:2619:1: ( ( rule__Store__SepDefinedAssignment_2_0 ) )
             {
-            // InternalMyCsv.g:2538:1: ( ( rule__Store__SepDefinedAssignment_2_0 ) )
-            // InternalMyCsv.g:2539:2: ( rule__Store__SepDefinedAssignment_2_0 )
+            // InternalMyCsv.g:2619:1: ( ( rule__Store__SepDefinedAssignment_2_0 ) )
+            // InternalMyCsv.g:2620:2: ( rule__Store__SepDefinedAssignment_2_0 )
             {
              before(grammarAccess.getStoreAccess().getSepDefinedAssignment_2_0()); 
-            // InternalMyCsv.g:2540:2: ( rule__Store__SepDefinedAssignment_2_0 )
-            // InternalMyCsv.g:2540:3: rule__Store__SepDefinedAssignment_2_0
+            // InternalMyCsv.g:2621:2: ( rule__Store__SepDefinedAssignment_2_0 )
+            // InternalMyCsv.g:2621:3: rule__Store__SepDefinedAssignment_2_0
             {
             pushFollow(FOLLOW_2);
             rule__Store__SepDefinedAssignment_2_0();
@@ -8275,14 +8527,14 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Store__Group_2__1"
-    // InternalMyCsv.g:2548:1: rule__Store__Group_2__1 : rule__Store__Group_2__1__Impl rule__Store__Group_2__2 ;
+    // InternalMyCsv.g:2629:1: rule__Store__Group_2__1 : rule__Store__Group_2__1__Impl rule__Store__Group_2__2 ;
     public final void rule__Store__Group_2__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:2552:1: ( rule__Store__Group_2__1__Impl rule__Store__Group_2__2 )
-            // InternalMyCsv.g:2553:2: rule__Store__Group_2__1__Impl rule__Store__Group_2__2
+            // InternalMyCsv.g:2633:1: ( rule__Store__Group_2__1__Impl rule__Store__Group_2__2 )
+            // InternalMyCsv.g:2634:2: rule__Store__Group_2__1__Impl rule__Store__Group_2__2
             {
             pushFollow(FOLLOW_13);
             rule__Store__Group_2__1__Impl();
@@ -8313,17 +8565,17 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Store__Group_2__1__Impl"
-    // InternalMyCsv.g:2560:1: rule__Store__Group_2__1__Impl : ( '=' ) ;
+    // InternalMyCsv.g:2641:1: rule__Store__Group_2__1__Impl : ( '=' ) ;
     public final void rule__Store__Group_2__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:2564:1: ( ( '=' ) )
-            // InternalMyCsv.g:2565:1: ( '=' )
+            // InternalMyCsv.g:2645:1: ( ( '=' ) )
+            // InternalMyCsv.g:2646:1: ( '=' )
             {
-            // InternalMyCsv.g:2565:1: ( '=' )
-            // InternalMyCsv.g:2566:2: '='
+            // InternalMyCsv.g:2646:1: ( '=' )
+            // InternalMyCsv.g:2647:2: '='
             {
              before(grammarAccess.getStoreAccess().getEqualsSignKeyword_2_1()); 
             match(input,34,FOLLOW_2); 
@@ -8350,14 +8602,14 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Store__Group_2__2"
-    // InternalMyCsv.g:2575:1: rule__Store__Group_2__2 : rule__Store__Group_2__2__Impl ;
+    // InternalMyCsv.g:2656:1: rule__Store__Group_2__2 : rule__Store__Group_2__2__Impl ;
     public final void rule__Store__Group_2__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:2579:1: ( rule__Store__Group_2__2__Impl )
-            // InternalMyCsv.g:2580:2: rule__Store__Group_2__2__Impl
+            // InternalMyCsv.g:2660:1: ( rule__Store__Group_2__2__Impl )
+            // InternalMyCsv.g:2661:2: rule__Store__Group_2__2__Impl
             {
             pushFollow(FOLLOW_2);
             rule__Store__Group_2__2__Impl();
@@ -8383,21 +8635,21 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Store__Group_2__2__Impl"
-    // InternalMyCsv.g:2586:1: rule__Store__Group_2__2__Impl : ( ( rule__Store__SepAssignment_2_2 ) ) ;
+    // InternalMyCsv.g:2667:1: rule__Store__Group_2__2__Impl : ( ( rule__Store__SepAssignment_2_2 ) ) ;
     public final void rule__Store__Group_2__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:2590:1: ( ( ( rule__Store__SepAssignment_2_2 ) ) )
-            // InternalMyCsv.g:2591:1: ( ( rule__Store__SepAssignment_2_2 ) )
+            // InternalMyCsv.g:2671:1: ( ( ( rule__Store__SepAssignment_2_2 ) ) )
+            // InternalMyCsv.g:2672:1: ( ( rule__Store__SepAssignment_2_2 ) )
             {
-            // InternalMyCsv.g:2591:1: ( ( rule__Store__SepAssignment_2_2 ) )
-            // InternalMyCsv.g:2592:2: ( rule__Store__SepAssignment_2_2 )
+            // InternalMyCsv.g:2672:1: ( ( rule__Store__SepAssignment_2_2 ) )
+            // InternalMyCsv.g:2673:2: ( rule__Store__SepAssignment_2_2 )
             {
              before(grammarAccess.getStoreAccess().getSepAssignment_2_2()); 
-            // InternalMyCsv.g:2593:2: ( rule__Store__SepAssignment_2_2 )
-            // InternalMyCsv.g:2593:3: rule__Store__SepAssignment_2_2
+            // InternalMyCsv.g:2674:2: ( rule__Store__SepAssignment_2_2 )
+            // InternalMyCsv.g:2674:3: rule__Store__SepAssignment_2_2
             {
             pushFollow(FOLLOW_2);
             rule__Store__SepAssignment_2_2();
@@ -8429,15 +8681,170 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__Store__Group_2__2__Impl"
 
 
+    // $ANTLR start "rule__Store__Group_3__0"
+    // InternalMyCsv.g:2683:1: rule__Store__Group_3__0 : rule__Store__Group_3__0__Impl rule__Store__Group_3__1 ;
+    public final void rule__Store__Group_3__0() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalMyCsv.g:2687:1: ( rule__Store__Group_3__0__Impl rule__Store__Group_3__1 )
+            // InternalMyCsv.g:2688:2: rule__Store__Group_3__0__Impl rule__Store__Group_3__1
+            {
+            pushFollow(FOLLOW_16);
+            rule__Store__Group_3__0__Impl();
+
+            state._fsp--;
+
+            pushFollow(FOLLOW_2);
+            rule__Store__Group_3__1();
+
+            state._fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__Store__Group_3__0"
+
+
+    // $ANTLR start "rule__Store__Group_3__0__Impl"
+    // InternalMyCsv.g:2695:1: rule__Store__Group_3__0__Impl : ( ( rule__Store__NoHeaderAssignment_3_0 ) ) ;
+    public final void rule__Store__Group_3__0__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalMyCsv.g:2699:1: ( ( ( rule__Store__NoHeaderAssignment_3_0 ) ) )
+            // InternalMyCsv.g:2700:1: ( ( rule__Store__NoHeaderAssignment_3_0 ) )
+            {
+            // InternalMyCsv.g:2700:1: ( ( rule__Store__NoHeaderAssignment_3_0 ) )
+            // InternalMyCsv.g:2701:2: ( rule__Store__NoHeaderAssignment_3_0 )
+            {
+             before(grammarAccess.getStoreAccess().getNoHeaderAssignment_3_0()); 
+            // InternalMyCsv.g:2702:2: ( rule__Store__NoHeaderAssignment_3_0 )
+            // InternalMyCsv.g:2702:3: rule__Store__NoHeaderAssignment_3_0
+            {
+            pushFollow(FOLLOW_2);
+            rule__Store__NoHeaderAssignment_3_0();
+
+            state._fsp--;
+
+
+            }
+
+             after(grammarAccess.getStoreAccess().getNoHeaderAssignment_3_0()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__Store__Group_3__0__Impl"
+
+
+    // $ANTLR start "rule__Store__Group_3__1"
+    // InternalMyCsv.g:2710:1: rule__Store__Group_3__1 : rule__Store__Group_3__1__Impl ;
+    public final void rule__Store__Group_3__1() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalMyCsv.g:2714:1: ( rule__Store__Group_3__1__Impl )
+            // InternalMyCsv.g:2715:2: rule__Store__Group_3__1__Impl
+            {
+            pushFollow(FOLLOW_2);
+            rule__Store__Group_3__1__Impl();
+
+            state._fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__Store__Group_3__1"
+
+
+    // $ANTLR start "rule__Store__Group_3__1__Impl"
+    // InternalMyCsv.g:2721:1: rule__Store__Group_3__1__Impl : ( 'header' ) ;
+    public final void rule__Store__Group_3__1__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalMyCsv.g:2725:1: ( ( 'header' ) )
+            // InternalMyCsv.g:2726:1: ( 'header' )
+            {
+            // InternalMyCsv.g:2726:1: ( 'header' )
+            // InternalMyCsv.g:2727:2: 'header'
+            {
+             before(grammarAccess.getStoreAccess().getHeaderKeyword_3_1()); 
+            match(input,35,FOLLOW_2); 
+             after(grammarAccess.getStoreAccess().getHeaderKeyword_3_1()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__Store__Group_3__1__Impl"
+
+
     // $ANTLR start "rule__ExportJson__Group__0"
-    // InternalMyCsv.g:2602:1: rule__ExportJson__Group__0 : rule__ExportJson__Group__0__Impl rule__ExportJson__Group__1 ;
+    // InternalMyCsv.g:2737:1: rule__ExportJson__Group__0 : rule__ExportJson__Group__0__Impl rule__ExportJson__Group__1 ;
     public final void rule__ExportJson__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:2606:1: ( rule__ExportJson__Group__0__Impl rule__ExportJson__Group__1 )
-            // InternalMyCsv.g:2607:2: rule__ExportJson__Group__0__Impl rule__ExportJson__Group__1
+            // InternalMyCsv.g:2741:1: ( rule__ExportJson__Group__0__Impl rule__ExportJson__Group__1 )
+            // InternalMyCsv.g:2742:2: rule__ExportJson__Group__0__Impl rule__ExportJson__Group__1
             {
             pushFollow(FOLLOW_13);
             rule__ExportJson__Group__0__Impl();
@@ -8468,20 +8875,20 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ExportJson__Group__0__Impl"
-    // InternalMyCsv.g:2614:1: rule__ExportJson__Group__0__Impl : ( 'ExportJson' ) ;
+    // InternalMyCsv.g:2749:1: rule__ExportJson__Group__0__Impl : ( 'ExportJson' ) ;
     public final void rule__ExportJson__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:2618:1: ( ( 'ExportJson' ) )
-            // InternalMyCsv.g:2619:1: ( 'ExportJson' )
+            // InternalMyCsv.g:2753:1: ( ( 'ExportJson' ) )
+            // InternalMyCsv.g:2754:1: ( 'ExportJson' )
             {
-            // InternalMyCsv.g:2619:1: ( 'ExportJson' )
-            // InternalMyCsv.g:2620:2: 'ExportJson'
+            // InternalMyCsv.g:2754:1: ( 'ExportJson' )
+            // InternalMyCsv.g:2755:2: 'ExportJson'
             {
              before(grammarAccess.getExportJsonAccess().getExportJsonKeyword_0()); 
-            match(input,36,FOLLOW_2); 
+            match(input,37,FOLLOW_2); 
              after(grammarAccess.getExportJsonAccess().getExportJsonKeyword_0()); 
 
             }
@@ -8505,14 +8912,14 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ExportJson__Group__1"
-    // InternalMyCsv.g:2629:1: rule__ExportJson__Group__1 : rule__ExportJson__Group__1__Impl ;
+    // InternalMyCsv.g:2764:1: rule__ExportJson__Group__1 : rule__ExportJson__Group__1__Impl ;
     public final void rule__ExportJson__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:2633:1: ( rule__ExportJson__Group__1__Impl )
-            // InternalMyCsv.g:2634:2: rule__ExportJson__Group__1__Impl
+            // InternalMyCsv.g:2768:1: ( rule__ExportJson__Group__1__Impl )
+            // InternalMyCsv.g:2769:2: rule__ExportJson__Group__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__ExportJson__Group__1__Impl();
@@ -8538,21 +8945,21 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ExportJson__Group__1__Impl"
-    // InternalMyCsv.g:2640:1: rule__ExportJson__Group__1__Impl : ( ( rule__ExportJson__PathAssignment_1 ) ) ;
+    // InternalMyCsv.g:2775:1: rule__ExportJson__Group__1__Impl : ( ( rule__ExportJson__PathAssignment_1 ) ) ;
     public final void rule__ExportJson__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:2644:1: ( ( ( rule__ExportJson__PathAssignment_1 ) ) )
-            // InternalMyCsv.g:2645:1: ( ( rule__ExportJson__PathAssignment_1 ) )
+            // InternalMyCsv.g:2779:1: ( ( ( rule__ExportJson__PathAssignment_1 ) ) )
+            // InternalMyCsv.g:2780:1: ( ( rule__ExportJson__PathAssignment_1 ) )
             {
-            // InternalMyCsv.g:2645:1: ( ( rule__ExportJson__PathAssignment_1 ) )
-            // InternalMyCsv.g:2646:2: ( rule__ExportJson__PathAssignment_1 )
+            // InternalMyCsv.g:2780:1: ( ( rule__ExportJson__PathAssignment_1 ) )
+            // InternalMyCsv.g:2781:2: ( rule__ExportJson__PathAssignment_1 )
             {
              before(grammarAccess.getExportJsonAccess().getPathAssignment_1()); 
-            // InternalMyCsv.g:2647:2: ( rule__ExportJson__PathAssignment_1 )
-            // InternalMyCsv.g:2647:3: rule__ExportJson__PathAssignment_1
+            // InternalMyCsv.g:2782:2: ( rule__ExportJson__PathAssignment_1 )
+            // InternalMyCsv.g:2782:3: rule__ExportJson__PathAssignment_1
             {
             pushFollow(FOLLOW_2);
             rule__ExportJson__PathAssignment_1();
@@ -8585,14 +8992,14 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Projection__Group__0"
-    // InternalMyCsv.g:2656:1: rule__Projection__Group__0 : rule__Projection__Group__0__Impl rule__Projection__Group__1 ;
+    // InternalMyCsv.g:2791:1: rule__Projection__Group__0 : rule__Projection__Group__0__Impl rule__Projection__Group__1 ;
     public final void rule__Projection__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:2660:1: ( rule__Projection__Group__0__Impl rule__Projection__Group__1 )
-            // InternalMyCsv.g:2661:2: rule__Projection__Group__0__Impl rule__Projection__Group__1
+            // InternalMyCsv.g:2795:1: ( rule__Projection__Group__0__Impl rule__Projection__Group__1 )
+            // InternalMyCsv.g:2796:2: rule__Projection__Group__0__Impl rule__Projection__Group__1
             {
             pushFollow(FOLLOW_8);
             rule__Projection__Group__0__Impl();
@@ -8623,20 +9030,20 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Projection__Group__0__Impl"
-    // InternalMyCsv.g:2668:1: rule__Projection__Group__0__Impl : ( 'Projection' ) ;
+    // InternalMyCsv.g:2803:1: rule__Projection__Group__0__Impl : ( 'Projection' ) ;
     public final void rule__Projection__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:2672:1: ( ( 'Projection' ) )
-            // InternalMyCsv.g:2673:1: ( 'Projection' )
+            // InternalMyCsv.g:2807:1: ( ( 'Projection' ) )
+            // InternalMyCsv.g:2808:1: ( 'Projection' )
             {
-            // InternalMyCsv.g:2673:1: ( 'Projection' )
-            // InternalMyCsv.g:2674:2: 'Projection'
+            // InternalMyCsv.g:2808:1: ( 'Projection' )
+            // InternalMyCsv.g:2809:2: 'Projection'
             {
              before(grammarAccess.getProjectionAccess().getProjectionKeyword_0()); 
-            match(input,37,FOLLOW_2); 
+            match(input,38,FOLLOW_2); 
              after(grammarAccess.getProjectionAccess().getProjectionKeyword_0()); 
 
             }
@@ -8660,14 +9067,14 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Projection__Group__1"
-    // InternalMyCsv.g:2683:1: rule__Projection__Group__1 : rule__Projection__Group__1__Impl ;
+    // InternalMyCsv.g:2818:1: rule__Projection__Group__1 : rule__Projection__Group__1__Impl ;
     public final void rule__Projection__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:2687:1: ( rule__Projection__Group__1__Impl )
-            // InternalMyCsv.g:2688:2: rule__Projection__Group__1__Impl
+            // InternalMyCsv.g:2822:1: ( rule__Projection__Group__1__Impl )
+            // InternalMyCsv.g:2823:2: rule__Projection__Group__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__Projection__Group__1__Impl();
@@ -8693,21 +9100,21 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Projection__Group__1__Impl"
-    // InternalMyCsv.g:2694:1: rule__Projection__Group__1__Impl : ( ( rule__Projection__FieldAssignment_1 ) ) ;
+    // InternalMyCsv.g:2829:1: rule__Projection__Group__1__Impl : ( ( rule__Projection__FieldAssignment_1 ) ) ;
     public final void rule__Projection__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:2698:1: ( ( ( rule__Projection__FieldAssignment_1 ) ) )
-            // InternalMyCsv.g:2699:1: ( ( rule__Projection__FieldAssignment_1 ) )
+            // InternalMyCsv.g:2833:1: ( ( ( rule__Projection__FieldAssignment_1 ) ) )
+            // InternalMyCsv.g:2834:1: ( ( rule__Projection__FieldAssignment_1 ) )
             {
-            // InternalMyCsv.g:2699:1: ( ( rule__Projection__FieldAssignment_1 ) )
-            // InternalMyCsv.g:2700:2: ( rule__Projection__FieldAssignment_1 )
+            // InternalMyCsv.g:2834:1: ( ( rule__Projection__FieldAssignment_1 ) )
+            // InternalMyCsv.g:2835:2: ( rule__Projection__FieldAssignment_1 )
             {
              before(grammarAccess.getProjectionAccess().getFieldAssignment_1()); 
-            // InternalMyCsv.g:2701:2: ( rule__Projection__FieldAssignment_1 )
-            // InternalMyCsv.g:2701:3: rule__Projection__FieldAssignment_1
+            // InternalMyCsv.g:2836:2: ( rule__Projection__FieldAssignment_1 )
+            // InternalMyCsv.g:2836:3: rule__Projection__FieldAssignment_1
             {
             pushFollow(FOLLOW_2);
             rule__Projection__FieldAssignment_1();
@@ -8740,14 +9147,14 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Select__Group__0"
-    // InternalMyCsv.g:2710:1: rule__Select__Group__0 : rule__Select__Group__0__Impl rule__Select__Group__1 ;
+    // InternalMyCsv.g:2845:1: rule__Select__Group__0 : rule__Select__Group__0__Impl rule__Select__Group__1 ;
     public final void rule__Select__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:2714:1: ( rule__Select__Group__0__Impl rule__Select__Group__1 )
-            // InternalMyCsv.g:2715:2: rule__Select__Group__0__Impl rule__Select__Group__1
+            // InternalMyCsv.g:2849:1: ( rule__Select__Group__0__Impl rule__Select__Group__1 )
+            // InternalMyCsv.g:2850:2: rule__Select__Group__0__Impl rule__Select__Group__1
             {
             pushFollow(FOLLOW_17);
             rule__Select__Group__0__Impl();
@@ -8778,20 +9185,20 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Select__Group__0__Impl"
-    // InternalMyCsv.g:2722:1: rule__Select__Group__0__Impl : ( 'Select' ) ;
+    // InternalMyCsv.g:2857:1: rule__Select__Group__0__Impl : ( 'Select' ) ;
     public final void rule__Select__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:2726:1: ( ( 'Select' ) )
-            // InternalMyCsv.g:2727:1: ( 'Select' )
+            // InternalMyCsv.g:2861:1: ( ( 'Select' ) )
+            // InternalMyCsv.g:2862:1: ( 'Select' )
             {
-            // InternalMyCsv.g:2727:1: ( 'Select' )
-            // InternalMyCsv.g:2728:2: 'Select'
+            // InternalMyCsv.g:2862:1: ( 'Select' )
+            // InternalMyCsv.g:2863:2: 'Select'
             {
              before(grammarAccess.getSelectAccess().getSelectKeyword_0()); 
-            match(input,38,FOLLOW_2); 
+            match(input,39,FOLLOW_2); 
              after(grammarAccess.getSelectAccess().getSelectKeyword_0()); 
 
             }
@@ -8815,14 +9222,14 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Select__Group__1"
-    // InternalMyCsv.g:2737:1: rule__Select__Group__1 : rule__Select__Group__1__Impl ;
+    // InternalMyCsv.g:2872:1: rule__Select__Group__1 : rule__Select__Group__1__Impl ;
     public final void rule__Select__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:2741:1: ( rule__Select__Group__1__Impl )
-            // InternalMyCsv.g:2742:2: rule__Select__Group__1__Impl
+            // InternalMyCsv.g:2876:1: ( rule__Select__Group__1__Impl )
+            // InternalMyCsv.g:2877:2: rule__Select__Group__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__Select__Group__1__Impl();
@@ -8848,21 +9255,21 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Select__Group__1__Impl"
-    // InternalMyCsv.g:2748:1: rule__Select__Group__1__Impl : ( ( rule__Select__LineAssignment_1 ) ) ;
+    // InternalMyCsv.g:2883:1: rule__Select__Group__1__Impl : ( ( rule__Select__LineAssignment_1 ) ) ;
     public final void rule__Select__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:2752:1: ( ( ( rule__Select__LineAssignment_1 ) ) )
-            // InternalMyCsv.g:2753:1: ( ( rule__Select__LineAssignment_1 ) )
+            // InternalMyCsv.g:2887:1: ( ( ( rule__Select__LineAssignment_1 ) ) )
+            // InternalMyCsv.g:2888:1: ( ( rule__Select__LineAssignment_1 ) )
             {
-            // InternalMyCsv.g:2753:1: ( ( rule__Select__LineAssignment_1 ) )
-            // InternalMyCsv.g:2754:2: ( rule__Select__LineAssignment_1 )
+            // InternalMyCsv.g:2888:1: ( ( rule__Select__LineAssignment_1 ) )
+            // InternalMyCsv.g:2889:2: ( rule__Select__LineAssignment_1 )
             {
              before(grammarAccess.getSelectAccess().getLineAssignment_1()); 
-            // InternalMyCsv.g:2755:2: ( rule__Select__LineAssignment_1 )
-            // InternalMyCsv.g:2755:3: rule__Select__LineAssignment_1
+            // InternalMyCsv.g:2890:2: ( rule__Select__LineAssignment_1 )
+            // InternalMyCsv.g:2890:3: rule__Select__LineAssignment_1
             {
             pushFollow(FOLLOW_2);
             rule__Select__LineAssignment_1();
@@ -8895,14 +9302,14 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Delete__Group__0"
-    // InternalMyCsv.g:2764:1: rule__Delete__Group__0 : rule__Delete__Group__0__Impl rule__Delete__Group__1 ;
+    // InternalMyCsv.g:2899:1: rule__Delete__Group__0 : rule__Delete__Group__0__Impl rule__Delete__Group__1 ;
     public final void rule__Delete__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:2768:1: ( rule__Delete__Group__0__Impl rule__Delete__Group__1 )
-            // InternalMyCsv.g:2769:2: rule__Delete__Group__0__Impl rule__Delete__Group__1
+            // InternalMyCsv.g:2903:1: ( rule__Delete__Group__0__Impl rule__Delete__Group__1 )
+            // InternalMyCsv.g:2904:2: rule__Delete__Group__0__Impl rule__Delete__Group__1
             {
             pushFollow(FOLLOW_18);
             rule__Delete__Group__0__Impl();
@@ -8933,20 +9340,20 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Delete__Group__0__Impl"
-    // InternalMyCsv.g:2776:1: rule__Delete__Group__0__Impl : ( 'Delete' ) ;
+    // InternalMyCsv.g:2911:1: rule__Delete__Group__0__Impl : ( 'Delete' ) ;
     public final void rule__Delete__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:2780:1: ( ( 'Delete' ) )
-            // InternalMyCsv.g:2781:1: ( 'Delete' )
+            // InternalMyCsv.g:2915:1: ( ( 'Delete' ) )
+            // InternalMyCsv.g:2916:1: ( 'Delete' )
             {
-            // InternalMyCsv.g:2781:1: ( 'Delete' )
-            // InternalMyCsv.g:2782:2: 'Delete'
+            // InternalMyCsv.g:2916:1: ( 'Delete' )
+            // InternalMyCsv.g:2917:2: 'Delete'
             {
              before(grammarAccess.getDeleteAccess().getDeleteKeyword_0()); 
-            match(input,39,FOLLOW_2); 
+            match(input,40,FOLLOW_2); 
              after(grammarAccess.getDeleteAccess().getDeleteKeyword_0()); 
 
             }
@@ -8970,14 +9377,14 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Delete__Group__1"
-    // InternalMyCsv.g:2791:1: rule__Delete__Group__1 : rule__Delete__Group__1__Impl ;
+    // InternalMyCsv.g:2926:1: rule__Delete__Group__1 : rule__Delete__Group__1__Impl ;
     public final void rule__Delete__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:2795:1: ( rule__Delete__Group__1__Impl )
-            // InternalMyCsv.g:2796:2: rule__Delete__Group__1__Impl
+            // InternalMyCsv.g:2930:1: ( rule__Delete__Group__1__Impl )
+            // InternalMyCsv.g:2931:2: rule__Delete__Group__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__Delete__Group__1__Impl();
@@ -9003,21 +9410,21 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Delete__Group__1__Impl"
-    // InternalMyCsv.g:2802:1: rule__Delete__Group__1__Impl : ( ( rule__Delete__Alternatives_1 ) ) ;
+    // InternalMyCsv.g:2937:1: rule__Delete__Group__1__Impl : ( ( rule__Delete__Alternatives_1 ) ) ;
     public final void rule__Delete__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:2806:1: ( ( ( rule__Delete__Alternatives_1 ) ) )
-            // InternalMyCsv.g:2807:1: ( ( rule__Delete__Alternatives_1 ) )
+            // InternalMyCsv.g:2941:1: ( ( ( rule__Delete__Alternatives_1 ) ) )
+            // InternalMyCsv.g:2942:1: ( ( rule__Delete__Alternatives_1 ) )
             {
-            // InternalMyCsv.g:2807:1: ( ( rule__Delete__Alternatives_1 ) )
-            // InternalMyCsv.g:2808:2: ( rule__Delete__Alternatives_1 )
+            // InternalMyCsv.g:2942:1: ( ( rule__Delete__Alternatives_1 ) )
+            // InternalMyCsv.g:2943:2: ( rule__Delete__Alternatives_1 )
             {
              before(grammarAccess.getDeleteAccess().getAlternatives_1()); 
-            // InternalMyCsv.g:2809:2: ( rule__Delete__Alternatives_1 )
-            // InternalMyCsv.g:2809:3: rule__Delete__Alternatives_1
+            // InternalMyCsv.g:2944:2: ( rule__Delete__Alternatives_1 )
+            // InternalMyCsv.g:2944:3: rule__Delete__Alternatives_1
             {
             pushFollow(FOLLOW_2);
             rule__Delete__Alternatives_1();
@@ -9050,14 +9457,14 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__DeleteLine__Group__0"
-    // InternalMyCsv.g:2818:1: rule__DeleteLine__Group__0 : rule__DeleteLine__Group__0__Impl rule__DeleteLine__Group__1 ;
+    // InternalMyCsv.g:2953:1: rule__DeleteLine__Group__0 : rule__DeleteLine__Group__0__Impl rule__DeleteLine__Group__1 ;
     public final void rule__DeleteLine__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:2822:1: ( rule__DeleteLine__Group__0__Impl rule__DeleteLine__Group__1 )
-            // InternalMyCsv.g:2823:2: rule__DeleteLine__Group__0__Impl rule__DeleteLine__Group__1
+            // InternalMyCsv.g:2957:1: ( rule__DeleteLine__Group__0__Impl rule__DeleteLine__Group__1 )
+            // InternalMyCsv.g:2958:2: rule__DeleteLine__Group__0__Impl rule__DeleteLine__Group__1
             {
             pushFollow(FOLLOW_17);
             rule__DeleteLine__Group__0__Impl();
@@ -9088,20 +9495,20 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__DeleteLine__Group__0__Impl"
-    // InternalMyCsv.g:2830:1: rule__DeleteLine__Group__0__Impl : ( 'line' ) ;
+    // InternalMyCsv.g:2965:1: rule__DeleteLine__Group__0__Impl : ( 'line' ) ;
     public final void rule__DeleteLine__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:2834:1: ( ( 'line' ) )
-            // InternalMyCsv.g:2835:1: ( 'line' )
+            // InternalMyCsv.g:2969:1: ( ( 'line' ) )
+            // InternalMyCsv.g:2970:1: ( 'line' )
             {
-            // InternalMyCsv.g:2835:1: ( 'line' )
-            // InternalMyCsv.g:2836:2: 'line'
+            // InternalMyCsv.g:2970:1: ( 'line' )
+            // InternalMyCsv.g:2971:2: 'line'
             {
              before(grammarAccess.getDeleteLineAccess().getLineKeyword_0()); 
-            match(input,40,FOLLOW_2); 
+            match(input,41,FOLLOW_2); 
              after(grammarAccess.getDeleteLineAccess().getLineKeyword_0()); 
 
             }
@@ -9125,14 +9532,14 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__DeleteLine__Group__1"
-    // InternalMyCsv.g:2845:1: rule__DeleteLine__Group__1 : rule__DeleteLine__Group__1__Impl ;
+    // InternalMyCsv.g:2980:1: rule__DeleteLine__Group__1 : rule__DeleteLine__Group__1__Impl ;
     public final void rule__DeleteLine__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:2849:1: ( rule__DeleteLine__Group__1__Impl )
-            // InternalMyCsv.g:2850:2: rule__DeleteLine__Group__1__Impl
+            // InternalMyCsv.g:2984:1: ( rule__DeleteLine__Group__1__Impl )
+            // InternalMyCsv.g:2985:2: rule__DeleteLine__Group__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__DeleteLine__Group__1__Impl();
@@ -9158,21 +9565,21 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__DeleteLine__Group__1__Impl"
-    // InternalMyCsv.g:2856:1: rule__DeleteLine__Group__1__Impl : ( ( rule__DeleteLine__LinesAssignment_1 ) ) ;
+    // InternalMyCsv.g:2991:1: rule__DeleteLine__Group__1__Impl : ( ( rule__DeleteLine__LinesAssignment_1 ) ) ;
     public final void rule__DeleteLine__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:2860:1: ( ( ( rule__DeleteLine__LinesAssignment_1 ) ) )
-            // InternalMyCsv.g:2861:1: ( ( rule__DeleteLine__LinesAssignment_1 ) )
+            // InternalMyCsv.g:2995:1: ( ( ( rule__DeleteLine__LinesAssignment_1 ) ) )
+            // InternalMyCsv.g:2996:1: ( ( rule__DeleteLine__LinesAssignment_1 ) )
             {
-            // InternalMyCsv.g:2861:1: ( ( rule__DeleteLine__LinesAssignment_1 ) )
-            // InternalMyCsv.g:2862:2: ( rule__DeleteLine__LinesAssignment_1 )
+            // InternalMyCsv.g:2996:1: ( ( rule__DeleteLine__LinesAssignment_1 ) )
+            // InternalMyCsv.g:2997:2: ( rule__DeleteLine__LinesAssignment_1 )
             {
              before(grammarAccess.getDeleteLineAccess().getLinesAssignment_1()); 
-            // InternalMyCsv.g:2863:2: ( rule__DeleteLine__LinesAssignment_1 )
-            // InternalMyCsv.g:2863:3: rule__DeleteLine__LinesAssignment_1
+            // InternalMyCsv.g:2998:2: ( rule__DeleteLine__LinesAssignment_1 )
+            // InternalMyCsv.g:2998:3: rule__DeleteLine__LinesAssignment_1
             {
             pushFollow(FOLLOW_2);
             rule__DeleteLine__LinesAssignment_1();
@@ -9205,14 +9612,14 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__DeleteField__Group__0"
-    // InternalMyCsv.g:2872:1: rule__DeleteField__Group__0 : rule__DeleteField__Group__0__Impl rule__DeleteField__Group__1 ;
+    // InternalMyCsv.g:3007:1: rule__DeleteField__Group__0 : rule__DeleteField__Group__0__Impl rule__DeleteField__Group__1 ;
     public final void rule__DeleteField__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:2876:1: ( rule__DeleteField__Group__0__Impl rule__DeleteField__Group__1 )
-            // InternalMyCsv.g:2877:2: rule__DeleteField__Group__0__Impl rule__DeleteField__Group__1
+            // InternalMyCsv.g:3011:1: ( rule__DeleteField__Group__0__Impl rule__DeleteField__Group__1 )
+            // InternalMyCsv.g:3012:2: rule__DeleteField__Group__0__Impl rule__DeleteField__Group__1
             {
             pushFollow(FOLLOW_8);
             rule__DeleteField__Group__0__Impl();
@@ -9243,20 +9650,20 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__DeleteField__Group__0__Impl"
-    // InternalMyCsv.g:2884:1: rule__DeleteField__Group__0__Impl : ( 'field' ) ;
+    // InternalMyCsv.g:3019:1: rule__DeleteField__Group__0__Impl : ( 'field' ) ;
     public final void rule__DeleteField__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:2888:1: ( ( 'field' ) )
-            // InternalMyCsv.g:2889:1: ( 'field' )
+            // InternalMyCsv.g:3023:1: ( ( 'field' ) )
+            // InternalMyCsv.g:3024:1: ( 'field' )
             {
-            // InternalMyCsv.g:2889:1: ( 'field' )
-            // InternalMyCsv.g:2890:2: 'field'
+            // InternalMyCsv.g:3024:1: ( 'field' )
+            // InternalMyCsv.g:3025:2: 'field'
             {
              before(grammarAccess.getDeleteFieldAccess().getFieldKeyword_0()); 
-            match(input,41,FOLLOW_2); 
+            match(input,42,FOLLOW_2); 
              after(grammarAccess.getDeleteFieldAccess().getFieldKeyword_0()); 
 
             }
@@ -9280,14 +9687,14 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__DeleteField__Group__1"
-    // InternalMyCsv.g:2899:1: rule__DeleteField__Group__1 : rule__DeleteField__Group__1__Impl ;
+    // InternalMyCsv.g:3034:1: rule__DeleteField__Group__1 : rule__DeleteField__Group__1__Impl ;
     public final void rule__DeleteField__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:2903:1: ( rule__DeleteField__Group__1__Impl )
-            // InternalMyCsv.g:2904:2: rule__DeleteField__Group__1__Impl
+            // InternalMyCsv.g:3038:1: ( rule__DeleteField__Group__1__Impl )
+            // InternalMyCsv.g:3039:2: rule__DeleteField__Group__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__DeleteField__Group__1__Impl();
@@ -9313,21 +9720,21 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__DeleteField__Group__1__Impl"
-    // InternalMyCsv.g:2910:1: rule__DeleteField__Group__1__Impl : ( ( rule__DeleteField__FieldsAssignment_1 ) ) ;
+    // InternalMyCsv.g:3045:1: rule__DeleteField__Group__1__Impl : ( ( rule__DeleteField__FieldsAssignment_1 ) ) ;
     public final void rule__DeleteField__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:2914:1: ( ( ( rule__DeleteField__FieldsAssignment_1 ) ) )
-            // InternalMyCsv.g:2915:1: ( ( rule__DeleteField__FieldsAssignment_1 ) )
+            // InternalMyCsv.g:3049:1: ( ( ( rule__DeleteField__FieldsAssignment_1 ) ) )
+            // InternalMyCsv.g:3050:1: ( ( rule__DeleteField__FieldsAssignment_1 ) )
             {
-            // InternalMyCsv.g:2915:1: ( ( rule__DeleteField__FieldsAssignment_1 ) )
-            // InternalMyCsv.g:2916:2: ( rule__DeleteField__FieldsAssignment_1 )
+            // InternalMyCsv.g:3050:1: ( ( rule__DeleteField__FieldsAssignment_1 ) )
+            // InternalMyCsv.g:3051:2: ( rule__DeleteField__FieldsAssignment_1 )
             {
              before(grammarAccess.getDeleteFieldAccess().getFieldsAssignment_1()); 
-            // InternalMyCsv.g:2917:2: ( rule__DeleteField__FieldsAssignment_1 )
-            // InternalMyCsv.g:2917:3: rule__DeleteField__FieldsAssignment_1
+            // InternalMyCsv.g:3052:2: ( rule__DeleteField__FieldsAssignment_1 )
+            // InternalMyCsv.g:3052:3: rule__DeleteField__FieldsAssignment_1
             {
             pushFollow(FOLLOW_2);
             rule__DeleteField__FieldsAssignment_1();
@@ -9360,14 +9767,14 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Insert__Group__0"
-    // InternalMyCsv.g:2926:1: rule__Insert__Group__0 : rule__Insert__Group__0__Impl rule__Insert__Group__1 ;
+    // InternalMyCsv.g:3061:1: rule__Insert__Group__0 : rule__Insert__Group__0__Impl rule__Insert__Group__1 ;
     public final void rule__Insert__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:2930:1: ( rule__Insert__Group__0__Impl rule__Insert__Group__1 )
-            // InternalMyCsv.g:2931:2: rule__Insert__Group__0__Impl rule__Insert__Group__1
+            // InternalMyCsv.g:3065:1: ( rule__Insert__Group__0__Impl rule__Insert__Group__1 )
+            // InternalMyCsv.g:3066:2: rule__Insert__Group__0__Impl rule__Insert__Group__1
             {
             pushFollow(FOLLOW_18);
             rule__Insert__Group__0__Impl();
@@ -9398,20 +9805,20 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Insert__Group__0__Impl"
-    // InternalMyCsv.g:2938:1: rule__Insert__Group__0__Impl : ( 'Insert' ) ;
+    // InternalMyCsv.g:3073:1: rule__Insert__Group__0__Impl : ( 'Insert' ) ;
     public final void rule__Insert__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:2942:1: ( ( 'Insert' ) )
-            // InternalMyCsv.g:2943:1: ( 'Insert' )
+            // InternalMyCsv.g:3077:1: ( ( 'Insert' ) )
+            // InternalMyCsv.g:3078:1: ( 'Insert' )
             {
-            // InternalMyCsv.g:2943:1: ( 'Insert' )
-            // InternalMyCsv.g:2944:2: 'Insert'
+            // InternalMyCsv.g:3078:1: ( 'Insert' )
+            // InternalMyCsv.g:3079:2: 'Insert'
             {
              before(grammarAccess.getInsertAccess().getInsertKeyword_0()); 
-            match(input,42,FOLLOW_2); 
+            match(input,43,FOLLOW_2); 
              after(grammarAccess.getInsertAccess().getInsertKeyword_0()); 
 
             }
@@ -9435,14 +9842,14 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Insert__Group__1"
-    // InternalMyCsv.g:2953:1: rule__Insert__Group__1 : rule__Insert__Group__1__Impl ;
+    // InternalMyCsv.g:3088:1: rule__Insert__Group__1 : rule__Insert__Group__1__Impl ;
     public final void rule__Insert__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:2957:1: ( rule__Insert__Group__1__Impl )
-            // InternalMyCsv.g:2958:2: rule__Insert__Group__1__Impl
+            // InternalMyCsv.g:3092:1: ( rule__Insert__Group__1__Impl )
+            // InternalMyCsv.g:3093:2: rule__Insert__Group__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__Insert__Group__1__Impl();
@@ -9468,21 +9875,21 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Insert__Group__1__Impl"
-    // InternalMyCsv.g:2964:1: rule__Insert__Group__1__Impl : ( ( rule__Insert__Alternatives_1 ) ) ;
+    // InternalMyCsv.g:3099:1: rule__Insert__Group__1__Impl : ( ( rule__Insert__Alternatives_1 ) ) ;
     public final void rule__Insert__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:2968:1: ( ( ( rule__Insert__Alternatives_1 ) ) )
-            // InternalMyCsv.g:2969:1: ( ( rule__Insert__Alternatives_1 ) )
+            // InternalMyCsv.g:3103:1: ( ( ( rule__Insert__Alternatives_1 ) ) )
+            // InternalMyCsv.g:3104:1: ( ( rule__Insert__Alternatives_1 ) )
             {
-            // InternalMyCsv.g:2969:1: ( ( rule__Insert__Alternatives_1 ) )
-            // InternalMyCsv.g:2970:2: ( rule__Insert__Alternatives_1 )
+            // InternalMyCsv.g:3104:1: ( ( rule__Insert__Alternatives_1 ) )
+            // InternalMyCsv.g:3105:2: ( rule__Insert__Alternatives_1 )
             {
              before(grammarAccess.getInsertAccess().getAlternatives_1()); 
-            // InternalMyCsv.g:2971:2: ( rule__Insert__Alternatives_1 )
-            // InternalMyCsv.g:2971:3: rule__Insert__Alternatives_1
+            // InternalMyCsv.g:3106:2: ( rule__Insert__Alternatives_1 )
+            // InternalMyCsv.g:3106:3: rule__Insert__Alternatives_1
             {
             pushFollow(FOLLOW_2);
             rule__Insert__Alternatives_1();
@@ -9515,14 +9922,14 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__InsertLine__Group__0"
-    // InternalMyCsv.g:2980:1: rule__InsertLine__Group__0 : rule__InsertLine__Group__0__Impl rule__InsertLine__Group__1 ;
+    // InternalMyCsv.g:3115:1: rule__InsertLine__Group__0 : rule__InsertLine__Group__0__Impl rule__InsertLine__Group__1 ;
     public final void rule__InsertLine__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:2984:1: ( rule__InsertLine__Group__0__Impl rule__InsertLine__Group__1 )
-            // InternalMyCsv.g:2985:2: rule__InsertLine__Group__0__Impl rule__InsertLine__Group__1
+            // InternalMyCsv.g:3119:1: ( rule__InsertLine__Group__0__Impl rule__InsertLine__Group__1 )
+            // InternalMyCsv.g:3120:2: rule__InsertLine__Group__0__Impl rule__InsertLine__Group__1
             {
             pushFollow(FOLLOW_19);
             rule__InsertLine__Group__0__Impl();
@@ -9553,20 +9960,20 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__InsertLine__Group__0__Impl"
-    // InternalMyCsv.g:2992:1: rule__InsertLine__Group__0__Impl : ( 'line' ) ;
+    // InternalMyCsv.g:3127:1: rule__InsertLine__Group__0__Impl : ( 'line' ) ;
     public final void rule__InsertLine__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:2996:1: ( ( 'line' ) )
-            // InternalMyCsv.g:2997:1: ( 'line' )
+            // InternalMyCsv.g:3131:1: ( ( 'line' ) )
+            // InternalMyCsv.g:3132:1: ( 'line' )
             {
-            // InternalMyCsv.g:2997:1: ( 'line' )
-            // InternalMyCsv.g:2998:2: 'line'
+            // InternalMyCsv.g:3132:1: ( 'line' )
+            // InternalMyCsv.g:3133:2: 'line'
             {
              before(grammarAccess.getInsertLineAccess().getLineKeyword_0()); 
-            match(input,40,FOLLOW_2); 
+            match(input,41,FOLLOW_2); 
              after(grammarAccess.getInsertLineAccess().getLineKeyword_0()); 
 
             }
@@ -9590,14 +9997,14 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__InsertLine__Group__1"
-    // InternalMyCsv.g:3007:1: rule__InsertLine__Group__1 : rule__InsertLine__Group__1__Impl ;
+    // InternalMyCsv.g:3142:1: rule__InsertLine__Group__1 : rule__InsertLine__Group__1__Impl ;
     public final void rule__InsertLine__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:3011:1: ( rule__InsertLine__Group__1__Impl )
-            // InternalMyCsv.g:3012:2: rule__InsertLine__Group__1__Impl
+            // InternalMyCsv.g:3146:1: ( rule__InsertLine__Group__1__Impl )
+            // InternalMyCsv.g:3147:2: rule__InsertLine__Group__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__InsertLine__Group__1__Impl();
@@ -9623,21 +10030,21 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__InsertLine__Group__1__Impl"
-    // InternalMyCsv.g:3018:1: rule__InsertLine__Group__1__Impl : ( ( rule__InsertLine__ValuesAssignment_1 ) ) ;
+    // InternalMyCsv.g:3153:1: rule__InsertLine__Group__1__Impl : ( ( rule__InsertLine__ValuesAssignment_1 ) ) ;
     public final void rule__InsertLine__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:3022:1: ( ( ( rule__InsertLine__ValuesAssignment_1 ) ) )
-            // InternalMyCsv.g:3023:1: ( ( rule__InsertLine__ValuesAssignment_1 ) )
+            // InternalMyCsv.g:3157:1: ( ( ( rule__InsertLine__ValuesAssignment_1 ) ) )
+            // InternalMyCsv.g:3158:1: ( ( rule__InsertLine__ValuesAssignment_1 ) )
             {
-            // InternalMyCsv.g:3023:1: ( ( rule__InsertLine__ValuesAssignment_1 ) )
-            // InternalMyCsv.g:3024:2: ( rule__InsertLine__ValuesAssignment_1 )
+            // InternalMyCsv.g:3158:1: ( ( rule__InsertLine__ValuesAssignment_1 ) )
+            // InternalMyCsv.g:3159:2: ( rule__InsertLine__ValuesAssignment_1 )
             {
              before(grammarAccess.getInsertLineAccess().getValuesAssignment_1()); 
-            // InternalMyCsv.g:3025:2: ( rule__InsertLine__ValuesAssignment_1 )
-            // InternalMyCsv.g:3025:3: rule__InsertLine__ValuesAssignment_1
+            // InternalMyCsv.g:3160:2: ( rule__InsertLine__ValuesAssignment_1 )
+            // InternalMyCsv.g:3160:3: rule__InsertLine__ValuesAssignment_1
             {
             pushFollow(FOLLOW_2);
             rule__InsertLine__ValuesAssignment_1();
@@ -9670,14 +10077,14 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__InsertField__Group__0"
-    // InternalMyCsv.g:3034:1: rule__InsertField__Group__0 : rule__InsertField__Group__0__Impl rule__InsertField__Group__1 ;
+    // InternalMyCsv.g:3169:1: rule__InsertField__Group__0 : rule__InsertField__Group__0__Impl rule__InsertField__Group__1 ;
     public final void rule__InsertField__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:3038:1: ( rule__InsertField__Group__0__Impl rule__InsertField__Group__1 )
-            // InternalMyCsv.g:3039:2: rule__InsertField__Group__0__Impl rule__InsertField__Group__1
+            // InternalMyCsv.g:3173:1: ( rule__InsertField__Group__0__Impl rule__InsertField__Group__1 )
+            // InternalMyCsv.g:3174:2: rule__InsertField__Group__0__Impl rule__InsertField__Group__1
             {
             pushFollow(FOLLOW_20);
             rule__InsertField__Group__0__Impl();
@@ -9708,20 +10115,20 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__InsertField__Group__0__Impl"
-    // InternalMyCsv.g:3046:1: rule__InsertField__Group__0__Impl : ( 'field' ) ;
+    // InternalMyCsv.g:3181:1: rule__InsertField__Group__0__Impl : ( 'field' ) ;
     public final void rule__InsertField__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:3050:1: ( ( 'field' ) )
-            // InternalMyCsv.g:3051:1: ( 'field' )
+            // InternalMyCsv.g:3185:1: ( ( 'field' ) )
+            // InternalMyCsv.g:3186:1: ( 'field' )
             {
-            // InternalMyCsv.g:3051:1: ( 'field' )
-            // InternalMyCsv.g:3052:2: 'field'
+            // InternalMyCsv.g:3186:1: ( 'field' )
+            // InternalMyCsv.g:3187:2: 'field'
             {
              before(grammarAccess.getInsertFieldAccess().getFieldKeyword_0()); 
-            match(input,41,FOLLOW_2); 
+            match(input,42,FOLLOW_2); 
              after(grammarAccess.getInsertFieldAccess().getFieldKeyword_0()); 
 
             }
@@ -9745,14 +10152,14 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__InsertField__Group__1"
-    // InternalMyCsv.g:3061:1: rule__InsertField__Group__1 : rule__InsertField__Group__1__Impl rule__InsertField__Group__2 ;
+    // InternalMyCsv.g:3196:1: rule__InsertField__Group__1 : rule__InsertField__Group__1__Impl rule__InsertField__Group__2 ;
     public final void rule__InsertField__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:3065:1: ( rule__InsertField__Group__1__Impl rule__InsertField__Group__2 )
-            // InternalMyCsv.g:3066:2: rule__InsertField__Group__1__Impl rule__InsertField__Group__2
+            // InternalMyCsv.g:3200:1: ( rule__InsertField__Group__1__Impl rule__InsertField__Group__2 )
+            // InternalMyCsv.g:3201:2: rule__InsertField__Group__1__Impl rule__InsertField__Group__2
             {
             pushFollow(FOLLOW_21);
             rule__InsertField__Group__1__Impl();
@@ -9783,21 +10190,21 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__InsertField__Group__1__Impl"
-    // InternalMyCsv.g:3073:1: rule__InsertField__Group__1__Impl : ( ( rule__InsertField__FieldnameAssignment_1 ) ) ;
+    // InternalMyCsv.g:3208:1: rule__InsertField__Group__1__Impl : ( ( rule__InsertField__FieldnameAssignment_1 ) ) ;
     public final void rule__InsertField__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:3077:1: ( ( ( rule__InsertField__FieldnameAssignment_1 ) ) )
-            // InternalMyCsv.g:3078:1: ( ( rule__InsertField__FieldnameAssignment_1 ) )
+            // InternalMyCsv.g:3212:1: ( ( ( rule__InsertField__FieldnameAssignment_1 ) ) )
+            // InternalMyCsv.g:3213:1: ( ( rule__InsertField__FieldnameAssignment_1 ) )
             {
-            // InternalMyCsv.g:3078:1: ( ( rule__InsertField__FieldnameAssignment_1 ) )
-            // InternalMyCsv.g:3079:2: ( rule__InsertField__FieldnameAssignment_1 )
+            // InternalMyCsv.g:3213:1: ( ( rule__InsertField__FieldnameAssignment_1 ) )
+            // InternalMyCsv.g:3214:2: ( rule__InsertField__FieldnameAssignment_1 )
             {
              before(grammarAccess.getInsertFieldAccess().getFieldnameAssignment_1()); 
-            // InternalMyCsv.g:3080:2: ( rule__InsertField__FieldnameAssignment_1 )
-            // InternalMyCsv.g:3080:3: rule__InsertField__FieldnameAssignment_1
+            // InternalMyCsv.g:3215:2: ( rule__InsertField__FieldnameAssignment_1 )
+            // InternalMyCsv.g:3215:3: rule__InsertField__FieldnameAssignment_1
             {
             pushFollow(FOLLOW_2);
             rule__InsertField__FieldnameAssignment_1();
@@ -9830,14 +10237,14 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__InsertField__Group__2"
-    // InternalMyCsv.g:3088:1: rule__InsertField__Group__2 : rule__InsertField__Group__2__Impl rule__InsertField__Group__3 ;
+    // InternalMyCsv.g:3223:1: rule__InsertField__Group__2 : rule__InsertField__Group__2__Impl rule__InsertField__Group__3 ;
     public final void rule__InsertField__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:3092:1: ( rule__InsertField__Group__2__Impl rule__InsertField__Group__3 )
-            // InternalMyCsv.g:3093:2: rule__InsertField__Group__2__Impl rule__InsertField__Group__3
+            // InternalMyCsv.g:3227:1: ( rule__InsertField__Group__2__Impl rule__InsertField__Group__3 )
+            // InternalMyCsv.g:3228:2: rule__InsertField__Group__2__Impl rule__InsertField__Group__3
             {
             pushFollow(FOLLOW_19);
             rule__InsertField__Group__2__Impl();
@@ -9868,20 +10275,20 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__InsertField__Group__2__Impl"
-    // InternalMyCsv.g:3100:1: rule__InsertField__Group__2__Impl : ( ':' ) ;
+    // InternalMyCsv.g:3235:1: rule__InsertField__Group__2__Impl : ( ':' ) ;
     public final void rule__InsertField__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:3104:1: ( ( ':' ) )
-            // InternalMyCsv.g:3105:1: ( ':' )
+            // InternalMyCsv.g:3239:1: ( ( ':' ) )
+            // InternalMyCsv.g:3240:1: ( ':' )
             {
-            // InternalMyCsv.g:3105:1: ( ':' )
-            // InternalMyCsv.g:3106:2: ':'
+            // InternalMyCsv.g:3240:1: ( ':' )
+            // InternalMyCsv.g:3241:2: ':'
             {
              before(grammarAccess.getInsertFieldAccess().getColonKeyword_2()); 
-            match(input,43,FOLLOW_2); 
+            match(input,44,FOLLOW_2); 
              after(grammarAccess.getInsertFieldAccess().getColonKeyword_2()); 
 
             }
@@ -9905,14 +10312,14 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__InsertField__Group__3"
-    // InternalMyCsv.g:3115:1: rule__InsertField__Group__3 : rule__InsertField__Group__3__Impl ;
+    // InternalMyCsv.g:3250:1: rule__InsertField__Group__3 : rule__InsertField__Group__3__Impl ;
     public final void rule__InsertField__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:3119:1: ( rule__InsertField__Group__3__Impl )
-            // InternalMyCsv.g:3120:2: rule__InsertField__Group__3__Impl
+            // InternalMyCsv.g:3254:1: ( rule__InsertField__Group__3__Impl )
+            // InternalMyCsv.g:3255:2: rule__InsertField__Group__3__Impl
             {
             pushFollow(FOLLOW_2);
             rule__InsertField__Group__3__Impl();
@@ -9938,21 +10345,21 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__InsertField__Group__3__Impl"
-    // InternalMyCsv.g:3126:1: rule__InsertField__Group__3__Impl : ( ( rule__InsertField__ValuesAssignment_3 ) ) ;
+    // InternalMyCsv.g:3261:1: rule__InsertField__Group__3__Impl : ( ( rule__InsertField__ValuesAssignment_3 ) ) ;
     public final void rule__InsertField__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:3130:1: ( ( ( rule__InsertField__ValuesAssignment_3 ) ) )
-            // InternalMyCsv.g:3131:1: ( ( rule__InsertField__ValuesAssignment_3 ) )
+            // InternalMyCsv.g:3265:1: ( ( ( rule__InsertField__ValuesAssignment_3 ) ) )
+            // InternalMyCsv.g:3266:1: ( ( rule__InsertField__ValuesAssignment_3 ) )
             {
-            // InternalMyCsv.g:3131:1: ( ( rule__InsertField__ValuesAssignment_3 ) )
-            // InternalMyCsv.g:3132:2: ( rule__InsertField__ValuesAssignment_3 )
+            // InternalMyCsv.g:3266:1: ( ( rule__InsertField__ValuesAssignment_3 ) )
+            // InternalMyCsv.g:3267:2: ( rule__InsertField__ValuesAssignment_3 )
             {
              before(grammarAccess.getInsertFieldAccess().getValuesAssignment_3()); 
-            // InternalMyCsv.g:3133:2: ( rule__InsertField__ValuesAssignment_3 )
-            // InternalMyCsv.g:3133:3: rule__InsertField__ValuesAssignment_3
+            // InternalMyCsv.g:3268:2: ( rule__InsertField__ValuesAssignment_3 )
+            // InternalMyCsv.g:3268:3: rule__InsertField__ValuesAssignment_3
             {
             pushFollow(FOLLOW_2);
             rule__InsertField__ValuesAssignment_3();
@@ -9985,14 +10392,14 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Modify__Group__0"
-    // InternalMyCsv.g:3142:1: rule__Modify__Group__0 : rule__Modify__Group__0__Impl rule__Modify__Group__1 ;
+    // InternalMyCsv.g:3277:1: rule__Modify__Group__0 : rule__Modify__Group__0__Impl rule__Modify__Group__1 ;
     public final void rule__Modify__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:3146:1: ( rule__Modify__Group__0__Impl rule__Modify__Group__1 )
-            // InternalMyCsv.g:3147:2: rule__Modify__Group__0__Impl rule__Modify__Group__1
+            // InternalMyCsv.g:3281:1: ( rule__Modify__Group__0__Impl rule__Modify__Group__1 )
+            // InternalMyCsv.g:3282:2: rule__Modify__Group__0__Impl rule__Modify__Group__1
             {
             pushFollow(FOLLOW_22);
             rule__Modify__Group__0__Impl();
@@ -10023,20 +10430,20 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Modify__Group__0__Impl"
-    // InternalMyCsv.g:3154:1: rule__Modify__Group__0__Impl : ( 'Modify' ) ;
+    // InternalMyCsv.g:3289:1: rule__Modify__Group__0__Impl : ( 'Modify' ) ;
     public final void rule__Modify__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:3158:1: ( ( 'Modify' ) )
-            // InternalMyCsv.g:3159:1: ( 'Modify' )
+            // InternalMyCsv.g:3293:1: ( ( 'Modify' ) )
+            // InternalMyCsv.g:3294:1: ( 'Modify' )
             {
-            // InternalMyCsv.g:3159:1: ( 'Modify' )
-            // InternalMyCsv.g:3160:2: 'Modify'
+            // InternalMyCsv.g:3294:1: ( 'Modify' )
+            // InternalMyCsv.g:3295:2: 'Modify'
             {
              before(grammarAccess.getModifyAccess().getModifyKeyword_0()); 
-            match(input,44,FOLLOW_2); 
+            match(input,45,FOLLOW_2); 
              after(grammarAccess.getModifyAccess().getModifyKeyword_0()); 
 
             }
@@ -10060,14 +10467,14 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Modify__Group__1"
-    // InternalMyCsv.g:3169:1: rule__Modify__Group__1 : rule__Modify__Group__1__Impl ;
+    // InternalMyCsv.g:3304:1: rule__Modify__Group__1 : rule__Modify__Group__1__Impl ;
     public final void rule__Modify__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:3173:1: ( rule__Modify__Group__1__Impl )
-            // InternalMyCsv.g:3174:2: rule__Modify__Group__1__Impl
+            // InternalMyCsv.g:3308:1: ( rule__Modify__Group__1__Impl )
+            // InternalMyCsv.g:3309:2: rule__Modify__Group__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__Modify__Group__1__Impl();
@@ -10093,21 +10500,21 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Modify__Group__1__Impl"
-    // InternalMyCsv.g:3180:1: rule__Modify__Group__1__Impl : ( ( rule__Modify__Alternatives_1 ) ) ;
+    // InternalMyCsv.g:3315:1: rule__Modify__Group__1__Impl : ( ( rule__Modify__Alternatives_1 ) ) ;
     public final void rule__Modify__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:3184:1: ( ( ( rule__Modify__Alternatives_1 ) ) )
-            // InternalMyCsv.g:3185:1: ( ( rule__Modify__Alternatives_1 ) )
+            // InternalMyCsv.g:3319:1: ( ( ( rule__Modify__Alternatives_1 ) ) )
+            // InternalMyCsv.g:3320:1: ( ( rule__Modify__Alternatives_1 ) )
             {
-            // InternalMyCsv.g:3185:1: ( ( rule__Modify__Alternatives_1 ) )
-            // InternalMyCsv.g:3186:2: ( rule__Modify__Alternatives_1 )
+            // InternalMyCsv.g:3320:1: ( ( rule__Modify__Alternatives_1 ) )
+            // InternalMyCsv.g:3321:2: ( rule__Modify__Alternatives_1 )
             {
              before(grammarAccess.getModifyAccess().getAlternatives_1()); 
-            // InternalMyCsv.g:3187:2: ( rule__Modify__Alternatives_1 )
-            // InternalMyCsv.g:3187:3: rule__Modify__Alternatives_1
+            // InternalMyCsv.g:3322:2: ( rule__Modify__Alternatives_1 )
+            // InternalMyCsv.g:3322:3: rule__Modify__Alternatives_1
             {
             pushFollow(FOLLOW_2);
             rule__Modify__Alternatives_1();
@@ -10140,14 +10547,14 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ModifyLine__Group__0"
-    // InternalMyCsv.g:3196:1: rule__ModifyLine__Group__0 : rule__ModifyLine__Group__0__Impl rule__ModifyLine__Group__1 ;
+    // InternalMyCsv.g:3331:1: rule__ModifyLine__Group__0 : rule__ModifyLine__Group__0__Impl rule__ModifyLine__Group__1 ;
     public final void rule__ModifyLine__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:3200:1: ( rule__ModifyLine__Group__0__Impl rule__ModifyLine__Group__1 )
-            // InternalMyCsv.g:3201:2: rule__ModifyLine__Group__0__Impl rule__ModifyLine__Group__1
+            // InternalMyCsv.g:3335:1: ( rule__ModifyLine__Group__0__Impl rule__ModifyLine__Group__1 )
+            // InternalMyCsv.g:3336:2: rule__ModifyLine__Group__0__Impl rule__ModifyLine__Group__1
             {
             pushFollow(FOLLOW_17);
             rule__ModifyLine__Group__0__Impl();
@@ -10178,20 +10585,20 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ModifyLine__Group__0__Impl"
-    // InternalMyCsv.g:3208:1: rule__ModifyLine__Group__0__Impl : ( 'line' ) ;
+    // InternalMyCsv.g:3343:1: rule__ModifyLine__Group__0__Impl : ( 'line' ) ;
     public final void rule__ModifyLine__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:3212:1: ( ( 'line' ) )
-            // InternalMyCsv.g:3213:1: ( 'line' )
+            // InternalMyCsv.g:3347:1: ( ( 'line' ) )
+            // InternalMyCsv.g:3348:1: ( 'line' )
             {
-            // InternalMyCsv.g:3213:1: ( 'line' )
-            // InternalMyCsv.g:3214:2: 'line'
+            // InternalMyCsv.g:3348:1: ( 'line' )
+            // InternalMyCsv.g:3349:2: 'line'
             {
              before(grammarAccess.getModifyLineAccess().getLineKeyword_0()); 
-            match(input,40,FOLLOW_2); 
+            match(input,41,FOLLOW_2); 
              after(grammarAccess.getModifyLineAccess().getLineKeyword_0()); 
 
             }
@@ -10215,14 +10622,14 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ModifyLine__Group__1"
-    // InternalMyCsv.g:3223:1: rule__ModifyLine__Group__1 : rule__ModifyLine__Group__1__Impl rule__ModifyLine__Group__2 ;
+    // InternalMyCsv.g:3358:1: rule__ModifyLine__Group__1 : rule__ModifyLine__Group__1__Impl rule__ModifyLine__Group__2 ;
     public final void rule__ModifyLine__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:3227:1: ( rule__ModifyLine__Group__1__Impl rule__ModifyLine__Group__2 )
-            // InternalMyCsv.g:3228:2: rule__ModifyLine__Group__1__Impl rule__ModifyLine__Group__2
+            // InternalMyCsv.g:3362:1: ( rule__ModifyLine__Group__1__Impl rule__ModifyLine__Group__2 )
+            // InternalMyCsv.g:3363:2: rule__ModifyLine__Group__1__Impl rule__ModifyLine__Group__2
             {
             pushFollow(FOLLOW_23);
             rule__ModifyLine__Group__1__Impl();
@@ -10253,21 +10660,21 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ModifyLine__Group__1__Impl"
-    // InternalMyCsv.g:3235:1: rule__ModifyLine__Group__1__Impl : ( ( rule__ModifyLine__LinesAssignment_1 ) ) ;
+    // InternalMyCsv.g:3370:1: rule__ModifyLine__Group__1__Impl : ( ( rule__ModifyLine__LinesAssignment_1 ) ) ;
     public final void rule__ModifyLine__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:3239:1: ( ( ( rule__ModifyLine__LinesAssignment_1 ) ) )
-            // InternalMyCsv.g:3240:1: ( ( rule__ModifyLine__LinesAssignment_1 ) )
+            // InternalMyCsv.g:3374:1: ( ( ( rule__ModifyLine__LinesAssignment_1 ) ) )
+            // InternalMyCsv.g:3375:1: ( ( rule__ModifyLine__LinesAssignment_1 ) )
             {
-            // InternalMyCsv.g:3240:1: ( ( rule__ModifyLine__LinesAssignment_1 ) )
-            // InternalMyCsv.g:3241:2: ( rule__ModifyLine__LinesAssignment_1 )
+            // InternalMyCsv.g:3375:1: ( ( rule__ModifyLine__LinesAssignment_1 ) )
+            // InternalMyCsv.g:3376:2: ( rule__ModifyLine__LinesAssignment_1 )
             {
              before(grammarAccess.getModifyLineAccess().getLinesAssignment_1()); 
-            // InternalMyCsv.g:3242:2: ( rule__ModifyLine__LinesAssignment_1 )
-            // InternalMyCsv.g:3242:3: rule__ModifyLine__LinesAssignment_1
+            // InternalMyCsv.g:3377:2: ( rule__ModifyLine__LinesAssignment_1 )
+            // InternalMyCsv.g:3377:3: rule__ModifyLine__LinesAssignment_1
             {
             pushFollow(FOLLOW_2);
             rule__ModifyLine__LinesAssignment_1();
@@ -10300,14 +10707,14 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ModifyLine__Group__2"
-    // InternalMyCsv.g:3250:1: rule__ModifyLine__Group__2 : rule__ModifyLine__Group__2__Impl rule__ModifyLine__Group__3 ;
+    // InternalMyCsv.g:3385:1: rule__ModifyLine__Group__2 : rule__ModifyLine__Group__2__Impl rule__ModifyLine__Group__3 ;
     public final void rule__ModifyLine__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:3254:1: ( rule__ModifyLine__Group__2__Impl rule__ModifyLine__Group__3 )
-            // InternalMyCsv.g:3255:2: rule__ModifyLine__Group__2__Impl rule__ModifyLine__Group__3
+            // InternalMyCsv.g:3389:1: ( rule__ModifyLine__Group__2__Impl rule__ModifyLine__Group__3 )
+            // InternalMyCsv.g:3390:2: rule__ModifyLine__Group__2__Impl rule__ModifyLine__Group__3
             {
             pushFollow(FOLLOW_19);
             rule__ModifyLine__Group__2__Impl();
@@ -10338,20 +10745,20 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ModifyLine__Group__2__Impl"
-    // InternalMyCsv.g:3262:1: rule__ModifyLine__Group__2__Impl : ( 'with' ) ;
+    // InternalMyCsv.g:3397:1: rule__ModifyLine__Group__2__Impl : ( 'with' ) ;
     public final void rule__ModifyLine__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:3266:1: ( ( 'with' ) )
-            // InternalMyCsv.g:3267:1: ( 'with' )
+            // InternalMyCsv.g:3401:1: ( ( 'with' ) )
+            // InternalMyCsv.g:3402:1: ( 'with' )
             {
-            // InternalMyCsv.g:3267:1: ( 'with' )
-            // InternalMyCsv.g:3268:2: 'with'
+            // InternalMyCsv.g:3402:1: ( 'with' )
+            // InternalMyCsv.g:3403:2: 'with'
             {
              before(grammarAccess.getModifyLineAccess().getWithKeyword_2()); 
-            match(input,45,FOLLOW_2); 
+            match(input,46,FOLLOW_2); 
              after(grammarAccess.getModifyLineAccess().getWithKeyword_2()); 
 
             }
@@ -10375,14 +10782,14 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ModifyLine__Group__3"
-    // InternalMyCsv.g:3277:1: rule__ModifyLine__Group__3 : rule__ModifyLine__Group__3__Impl ;
+    // InternalMyCsv.g:3412:1: rule__ModifyLine__Group__3 : rule__ModifyLine__Group__3__Impl ;
     public final void rule__ModifyLine__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:3281:1: ( rule__ModifyLine__Group__3__Impl )
-            // InternalMyCsv.g:3282:2: rule__ModifyLine__Group__3__Impl
+            // InternalMyCsv.g:3416:1: ( rule__ModifyLine__Group__3__Impl )
+            // InternalMyCsv.g:3417:2: rule__ModifyLine__Group__3__Impl
             {
             pushFollow(FOLLOW_2);
             rule__ModifyLine__Group__3__Impl();
@@ -10408,21 +10815,21 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ModifyLine__Group__3__Impl"
-    // InternalMyCsv.g:3288:1: rule__ModifyLine__Group__3__Impl : ( ( rule__ModifyLine__ValuesAssignment_3 ) ) ;
+    // InternalMyCsv.g:3423:1: rule__ModifyLine__Group__3__Impl : ( ( rule__ModifyLine__ValuesAssignment_3 ) ) ;
     public final void rule__ModifyLine__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:3292:1: ( ( ( rule__ModifyLine__ValuesAssignment_3 ) ) )
-            // InternalMyCsv.g:3293:1: ( ( rule__ModifyLine__ValuesAssignment_3 ) )
+            // InternalMyCsv.g:3427:1: ( ( ( rule__ModifyLine__ValuesAssignment_3 ) ) )
+            // InternalMyCsv.g:3428:1: ( ( rule__ModifyLine__ValuesAssignment_3 ) )
             {
-            // InternalMyCsv.g:3293:1: ( ( rule__ModifyLine__ValuesAssignment_3 ) )
-            // InternalMyCsv.g:3294:2: ( rule__ModifyLine__ValuesAssignment_3 )
+            // InternalMyCsv.g:3428:1: ( ( rule__ModifyLine__ValuesAssignment_3 ) )
+            // InternalMyCsv.g:3429:2: ( rule__ModifyLine__ValuesAssignment_3 )
             {
              before(grammarAccess.getModifyLineAccess().getValuesAssignment_3()); 
-            // InternalMyCsv.g:3295:2: ( rule__ModifyLine__ValuesAssignment_3 )
-            // InternalMyCsv.g:3295:3: rule__ModifyLine__ValuesAssignment_3
+            // InternalMyCsv.g:3430:2: ( rule__ModifyLine__ValuesAssignment_3 )
+            // InternalMyCsv.g:3430:3: rule__ModifyLine__ValuesAssignment_3
             {
             pushFollow(FOLLOW_2);
             rule__ModifyLine__ValuesAssignment_3();
@@ -10455,14 +10862,14 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ModifyField__Group__0"
-    // InternalMyCsv.g:3304:1: rule__ModifyField__Group__0 : rule__ModifyField__Group__0__Impl rule__ModifyField__Group__1 ;
+    // InternalMyCsv.g:3439:1: rule__ModifyField__Group__0 : rule__ModifyField__Group__0__Impl rule__ModifyField__Group__1 ;
     public final void rule__ModifyField__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:3308:1: ( rule__ModifyField__Group__0__Impl rule__ModifyField__Group__1 )
-            // InternalMyCsv.g:3309:2: rule__ModifyField__Group__0__Impl rule__ModifyField__Group__1
+            // InternalMyCsv.g:3443:1: ( rule__ModifyField__Group__0__Impl rule__ModifyField__Group__1 )
+            // InternalMyCsv.g:3444:2: rule__ModifyField__Group__0__Impl rule__ModifyField__Group__1
             {
             pushFollow(FOLLOW_8);
             rule__ModifyField__Group__0__Impl();
@@ -10493,20 +10900,20 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ModifyField__Group__0__Impl"
-    // InternalMyCsv.g:3316:1: rule__ModifyField__Group__0__Impl : ( 'field' ) ;
+    // InternalMyCsv.g:3451:1: rule__ModifyField__Group__0__Impl : ( 'field' ) ;
     public final void rule__ModifyField__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:3320:1: ( ( 'field' ) )
-            // InternalMyCsv.g:3321:1: ( 'field' )
+            // InternalMyCsv.g:3455:1: ( ( 'field' ) )
+            // InternalMyCsv.g:3456:1: ( 'field' )
             {
-            // InternalMyCsv.g:3321:1: ( 'field' )
-            // InternalMyCsv.g:3322:2: 'field'
+            // InternalMyCsv.g:3456:1: ( 'field' )
+            // InternalMyCsv.g:3457:2: 'field'
             {
              before(grammarAccess.getModifyFieldAccess().getFieldKeyword_0()); 
-            match(input,41,FOLLOW_2); 
+            match(input,42,FOLLOW_2); 
              after(grammarAccess.getModifyFieldAccess().getFieldKeyword_0()); 
 
             }
@@ -10530,14 +10937,14 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ModifyField__Group__1"
-    // InternalMyCsv.g:3331:1: rule__ModifyField__Group__1 : rule__ModifyField__Group__1__Impl rule__ModifyField__Group__2 ;
+    // InternalMyCsv.g:3466:1: rule__ModifyField__Group__1 : rule__ModifyField__Group__1__Impl rule__ModifyField__Group__2 ;
     public final void rule__ModifyField__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:3335:1: ( rule__ModifyField__Group__1__Impl rule__ModifyField__Group__2 )
-            // InternalMyCsv.g:3336:2: rule__ModifyField__Group__1__Impl rule__ModifyField__Group__2
+            // InternalMyCsv.g:3470:1: ( rule__ModifyField__Group__1__Impl rule__ModifyField__Group__2 )
+            // InternalMyCsv.g:3471:2: rule__ModifyField__Group__1__Impl rule__ModifyField__Group__2
             {
             pushFollow(FOLLOW_23);
             rule__ModifyField__Group__1__Impl();
@@ -10568,21 +10975,21 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ModifyField__Group__1__Impl"
-    // InternalMyCsv.g:3343:1: rule__ModifyField__Group__1__Impl : ( ( rule__ModifyField__FieldsAssignment_1 ) ) ;
+    // InternalMyCsv.g:3478:1: rule__ModifyField__Group__1__Impl : ( ( rule__ModifyField__FieldsAssignment_1 ) ) ;
     public final void rule__ModifyField__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:3347:1: ( ( ( rule__ModifyField__FieldsAssignment_1 ) ) )
-            // InternalMyCsv.g:3348:1: ( ( rule__ModifyField__FieldsAssignment_1 ) )
+            // InternalMyCsv.g:3482:1: ( ( ( rule__ModifyField__FieldsAssignment_1 ) ) )
+            // InternalMyCsv.g:3483:1: ( ( rule__ModifyField__FieldsAssignment_1 ) )
             {
-            // InternalMyCsv.g:3348:1: ( ( rule__ModifyField__FieldsAssignment_1 ) )
-            // InternalMyCsv.g:3349:2: ( rule__ModifyField__FieldsAssignment_1 )
+            // InternalMyCsv.g:3483:1: ( ( rule__ModifyField__FieldsAssignment_1 ) )
+            // InternalMyCsv.g:3484:2: ( rule__ModifyField__FieldsAssignment_1 )
             {
              before(grammarAccess.getModifyFieldAccess().getFieldsAssignment_1()); 
-            // InternalMyCsv.g:3350:2: ( rule__ModifyField__FieldsAssignment_1 )
-            // InternalMyCsv.g:3350:3: rule__ModifyField__FieldsAssignment_1
+            // InternalMyCsv.g:3485:2: ( rule__ModifyField__FieldsAssignment_1 )
+            // InternalMyCsv.g:3485:3: rule__ModifyField__FieldsAssignment_1
             {
             pushFollow(FOLLOW_2);
             rule__ModifyField__FieldsAssignment_1();
@@ -10615,14 +11022,14 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ModifyField__Group__2"
-    // InternalMyCsv.g:3358:1: rule__ModifyField__Group__2 : rule__ModifyField__Group__2__Impl rule__ModifyField__Group__3 ;
+    // InternalMyCsv.g:3493:1: rule__ModifyField__Group__2 : rule__ModifyField__Group__2__Impl rule__ModifyField__Group__3 ;
     public final void rule__ModifyField__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:3362:1: ( rule__ModifyField__Group__2__Impl rule__ModifyField__Group__3 )
-            // InternalMyCsv.g:3363:2: rule__ModifyField__Group__2__Impl rule__ModifyField__Group__3
+            // InternalMyCsv.g:3497:1: ( rule__ModifyField__Group__2__Impl rule__ModifyField__Group__3 )
+            // InternalMyCsv.g:3498:2: rule__ModifyField__Group__2__Impl rule__ModifyField__Group__3
             {
             pushFollow(FOLLOW_19);
             rule__ModifyField__Group__2__Impl();
@@ -10653,20 +11060,20 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ModifyField__Group__2__Impl"
-    // InternalMyCsv.g:3370:1: rule__ModifyField__Group__2__Impl : ( 'with' ) ;
+    // InternalMyCsv.g:3505:1: rule__ModifyField__Group__2__Impl : ( 'with' ) ;
     public final void rule__ModifyField__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:3374:1: ( ( 'with' ) )
-            // InternalMyCsv.g:3375:1: ( 'with' )
+            // InternalMyCsv.g:3509:1: ( ( 'with' ) )
+            // InternalMyCsv.g:3510:1: ( 'with' )
             {
-            // InternalMyCsv.g:3375:1: ( 'with' )
-            // InternalMyCsv.g:3376:2: 'with'
+            // InternalMyCsv.g:3510:1: ( 'with' )
+            // InternalMyCsv.g:3511:2: 'with'
             {
              before(grammarAccess.getModifyFieldAccess().getWithKeyword_2()); 
-            match(input,45,FOLLOW_2); 
+            match(input,46,FOLLOW_2); 
              after(grammarAccess.getModifyFieldAccess().getWithKeyword_2()); 
 
             }
@@ -10690,14 +11097,14 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ModifyField__Group__3"
-    // InternalMyCsv.g:3385:1: rule__ModifyField__Group__3 : rule__ModifyField__Group__3__Impl ;
+    // InternalMyCsv.g:3520:1: rule__ModifyField__Group__3 : rule__ModifyField__Group__3__Impl ;
     public final void rule__ModifyField__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:3389:1: ( rule__ModifyField__Group__3__Impl )
-            // InternalMyCsv.g:3390:2: rule__ModifyField__Group__3__Impl
+            // InternalMyCsv.g:3524:1: ( rule__ModifyField__Group__3__Impl )
+            // InternalMyCsv.g:3525:2: rule__ModifyField__Group__3__Impl
             {
             pushFollow(FOLLOW_2);
             rule__ModifyField__Group__3__Impl();
@@ -10723,21 +11130,21 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ModifyField__Group__3__Impl"
-    // InternalMyCsv.g:3396:1: rule__ModifyField__Group__3__Impl : ( ( rule__ModifyField__ValuesAssignment_3 ) ) ;
+    // InternalMyCsv.g:3531:1: rule__ModifyField__Group__3__Impl : ( ( rule__ModifyField__ValuesAssignment_3 ) ) ;
     public final void rule__ModifyField__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:3400:1: ( ( ( rule__ModifyField__ValuesAssignment_3 ) ) )
-            // InternalMyCsv.g:3401:1: ( ( rule__ModifyField__ValuesAssignment_3 ) )
+            // InternalMyCsv.g:3535:1: ( ( ( rule__ModifyField__ValuesAssignment_3 ) ) )
+            // InternalMyCsv.g:3536:1: ( ( rule__ModifyField__ValuesAssignment_3 ) )
             {
-            // InternalMyCsv.g:3401:1: ( ( rule__ModifyField__ValuesAssignment_3 ) )
-            // InternalMyCsv.g:3402:2: ( rule__ModifyField__ValuesAssignment_3 )
+            // InternalMyCsv.g:3536:1: ( ( rule__ModifyField__ValuesAssignment_3 ) )
+            // InternalMyCsv.g:3537:2: ( rule__ModifyField__ValuesAssignment_3 )
             {
              before(grammarAccess.getModifyFieldAccess().getValuesAssignment_3()); 
-            // InternalMyCsv.g:3403:2: ( rule__ModifyField__ValuesAssignment_3 )
-            // InternalMyCsv.g:3403:3: rule__ModifyField__ValuesAssignment_3
+            // InternalMyCsv.g:3538:2: ( rule__ModifyField__ValuesAssignment_3 )
+            // InternalMyCsv.g:3538:3: rule__ModifyField__ValuesAssignment_3
             {
             pushFollow(FOLLOW_2);
             rule__ModifyField__ValuesAssignment_3();
@@ -10770,14 +11177,14 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ModifyCell__Group__0"
-    // InternalMyCsv.g:3412:1: rule__ModifyCell__Group__0 : rule__ModifyCell__Group__0__Impl rule__ModifyCell__Group__1 ;
+    // InternalMyCsv.g:3547:1: rule__ModifyCell__Group__0 : rule__ModifyCell__Group__0__Impl rule__ModifyCell__Group__1 ;
     public final void rule__ModifyCell__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:3416:1: ( rule__ModifyCell__Group__0__Impl rule__ModifyCell__Group__1 )
-            // InternalMyCsv.g:3417:2: rule__ModifyCell__Group__0__Impl rule__ModifyCell__Group__1
+            // InternalMyCsv.g:3551:1: ( rule__ModifyCell__Group__0__Impl rule__ModifyCell__Group__1 )
+            // InternalMyCsv.g:3552:2: rule__ModifyCell__Group__0__Impl rule__ModifyCell__Group__1
             {
             pushFollow(FOLLOW_24);
             rule__ModifyCell__Group__0__Impl();
@@ -10808,20 +11215,20 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ModifyCell__Group__0__Impl"
-    // InternalMyCsv.g:3424:1: rule__ModifyCell__Group__0__Impl : ( 'cell' ) ;
+    // InternalMyCsv.g:3559:1: rule__ModifyCell__Group__0__Impl : ( 'cell' ) ;
     public final void rule__ModifyCell__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:3428:1: ( ( 'cell' ) )
-            // InternalMyCsv.g:3429:1: ( 'cell' )
+            // InternalMyCsv.g:3563:1: ( ( 'cell' ) )
+            // InternalMyCsv.g:3564:1: ( 'cell' )
             {
-            // InternalMyCsv.g:3429:1: ( 'cell' )
-            // InternalMyCsv.g:3430:2: 'cell'
+            // InternalMyCsv.g:3564:1: ( 'cell' )
+            // InternalMyCsv.g:3565:2: 'cell'
             {
              before(grammarAccess.getModifyCellAccess().getCellKeyword_0()); 
-            match(input,46,FOLLOW_2); 
+            match(input,47,FOLLOW_2); 
              after(grammarAccess.getModifyCellAccess().getCellKeyword_0()); 
 
             }
@@ -10845,14 +11252,14 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ModifyCell__Group__1"
-    // InternalMyCsv.g:3439:1: rule__ModifyCell__Group__1 : rule__ModifyCell__Group__1__Impl rule__ModifyCell__Group__2 ;
+    // InternalMyCsv.g:3574:1: rule__ModifyCell__Group__1 : rule__ModifyCell__Group__1__Impl rule__ModifyCell__Group__2 ;
     public final void rule__ModifyCell__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:3443:1: ( rule__ModifyCell__Group__1__Impl rule__ModifyCell__Group__2 )
-            // InternalMyCsv.g:3444:2: rule__ModifyCell__Group__1__Impl rule__ModifyCell__Group__2
+            // InternalMyCsv.g:3578:1: ( rule__ModifyCell__Group__1__Impl rule__ModifyCell__Group__2 )
+            // InternalMyCsv.g:3579:2: rule__ModifyCell__Group__1__Impl rule__ModifyCell__Group__2
             {
             pushFollow(FOLLOW_23);
             rule__ModifyCell__Group__1__Impl();
@@ -10883,21 +11290,21 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ModifyCell__Group__1__Impl"
-    // InternalMyCsv.g:3451:1: rule__ModifyCell__Group__1__Impl : ( ( rule__ModifyCell__CellAssignment_1 ) ) ;
+    // InternalMyCsv.g:3586:1: rule__ModifyCell__Group__1__Impl : ( ( rule__ModifyCell__CellAssignment_1 ) ) ;
     public final void rule__ModifyCell__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:3455:1: ( ( ( rule__ModifyCell__CellAssignment_1 ) ) )
-            // InternalMyCsv.g:3456:1: ( ( rule__ModifyCell__CellAssignment_1 ) )
+            // InternalMyCsv.g:3590:1: ( ( ( rule__ModifyCell__CellAssignment_1 ) ) )
+            // InternalMyCsv.g:3591:1: ( ( rule__ModifyCell__CellAssignment_1 ) )
             {
-            // InternalMyCsv.g:3456:1: ( ( rule__ModifyCell__CellAssignment_1 ) )
-            // InternalMyCsv.g:3457:2: ( rule__ModifyCell__CellAssignment_1 )
+            // InternalMyCsv.g:3591:1: ( ( rule__ModifyCell__CellAssignment_1 ) )
+            // InternalMyCsv.g:3592:2: ( rule__ModifyCell__CellAssignment_1 )
             {
              before(grammarAccess.getModifyCellAccess().getCellAssignment_1()); 
-            // InternalMyCsv.g:3458:2: ( rule__ModifyCell__CellAssignment_1 )
-            // InternalMyCsv.g:3458:3: rule__ModifyCell__CellAssignment_1
+            // InternalMyCsv.g:3593:2: ( rule__ModifyCell__CellAssignment_1 )
+            // InternalMyCsv.g:3593:3: rule__ModifyCell__CellAssignment_1
             {
             pushFollow(FOLLOW_2);
             rule__ModifyCell__CellAssignment_1();
@@ -10930,14 +11337,14 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ModifyCell__Group__2"
-    // InternalMyCsv.g:3466:1: rule__ModifyCell__Group__2 : rule__ModifyCell__Group__2__Impl rule__ModifyCell__Group__3 ;
+    // InternalMyCsv.g:3601:1: rule__ModifyCell__Group__2 : rule__ModifyCell__Group__2__Impl rule__ModifyCell__Group__3 ;
     public final void rule__ModifyCell__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:3470:1: ( rule__ModifyCell__Group__2__Impl rule__ModifyCell__Group__3 )
-            // InternalMyCsv.g:3471:2: rule__ModifyCell__Group__2__Impl rule__ModifyCell__Group__3
+            // InternalMyCsv.g:3605:1: ( rule__ModifyCell__Group__2__Impl rule__ModifyCell__Group__3 )
+            // InternalMyCsv.g:3606:2: rule__ModifyCell__Group__2__Impl rule__ModifyCell__Group__3
             {
             pushFollow(FOLLOW_10);
             rule__ModifyCell__Group__2__Impl();
@@ -10968,20 +11375,20 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ModifyCell__Group__2__Impl"
-    // InternalMyCsv.g:3478:1: rule__ModifyCell__Group__2__Impl : ( 'with' ) ;
+    // InternalMyCsv.g:3613:1: rule__ModifyCell__Group__2__Impl : ( 'with' ) ;
     public final void rule__ModifyCell__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:3482:1: ( ( 'with' ) )
-            // InternalMyCsv.g:3483:1: ( 'with' )
+            // InternalMyCsv.g:3617:1: ( ( 'with' ) )
+            // InternalMyCsv.g:3618:1: ( 'with' )
             {
-            // InternalMyCsv.g:3483:1: ( 'with' )
-            // InternalMyCsv.g:3484:2: 'with'
+            // InternalMyCsv.g:3618:1: ( 'with' )
+            // InternalMyCsv.g:3619:2: 'with'
             {
              before(grammarAccess.getModifyCellAccess().getWithKeyword_2()); 
-            match(input,45,FOLLOW_2); 
+            match(input,46,FOLLOW_2); 
              after(grammarAccess.getModifyCellAccess().getWithKeyword_2()); 
 
             }
@@ -11005,14 +11412,14 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ModifyCell__Group__3"
-    // InternalMyCsv.g:3493:1: rule__ModifyCell__Group__3 : rule__ModifyCell__Group__3__Impl ;
+    // InternalMyCsv.g:3628:1: rule__ModifyCell__Group__3 : rule__ModifyCell__Group__3__Impl ;
     public final void rule__ModifyCell__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:3497:1: ( rule__ModifyCell__Group__3__Impl )
-            // InternalMyCsv.g:3498:2: rule__ModifyCell__Group__3__Impl
+            // InternalMyCsv.g:3632:1: ( rule__ModifyCell__Group__3__Impl )
+            // InternalMyCsv.g:3633:2: rule__ModifyCell__Group__3__Impl
             {
             pushFollow(FOLLOW_2);
             rule__ModifyCell__Group__3__Impl();
@@ -11038,21 +11445,21 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ModifyCell__Group__3__Impl"
-    // InternalMyCsv.g:3504:1: rule__ModifyCell__Group__3__Impl : ( ( rule__ModifyCell__ValueAssignment_3 ) ) ;
+    // InternalMyCsv.g:3639:1: rule__ModifyCell__Group__3__Impl : ( ( rule__ModifyCell__ValueAssignment_3 ) ) ;
     public final void rule__ModifyCell__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:3508:1: ( ( ( rule__ModifyCell__ValueAssignment_3 ) ) )
-            // InternalMyCsv.g:3509:1: ( ( rule__ModifyCell__ValueAssignment_3 ) )
+            // InternalMyCsv.g:3643:1: ( ( ( rule__ModifyCell__ValueAssignment_3 ) ) )
+            // InternalMyCsv.g:3644:1: ( ( rule__ModifyCell__ValueAssignment_3 ) )
             {
-            // InternalMyCsv.g:3509:1: ( ( rule__ModifyCell__ValueAssignment_3 ) )
-            // InternalMyCsv.g:3510:2: ( rule__ModifyCell__ValueAssignment_3 )
+            // InternalMyCsv.g:3644:1: ( ( rule__ModifyCell__ValueAssignment_3 ) )
+            // InternalMyCsv.g:3645:2: ( rule__ModifyCell__ValueAssignment_3 )
             {
              before(grammarAccess.getModifyCellAccess().getValueAssignment_3()); 
-            // InternalMyCsv.g:3511:2: ( rule__ModifyCell__ValueAssignment_3 )
-            // InternalMyCsv.g:3511:3: rule__ModifyCell__ValueAssignment_3
+            // InternalMyCsv.g:3646:2: ( rule__ModifyCell__ValueAssignment_3 )
+            // InternalMyCsv.g:3646:3: rule__ModifyCell__ValueAssignment_3
             {
             pushFollow(FOLLOW_2);
             rule__ModifyCell__ValueAssignment_3();
@@ -11085,14 +11492,14 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Print__Group__0"
-    // InternalMyCsv.g:3520:1: rule__Print__Group__0 : rule__Print__Group__0__Impl rule__Print__Group__1 ;
+    // InternalMyCsv.g:3655:1: rule__Print__Group__0 : rule__Print__Group__0__Impl rule__Print__Group__1 ;
     public final void rule__Print__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:3524:1: ( rule__Print__Group__0__Impl rule__Print__Group__1 )
-            // InternalMyCsv.g:3525:2: rule__Print__Group__0__Impl rule__Print__Group__1
+            // InternalMyCsv.g:3659:1: ( rule__Print__Group__0__Impl rule__Print__Group__1 )
+            // InternalMyCsv.g:3660:2: rule__Print__Group__0__Impl rule__Print__Group__1
             {
             pushFollow(FOLLOW_25);
             rule__Print__Group__0__Impl();
@@ -11123,20 +11530,20 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Print__Group__0__Impl"
-    // InternalMyCsv.g:3532:1: rule__Print__Group__0__Impl : ( 'Print' ) ;
+    // InternalMyCsv.g:3667:1: rule__Print__Group__0__Impl : ( 'Print' ) ;
     public final void rule__Print__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:3536:1: ( ( 'Print' ) )
-            // InternalMyCsv.g:3537:1: ( 'Print' )
+            // InternalMyCsv.g:3671:1: ( ( 'Print' ) )
+            // InternalMyCsv.g:3672:1: ( 'Print' )
             {
-            // InternalMyCsv.g:3537:1: ( 'Print' )
-            // InternalMyCsv.g:3538:2: 'Print'
+            // InternalMyCsv.g:3672:1: ( 'Print' )
+            // InternalMyCsv.g:3673:2: 'Print'
             {
              before(grammarAccess.getPrintAccess().getPrintKeyword_0()); 
-            match(input,47,FOLLOW_2); 
+            match(input,48,FOLLOW_2); 
              after(grammarAccess.getPrintAccess().getPrintKeyword_0()); 
 
             }
@@ -11160,14 +11567,14 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Print__Group__1"
-    // InternalMyCsv.g:3547:1: rule__Print__Group__1 : rule__Print__Group__1__Impl ;
+    // InternalMyCsv.g:3682:1: rule__Print__Group__1 : rule__Print__Group__1__Impl ;
     public final void rule__Print__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:3551:1: ( rule__Print__Group__1__Impl )
-            // InternalMyCsv.g:3552:2: rule__Print__Group__1__Impl
+            // InternalMyCsv.g:3686:1: ( rule__Print__Group__1__Impl )
+            // InternalMyCsv.g:3687:2: rule__Print__Group__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__Print__Group__1__Impl();
@@ -11193,21 +11600,21 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Print__Group__1__Impl"
-    // InternalMyCsv.g:3558:1: rule__Print__Group__1__Impl : ( ( rule__Print__Alternatives_1 ) ) ;
+    // InternalMyCsv.g:3693:1: rule__Print__Group__1__Impl : ( ( rule__Print__Alternatives_1 ) ) ;
     public final void rule__Print__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:3562:1: ( ( ( rule__Print__Alternatives_1 ) ) )
-            // InternalMyCsv.g:3563:1: ( ( rule__Print__Alternatives_1 ) )
+            // InternalMyCsv.g:3697:1: ( ( ( rule__Print__Alternatives_1 ) ) )
+            // InternalMyCsv.g:3698:1: ( ( rule__Print__Alternatives_1 ) )
             {
-            // InternalMyCsv.g:3563:1: ( ( rule__Print__Alternatives_1 ) )
-            // InternalMyCsv.g:3564:2: ( rule__Print__Alternatives_1 )
+            // InternalMyCsv.g:3698:1: ( ( rule__Print__Alternatives_1 ) )
+            // InternalMyCsv.g:3699:2: ( rule__Print__Alternatives_1 )
             {
              before(grammarAccess.getPrintAccess().getAlternatives_1()); 
-            // InternalMyCsv.g:3565:2: ( rule__Print__Alternatives_1 )
-            // InternalMyCsv.g:3565:3: rule__Print__Alternatives_1
+            // InternalMyCsv.g:3700:2: ( rule__Print__Alternatives_1 )
+            // InternalMyCsv.g:3700:3: rule__Print__Alternatives_1
             {
             pushFollow(FOLLOW_2);
             rule__Print__Alternatives_1();
@@ -11240,14 +11647,14 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Print__Group_1_3__0"
-    // InternalMyCsv.g:3574:1: rule__Print__Group_1_3__0 : rule__Print__Group_1_3__0__Impl rule__Print__Group_1_3__1 ;
+    // InternalMyCsv.g:3709:1: rule__Print__Group_1_3__0 : rule__Print__Group_1_3__0__Impl rule__Print__Group_1_3__1 ;
     public final void rule__Print__Group_1_3__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:3578:1: ( rule__Print__Group_1_3__0__Impl rule__Print__Group_1_3__1 )
-            // InternalMyCsv.g:3579:2: rule__Print__Group_1_3__0__Impl rule__Print__Group_1_3__1
+            // InternalMyCsv.g:3713:1: ( rule__Print__Group_1_3__0__Impl rule__Print__Group_1_3__1 )
+            // InternalMyCsv.g:3714:2: rule__Print__Group_1_3__0__Impl rule__Print__Group_1_3__1
             {
             pushFollow(FOLLOW_26);
             rule__Print__Group_1_3__0__Impl();
@@ -11278,21 +11685,21 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Print__Group_1_3__0__Impl"
-    // InternalMyCsv.g:3586:1: rule__Print__Group_1_3__0__Impl : ( () ) ;
+    // InternalMyCsv.g:3721:1: rule__Print__Group_1_3__0__Impl : ( () ) ;
     public final void rule__Print__Group_1_3__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:3590:1: ( ( () ) )
-            // InternalMyCsv.g:3591:1: ( () )
+            // InternalMyCsv.g:3725:1: ( ( () ) )
+            // InternalMyCsv.g:3726:1: ( () )
             {
-            // InternalMyCsv.g:3591:1: ( () )
-            // InternalMyCsv.g:3592:2: ()
+            // InternalMyCsv.g:3726:1: ( () )
+            // InternalMyCsv.g:3727:2: ()
             {
              before(grammarAccess.getPrintAccess().getPrintTableAction_1_3_0()); 
-            // InternalMyCsv.g:3593:2: ()
-            // InternalMyCsv.g:3593:3: 
+            // InternalMyCsv.g:3728:2: ()
+            // InternalMyCsv.g:3728:3: 
             {
             }
 
@@ -11315,14 +11722,14 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Print__Group_1_3__1"
-    // InternalMyCsv.g:3601:1: rule__Print__Group_1_3__1 : rule__Print__Group_1_3__1__Impl ;
+    // InternalMyCsv.g:3736:1: rule__Print__Group_1_3__1 : rule__Print__Group_1_3__1__Impl ;
     public final void rule__Print__Group_1_3__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:3605:1: ( rule__Print__Group_1_3__1__Impl )
-            // InternalMyCsv.g:3606:2: rule__Print__Group_1_3__1__Impl
+            // InternalMyCsv.g:3740:1: ( rule__Print__Group_1_3__1__Impl )
+            // InternalMyCsv.g:3741:2: rule__Print__Group_1_3__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__Print__Group_1_3__1__Impl();
@@ -11348,17 +11755,17 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Print__Group_1_3__1__Impl"
-    // InternalMyCsv.g:3612:1: rule__Print__Group_1_3__1__Impl : ( rulePrintTable ) ;
+    // InternalMyCsv.g:3747:1: rule__Print__Group_1_3__1__Impl : ( rulePrintTable ) ;
     public final void rule__Print__Group_1_3__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:3616:1: ( ( rulePrintTable ) )
-            // InternalMyCsv.g:3617:1: ( rulePrintTable )
+            // InternalMyCsv.g:3751:1: ( ( rulePrintTable ) )
+            // InternalMyCsv.g:3752:1: ( rulePrintTable )
             {
-            // InternalMyCsv.g:3617:1: ( rulePrintTable )
-            // InternalMyCsv.g:3618:2: rulePrintTable
+            // InternalMyCsv.g:3752:1: ( rulePrintTable )
+            // InternalMyCsv.g:3753:2: rulePrintTable
             {
              before(grammarAccess.getPrintAccess().getPrintTableParserRuleCall_1_3_1()); 
             pushFollow(FOLLOW_2);
@@ -11389,14 +11796,14 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PrintLine__Group__0"
-    // InternalMyCsv.g:3628:1: rule__PrintLine__Group__0 : rule__PrintLine__Group__0__Impl rule__PrintLine__Group__1 ;
+    // InternalMyCsv.g:3763:1: rule__PrintLine__Group__0 : rule__PrintLine__Group__0__Impl rule__PrintLine__Group__1 ;
     public final void rule__PrintLine__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:3632:1: ( rule__PrintLine__Group__0__Impl rule__PrintLine__Group__1 )
-            // InternalMyCsv.g:3633:2: rule__PrintLine__Group__0__Impl rule__PrintLine__Group__1
+            // InternalMyCsv.g:3767:1: ( rule__PrintLine__Group__0__Impl rule__PrintLine__Group__1 )
+            // InternalMyCsv.g:3768:2: rule__PrintLine__Group__0__Impl rule__PrintLine__Group__1
             {
             pushFollow(FOLLOW_17);
             rule__PrintLine__Group__0__Impl();
@@ -11427,20 +11834,20 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PrintLine__Group__0__Impl"
-    // InternalMyCsv.g:3640:1: rule__PrintLine__Group__0__Impl : ( 'line' ) ;
+    // InternalMyCsv.g:3775:1: rule__PrintLine__Group__0__Impl : ( 'line' ) ;
     public final void rule__PrintLine__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:3644:1: ( ( 'line' ) )
-            // InternalMyCsv.g:3645:1: ( 'line' )
+            // InternalMyCsv.g:3779:1: ( ( 'line' ) )
+            // InternalMyCsv.g:3780:1: ( 'line' )
             {
-            // InternalMyCsv.g:3645:1: ( 'line' )
-            // InternalMyCsv.g:3646:2: 'line'
+            // InternalMyCsv.g:3780:1: ( 'line' )
+            // InternalMyCsv.g:3781:2: 'line'
             {
              before(grammarAccess.getPrintLineAccess().getLineKeyword_0()); 
-            match(input,40,FOLLOW_2); 
+            match(input,41,FOLLOW_2); 
              after(grammarAccess.getPrintLineAccess().getLineKeyword_0()); 
 
             }
@@ -11464,14 +11871,14 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PrintLine__Group__1"
-    // InternalMyCsv.g:3655:1: rule__PrintLine__Group__1 : rule__PrintLine__Group__1__Impl ;
+    // InternalMyCsv.g:3790:1: rule__PrintLine__Group__1 : rule__PrintLine__Group__1__Impl ;
     public final void rule__PrintLine__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:3659:1: ( rule__PrintLine__Group__1__Impl )
-            // InternalMyCsv.g:3660:2: rule__PrintLine__Group__1__Impl
+            // InternalMyCsv.g:3794:1: ( rule__PrintLine__Group__1__Impl )
+            // InternalMyCsv.g:3795:2: rule__PrintLine__Group__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__PrintLine__Group__1__Impl();
@@ -11497,21 +11904,21 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PrintLine__Group__1__Impl"
-    // InternalMyCsv.g:3666:1: rule__PrintLine__Group__1__Impl : ( ( rule__PrintLine__LinesAssignment_1 ) ) ;
+    // InternalMyCsv.g:3801:1: rule__PrintLine__Group__1__Impl : ( ( rule__PrintLine__LinesAssignment_1 ) ) ;
     public final void rule__PrintLine__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:3670:1: ( ( ( rule__PrintLine__LinesAssignment_1 ) ) )
-            // InternalMyCsv.g:3671:1: ( ( rule__PrintLine__LinesAssignment_1 ) )
+            // InternalMyCsv.g:3805:1: ( ( ( rule__PrintLine__LinesAssignment_1 ) ) )
+            // InternalMyCsv.g:3806:1: ( ( rule__PrintLine__LinesAssignment_1 ) )
             {
-            // InternalMyCsv.g:3671:1: ( ( rule__PrintLine__LinesAssignment_1 ) )
-            // InternalMyCsv.g:3672:2: ( rule__PrintLine__LinesAssignment_1 )
+            // InternalMyCsv.g:3806:1: ( ( rule__PrintLine__LinesAssignment_1 ) )
+            // InternalMyCsv.g:3807:2: ( rule__PrintLine__LinesAssignment_1 )
             {
              before(grammarAccess.getPrintLineAccess().getLinesAssignment_1()); 
-            // InternalMyCsv.g:3673:2: ( rule__PrintLine__LinesAssignment_1 )
-            // InternalMyCsv.g:3673:3: rule__PrintLine__LinesAssignment_1
+            // InternalMyCsv.g:3808:2: ( rule__PrintLine__LinesAssignment_1 )
+            // InternalMyCsv.g:3808:3: rule__PrintLine__LinesAssignment_1
             {
             pushFollow(FOLLOW_2);
             rule__PrintLine__LinesAssignment_1();
@@ -11544,14 +11951,14 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PrintField__Group__0"
-    // InternalMyCsv.g:3682:1: rule__PrintField__Group__0 : rule__PrintField__Group__0__Impl rule__PrintField__Group__1 ;
+    // InternalMyCsv.g:3817:1: rule__PrintField__Group__0 : rule__PrintField__Group__0__Impl rule__PrintField__Group__1 ;
     public final void rule__PrintField__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:3686:1: ( rule__PrintField__Group__0__Impl rule__PrintField__Group__1 )
-            // InternalMyCsv.g:3687:2: rule__PrintField__Group__0__Impl rule__PrintField__Group__1
+            // InternalMyCsv.g:3821:1: ( rule__PrintField__Group__0__Impl rule__PrintField__Group__1 )
+            // InternalMyCsv.g:3822:2: rule__PrintField__Group__0__Impl rule__PrintField__Group__1
             {
             pushFollow(FOLLOW_8);
             rule__PrintField__Group__0__Impl();
@@ -11582,20 +11989,20 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PrintField__Group__0__Impl"
-    // InternalMyCsv.g:3694:1: rule__PrintField__Group__0__Impl : ( 'field' ) ;
+    // InternalMyCsv.g:3829:1: rule__PrintField__Group__0__Impl : ( 'field' ) ;
     public final void rule__PrintField__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:3698:1: ( ( 'field' ) )
-            // InternalMyCsv.g:3699:1: ( 'field' )
+            // InternalMyCsv.g:3833:1: ( ( 'field' ) )
+            // InternalMyCsv.g:3834:1: ( 'field' )
             {
-            // InternalMyCsv.g:3699:1: ( 'field' )
-            // InternalMyCsv.g:3700:2: 'field'
+            // InternalMyCsv.g:3834:1: ( 'field' )
+            // InternalMyCsv.g:3835:2: 'field'
             {
              before(grammarAccess.getPrintFieldAccess().getFieldKeyword_0()); 
-            match(input,41,FOLLOW_2); 
+            match(input,42,FOLLOW_2); 
              after(grammarAccess.getPrintFieldAccess().getFieldKeyword_0()); 
 
             }
@@ -11619,14 +12026,14 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PrintField__Group__1"
-    // InternalMyCsv.g:3709:1: rule__PrintField__Group__1 : rule__PrintField__Group__1__Impl ;
+    // InternalMyCsv.g:3844:1: rule__PrintField__Group__1 : rule__PrintField__Group__1__Impl ;
     public final void rule__PrintField__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:3713:1: ( rule__PrintField__Group__1__Impl )
-            // InternalMyCsv.g:3714:2: rule__PrintField__Group__1__Impl
+            // InternalMyCsv.g:3848:1: ( rule__PrintField__Group__1__Impl )
+            // InternalMyCsv.g:3849:2: rule__PrintField__Group__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__PrintField__Group__1__Impl();
@@ -11652,21 +12059,21 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PrintField__Group__1__Impl"
-    // InternalMyCsv.g:3720:1: rule__PrintField__Group__1__Impl : ( ( rule__PrintField__FieldsAssignment_1 ) ) ;
+    // InternalMyCsv.g:3855:1: rule__PrintField__Group__1__Impl : ( ( rule__PrintField__FieldsAssignment_1 ) ) ;
     public final void rule__PrintField__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:3724:1: ( ( ( rule__PrintField__FieldsAssignment_1 ) ) )
-            // InternalMyCsv.g:3725:1: ( ( rule__PrintField__FieldsAssignment_1 ) )
+            // InternalMyCsv.g:3859:1: ( ( ( rule__PrintField__FieldsAssignment_1 ) ) )
+            // InternalMyCsv.g:3860:1: ( ( rule__PrintField__FieldsAssignment_1 ) )
             {
-            // InternalMyCsv.g:3725:1: ( ( rule__PrintField__FieldsAssignment_1 ) )
-            // InternalMyCsv.g:3726:2: ( rule__PrintField__FieldsAssignment_1 )
+            // InternalMyCsv.g:3860:1: ( ( rule__PrintField__FieldsAssignment_1 ) )
+            // InternalMyCsv.g:3861:2: ( rule__PrintField__FieldsAssignment_1 )
             {
              before(grammarAccess.getPrintFieldAccess().getFieldsAssignment_1()); 
-            // InternalMyCsv.g:3727:2: ( rule__PrintField__FieldsAssignment_1 )
-            // InternalMyCsv.g:3727:3: rule__PrintField__FieldsAssignment_1
+            // InternalMyCsv.g:3862:2: ( rule__PrintField__FieldsAssignment_1 )
+            // InternalMyCsv.g:3862:3: rule__PrintField__FieldsAssignment_1
             {
             pushFollow(FOLLOW_2);
             rule__PrintField__FieldsAssignment_1();
@@ -11699,14 +12106,14 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PrintCell__Group__0"
-    // InternalMyCsv.g:3736:1: rule__PrintCell__Group__0 : rule__PrintCell__Group__0__Impl rule__PrintCell__Group__1 ;
+    // InternalMyCsv.g:3871:1: rule__PrintCell__Group__0 : rule__PrintCell__Group__0__Impl rule__PrintCell__Group__1 ;
     public final void rule__PrintCell__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:3740:1: ( rule__PrintCell__Group__0__Impl rule__PrintCell__Group__1 )
-            // InternalMyCsv.g:3741:2: rule__PrintCell__Group__0__Impl rule__PrintCell__Group__1
+            // InternalMyCsv.g:3875:1: ( rule__PrintCell__Group__0__Impl rule__PrintCell__Group__1 )
+            // InternalMyCsv.g:3876:2: rule__PrintCell__Group__0__Impl rule__PrintCell__Group__1
             {
             pushFollow(FOLLOW_24);
             rule__PrintCell__Group__0__Impl();
@@ -11737,20 +12144,20 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PrintCell__Group__0__Impl"
-    // InternalMyCsv.g:3748:1: rule__PrintCell__Group__0__Impl : ( 'cell' ) ;
+    // InternalMyCsv.g:3883:1: rule__PrintCell__Group__0__Impl : ( 'cell' ) ;
     public final void rule__PrintCell__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:3752:1: ( ( 'cell' ) )
-            // InternalMyCsv.g:3753:1: ( 'cell' )
+            // InternalMyCsv.g:3887:1: ( ( 'cell' ) )
+            // InternalMyCsv.g:3888:1: ( 'cell' )
             {
-            // InternalMyCsv.g:3753:1: ( 'cell' )
-            // InternalMyCsv.g:3754:2: 'cell'
+            // InternalMyCsv.g:3888:1: ( 'cell' )
+            // InternalMyCsv.g:3889:2: 'cell'
             {
              before(grammarAccess.getPrintCellAccess().getCellKeyword_0()); 
-            match(input,46,FOLLOW_2); 
+            match(input,47,FOLLOW_2); 
              after(grammarAccess.getPrintCellAccess().getCellKeyword_0()); 
 
             }
@@ -11774,14 +12181,14 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PrintCell__Group__1"
-    // InternalMyCsv.g:3763:1: rule__PrintCell__Group__1 : rule__PrintCell__Group__1__Impl ;
+    // InternalMyCsv.g:3898:1: rule__PrintCell__Group__1 : rule__PrintCell__Group__1__Impl ;
     public final void rule__PrintCell__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:3767:1: ( rule__PrintCell__Group__1__Impl )
-            // InternalMyCsv.g:3768:2: rule__PrintCell__Group__1__Impl
+            // InternalMyCsv.g:3902:1: ( rule__PrintCell__Group__1__Impl )
+            // InternalMyCsv.g:3903:2: rule__PrintCell__Group__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__PrintCell__Group__1__Impl();
@@ -11807,21 +12214,21 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PrintCell__Group__1__Impl"
-    // InternalMyCsv.g:3774:1: rule__PrintCell__Group__1__Impl : ( ( rule__PrintCell__CellAssignment_1 ) ) ;
+    // InternalMyCsv.g:3909:1: rule__PrintCell__Group__1__Impl : ( ( rule__PrintCell__CellAssignment_1 ) ) ;
     public final void rule__PrintCell__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:3778:1: ( ( ( rule__PrintCell__CellAssignment_1 ) ) )
-            // InternalMyCsv.g:3779:1: ( ( rule__PrintCell__CellAssignment_1 ) )
+            // InternalMyCsv.g:3913:1: ( ( ( rule__PrintCell__CellAssignment_1 ) ) )
+            // InternalMyCsv.g:3914:1: ( ( rule__PrintCell__CellAssignment_1 ) )
             {
-            // InternalMyCsv.g:3779:1: ( ( rule__PrintCell__CellAssignment_1 ) )
-            // InternalMyCsv.g:3780:2: ( rule__PrintCell__CellAssignment_1 )
+            // InternalMyCsv.g:3914:1: ( ( rule__PrintCell__CellAssignment_1 ) )
+            // InternalMyCsv.g:3915:2: ( rule__PrintCell__CellAssignment_1 )
             {
              before(grammarAccess.getPrintCellAccess().getCellAssignment_1()); 
-            // InternalMyCsv.g:3781:2: ( rule__PrintCell__CellAssignment_1 )
-            // InternalMyCsv.g:3781:3: rule__PrintCell__CellAssignment_1
+            // InternalMyCsv.g:3916:2: ( rule__PrintCell__CellAssignment_1 )
+            // InternalMyCsv.g:3916:3: rule__PrintCell__CellAssignment_1
             {
             pushFollow(FOLLOW_2);
             rule__PrintCell__CellAssignment_1();
@@ -11854,14 +12261,14 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PrintExpr__Group__0"
-    // InternalMyCsv.g:3790:1: rule__PrintExpr__Group__0 : rule__PrintExpr__Group__0__Impl rule__PrintExpr__Group__1 ;
+    // InternalMyCsv.g:3925:1: rule__PrintExpr__Group__0 : rule__PrintExpr__Group__0__Impl rule__PrintExpr__Group__1 ;
     public final void rule__PrintExpr__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:3794:1: ( rule__PrintExpr__Group__0__Impl rule__PrintExpr__Group__1 )
-            // InternalMyCsv.g:3795:2: rule__PrintExpr__Group__0__Impl rule__PrintExpr__Group__1
+            // InternalMyCsv.g:3929:1: ( rule__PrintExpr__Group__0__Impl rule__PrintExpr__Group__1 )
+            // InternalMyCsv.g:3930:2: rule__PrintExpr__Group__0__Impl rule__PrintExpr__Group__1
             {
             pushFollow(FOLLOW_10);
             rule__PrintExpr__Group__0__Impl();
@@ -11892,20 +12299,20 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PrintExpr__Group__0__Impl"
-    // InternalMyCsv.g:3802:1: rule__PrintExpr__Group__0__Impl : ( 'expr' ) ;
+    // InternalMyCsv.g:3937:1: rule__PrintExpr__Group__0__Impl : ( 'expr' ) ;
     public final void rule__PrintExpr__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:3806:1: ( ( 'expr' ) )
-            // InternalMyCsv.g:3807:1: ( 'expr' )
+            // InternalMyCsv.g:3941:1: ( ( 'expr' ) )
+            // InternalMyCsv.g:3942:1: ( 'expr' )
             {
-            // InternalMyCsv.g:3807:1: ( 'expr' )
-            // InternalMyCsv.g:3808:2: 'expr'
+            // InternalMyCsv.g:3942:1: ( 'expr' )
+            // InternalMyCsv.g:3943:2: 'expr'
             {
              before(grammarAccess.getPrintExprAccess().getExprKeyword_0()); 
-            match(input,48,FOLLOW_2); 
+            match(input,49,FOLLOW_2); 
              after(grammarAccess.getPrintExprAccess().getExprKeyword_0()); 
 
             }
@@ -11929,14 +12336,14 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PrintExpr__Group__1"
-    // InternalMyCsv.g:3817:1: rule__PrintExpr__Group__1 : rule__PrintExpr__Group__1__Impl ;
+    // InternalMyCsv.g:3952:1: rule__PrintExpr__Group__1 : rule__PrintExpr__Group__1__Impl ;
     public final void rule__PrintExpr__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:3821:1: ( rule__PrintExpr__Group__1__Impl )
-            // InternalMyCsv.g:3822:2: rule__PrintExpr__Group__1__Impl
+            // InternalMyCsv.g:3956:1: ( rule__PrintExpr__Group__1__Impl )
+            // InternalMyCsv.g:3957:2: rule__PrintExpr__Group__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__PrintExpr__Group__1__Impl();
@@ -11962,21 +12369,21 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PrintExpr__Group__1__Impl"
-    // InternalMyCsv.g:3828:1: rule__PrintExpr__Group__1__Impl : ( ( rule__PrintExpr__ExpAssignment_1 ) ) ;
+    // InternalMyCsv.g:3963:1: rule__PrintExpr__Group__1__Impl : ( ( rule__PrintExpr__ExpAssignment_1 ) ) ;
     public final void rule__PrintExpr__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:3832:1: ( ( ( rule__PrintExpr__ExpAssignment_1 ) ) )
-            // InternalMyCsv.g:3833:1: ( ( rule__PrintExpr__ExpAssignment_1 ) )
+            // InternalMyCsv.g:3967:1: ( ( ( rule__PrintExpr__ExpAssignment_1 ) ) )
+            // InternalMyCsv.g:3968:1: ( ( rule__PrintExpr__ExpAssignment_1 ) )
             {
-            // InternalMyCsv.g:3833:1: ( ( rule__PrintExpr__ExpAssignment_1 ) )
-            // InternalMyCsv.g:3834:2: ( rule__PrintExpr__ExpAssignment_1 )
+            // InternalMyCsv.g:3968:1: ( ( rule__PrintExpr__ExpAssignment_1 ) )
+            // InternalMyCsv.g:3969:2: ( rule__PrintExpr__ExpAssignment_1 )
             {
              before(grammarAccess.getPrintExprAccess().getExpAssignment_1()); 
-            // InternalMyCsv.g:3835:2: ( rule__PrintExpr__ExpAssignment_1 )
-            // InternalMyCsv.g:3835:3: rule__PrintExpr__ExpAssignment_1
+            // InternalMyCsv.g:3970:2: ( rule__PrintExpr__ExpAssignment_1 )
+            // InternalMyCsv.g:3970:3: rule__PrintExpr__ExpAssignment_1
             {
             pushFollow(FOLLOW_2);
             rule__PrintExpr__ExpAssignment_1();
@@ -12009,14 +12416,14 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__OrExpression__Group__0"
-    // InternalMyCsv.g:3844:1: rule__OrExpression__Group__0 : rule__OrExpression__Group__0__Impl rule__OrExpression__Group__1 ;
+    // InternalMyCsv.g:3979:1: rule__OrExpression__Group__0 : rule__OrExpression__Group__0__Impl rule__OrExpression__Group__1 ;
     public final void rule__OrExpression__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:3848:1: ( rule__OrExpression__Group__0__Impl rule__OrExpression__Group__1 )
-            // InternalMyCsv.g:3849:2: rule__OrExpression__Group__0__Impl rule__OrExpression__Group__1
+            // InternalMyCsv.g:3983:1: ( rule__OrExpression__Group__0__Impl rule__OrExpression__Group__1 )
+            // InternalMyCsv.g:3984:2: rule__OrExpression__Group__0__Impl rule__OrExpression__Group__1
             {
             pushFollow(FOLLOW_27);
             rule__OrExpression__Group__0__Impl();
@@ -12047,21 +12454,21 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__OrExpression__Group__0__Impl"
-    // InternalMyCsv.g:3856:1: rule__OrExpression__Group__0__Impl : ( ( rule__OrExpression__LhsAssignment_0 ) ) ;
+    // InternalMyCsv.g:3991:1: rule__OrExpression__Group__0__Impl : ( ( rule__OrExpression__LhsAssignment_0 ) ) ;
     public final void rule__OrExpression__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:3860:1: ( ( ( rule__OrExpression__LhsAssignment_0 ) ) )
-            // InternalMyCsv.g:3861:1: ( ( rule__OrExpression__LhsAssignment_0 ) )
+            // InternalMyCsv.g:3995:1: ( ( ( rule__OrExpression__LhsAssignment_0 ) ) )
+            // InternalMyCsv.g:3996:1: ( ( rule__OrExpression__LhsAssignment_0 ) )
             {
-            // InternalMyCsv.g:3861:1: ( ( rule__OrExpression__LhsAssignment_0 ) )
-            // InternalMyCsv.g:3862:2: ( rule__OrExpression__LhsAssignment_0 )
+            // InternalMyCsv.g:3996:1: ( ( rule__OrExpression__LhsAssignment_0 ) )
+            // InternalMyCsv.g:3997:2: ( rule__OrExpression__LhsAssignment_0 )
             {
              before(grammarAccess.getOrExpressionAccess().getLhsAssignment_0()); 
-            // InternalMyCsv.g:3863:2: ( rule__OrExpression__LhsAssignment_0 )
-            // InternalMyCsv.g:3863:3: rule__OrExpression__LhsAssignment_0
+            // InternalMyCsv.g:3998:2: ( rule__OrExpression__LhsAssignment_0 )
+            // InternalMyCsv.g:3998:3: rule__OrExpression__LhsAssignment_0
             {
             pushFollow(FOLLOW_2);
             rule__OrExpression__LhsAssignment_0();
@@ -12094,14 +12501,14 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__OrExpression__Group__1"
-    // InternalMyCsv.g:3871:1: rule__OrExpression__Group__1 : rule__OrExpression__Group__1__Impl ;
+    // InternalMyCsv.g:4006:1: rule__OrExpression__Group__1 : rule__OrExpression__Group__1__Impl ;
     public final void rule__OrExpression__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:3875:1: ( rule__OrExpression__Group__1__Impl )
-            // InternalMyCsv.g:3876:2: rule__OrExpression__Group__1__Impl
+            // InternalMyCsv.g:4010:1: ( rule__OrExpression__Group__1__Impl )
+            // InternalMyCsv.g:4011:2: rule__OrExpression__Group__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__OrExpression__Group__1__Impl();
@@ -12127,33 +12534,33 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__OrExpression__Group__1__Impl"
-    // InternalMyCsv.g:3882:1: rule__OrExpression__Group__1__Impl : ( ( rule__OrExpression__Group_1__0 )* ) ;
+    // InternalMyCsv.g:4017:1: rule__OrExpression__Group__1__Impl : ( ( rule__OrExpression__Group_1__0 )* ) ;
     public final void rule__OrExpression__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:3886:1: ( ( ( rule__OrExpression__Group_1__0 )* ) )
-            // InternalMyCsv.g:3887:1: ( ( rule__OrExpression__Group_1__0 )* )
+            // InternalMyCsv.g:4021:1: ( ( ( rule__OrExpression__Group_1__0 )* ) )
+            // InternalMyCsv.g:4022:1: ( ( rule__OrExpression__Group_1__0 )* )
             {
-            // InternalMyCsv.g:3887:1: ( ( rule__OrExpression__Group_1__0 )* )
-            // InternalMyCsv.g:3888:2: ( rule__OrExpression__Group_1__0 )*
+            // InternalMyCsv.g:4022:1: ( ( rule__OrExpression__Group_1__0 )* )
+            // InternalMyCsv.g:4023:2: ( rule__OrExpression__Group_1__0 )*
             {
              before(grammarAccess.getOrExpressionAccess().getGroup_1()); 
-            // InternalMyCsv.g:3889:2: ( rule__OrExpression__Group_1__0 )*
-            loop26:
+            // InternalMyCsv.g:4024:2: ( rule__OrExpression__Group_1__0 )*
+            loop27:
             do {
-                int alt26=2;
-                int LA26_0 = input.LA(1);
+                int alt27=2;
+                int LA27_0 = input.LA(1);
 
-                if ( (LA26_0==49) ) {
-                    alt26=1;
+                if ( (LA27_0==50) ) {
+                    alt27=1;
                 }
 
 
-                switch (alt26) {
+                switch (alt27) {
             	case 1 :
-            	    // InternalMyCsv.g:3889:3: rule__OrExpression__Group_1__0
+            	    // InternalMyCsv.g:4024:3: rule__OrExpression__Group_1__0
             	    {
             	    pushFollow(FOLLOW_28);
             	    rule__OrExpression__Group_1__0();
@@ -12165,7 +12572,7 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
             	    break;
 
             	default :
-            	    break loop26;
+            	    break loop27;
                 }
             } while (true);
 
@@ -12192,14 +12599,14 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__OrExpression__Group_1__0"
-    // InternalMyCsv.g:3898:1: rule__OrExpression__Group_1__0 : rule__OrExpression__Group_1__0__Impl rule__OrExpression__Group_1__1 ;
+    // InternalMyCsv.g:4033:1: rule__OrExpression__Group_1__0 : rule__OrExpression__Group_1__0__Impl rule__OrExpression__Group_1__1 ;
     public final void rule__OrExpression__Group_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:3902:1: ( rule__OrExpression__Group_1__0__Impl rule__OrExpression__Group_1__1 )
-            // InternalMyCsv.g:3903:2: rule__OrExpression__Group_1__0__Impl rule__OrExpression__Group_1__1
+            // InternalMyCsv.g:4037:1: ( rule__OrExpression__Group_1__0__Impl rule__OrExpression__Group_1__1 )
+            // InternalMyCsv.g:4038:2: rule__OrExpression__Group_1__0__Impl rule__OrExpression__Group_1__1
             {
             pushFollow(FOLLOW_29);
             rule__OrExpression__Group_1__0__Impl();
@@ -12230,20 +12637,20 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__OrExpression__Group_1__0__Impl"
-    // InternalMyCsv.g:3910:1: rule__OrExpression__Group_1__0__Impl : ( 'or' ) ;
+    // InternalMyCsv.g:4045:1: rule__OrExpression__Group_1__0__Impl : ( 'or' ) ;
     public final void rule__OrExpression__Group_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:3914:1: ( ( 'or' ) )
-            // InternalMyCsv.g:3915:1: ( 'or' )
+            // InternalMyCsv.g:4049:1: ( ( 'or' ) )
+            // InternalMyCsv.g:4050:1: ( 'or' )
             {
-            // InternalMyCsv.g:3915:1: ( 'or' )
-            // InternalMyCsv.g:3916:2: 'or'
+            // InternalMyCsv.g:4050:1: ( 'or' )
+            // InternalMyCsv.g:4051:2: 'or'
             {
              before(grammarAccess.getOrExpressionAccess().getOrKeyword_1_0()); 
-            match(input,49,FOLLOW_2); 
+            match(input,50,FOLLOW_2); 
              after(grammarAccess.getOrExpressionAccess().getOrKeyword_1_0()); 
 
             }
@@ -12267,14 +12674,14 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__OrExpression__Group_1__1"
-    // InternalMyCsv.g:3925:1: rule__OrExpression__Group_1__1 : rule__OrExpression__Group_1__1__Impl ;
+    // InternalMyCsv.g:4060:1: rule__OrExpression__Group_1__1 : rule__OrExpression__Group_1__1__Impl ;
     public final void rule__OrExpression__Group_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:3929:1: ( rule__OrExpression__Group_1__1__Impl )
-            // InternalMyCsv.g:3930:2: rule__OrExpression__Group_1__1__Impl
+            // InternalMyCsv.g:4064:1: ( rule__OrExpression__Group_1__1__Impl )
+            // InternalMyCsv.g:4065:2: rule__OrExpression__Group_1__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__OrExpression__Group_1__1__Impl();
@@ -12300,21 +12707,21 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__OrExpression__Group_1__1__Impl"
-    // InternalMyCsv.g:3936:1: rule__OrExpression__Group_1__1__Impl : ( ( rule__OrExpression__RhsAssignment_1_1 ) ) ;
+    // InternalMyCsv.g:4071:1: rule__OrExpression__Group_1__1__Impl : ( ( rule__OrExpression__RhsAssignment_1_1 ) ) ;
     public final void rule__OrExpression__Group_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:3940:1: ( ( ( rule__OrExpression__RhsAssignment_1_1 ) ) )
-            // InternalMyCsv.g:3941:1: ( ( rule__OrExpression__RhsAssignment_1_1 ) )
+            // InternalMyCsv.g:4075:1: ( ( ( rule__OrExpression__RhsAssignment_1_1 ) ) )
+            // InternalMyCsv.g:4076:1: ( ( rule__OrExpression__RhsAssignment_1_1 ) )
             {
-            // InternalMyCsv.g:3941:1: ( ( rule__OrExpression__RhsAssignment_1_1 ) )
-            // InternalMyCsv.g:3942:2: ( rule__OrExpression__RhsAssignment_1_1 )
+            // InternalMyCsv.g:4076:1: ( ( rule__OrExpression__RhsAssignment_1_1 ) )
+            // InternalMyCsv.g:4077:2: ( rule__OrExpression__RhsAssignment_1_1 )
             {
              before(grammarAccess.getOrExpressionAccess().getRhsAssignment_1_1()); 
-            // InternalMyCsv.g:3943:2: ( rule__OrExpression__RhsAssignment_1_1 )
-            // InternalMyCsv.g:3943:3: rule__OrExpression__RhsAssignment_1_1
+            // InternalMyCsv.g:4078:2: ( rule__OrExpression__RhsAssignment_1_1 )
+            // InternalMyCsv.g:4078:3: rule__OrExpression__RhsAssignment_1_1
             {
             pushFollow(FOLLOW_2);
             rule__OrExpression__RhsAssignment_1_1();
@@ -12347,14 +12754,14 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AndExpression__Group__0"
-    // InternalMyCsv.g:3952:1: rule__AndExpression__Group__0 : rule__AndExpression__Group__0__Impl rule__AndExpression__Group__1 ;
+    // InternalMyCsv.g:4087:1: rule__AndExpression__Group__0 : rule__AndExpression__Group__0__Impl rule__AndExpression__Group__1 ;
     public final void rule__AndExpression__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:3956:1: ( rule__AndExpression__Group__0__Impl rule__AndExpression__Group__1 )
-            // InternalMyCsv.g:3957:2: rule__AndExpression__Group__0__Impl rule__AndExpression__Group__1
+            // InternalMyCsv.g:4091:1: ( rule__AndExpression__Group__0__Impl rule__AndExpression__Group__1 )
+            // InternalMyCsv.g:4092:2: rule__AndExpression__Group__0__Impl rule__AndExpression__Group__1
             {
             pushFollow(FOLLOW_30);
             rule__AndExpression__Group__0__Impl();
@@ -12385,21 +12792,21 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AndExpression__Group__0__Impl"
-    // InternalMyCsv.g:3964:1: rule__AndExpression__Group__0__Impl : ( ( rule__AndExpression__LhsAssignment_0 ) ) ;
+    // InternalMyCsv.g:4099:1: rule__AndExpression__Group__0__Impl : ( ( rule__AndExpression__LhsAssignment_0 ) ) ;
     public final void rule__AndExpression__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:3968:1: ( ( ( rule__AndExpression__LhsAssignment_0 ) ) )
-            // InternalMyCsv.g:3969:1: ( ( rule__AndExpression__LhsAssignment_0 ) )
+            // InternalMyCsv.g:4103:1: ( ( ( rule__AndExpression__LhsAssignment_0 ) ) )
+            // InternalMyCsv.g:4104:1: ( ( rule__AndExpression__LhsAssignment_0 ) )
             {
-            // InternalMyCsv.g:3969:1: ( ( rule__AndExpression__LhsAssignment_0 ) )
-            // InternalMyCsv.g:3970:2: ( rule__AndExpression__LhsAssignment_0 )
+            // InternalMyCsv.g:4104:1: ( ( rule__AndExpression__LhsAssignment_0 ) )
+            // InternalMyCsv.g:4105:2: ( rule__AndExpression__LhsAssignment_0 )
             {
              before(grammarAccess.getAndExpressionAccess().getLhsAssignment_0()); 
-            // InternalMyCsv.g:3971:2: ( rule__AndExpression__LhsAssignment_0 )
-            // InternalMyCsv.g:3971:3: rule__AndExpression__LhsAssignment_0
+            // InternalMyCsv.g:4106:2: ( rule__AndExpression__LhsAssignment_0 )
+            // InternalMyCsv.g:4106:3: rule__AndExpression__LhsAssignment_0
             {
             pushFollow(FOLLOW_2);
             rule__AndExpression__LhsAssignment_0();
@@ -12432,14 +12839,14 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AndExpression__Group__1"
-    // InternalMyCsv.g:3979:1: rule__AndExpression__Group__1 : rule__AndExpression__Group__1__Impl ;
+    // InternalMyCsv.g:4114:1: rule__AndExpression__Group__1 : rule__AndExpression__Group__1__Impl ;
     public final void rule__AndExpression__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:3983:1: ( rule__AndExpression__Group__1__Impl )
-            // InternalMyCsv.g:3984:2: rule__AndExpression__Group__1__Impl
+            // InternalMyCsv.g:4118:1: ( rule__AndExpression__Group__1__Impl )
+            // InternalMyCsv.g:4119:2: rule__AndExpression__Group__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__AndExpression__Group__1__Impl();
@@ -12465,33 +12872,33 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AndExpression__Group__1__Impl"
-    // InternalMyCsv.g:3990:1: rule__AndExpression__Group__1__Impl : ( ( rule__AndExpression__Group_1__0 )* ) ;
+    // InternalMyCsv.g:4125:1: rule__AndExpression__Group__1__Impl : ( ( rule__AndExpression__Group_1__0 )* ) ;
     public final void rule__AndExpression__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:3994:1: ( ( ( rule__AndExpression__Group_1__0 )* ) )
-            // InternalMyCsv.g:3995:1: ( ( rule__AndExpression__Group_1__0 )* )
+            // InternalMyCsv.g:4129:1: ( ( ( rule__AndExpression__Group_1__0 )* ) )
+            // InternalMyCsv.g:4130:1: ( ( rule__AndExpression__Group_1__0 )* )
             {
-            // InternalMyCsv.g:3995:1: ( ( rule__AndExpression__Group_1__0 )* )
-            // InternalMyCsv.g:3996:2: ( rule__AndExpression__Group_1__0 )*
+            // InternalMyCsv.g:4130:1: ( ( rule__AndExpression__Group_1__0 )* )
+            // InternalMyCsv.g:4131:2: ( rule__AndExpression__Group_1__0 )*
             {
              before(grammarAccess.getAndExpressionAccess().getGroup_1()); 
-            // InternalMyCsv.g:3997:2: ( rule__AndExpression__Group_1__0 )*
-            loop27:
+            // InternalMyCsv.g:4132:2: ( rule__AndExpression__Group_1__0 )*
+            loop28:
             do {
-                int alt27=2;
-                int LA27_0 = input.LA(1);
+                int alt28=2;
+                int LA28_0 = input.LA(1);
 
-                if ( (LA27_0==50) ) {
-                    alt27=1;
+                if ( (LA28_0==51) ) {
+                    alt28=1;
                 }
 
 
-                switch (alt27) {
+                switch (alt28) {
             	case 1 :
-            	    // InternalMyCsv.g:3997:3: rule__AndExpression__Group_1__0
+            	    // InternalMyCsv.g:4132:3: rule__AndExpression__Group_1__0
             	    {
             	    pushFollow(FOLLOW_31);
             	    rule__AndExpression__Group_1__0();
@@ -12503,7 +12910,7 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
             	    break;
 
             	default :
-            	    break loop27;
+            	    break loop28;
                 }
             } while (true);
 
@@ -12530,14 +12937,14 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AndExpression__Group_1__0"
-    // InternalMyCsv.g:4006:1: rule__AndExpression__Group_1__0 : rule__AndExpression__Group_1__0__Impl rule__AndExpression__Group_1__1 ;
+    // InternalMyCsv.g:4141:1: rule__AndExpression__Group_1__0 : rule__AndExpression__Group_1__0__Impl rule__AndExpression__Group_1__1 ;
     public final void rule__AndExpression__Group_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:4010:1: ( rule__AndExpression__Group_1__0__Impl rule__AndExpression__Group_1__1 )
-            // InternalMyCsv.g:4011:2: rule__AndExpression__Group_1__0__Impl rule__AndExpression__Group_1__1
+            // InternalMyCsv.g:4145:1: ( rule__AndExpression__Group_1__0__Impl rule__AndExpression__Group_1__1 )
+            // InternalMyCsv.g:4146:2: rule__AndExpression__Group_1__0__Impl rule__AndExpression__Group_1__1
             {
             pushFollow(FOLLOW_29);
             rule__AndExpression__Group_1__0__Impl();
@@ -12568,20 +12975,20 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AndExpression__Group_1__0__Impl"
-    // InternalMyCsv.g:4018:1: rule__AndExpression__Group_1__0__Impl : ( 'and' ) ;
+    // InternalMyCsv.g:4153:1: rule__AndExpression__Group_1__0__Impl : ( 'and' ) ;
     public final void rule__AndExpression__Group_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:4022:1: ( ( 'and' ) )
-            // InternalMyCsv.g:4023:1: ( 'and' )
+            // InternalMyCsv.g:4157:1: ( ( 'and' ) )
+            // InternalMyCsv.g:4158:1: ( 'and' )
             {
-            // InternalMyCsv.g:4023:1: ( 'and' )
-            // InternalMyCsv.g:4024:2: 'and'
+            // InternalMyCsv.g:4158:1: ( 'and' )
+            // InternalMyCsv.g:4159:2: 'and'
             {
              before(grammarAccess.getAndExpressionAccess().getAndKeyword_1_0()); 
-            match(input,50,FOLLOW_2); 
+            match(input,51,FOLLOW_2); 
              after(grammarAccess.getAndExpressionAccess().getAndKeyword_1_0()); 
 
             }
@@ -12605,14 +13012,14 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AndExpression__Group_1__1"
-    // InternalMyCsv.g:4033:1: rule__AndExpression__Group_1__1 : rule__AndExpression__Group_1__1__Impl ;
+    // InternalMyCsv.g:4168:1: rule__AndExpression__Group_1__1 : rule__AndExpression__Group_1__1__Impl ;
     public final void rule__AndExpression__Group_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:4037:1: ( rule__AndExpression__Group_1__1__Impl )
-            // InternalMyCsv.g:4038:2: rule__AndExpression__Group_1__1__Impl
+            // InternalMyCsv.g:4172:1: ( rule__AndExpression__Group_1__1__Impl )
+            // InternalMyCsv.g:4173:2: rule__AndExpression__Group_1__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__AndExpression__Group_1__1__Impl();
@@ -12638,21 +13045,21 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AndExpression__Group_1__1__Impl"
-    // InternalMyCsv.g:4044:1: rule__AndExpression__Group_1__1__Impl : ( ( rule__AndExpression__RhsAssignment_1_1 ) ) ;
+    // InternalMyCsv.g:4179:1: rule__AndExpression__Group_1__1__Impl : ( ( rule__AndExpression__RhsAssignment_1_1 ) ) ;
     public final void rule__AndExpression__Group_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:4048:1: ( ( ( rule__AndExpression__RhsAssignment_1_1 ) ) )
-            // InternalMyCsv.g:4049:1: ( ( rule__AndExpression__RhsAssignment_1_1 ) )
+            // InternalMyCsv.g:4183:1: ( ( ( rule__AndExpression__RhsAssignment_1_1 ) ) )
+            // InternalMyCsv.g:4184:1: ( ( rule__AndExpression__RhsAssignment_1_1 ) )
             {
-            // InternalMyCsv.g:4049:1: ( ( rule__AndExpression__RhsAssignment_1_1 ) )
-            // InternalMyCsv.g:4050:2: ( rule__AndExpression__RhsAssignment_1_1 )
+            // InternalMyCsv.g:4184:1: ( ( rule__AndExpression__RhsAssignment_1_1 ) )
+            // InternalMyCsv.g:4185:2: ( rule__AndExpression__RhsAssignment_1_1 )
             {
              before(grammarAccess.getAndExpressionAccess().getRhsAssignment_1_1()); 
-            // InternalMyCsv.g:4051:2: ( rule__AndExpression__RhsAssignment_1_1 )
-            // InternalMyCsv.g:4051:3: rule__AndExpression__RhsAssignment_1_1
+            // InternalMyCsv.g:4186:2: ( rule__AndExpression__RhsAssignment_1_1 )
+            // InternalMyCsv.g:4186:3: rule__AndExpression__RhsAssignment_1_1
             {
             pushFollow(FOLLOW_2);
             rule__AndExpression__RhsAssignment_1_1();
@@ -12685,14 +13092,14 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__UnaryLogExpression__Group__0"
-    // InternalMyCsv.g:4060:1: rule__UnaryLogExpression__Group__0 : rule__UnaryLogExpression__Group__0__Impl rule__UnaryLogExpression__Group__1 ;
+    // InternalMyCsv.g:4195:1: rule__UnaryLogExpression__Group__0 : rule__UnaryLogExpression__Group__0__Impl rule__UnaryLogExpression__Group__1 ;
     public final void rule__UnaryLogExpression__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:4064:1: ( rule__UnaryLogExpression__Group__0__Impl rule__UnaryLogExpression__Group__1 )
-            // InternalMyCsv.g:4065:2: rule__UnaryLogExpression__Group__0__Impl rule__UnaryLogExpression__Group__1
+            // InternalMyCsv.g:4199:1: ( rule__UnaryLogExpression__Group__0__Impl rule__UnaryLogExpression__Group__1 )
+            // InternalMyCsv.g:4200:2: rule__UnaryLogExpression__Group__0__Impl rule__UnaryLogExpression__Group__1
             {
             pushFollow(FOLLOW_29);
             rule__UnaryLogExpression__Group__0__Impl();
@@ -12723,29 +13130,29 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__UnaryLogExpression__Group__0__Impl"
-    // InternalMyCsv.g:4072:1: rule__UnaryLogExpression__Group__0__Impl : ( ( rule__UnaryLogExpression__NotAssignment_0 )? ) ;
+    // InternalMyCsv.g:4207:1: rule__UnaryLogExpression__Group__0__Impl : ( ( rule__UnaryLogExpression__NotAssignment_0 )? ) ;
     public final void rule__UnaryLogExpression__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:4076:1: ( ( ( rule__UnaryLogExpression__NotAssignment_0 )? ) )
-            // InternalMyCsv.g:4077:1: ( ( rule__UnaryLogExpression__NotAssignment_0 )? )
+            // InternalMyCsv.g:4211:1: ( ( ( rule__UnaryLogExpression__NotAssignment_0 )? ) )
+            // InternalMyCsv.g:4212:1: ( ( rule__UnaryLogExpression__NotAssignment_0 )? )
             {
-            // InternalMyCsv.g:4077:1: ( ( rule__UnaryLogExpression__NotAssignment_0 )? )
-            // InternalMyCsv.g:4078:2: ( rule__UnaryLogExpression__NotAssignment_0 )?
+            // InternalMyCsv.g:4212:1: ( ( rule__UnaryLogExpression__NotAssignment_0 )? )
+            // InternalMyCsv.g:4213:2: ( rule__UnaryLogExpression__NotAssignment_0 )?
             {
              before(grammarAccess.getUnaryLogExpressionAccess().getNotAssignment_0()); 
-            // InternalMyCsv.g:4079:2: ( rule__UnaryLogExpression__NotAssignment_0 )?
-            int alt28=2;
-            int LA28_0 = input.LA(1);
+            // InternalMyCsv.g:4214:2: ( rule__UnaryLogExpression__NotAssignment_0 )?
+            int alt29=2;
+            int LA29_0 = input.LA(1);
 
-            if ( (LA28_0==54) ) {
-                alt28=1;
+            if ( (LA29_0==55) ) {
+                alt29=1;
             }
-            switch (alt28) {
+            switch (alt29) {
                 case 1 :
-                    // InternalMyCsv.g:4079:3: rule__UnaryLogExpression__NotAssignment_0
+                    // InternalMyCsv.g:4214:3: rule__UnaryLogExpression__NotAssignment_0
                     {
                     pushFollow(FOLLOW_2);
                     rule__UnaryLogExpression__NotAssignment_0();
@@ -12781,14 +13188,14 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__UnaryLogExpression__Group__1"
-    // InternalMyCsv.g:4087:1: rule__UnaryLogExpression__Group__1 : rule__UnaryLogExpression__Group__1__Impl ;
+    // InternalMyCsv.g:4222:1: rule__UnaryLogExpression__Group__1 : rule__UnaryLogExpression__Group__1__Impl ;
     public final void rule__UnaryLogExpression__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:4091:1: ( rule__UnaryLogExpression__Group__1__Impl )
-            // InternalMyCsv.g:4092:2: rule__UnaryLogExpression__Group__1__Impl
+            // InternalMyCsv.g:4226:1: ( rule__UnaryLogExpression__Group__1__Impl )
+            // InternalMyCsv.g:4227:2: rule__UnaryLogExpression__Group__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__UnaryLogExpression__Group__1__Impl();
@@ -12814,21 +13221,21 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__UnaryLogExpression__Group__1__Impl"
-    // InternalMyCsv.g:4098:1: rule__UnaryLogExpression__Group__1__Impl : ( ( rule__UnaryLogExpression__ExprAssignment_1 ) ) ;
+    // InternalMyCsv.g:4233:1: rule__UnaryLogExpression__Group__1__Impl : ( ( rule__UnaryLogExpression__ExprAssignment_1 ) ) ;
     public final void rule__UnaryLogExpression__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:4102:1: ( ( ( rule__UnaryLogExpression__ExprAssignment_1 ) ) )
-            // InternalMyCsv.g:4103:1: ( ( rule__UnaryLogExpression__ExprAssignment_1 ) )
+            // InternalMyCsv.g:4237:1: ( ( ( rule__UnaryLogExpression__ExprAssignment_1 ) ) )
+            // InternalMyCsv.g:4238:1: ( ( rule__UnaryLogExpression__ExprAssignment_1 ) )
             {
-            // InternalMyCsv.g:4103:1: ( ( rule__UnaryLogExpression__ExprAssignment_1 ) )
-            // InternalMyCsv.g:4104:2: ( rule__UnaryLogExpression__ExprAssignment_1 )
+            // InternalMyCsv.g:4238:1: ( ( rule__UnaryLogExpression__ExprAssignment_1 ) )
+            // InternalMyCsv.g:4239:2: ( rule__UnaryLogExpression__ExprAssignment_1 )
             {
              before(grammarAccess.getUnaryLogExpressionAccess().getExprAssignment_1()); 
-            // InternalMyCsv.g:4105:2: ( rule__UnaryLogExpression__ExprAssignment_1 )
-            // InternalMyCsv.g:4105:3: rule__UnaryLogExpression__ExprAssignment_1
+            // InternalMyCsv.g:4240:2: ( rule__UnaryLogExpression__ExprAssignment_1 )
+            // InternalMyCsv.g:4240:3: rule__UnaryLogExpression__ExprAssignment_1
             {
             pushFollow(FOLLOW_2);
             rule__UnaryLogExpression__ExprAssignment_1();
@@ -12861,14 +13268,14 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__NestedLogExpression__Group__0"
-    // InternalMyCsv.g:4114:1: rule__NestedLogExpression__Group__0 : rule__NestedLogExpression__Group__0__Impl rule__NestedLogExpression__Group__1 ;
+    // InternalMyCsv.g:4249:1: rule__NestedLogExpression__Group__0 : rule__NestedLogExpression__Group__0__Impl rule__NestedLogExpression__Group__1 ;
     public final void rule__NestedLogExpression__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:4118:1: ( rule__NestedLogExpression__Group__0__Impl rule__NestedLogExpression__Group__1 )
-            // InternalMyCsv.g:4119:2: rule__NestedLogExpression__Group__0__Impl rule__NestedLogExpression__Group__1
+            // InternalMyCsv.g:4253:1: ( rule__NestedLogExpression__Group__0__Impl rule__NestedLogExpression__Group__1 )
+            // InternalMyCsv.g:4254:2: rule__NestedLogExpression__Group__0__Impl rule__NestedLogExpression__Group__1
             {
             pushFollow(FOLLOW_29);
             rule__NestedLogExpression__Group__0__Impl();
@@ -12899,17 +13306,17 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__NestedLogExpression__Group__0__Impl"
-    // InternalMyCsv.g:4126:1: rule__NestedLogExpression__Group__0__Impl : ( '(' ) ;
+    // InternalMyCsv.g:4261:1: rule__NestedLogExpression__Group__0__Impl : ( '(' ) ;
     public final void rule__NestedLogExpression__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:4130:1: ( ( '(' ) )
-            // InternalMyCsv.g:4131:1: ( '(' )
+            // InternalMyCsv.g:4265:1: ( ( '(' ) )
+            // InternalMyCsv.g:4266:1: ( '(' )
             {
-            // InternalMyCsv.g:4131:1: ( '(' )
-            // InternalMyCsv.g:4132:2: '('
+            // InternalMyCsv.g:4266:1: ( '(' )
+            // InternalMyCsv.g:4267:2: '('
             {
              before(grammarAccess.getNestedLogExpressionAccess().getLeftParenthesisKeyword_0()); 
             match(input,27,FOLLOW_2); 
@@ -12936,14 +13343,14 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__NestedLogExpression__Group__1"
-    // InternalMyCsv.g:4141:1: rule__NestedLogExpression__Group__1 : rule__NestedLogExpression__Group__1__Impl rule__NestedLogExpression__Group__2 ;
+    // InternalMyCsv.g:4276:1: rule__NestedLogExpression__Group__1 : rule__NestedLogExpression__Group__1__Impl rule__NestedLogExpression__Group__2 ;
     public final void rule__NestedLogExpression__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:4145:1: ( rule__NestedLogExpression__Group__1__Impl rule__NestedLogExpression__Group__2 )
-            // InternalMyCsv.g:4146:2: rule__NestedLogExpression__Group__1__Impl rule__NestedLogExpression__Group__2
+            // InternalMyCsv.g:4280:1: ( rule__NestedLogExpression__Group__1__Impl rule__NestedLogExpression__Group__2 )
+            // InternalMyCsv.g:4281:2: rule__NestedLogExpression__Group__1__Impl rule__NestedLogExpression__Group__2
             {
             pushFollow(FOLLOW_9);
             rule__NestedLogExpression__Group__1__Impl();
@@ -12974,21 +13381,21 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__NestedLogExpression__Group__1__Impl"
-    // InternalMyCsv.g:4153:1: rule__NestedLogExpression__Group__1__Impl : ( ( rule__NestedLogExpression__ExprAssignment_1 ) ) ;
+    // InternalMyCsv.g:4288:1: rule__NestedLogExpression__Group__1__Impl : ( ( rule__NestedLogExpression__ExprAssignment_1 ) ) ;
     public final void rule__NestedLogExpression__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:4157:1: ( ( ( rule__NestedLogExpression__ExprAssignment_1 ) ) )
-            // InternalMyCsv.g:4158:1: ( ( rule__NestedLogExpression__ExprAssignment_1 ) )
+            // InternalMyCsv.g:4292:1: ( ( ( rule__NestedLogExpression__ExprAssignment_1 ) ) )
+            // InternalMyCsv.g:4293:1: ( ( rule__NestedLogExpression__ExprAssignment_1 ) )
             {
-            // InternalMyCsv.g:4158:1: ( ( rule__NestedLogExpression__ExprAssignment_1 ) )
-            // InternalMyCsv.g:4159:2: ( rule__NestedLogExpression__ExprAssignment_1 )
+            // InternalMyCsv.g:4293:1: ( ( rule__NestedLogExpression__ExprAssignment_1 ) )
+            // InternalMyCsv.g:4294:2: ( rule__NestedLogExpression__ExprAssignment_1 )
             {
              before(grammarAccess.getNestedLogExpressionAccess().getExprAssignment_1()); 
-            // InternalMyCsv.g:4160:2: ( rule__NestedLogExpression__ExprAssignment_1 )
-            // InternalMyCsv.g:4160:3: rule__NestedLogExpression__ExprAssignment_1
+            // InternalMyCsv.g:4295:2: ( rule__NestedLogExpression__ExprAssignment_1 )
+            // InternalMyCsv.g:4295:3: rule__NestedLogExpression__ExprAssignment_1
             {
             pushFollow(FOLLOW_2);
             rule__NestedLogExpression__ExprAssignment_1();
@@ -13021,14 +13428,14 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__NestedLogExpression__Group__2"
-    // InternalMyCsv.g:4168:1: rule__NestedLogExpression__Group__2 : rule__NestedLogExpression__Group__2__Impl ;
+    // InternalMyCsv.g:4303:1: rule__NestedLogExpression__Group__2 : rule__NestedLogExpression__Group__2__Impl ;
     public final void rule__NestedLogExpression__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:4172:1: ( rule__NestedLogExpression__Group__2__Impl )
-            // InternalMyCsv.g:4173:2: rule__NestedLogExpression__Group__2__Impl
+            // InternalMyCsv.g:4307:1: ( rule__NestedLogExpression__Group__2__Impl )
+            // InternalMyCsv.g:4308:2: rule__NestedLogExpression__Group__2__Impl
             {
             pushFollow(FOLLOW_2);
             rule__NestedLogExpression__Group__2__Impl();
@@ -13054,17 +13461,17 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__NestedLogExpression__Group__2__Impl"
-    // InternalMyCsv.g:4179:1: rule__NestedLogExpression__Group__2__Impl : ( ')' ) ;
+    // InternalMyCsv.g:4314:1: rule__NestedLogExpression__Group__2__Impl : ( ')' ) ;
     public final void rule__NestedLogExpression__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:4183:1: ( ( ')' ) )
-            // InternalMyCsv.g:4184:1: ( ')' )
+            // InternalMyCsv.g:4318:1: ( ( ')' ) )
+            // InternalMyCsv.g:4319:1: ( ')' )
             {
-            // InternalMyCsv.g:4184:1: ( ')' )
-            // InternalMyCsv.g:4185:2: ')'
+            // InternalMyCsv.g:4319:1: ( ')' )
+            // InternalMyCsv.g:4320:2: ')'
             {
              before(grammarAccess.getNestedLogExpressionAccess().getRightParenthesisKeyword_2()); 
             match(input,29,FOLLOW_2); 
@@ -13091,14 +13498,14 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ExpressionRel__Group__0"
-    // InternalMyCsv.g:4195:1: rule__ExpressionRel__Group__0 : rule__ExpressionRel__Group__0__Impl rule__ExpressionRel__Group__1 ;
+    // InternalMyCsv.g:4330:1: rule__ExpressionRel__Group__0 : rule__ExpressionRel__Group__0__Impl rule__ExpressionRel__Group__1 ;
     public final void rule__ExpressionRel__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:4199:1: ( rule__ExpressionRel__Group__0__Impl rule__ExpressionRel__Group__1 )
-            // InternalMyCsv.g:4200:2: rule__ExpressionRel__Group__0__Impl rule__ExpressionRel__Group__1
+            // InternalMyCsv.g:4334:1: ( rule__ExpressionRel__Group__0__Impl rule__ExpressionRel__Group__1 )
+            // InternalMyCsv.g:4335:2: rule__ExpressionRel__Group__0__Impl rule__ExpressionRel__Group__1
             {
             pushFollow(FOLLOW_32);
             rule__ExpressionRel__Group__0__Impl();
@@ -13129,21 +13536,21 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ExpressionRel__Group__0__Impl"
-    // InternalMyCsv.g:4207:1: rule__ExpressionRel__Group__0__Impl : ( ( rule__ExpressionRel__FieldAssignment_0 ) ) ;
+    // InternalMyCsv.g:4342:1: rule__ExpressionRel__Group__0__Impl : ( ( rule__ExpressionRel__FieldAssignment_0 ) ) ;
     public final void rule__ExpressionRel__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:4211:1: ( ( ( rule__ExpressionRel__FieldAssignment_0 ) ) )
-            // InternalMyCsv.g:4212:1: ( ( rule__ExpressionRel__FieldAssignment_0 ) )
+            // InternalMyCsv.g:4346:1: ( ( ( rule__ExpressionRel__FieldAssignment_0 ) ) )
+            // InternalMyCsv.g:4347:1: ( ( rule__ExpressionRel__FieldAssignment_0 ) )
             {
-            // InternalMyCsv.g:4212:1: ( ( rule__ExpressionRel__FieldAssignment_0 ) )
-            // InternalMyCsv.g:4213:2: ( rule__ExpressionRel__FieldAssignment_0 )
+            // InternalMyCsv.g:4347:1: ( ( rule__ExpressionRel__FieldAssignment_0 ) )
+            // InternalMyCsv.g:4348:2: ( rule__ExpressionRel__FieldAssignment_0 )
             {
              before(grammarAccess.getExpressionRelAccess().getFieldAssignment_0()); 
-            // InternalMyCsv.g:4214:2: ( rule__ExpressionRel__FieldAssignment_0 )
-            // InternalMyCsv.g:4214:3: rule__ExpressionRel__FieldAssignment_0
+            // InternalMyCsv.g:4349:2: ( rule__ExpressionRel__FieldAssignment_0 )
+            // InternalMyCsv.g:4349:3: rule__ExpressionRel__FieldAssignment_0
             {
             pushFollow(FOLLOW_2);
             rule__ExpressionRel__FieldAssignment_0();
@@ -13176,14 +13583,14 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ExpressionRel__Group__1"
-    // InternalMyCsv.g:4222:1: rule__ExpressionRel__Group__1 : rule__ExpressionRel__Group__1__Impl rule__ExpressionRel__Group__2 ;
+    // InternalMyCsv.g:4357:1: rule__ExpressionRel__Group__1 : rule__ExpressionRel__Group__1__Impl rule__ExpressionRel__Group__2 ;
     public final void rule__ExpressionRel__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:4226:1: ( rule__ExpressionRel__Group__1__Impl rule__ExpressionRel__Group__2 )
-            // InternalMyCsv.g:4227:2: rule__ExpressionRel__Group__1__Impl rule__ExpressionRel__Group__2
+            // InternalMyCsv.g:4361:1: ( rule__ExpressionRel__Group__1__Impl rule__ExpressionRel__Group__2 )
+            // InternalMyCsv.g:4362:2: rule__ExpressionRel__Group__1__Impl rule__ExpressionRel__Group__2
             {
             pushFollow(FOLLOW_10);
             rule__ExpressionRel__Group__1__Impl();
@@ -13214,21 +13621,21 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ExpressionRel__Group__1__Impl"
-    // InternalMyCsv.g:4234:1: rule__ExpressionRel__Group__1__Impl : ( ( rule__ExpressionRel__OpAssignment_1 ) ) ;
+    // InternalMyCsv.g:4369:1: rule__ExpressionRel__Group__1__Impl : ( ( rule__ExpressionRel__OpAssignment_1 ) ) ;
     public final void rule__ExpressionRel__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:4238:1: ( ( ( rule__ExpressionRel__OpAssignment_1 ) ) )
-            // InternalMyCsv.g:4239:1: ( ( rule__ExpressionRel__OpAssignment_1 ) )
+            // InternalMyCsv.g:4373:1: ( ( ( rule__ExpressionRel__OpAssignment_1 ) ) )
+            // InternalMyCsv.g:4374:1: ( ( rule__ExpressionRel__OpAssignment_1 ) )
             {
-            // InternalMyCsv.g:4239:1: ( ( rule__ExpressionRel__OpAssignment_1 ) )
-            // InternalMyCsv.g:4240:2: ( rule__ExpressionRel__OpAssignment_1 )
+            // InternalMyCsv.g:4374:1: ( ( rule__ExpressionRel__OpAssignment_1 ) )
+            // InternalMyCsv.g:4375:2: ( rule__ExpressionRel__OpAssignment_1 )
             {
              before(grammarAccess.getExpressionRelAccess().getOpAssignment_1()); 
-            // InternalMyCsv.g:4241:2: ( rule__ExpressionRel__OpAssignment_1 )
-            // InternalMyCsv.g:4241:3: rule__ExpressionRel__OpAssignment_1
+            // InternalMyCsv.g:4376:2: ( rule__ExpressionRel__OpAssignment_1 )
+            // InternalMyCsv.g:4376:3: rule__ExpressionRel__OpAssignment_1
             {
             pushFollow(FOLLOW_2);
             rule__ExpressionRel__OpAssignment_1();
@@ -13261,14 +13668,14 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ExpressionRel__Group__2"
-    // InternalMyCsv.g:4249:1: rule__ExpressionRel__Group__2 : rule__ExpressionRel__Group__2__Impl ;
+    // InternalMyCsv.g:4384:1: rule__ExpressionRel__Group__2 : rule__ExpressionRel__Group__2__Impl ;
     public final void rule__ExpressionRel__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:4253:1: ( rule__ExpressionRel__Group__2__Impl )
-            // InternalMyCsv.g:4254:2: rule__ExpressionRel__Group__2__Impl
+            // InternalMyCsv.g:4388:1: ( rule__ExpressionRel__Group__2__Impl )
+            // InternalMyCsv.g:4389:2: rule__ExpressionRel__Group__2__Impl
             {
             pushFollow(FOLLOW_2);
             rule__ExpressionRel__Group__2__Impl();
@@ -13294,21 +13701,21 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ExpressionRel__Group__2__Impl"
-    // InternalMyCsv.g:4260:1: rule__ExpressionRel__Group__2__Impl : ( ( rule__ExpressionRel__ValAssignment_2 ) ) ;
+    // InternalMyCsv.g:4395:1: rule__ExpressionRel__Group__2__Impl : ( ( rule__ExpressionRel__ValAssignment_2 ) ) ;
     public final void rule__ExpressionRel__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:4264:1: ( ( ( rule__ExpressionRel__ValAssignment_2 ) ) )
-            // InternalMyCsv.g:4265:1: ( ( rule__ExpressionRel__ValAssignment_2 ) )
+            // InternalMyCsv.g:4399:1: ( ( ( rule__ExpressionRel__ValAssignment_2 ) ) )
+            // InternalMyCsv.g:4400:1: ( ( rule__ExpressionRel__ValAssignment_2 ) )
             {
-            // InternalMyCsv.g:4265:1: ( ( rule__ExpressionRel__ValAssignment_2 ) )
-            // InternalMyCsv.g:4266:2: ( rule__ExpressionRel__ValAssignment_2 )
+            // InternalMyCsv.g:4400:1: ( ( rule__ExpressionRel__ValAssignment_2 ) )
+            // InternalMyCsv.g:4401:2: ( rule__ExpressionRel__ValAssignment_2 )
             {
              before(grammarAccess.getExpressionRelAccess().getValAssignment_2()); 
-            // InternalMyCsv.g:4267:2: ( rule__ExpressionRel__ValAssignment_2 )
-            // InternalMyCsv.g:4267:3: rule__ExpressionRel__ValAssignment_2
+            // InternalMyCsv.g:4402:2: ( rule__ExpressionRel__ValAssignment_2 )
+            // InternalMyCsv.g:4402:3: rule__ExpressionRel__ValAssignment_2
             {
             pushFollow(FOLLOW_2);
             rule__ExpressionRel__ValAssignment_2();
@@ -13341,14 +13748,14 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AdditiveExpression__Group__0"
-    // InternalMyCsv.g:4276:1: rule__AdditiveExpression__Group__0 : rule__AdditiveExpression__Group__0__Impl rule__AdditiveExpression__Group__1 ;
+    // InternalMyCsv.g:4411:1: rule__AdditiveExpression__Group__0 : rule__AdditiveExpression__Group__0__Impl rule__AdditiveExpression__Group__1 ;
     public final void rule__AdditiveExpression__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:4280:1: ( rule__AdditiveExpression__Group__0__Impl rule__AdditiveExpression__Group__1 )
-            // InternalMyCsv.g:4281:2: rule__AdditiveExpression__Group__0__Impl rule__AdditiveExpression__Group__1
+            // InternalMyCsv.g:4415:1: ( rule__AdditiveExpression__Group__0__Impl rule__AdditiveExpression__Group__1 )
+            // InternalMyCsv.g:4416:2: rule__AdditiveExpression__Group__0__Impl rule__AdditiveExpression__Group__1
             {
             pushFollow(FOLLOW_33);
             rule__AdditiveExpression__Group__0__Impl();
@@ -13379,21 +13786,21 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AdditiveExpression__Group__0__Impl"
-    // InternalMyCsv.g:4288:1: rule__AdditiveExpression__Group__0__Impl : ( ( rule__AdditiveExpression__LhsAssignment_0 ) ) ;
+    // InternalMyCsv.g:4423:1: rule__AdditiveExpression__Group__0__Impl : ( ( rule__AdditiveExpression__LhsAssignment_0 ) ) ;
     public final void rule__AdditiveExpression__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:4292:1: ( ( ( rule__AdditiveExpression__LhsAssignment_0 ) ) )
-            // InternalMyCsv.g:4293:1: ( ( rule__AdditiveExpression__LhsAssignment_0 ) )
+            // InternalMyCsv.g:4427:1: ( ( ( rule__AdditiveExpression__LhsAssignment_0 ) ) )
+            // InternalMyCsv.g:4428:1: ( ( rule__AdditiveExpression__LhsAssignment_0 ) )
             {
-            // InternalMyCsv.g:4293:1: ( ( rule__AdditiveExpression__LhsAssignment_0 ) )
-            // InternalMyCsv.g:4294:2: ( rule__AdditiveExpression__LhsAssignment_0 )
+            // InternalMyCsv.g:4428:1: ( ( rule__AdditiveExpression__LhsAssignment_0 ) )
+            // InternalMyCsv.g:4429:2: ( rule__AdditiveExpression__LhsAssignment_0 )
             {
              before(grammarAccess.getAdditiveExpressionAccess().getLhsAssignment_0()); 
-            // InternalMyCsv.g:4295:2: ( rule__AdditiveExpression__LhsAssignment_0 )
-            // InternalMyCsv.g:4295:3: rule__AdditiveExpression__LhsAssignment_0
+            // InternalMyCsv.g:4430:2: ( rule__AdditiveExpression__LhsAssignment_0 )
+            // InternalMyCsv.g:4430:3: rule__AdditiveExpression__LhsAssignment_0
             {
             pushFollow(FOLLOW_2);
             rule__AdditiveExpression__LhsAssignment_0();
@@ -13426,14 +13833,14 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AdditiveExpression__Group__1"
-    // InternalMyCsv.g:4303:1: rule__AdditiveExpression__Group__1 : rule__AdditiveExpression__Group__1__Impl ;
+    // InternalMyCsv.g:4438:1: rule__AdditiveExpression__Group__1 : rule__AdditiveExpression__Group__1__Impl ;
     public final void rule__AdditiveExpression__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:4307:1: ( rule__AdditiveExpression__Group__1__Impl )
-            // InternalMyCsv.g:4308:2: rule__AdditiveExpression__Group__1__Impl
+            // InternalMyCsv.g:4442:1: ( rule__AdditiveExpression__Group__1__Impl )
+            // InternalMyCsv.g:4443:2: rule__AdditiveExpression__Group__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__AdditiveExpression__Group__1__Impl();
@@ -13459,33 +13866,33 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AdditiveExpression__Group__1__Impl"
-    // InternalMyCsv.g:4314:1: rule__AdditiveExpression__Group__1__Impl : ( ( rule__AdditiveExpression__RhsAssignment_1 )* ) ;
+    // InternalMyCsv.g:4449:1: rule__AdditiveExpression__Group__1__Impl : ( ( rule__AdditiveExpression__RhsAssignment_1 )* ) ;
     public final void rule__AdditiveExpression__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:4318:1: ( ( ( rule__AdditiveExpression__RhsAssignment_1 )* ) )
-            // InternalMyCsv.g:4319:1: ( ( rule__AdditiveExpression__RhsAssignment_1 )* )
+            // InternalMyCsv.g:4453:1: ( ( ( rule__AdditiveExpression__RhsAssignment_1 )* ) )
+            // InternalMyCsv.g:4454:1: ( ( rule__AdditiveExpression__RhsAssignment_1 )* )
             {
-            // InternalMyCsv.g:4319:1: ( ( rule__AdditiveExpression__RhsAssignment_1 )* )
-            // InternalMyCsv.g:4320:2: ( rule__AdditiveExpression__RhsAssignment_1 )*
+            // InternalMyCsv.g:4454:1: ( ( rule__AdditiveExpression__RhsAssignment_1 )* )
+            // InternalMyCsv.g:4455:2: ( rule__AdditiveExpression__RhsAssignment_1 )*
             {
              before(grammarAccess.getAdditiveExpressionAccess().getRhsAssignment_1()); 
-            // InternalMyCsv.g:4321:2: ( rule__AdditiveExpression__RhsAssignment_1 )*
-            loop29:
+            // InternalMyCsv.g:4456:2: ( rule__AdditiveExpression__RhsAssignment_1 )*
+            loop30:
             do {
-                int alt29=2;
-                int LA29_0 = input.LA(1);
+                int alt30=2;
+                int LA30_0 = input.LA(1);
 
-                if ( ((LA29_0>=23 && LA29_0<=24)) ) {
-                    alt29=1;
+                if ( ((LA30_0>=23 && LA30_0<=24)) ) {
+                    alt30=1;
                 }
 
 
-                switch (alt29) {
+                switch (alt30) {
             	case 1 :
-            	    // InternalMyCsv.g:4321:3: rule__AdditiveExpression__RhsAssignment_1
+            	    // InternalMyCsv.g:4456:3: rule__AdditiveExpression__RhsAssignment_1
             	    {
             	    pushFollow(FOLLOW_34);
             	    rule__AdditiveExpression__RhsAssignment_1();
@@ -13497,7 +13904,7 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
             	    break;
 
             	default :
-            	    break loop29;
+            	    break loop30;
                 }
             } while (true);
 
@@ -13524,14 +13931,14 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AdditiveExpressionRhs__Group__0"
-    // InternalMyCsv.g:4330:1: rule__AdditiveExpressionRhs__Group__0 : rule__AdditiveExpressionRhs__Group__0__Impl rule__AdditiveExpressionRhs__Group__1 ;
+    // InternalMyCsv.g:4465:1: rule__AdditiveExpressionRhs__Group__0 : rule__AdditiveExpressionRhs__Group__0__Impl rule__AdditiveExpressionRhs__Group__1 ;
     public final void rule__AdditiveExpressionRhs__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:4334:1: ( rule__AdditiveExpressionRhs__Group__0__Impl rule__AdditiveExpressionRhs__Group__1 )
-            // InternalMyCsv.g:4335:2: rule__AdditiveExpressionRhs__Group__0__Impl rule__AdditiveExpressionRhs__Group__1
+            // InternalMyCsv.g:4469:1: ( rule__AdditiveExpressionRhs__Group__0__Impl rule__AdditiveExpressionRhs__Group__1 )
+            // InternalMyCsv.g:4470:2: rule__AdditiveExpressionRhs__Group__0__Impl rule__AdditiveExpressionRhs__Group__1
             {
             pushFollow(FOLLOW_35);
             rule__AdditiveExpressionRhs__Group__0__Impl();
@@ -13562,21 +13969,21 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AdditiveExpressionRhs__Group__0__Impl"
-    // InternalMyCsv.g:4342:1: rule__AdditiveExpressionRhs__Group__0__Impl : ( ( rule__AdditiveExpressionRhs__OpAssignment_0 ) ) ;
+    // InternalMyCsv.g:4477:1: rule__AdditiveExpressionRhs__Group__0__Impl : ( ( rule__AdditiveExpressionRhs__OpAssignment_0 ) ) ;
     public final void rule__AdditiveExpressionRhs__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:4346:1: ( ( ( rule__AdditiveExpressionRhs__OpAssignment_0 ) ) )
-            // InternalMyCsv.g:4347:1: ( ( rule__AdditiveExpressionRhs__OpAssignment_0 ) )
+            // InternalMyCsv.g:4481:1: ( ( ( rule__AdditiveExpressionRhs__OpAssignment_0 ) ) )
+            // InternalMyCsv.g:4482:1: ( ( rule__AdditiveExpressionRhs__OpAssignment_0 ) )
             {
-            // InternalMyCsv.g:4347:1: ( ( rule__AdditiveExpressionRhs__OpAssignment_0 ) )
-            // InternalMyCsv.g:4348:2: ( rule__AdditiveExpressionRhs__OpAssignment_0 )
+            // InternalMyCsv.g:4482:1: ( ( rule__AdditiveExpressionRhs__OpAssignment_0 ) )
+            // InternalMyCsv.g:4483:2: ( rule__AdditiveExpressionRhs__OpAssignment_0 )
             {
              before(grammarAccess.getAdditiveExpressionRhsAccess().getOpAssignment_0()); 
-            // InternalMyCsv.g:4349:2: ( rule__AdditiveExpressionRhs__OpAssignment_0 )
-            // InternalMyCsv.g:4349:3: rule__AdditiveExpressionRhs__OpAssignment_0
+            // InternalMyCsv.g:4484:2: ( rule__AdditiveExpressionRhs__OpAssignment_0 )
+            // InternalMyCsv.g:4484:3: rule__AdditiveExpressionRhs__OpAssignment_0
             {
             pushFollow(FOLLOW_2);
             rule__AdditiveExpressionRhs__OpAssignment_0();
@@ -13609,14 +14016,14 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AdditiveExpressionRhs__Group__1"
-    // InternalMyCsv.g:4357:1: rule__AdditiveExpressionRhs__Group__1 : rule__AdditiveExpressionRhs__Group__1__Impl ;
+    // InternalMyCsv.g:4492:1: rule__AdditiveExpressionRhs__Group__1 : rule__AdditiveExpressionRhs__Group__1__Impl ;
     public final void rule__AdditiveExpressionRhs__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:4361:1: ( rule__AdditiveExpressionRhs__Group__1__Impl )
-            // InternalMyCsv.g:4362:2: rule__AdditiveExpressionRhs__Group__1__Impl
+            // InternalMyCsv.g:4496:1: ( rule__AdditiveExpressionRhs__Group__1__Impl )
+            // InternalMyCsv.g:4497:2: rule__AdditiveExpressionRhs__Group__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__AdditiveExpressionRhs__Group__1__Impl();
@@ -13642,21 +14049,21 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AdditiveExpressionRhs__Group__1__Impl"
-    // InternalMyCsv.g:4368:1: rule__AdditiveExpressionRhs__Group__1__Impl : ( ( rule__AdditiveExpressionRhs__RhsAssignment_1 ) ) ;
+    // InternalMyCsv.g:4503:1: rule__AdditiveExpressionRhs__Group__1__Impl : ( ( rule__AdditiveExpressionRhs__RhsAssignment_1 ) ) ;
     public final void rule__AdditiveExpressionRhs__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:4372:1: ( ( ( rule__AdditiveExpressionRhs__RhsAssignment_1 ) ) )
-            // InternalMyCsv.g:4373:1: ( ( rule__AdditiveExpressionRhs__RhsAssignment_1 ) )
+            // InternalMyCsv.g:4507:1: ( ( ( rule__AdditiveExpressionRhs__RhsAssignment_1 ) ) )
+            // InternalMyCsv.g:4508:1: ( ( rule__AdditiveExpressionRhs__RhsAssignment_1 ) )
             {
-            // InternalMyCsv.g:4373:1: ( ( rule__AdditiveExpressionRhs__RhsAssignment_1 ) )
-            // InternalMyCsv.g:4374:2: ( rule__AdditiveExpressionRhs__RhsAssignment_1 )
+            // InternalMyCsv.g:4508:1: ( ( rule__AdditiveExpressionRhs__RhsAssignment_1 ) )
+            // InternalMyCsv.g:4509:2: ( rule__AdditiveExpressionRhs__RhsAssignment_1 )
             {
              before(grammarAccess.getAdditiveExpressionRhsAccess().getRhsAssignment_1()); 
-            // InternalMyCsv.g:4375:2: ( rule__AdditiveExpressionRhs__RhsAssignment_1 )
-            // InternalMyCsv.g:4375:3: rule__AdditiveExpressionRhs__RhsAssignment_1
+            // InternalMyCsv.g:4510:2: ( rule__AdditiveExpressionRhs__RhsAssignment_1 )
+            // InternalMyCsv.g:4510:3: rule__AdditiveExpressionRhs__RhsAssignment_1
             {
             pushFollow(FOLLOW_2);
             rule__AdditiveExpressionRhs__RhsAssignment_1();
@@ -13689,14 +14096,14 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MultiplicativeExpression__Group__0"
-    // InternalMyCsv.g:4384:1: rule__MultiplicativeExpression__Group__0 : rule__MultiplicativeExpression__Group__0__Impl rule__MultiplicativeExpression__Group__1 ;
+    // InternalMyCsv.g:4519:1: rule__MultiplicativeExpression__Group__0 : rule__MultiplicativeExpression__Group__0__Impl rule__MultiplicativeExpression__Group__1 ;
     public final void rule__MultiplicativeExpression__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:4388:1: ( rule__MultiplicativeExpression__Group__0__Impl rule__MultiplicativeExpression__Group__1 )
-            // InternalMyCsv.g:4389:2: rule__MultiplicativeExpression__Group__0__Impl rule__MultiplicativeExpression__Group__1
+            // InternalMyCsv.g:4523:1: ( rule__MultiplicativeExpression__Group__0__Impl rule__MultiplicativeExpression__Group__1 )
+            // InternalMyCsv.g:4524:2: rule__MultiplicativeExpression__Group__0__Impl rule__MultiplicativeExpression__Group__1
             {
             pushFollow(FOLLOW_36);
             rule__MultiplicativeExpression__Group__0__Impl();
@@ -13727,21 +14134,21 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MultiplicativeExpression__Group__0__Impl"
-    // InternalMyCsv.g:4396:1: rule__MultiplicativeExpression__Group__0__Impl : ( ( rule__MultiplicativeExpression__LhsAssignment_0 ) ) ;
+    // InternalMyCsv.g:4531:1: rule__MultiplicativeExpression__Group__0__Impl : ( ( rule__MultiplicativeExpression__LhsAssignment_0 ) ) ;
     public final void rule__MultiplicativeExpression__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:4400:1: ( ( ( rule__MultiplicativeExpression__LhsAssignment_0 ) ) )
-            // InternalMyCsv.g:4401:1: ( ( rule__MultiplicativeExpression__LhsAssignment_0 ) )
+            // InternalMyCsv.g:4535:1: ( ( ( rule__MultiplicativeExpression__LhsAssignment_0 ) ) )
+            // InternalMyCsv.g:4536:1: ( ( rule__MultiplicativeExpression__LhsAssignment_0 ) )
             {
-            // InternalMyCsv.g:4401:1: ( ( rule__MultiplicativeExpression__LhsAssignment_0 ) )
-            // InternalMyCsv.g:4402:2: ( rule__MultiplicativeExpression__LhsAssignment_0 )
+            // InternalMyCsv.g:4536:1: ( ( rule__MultiplicativeExpression__LhsAssignment_0 ) )
+            // InternalMyCsv.g:4537:2: ( rule__MultiplicativeExpression__LhsAssignment_0 )
             {
              before(grammarAccess.getMultiplicativeExpressionAccess().getLhsAssignment_0()); 
-            // InternalMyCsv.g:4403:2: ( rule__MultiplicativeExpression__LhsAssignment_0 )
-            // InternalMyCsv.g:4403:3: rule__MultiplicativeExpression__LhsAssignment_0
+            // InternalMyCsv.g:4538:2: ( rule__MultiplicativeExpression__LhsAssignment_0 )
+            // InternalMyCsv.g:4538:3: rule__MultiplicativeExpression__LhsAssignment_0
             {
             pushFollow(FOLLOW_2);
             rule__MultiplicativeExpression__LhsAssignment_0();
@@ -13774,14 +14181,14 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MultiplicativeExpression__Group__1"
-    // InternalMyCsv.g:4411:1: rule__MultiplicativeExpression__Group__1 : rule__MultiplicativeExpression__Group__1__Impl ;
+    // InternalMyCsv.g:4546:1: rule__MultiplicativeExpression__Group__1 : rule__MultiplicativeExpression__Group__1__Impl ;
     public final void rule__MultiplicativeExpression__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:4415:1: ( rule__MultiplicativeExpression__Group__1__Impl )
-            // InternalMyCsv.g:4416:2: rule__MultiplicativeExpression__Group__1__Impl
+            // InternalMyCsv.g:4550:1: ( rule__MultiplicativeExpression__Group__1__Impl )
+            // InternalMyCsv.g:4551:2: rule__MultiplicativeExpression__Group__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__MultiplicativeExpression__Group__1__Impl();
@@ -13807,33 +14214,33 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MultiplicativeExpression__Group__1__Impl"
-    // InternalMyCsv.g:4422:1: rule__MultiplicativeExpression__Group__1__Impl : ( ( rule__MultiplicativeExpression__RhsAssignment_1 )* ) ;
+    // InternalMyCsv.g:4557:1: rule__MultiplicativeExpression__Group__1__Impl : ( ( rule__MultiplicativeExpression__RhsAssignment_1 )* ) ;
     public final void rule__MultiplicativeExpression__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:4426:1: ( ( ( rule__MultiplicativeExpression__RhsAssignment_1 )* ) )
-            // InternalMyCsv.g:4427:1: ( ( rule__MultiplicativeExpression__RhsAssignment_1 )* )
+            // InternalMyCsv.g:4561:1: ( ( ( rule__MultiplicativeExpression__RhsAssignment_1 )* ) )
+            // InternalMyCsv.g:4562:1: ( ( rule__MultiplicativeExpression__RhsAssignment_1 )* )
             {
-            // InternalMyCsv.g:4427:1: ( ( rule__MultiplicativeExpression__RhsAssignment_1 )* )
-            // InternalMyCsv.g:4428:2: ( rule__MultiplicativeExpression__RhsAssignment_1 )*
+            // InternalMyCsv.g:4562:1: ( ( rule__MultiplicativeExpression__RhsAssignment_1 )* )
+            // InternalMyCsv.g:4563:2: ( rule__MultiplicativeExpression__RhsAssignment_1 )*
             {
              before(grammarAccess.getMultiplicativeExpressionAccess().getRhsAssignment_1()); 
-            // InternalMyCsv.g:4429:2: ( rule__MultiplicativeExpression__RhsAssignment_1 )*
-            loop30:
+            // InternalMyCsv.g:4564:2: ( rule__MultiplicativeExpression__RhsAssignment_1 )*
+            loop31:
             do {
-                int alt30=2;
-                int LA30_0 = input.LA(1);
+                int alt31=2;
+                int LA31_0 = input.LA(1);
 
-                if ( ((LA30_0>=25 && LA30_0<=26)) ) {
-                    alt30=1;
+                if ( ((LA31_0>=25 && LA31_0<=26)) ) {
+                    alt31=1;
                 }
 
 
-                switch (alt30) {
+                switch (alt31) {
             	case 1 :
-            	    // InternalMyCsv.g:4429:3: rule__MultiplicativeExpression__RhsAssignment_1
+            	    // InternalMyCsv.g:4564:3: rule__MultiplicativeExpression__RhsAssignment_1
             	    {
             	    pushFollow(FOLLOW_37);
             	    rule__MultiplicativeExpression__RhsAssignment_1();
@@ -13845,7 +14252,7 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
             	    break;
 
             	default :
-            	    break loop30;
+            	    break loop31;
                 }
             } while (true);
 
@@ -13872,14 +14279,14 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MultiplicativeExpressionRhs__Group__0"
-    // InternalMyCsv.g:4438:1: rule__MultiplicativeExpressionRhs__Group__0 : rule__MultiplicativeExpressionRhs__Group__0__Impl rule__MultiplicativeExpressionRhs__Group__1 ;
+    // InternalMyCsv.g:4573:1: rule__MultiplicativeExpressionRhs__Group__0 : rule__MultiplicativeExpressionRhs__Group__0__Impl rule__MultiplicativeExpressionRhs__Group__1 ;
     public final void rule__MultiplicativeExpressionRhs__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:4442:1: ( rule__MultiplicativeExpressionRhs__Group__0__Impl rule__MultiplicativeExpressionRhs__Group__1 )
-            // InternalMyCsv.g:4443:2: rule__MultiplicativeExpressionRhs__Group__0__Impl rule__MultiplicativeExpressionRhs__Group__1
+            // InternalMyCsv.g:4577:1: ( rule__MultiplicativeExpressionRhs__Group__0__Impl rule__MultiplicativeExpressionRhs__Group__1 )
+            // InternalMyCsv.g:4578:2: rule__MultiplicativeExpressionRhs__Group__0__Impl rule__MultiplicativeExpressionRhs__Group__1
             {
             pushFollow(FOLLOW_35);
             rule__MultiplicativeExpressionRhs__Group__0__Impl();
@@ -13910,21 +14317,21 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MultiplicativeExpressionRhs__Group__0__Impl"
-    // InternalMyCsv.g:4450:1: rule__MultiplicativeExpressionRhs__Group__0__Impl : ( ( rule__MultiplicativeExpressionRhs__OpAssignment_0 ) ) ;
+    // InternalMyCsv.g:4585:1: rule__MultiplicativeExpressionRhs__Group__0__Impl : ( ( rule__MultiplicativeExpressionRhs__OpAssignment_0 ) ) ;
     public final void rule__MultiplicativeExpressionRhs__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:4454:1: ( ( ( rule__MultiplicativeExpressionRhs__OpAssignment_0 ) ) )
-            // InternalMyCsv.g:4455:1: ( ( rule__MultiplicativeExpressionRhs__OpAssignment_0 ) )
+            // InternalMyCsv.g:4589:1: ( ( ( rule__MultiplicativeExpressionRhs__OpAssignment_0 ) ) )
+            // InternalMyCsv.g:4590:1: ( ( rule__MultiplicativeExpressionRhs__OpAssignment_0 ) )
             {
-            // InternalMyCsv.g:4455:1: ( ( rule__MultiplicativeExpressionRhs__OpAssignment_0 ) )
-            // InternalMyCsv.g:4456:2: ( rule__MultiplicativeExpressionRhs__OpAssignment_0 )
+            // InternalMyCsv.g:4590:1: ( ( rule__MultiplicativeExpressionRhs__OpAssignment_0 ) )
+            // InternalMyCsv.g:4591:2: ( rule__MultiplicativeExpressionRhs__OpAssignment_0 )
             {
              before(grammarAccess.getMultiplicativeExpressionRhsAccess().getOpAssignment_0()); 
-            // InternalMyCsv.g:4457:2: ( rule__MultiplicativeExpressionRhs__OpAssignment_0 )
-            // InternalMyCsv.g:4457:3: rule__MultiplicativeExpressionRhs__OpAssignment_0
+            // InternalMyCsv.g:4592:2: ( rule__MultiplicativeExpressionRhs__OpAssignment_0 )
+            // InternalMyCsv.g:4592:3: rule__MultiplicativeExpressionRhs__OpAssignment_0
             {
             pushFollow(FOLLOW_2);
             rule__MultiplicativeExpressionRhs__OpAssignment_0();
@@ -13957,14 +14364,14 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MultiplicativeExpressionRhs__Group__1"
-    // InternalMyCsv.g:4465:1: rule__MultiplicativeExpressionRhs__Group__1 : rule__MultiplicativeExpressionRhs__Group__1__Impl ;
+    // InternalMyCsv.g:4600:1: rule__MultiplicativeExpressionRhs__Group__1 : rule__MultiplicativeExpressionRhs__Group__1__Impl ;
     public final void rule__MultiplicativeExpressionRhs__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:4469:1: ( rule__MultiplicativeExpressionRhs__Group__1__Impl )
-            // InternalMyCsv.g:4470:2: rule__MultiplicativeExpressionRhs__Group__1__Impl
+            // InternalMyCsv.g:4604:1: ( rule__MultiplicativeExpressionRhs__Group__1__Impl )
+            // InternalMyCsv.g:4605:2: rule__MultiplicativeExpressionRhs__Group__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__MultiplicativeExpressionRhs__Group__1__Impl();
@@ -13990,21 +14397,21 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MultiplicativeExpressionRhs__Group__1__Impl"
-    // InternalMyCsv.g:4476:1: rule__MultiplicativeExpressionRhs__Group__1__Impl : ( ( rule__MultiplicativeExpressionRhs__RhsAssignment_1 ) ) ;
+    // InternalMyCsv.g:4611:1: rule__MultiplicativeExpressionRhs__Group__1__Impl : ( ( rule__MultiplicativeExpressionRhs__RhsAssignment_1 ) ) ;
     public final void rule__MultiplicativeExpressionRhs__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:4480:1: ( ( ( rule__MultiplicativeExpressionRhs__RhsAssignment_1 ) ) )
-            // InternalMyCsv.g:4481:1: ( ( rule__MultiplicativeExpressionRhs__RhsAssignment_1 ) )
+            // InternalMyCsv.g:4615:1: ( ( ( rule__MultiplicativeExpressionRhs__RhsAssignment_1 ) ) )
+            // InternalMyCsv.g:4616:1: ( ( rule__MultiplicativeExpressionRhs__RhsAssignment_1 ) )
             {
-            // InternalMyCsv.g:4481:1: ( ( rule__MultiplicativeExpressionRhs__RhsAssignment_1 ) )
-            // InternalMyCsv.g:4482:2: ( rule__MultiplicativeExpressionRhs__RhsAssignment_1 )
+            // InternalMyCsv.g:4616:1: ( ( rule__MultiplicativeExpressionRhs__RhsAssignment_1 ) )
+            // InternalMyCsv.g:4617:2: ( rule__MultiplicativeExpressionRhs__RhsAssignment_1 )
             {
              before(grammarAccess.getMultiplicativeExpressionRhsAccess().getRhsAssignment_1()); 
-            // InternalMyCsv.g:4483:2: ( rule__MultiplicativeExpressionRhs__RhsAssignment_1 )
-            // InternalMyCsv.g:4483:3: rule__MultiplicativeExpressionRhs__RhsAssignment_1
+            // InternalMyCsv.g:4618:2: ( rule__MultiplicativeExpressionRhs__RhsAssignment_1 )
+            // InternalMyCsv.g:4618:3: rule__MultiplicativeExpressionRhs__RhsAssignment_1
             {
             pushFollow(FOLLOW_2);
             rule__MultiplicativeExpressionRhs__RhsAssignment_1();
@@ -14037,14 +14444,14 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__UnaryExpression__Group__0"
-    // InternalMyCsv.g:4492:1: rule__UnaryExpression__Group__0 : rule__UnaryExpression__Group__0__Impl rule__UnaryExpression__Group__1 ;
+    // InternalMyCsv.g:4627:1: rule__UnaryExpression__Group__0 : rule__UnaryExpression__Group__0__Impl rule__UnaryExpression__Group__1 ;
     public final void rule__UnaryExpression__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:4496:1: ( rule__UnaryExpression__Group__0__Impl rule__UnaryExpression__Group__1 )
-            // InternalMyCsv.g:4497:2: rule__UnaryExpression__Group__0__Impl rule__UnaryExpression__Group__1
+            // InternalMyCsv.g:4631:1: ( rule__UnaryExpression__Group__0__Impl rule__UnaryExpression__Group__1 )
+            // InternalMyCsv.g:4632:2: rule__UnaryExpression__Group__0__Impl rule__UnaryExpression__Group__1
             {
             pushFollow(FOLLOW_35);
             rule__UnaryExpression__Group__0__Impl();
@@ -14075,29 +14482,29 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__UnaryExpression__Group__0__Impl"
-    // InternalMyCsv.g:4504:1: rule__UnaryExpression__Group__0__Impl : ( ( rule__UnaryExpression__OpAssignment_0 )? ) ;
+    // InternalMyCsv.g:4639:1: rule__UnaryExpression__Group__0__Impl : ( ( rule__UnaryExpression__OpAssignment_0 )? ) ;
     public final void rule__UnaryExpression__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:4508:1: ( ( ( rule__UnaryExpression__OpAssignment_0 )? ) )
-            // InternalMyCsv.g:4509:1: ( ( rule__UnaryExpression__OpAssignment_0 )? )
+            // InternalMyCsv.g:4643:1: ( ( ( rule__UnaryExpression__OpAssignment_0 )? ) )
+            // InternalMyCsv.g:4644:1: ( ( rule__UnaryExpression__OpAssignment_0 )? )
             {
-            // InternalMyCsv.g:4509:1: ( ( rule__UnaryExpression__OpAssignment_0 )? )
-            // InternalMyCsv.g:4510:2: ( rule__UnaryExpression__OpAssignment_0 )?
+            // InternalMyCsv.g:4644:1: ( ( rule__UnaryExpression__OpAssignment_0 )? )
+            // InternalMyCsv.g:4645:2: ( rule__UnaryExpression__OpAssignment_0 )?
             {
              before(grammarAccess.getUnaryExpressionAccess().getOpAssignment_0()); 
-            // InternalMyCsv.g:4511:2: ( rule__UnaryExpression__OpAssignment_0 )?
-            int alt31=2;
-            int LA31_0 = input.LA(1);
+            // InternalMyCsv.g:4646:2: ( rule__UnaryExpression__OpAssignment_0 )?
+            int alt32=2;
+            int LA32_0 = input.LA(1);
 
-            if ( (LA31_0==24) ) {
-                alt31=1;
+            if ( (LA32_0==24) ) {
+                alt32=1;
             }
-            switch (alt31) {
+            switch (alt32) {
                 case 1 :
-                    // InternalMyCsv.g:4511:3: rule__UnaryExpression__OpAssignment_0
+                    // InternalMyCsv.g:4646:3: rule__UnaryExpression__OpAssignment_0
                     {
                     pushFollow(FOLLOW_2);
                     rule__UnaryExpression__OpAssignment_0();
@@ -14133,14 +14540,14 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__UnaryExpression__Group__1"
-    // InternalMyCsv.g:4519:1: rule__UnaryExpression__Group__1 : rule__UnaryExpression__Group__1__Impl ;
+    // InternalMyCsv.g:4654:1: rule__UnaryExpression__Group__1 : rule__UnaryExpression__Group__1__Impl ;
     public final void rule__UnaryExpression__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:4523:1: ( rule__UnaryExpression__Group__1__Impl )
-            // InternalMyCsv.g:4524:2: rule__UnaryExpression__Group__1__Impl
+            // InternalMyCsv.g:4658:1: ( rule__UnaryExpression__Group__1__Impl )
+            // InternalMyCsv.g:4659:2: rule__UnaryExpression__Group__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__UnaryExpression__Group__1__Impl();
@@ -14166,21 +14573,21 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__UnaryExpression__Group__1__Impl"
-    // InternalMyCsv.g:4530:1: rule__UnaryExpression__Group__1__Impl : ( ( rule__UnaryExpression__ExprAssignment_1 ) ) ;
+    // InternalMyCsv.g:4665:1: rule__UnaryExpression__Group__1__Impl : ( ( rule__UnaryExpression__ExprAssignment_1 ) ) ;
     public final void rule__UnaryExpression__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:4534:1: ( ( ( rule__UnaryExpression__ExprAssignment_1 ) ) )
-            // InternalMyCsv.g:4535:1: ( ( rule__UnaryExpression__ExprAssignment_1 ) )
+            // InternalMyCsv.g:4669:1: ( ( ( rule__UnaryExpression__ExprAssignment_1 ) ) )
+            // InternalMyCsv.g:4670:1: ( ( rule__UnaryExpression__ExprAssignment_1 ) )
             {
-            // InternalMyCsv.g:4535:1: ( ( rule__UnaryExpression__ExprAssignment_1 ) )
-            // InternalMyCsv.g:4536:2: ( rule__UnaryExpression__ExprAssignment_1 )
+            // InternalMyCsv.g:4670:1: ( ( rule__UnaryExpression__ExprAssignment_1 ) )
+            // InternalMyCsv.g:4671:2: ( rule__UnaryExpression__ExprAssignment_1 )
             {
              before(grammarAccess.getUnaryExpressionAccess().getExprAssignment_1()); 
-            // InternalMyCsv.g:4537:2: ( rule__UnaryExpression__ExprAssignment_1 )
-            // InternalMyCsv.g:4537:3: rule__UnaryExpression__ExprAssignment_1
+            // InternalMyCsv.g:4672:2: ( rule__UnaryExpression__ExprAssignment_1 )
+            // InternalMyCsv.g:4672:3: rule__UnaryExpression__ExprAssignment_1
             {
             pushFollow(FOLLOW_2);
             rule__UnaryExpression__ExprAssignment_1();
@@ -14213,14 +14620,14 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ExpressionCalculPrimary__Group_0__0"
-    // InternalMyCsv.g:4546:1: rule__ExpressionCalculPrimary__Group_0__0 : rule__ExpressionCalculPrimary__Group_0__0__Impl rule__ExpressionCalculPrimary__Group_0__1 ;
+    // InternalMyCsv.g:4681:1: rule__ExpressionCalculPrimary__Group_0__0 : rule__ExpressionCalculPrimary__Group_0__0__Impl rule__ExpressionCalculPrimary__Group_0__1 ;
     public final void rule__ExpressionCalculPrimary__Group_0__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:4550:1: ( rule__ExpressionCalculPrimary__Group_0__0__Impl rule__ExpressionCalculPrimary__Group_0__1 )
-            // InternalMyCsv.g:4551:2: rule__ExpressionCalculPrimary__Group_0__0__Impl rule__ExpressionCalculPrimary__Group_0__1
+            // InternalMyCsv.g:4685:1: ( rule__ExpressionCalculPrimary__Group_0__0__Impl rule__ExpressionCalculPrimary__Group_0__1 )
+            // InternalMyCsv.g:4686:2: rule__ExpressionCalculPrimary__Group_0__0__Impl rule__ExpressionCalculPrimary__Group_0__1
             {
             pushFollow(FOLLOW_38);
             rule__ExpressionCalculPrimary__Group_0__0__Impl();
@@ -14251,21 +14658,21 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ExpressionCalculPrimary__Group_0__0__Impl"
-    // InternalMyCsv.g:4558:1: rule__ExpressionCalculPrimary__Group_0__0__Impl : ( () ) ;
+    // InternalMyCsv.g:4693:1: rule__ExpressionCalculPrimary__Group_0__0__Impl : ( () ) ;
     public final void rule__ExpressionCalculPrimary__Group_0__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:4562:1: ( ( () ) )
-            // InternalMyCsv.g:4563:1: ( () )
+            // InternalMyCsv.g:4697:1: ( ( () ) )
+            // InternalMyCsv.g:4698:1: ( () )
             {
-            // InternalMyCsv.g:4563:1: ( () )
-            // InternalMyCsv.g:4564:2: ()
+            // InternalMyCsv.g:4698:1: ( () )
+            // InternalMyCsv.g:4699:2: ()
             {
              before(grammarAccess.getExpressionCalculPrimaryAccess().getNbFieldAction_0_0()); 
-            // InternalMyCsv.g:4565:2: ()
-            // InternalMyCsv.g:4565:3: 
+            // InternalMyCsv.g:4700:2: ()
+            // InternalMyCsv.g:4700:3: 
             {
             }
 
@@ -14288,14 +14695,14 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ExpressionCalculPrimary__Group_0__1"
-    // InternalMyCsv.g:4573:1: rule__ExpressionCalculPrimary__Group_0__1 : rule__ExpressionCalculPrimary__Group_0__1__Impl ;
+    // InternalMyCsv.g:4708:1: rule__ExpressionCalculPrimary__Group_0__1 : rule__ExpressionCalculPrimary__Group_0__1__Impl ;
     public final void rule__ExpressionCalculPrimary__Group_0__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:4577:1: ( rule__ExpressionCalculPrimary__Group_0__1__Impl )
-            // InternalMyCsv.g:4578:2: rule__ExpressionCalculPrimary__Group_0__1__Impl
+            // InternalMyCsv.g:4712:1: ( rule__ExpressionCalculPrimary__Group_0__1__Impl )
+            // InternalMyCsv.g:4713:2: rule__ExpressionCalculPrimary__Group_0__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__ExpressionCalculPrimary__Group_0__1__Impl();
@@ -14321,17 +14728,17 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ExpressionCalculPrimary__Group_0__1__Impl"
-    // InternalMyCsv.g:4584:1: rule__ExpressionCalculPrimary__Group_0__1__Impl : ( ruleNbField ) ;
+    // InternalMyCsv.g:4719:1: rule__ExpressionCalculPrimary__Group_0__1__Impl : ( ruleNbField ) ;
     public final void rule__ExpressionCalculPrimary__Group_0__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:4588:1: ( ( ruleNbField ) )
-            // InternalMyCsv.g:4589:1: ( ruleNbField )
+            // InternalMyCsv.g:4723:1: ( ( ruleNbField ) )
+            // InternalMyCsv.g:4724:1: ( ruleNbField )
             {
-            // InternalMyCsv.g:4589:1: ( ruleNbField )
-            // InternalMyCsv.g:4590:2: ruleNbField
+            // InternalMyCsv.g:4724:1: ( ruleNbField )
+            // InternalMyCsv.g:4725:2: ruleNbField
             {
              before(grammarAccess.getExpressionCalculPrimaryAccess().getNbFieldParserRuleCall_0_1()); 
             pushFollow(FOLLOW_2);
@@ -14362,14 +14769,14 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AggregatExpression__Group__0"
-    // InternalMyCsv.g:4600:1: rule__AggregatExpression__Group__0 : rule__AggregatExpression__Group__0__Impl rule__AggregatExpression__Group__1 ;
+    // InternalMyCsv.g:4735:1: rule__AggregatExpression__Group__0 : rule__AggregatExpression__Group__0__Impl rule__AggregatExpression__Group__1 ;
     public final void rule__AggregatExpression__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:4604:1: ( rule__AggregatExpression__Group__0__Impl rule__AggregatExpression__Group__1 )
-            // InternalMyCsv.g:4605:2: rule__AggregatExpression__Group__0__Impl rule__AggregatExpression__Group__1
+            // InternalMyCsv.g:4739:1: ( rule__AggregatExpression__Group__0__Impl rule__AggregatExpression__Group__1 )
+            // InternalMyCsv.g:4740:2: rule__AggregatExpression__Group__0__Impl rule__AggregatExpression__Group__1
             {
             pushFollow(FOLLOW_20);
             rule__AggregatExpression__Group__0__Impl();
@@ -14400,21 +14807,21 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AggregatExpression__Group__0__Impl"
-    // InternalMyCsv.g:4612:1: rule__AggregatExpression__Group__0__Impl : ( ( rule__AggregatExpression__AggregatOpAssignment_0 ) ) ;
+    // InternalMyCsv.g:4747:1: rule__AggregatExpression__Group__0__Impl : ( ( rule__AggregatExpression__AggregatOpAssignment_0 ) ) ;
     public final void rule__AggregatExpression__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:4616:1: ( ( ( rule__AggregatExpression__AggregatOpAssignment_0 ) ) )
-            // InternalMyCsv.g:4617:1: ( ( rule__AggregatExpression__AggregatOpAssignment_0 ) )
+            // InternalMyCsv.g:4751:1: ( ( ( rule__AggregatExpression__AggregatOpAssignment_0 ) ) )
+            // InternalMyCsv.g:4752:1: ( ( rule__AggregatExpression__AggregatOpAssignment_0 ) )
             {
-            // InternalMyCsv.g:4617:1: ( ( rule__AggregatExpression__AggregatOpAssignment_0 ) )
-            // InternalMyCsv.g:4618:2: ( rule__AggregatExpression__AggregatOpAssignment_0 )
+            // InternalMyCsv.g:4752:1: ( ( rule__AggregatExpression__AggregatOpAssignment_0 ) )
+            // InternalMyCsv.g:4753:2: ( rule__AggregatExpression__AggregatOpAssignment_0 )
             {
              before(grammarAccess.getAggregatExpressionAccess().getAggregatOpAssignment_0()); 
-            // InternalMyCsv.g:4619:2: ( rule__AggregatExpression__AggregatOpAssignment_0 )
-            // InternalMyCsv.g:4619:3: rule__AggregatExpression__AggregatOpAssignment_0
+            // InternalMyCsv.g:4754:2: ( rule__AggregatExpression__AggregatOpAssignment_0 )
+            // InternalMyCsv.g:4754:3: rule__AggregatExpression__AggregatOpAssignment_0
             {
             pushFollow(FOLLOW_2);
             rule__AggregatExpression__AggregatOpAssignment_0();
@@ -14447,14 +14854,14 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AggregatExpression__Group__1"
-    // InternalMyCsv.g:4627:1: rule__AggregatExpression__Group__1 : rule__AggregatExpression__Group__1__Impl ;
+    // InternalMyCsv.g:4762:1: rule__AggregatExpression__Group__1 : rule__AggregatExpression__Group__1__Impl ;
     public final void rule__AggregatExpression__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:4631:1: ( rule__AggregatExpression__Group__1__Impl )
-            // InternalMyCsv.g:4632:2: rule__AggregatExpression__Group__1__Impl
+            // InternalMyCsv.g:4766:1: ( rule__AggregatExpression__Group__1__Impl )
+            // InternalMyCsv.g:4767:2: rule__AggregatExpression__Group__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__AggregatExpression__Group__1__Impl();
@@ -14480,21 +14887,21 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AggregatExpression__Group__1__Impl"
-    // InternalMyCsv.g:4638:1: rule__AggregatExpression__Group__1__Impl : ( ( rule__AggregatExpression__ArgAssignment_1 ) ) ;
+    // InternalMyCsv.g:4773:1: rule__AggregatExpression__Group__1__Impl : ( ( rule__AggregatExpression__ArgAssignment_1 ) ) ;
     public final void rule__AggregatExpression__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:4642:1: ( ( ( rule__AggregatExpression__ArgAssignment_1 ) ) )
-            // InternalMyCsv.g:4643:1: ( ( rule__AggregatExpression__ArgAssignment_1 ) )
+            // InternalMyCsv.g:4777:1: ( ( ( rule__AggregatExpression__ArgAssignment_1 ) ) )
+            // InternalMyCsv.g:4778:1: ( ( rule__AggregatExpression__ArgAssignment_1 ) )
             {
-            // InternalMyCsv.g:4643:1: ( ( rule__AggregatExpression__ArgAssignment_1 ) )
-            // InternalMyCsv.g:4644:2: ( rule__AggregatExpression__ArgAssignment_1 )
+            // InternalMyCsv.g:4778:1: ( ( rule__AggregatExpression__ArgAssignment_1 ) )
+            // InternalMyCsv.g:4779:2: ( rule__AggregatExpression__ArgAssignment_1 )
             {
              before(grammarAccess.getAggregatExpressionAccess().getArgAssignment_1()); 
-            // InternalMyCsv.g:4645:2: ( rule__AggregatExpression__ArgAssignment_1 )
-            // InternalMyCsv.g:4645:3: rule__AggregatExpression__ArgAssignment_1
+            // InternalMyCsv.g:4780:2: ( rule__AggregatExpression__ArgAssignment_1 )
+            // InternalMyCsv.g:4780:3: rule__AggregatExpression__ArgAssignment_1
             {
             pushFollow(FOLLOW_2);
             rule__AggregatExpression__ArgAssignment_1();
@@ -14527,14 +14934,14 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__NestedExpressionCalcul__Group__0"
-    // InternalMyCsv.g:4654:1: rule__NestedExpressionCalcul__Group__0 : rule__NestedExpressionCalcul__Group__0__Impl rule__NestedExpressionCalcul__Group__1 ;
+    // InternalMyCsv.g:4789:1: rule__NestedExpressionCalcul__Group__0 : rule__NestedExpressionCalcul__Group__0__Impl rule__NestedExpressionCalcul__Group__1 ;
     public final void rule__NestedExpressionCalcul__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:4658:1: ( rule__NestedExpressionCalcul__Group__0__Impl rule__NestedExpressionCalcul__Group__1 )
-            // InternalMyCsv.g:4659:2: rule__NestedExpressionCalcul__Group__0__Impl rule__NestedExpressionCalcul__Group__1
+            // InternalMyCsv.g:4793:1: ( rule__NestedExpressionCalcul__Group__0__Impl rule__NestedExpressionCalcul__Group__1 )
+            // InternalMyCsv.g:4794:2: rule__NestedExpressionCalcul__Group__0__Impl rule__NestedExpressionCalcul__Group__1
             {
             pushFollow(FOLLOW_35);
             rule__NestedExpressionCalcul__Group__0__Impl();
@@ -14565,17 +14972,17 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__NestedExpressionCalcul__Group__0__Impl"
-    // InternalMyCsv.g:4666:1: rule__NestedExpressionCalcul__Group__0__Impl : ( '(' ) ;
+    // InternalMyCsv.g:4801:1: rule__NestedExpressionCalcul__Group__0__Impl : ( '(' ) ;
     public final void rule__NestedExpressionCalcul__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:4670:1: ( ( '(' ) )
-            // InternalMyCsv.g:4671:1: ( '(' )
+            // InternalMyCsv.g:4805:1: ( ( '(' ) )
+            // InternalMyCsv.g:4806:1: ( '(' )
             {
-            // InternalMyCsv.g:4671:1: ( '(' )
-            // InternalMyCsv.g:4672:2: '('
+            // InternalMyCsv.g:4806:1: ( '(' )
+            // InternalMyCsv.g:4807:2: '('
             {
              before(grammarAccess.getNestedExpressionCalculAccess().getLeftParenthesisKeyword_0()); 
             match(input,27,FOLLOW_2); 
@@ -14602,14 +15009,14 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__NestedExpressionCalcul__Group__1"
-    // InternalMyCsv.g:4681:1: rule__NestedExpressionCalcul__Group__1 : rule__NestedExpressionCalcul__Group__1__Impl rule__NestedExpressionCalcul__Group__2 ;
+    // InternalMyCsv.g:4816:1: rule__NestedExpressionCalcul__Group__1 : rule__NestedExpressionCalcul__Group__1__Impl rule__NestedExpressionCalcul__Group__2 ;
     public final void rule__NestedExpressionCalcul__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:4685:1: ( rule__NestedExpressionCalcul__Group__1__Impl rule__NestedExpressionCalcul__Group__2 )
-            // InternalMyCsv.g:4686:2: rule__NestedExpressionCalcul__Group__1__Impl rule__NestedExpressionCalcul__Group__2
+            // InternalMyCsv.g:4820:1: ( rule__NestedExpressionCalcul__Group__1__Impl rule__NestedExpressionCalcul__Group__2 )
+            // InternalMyCsv.g:4821:2: rule__NestedExpressionCalcul__Group__1__Impl rule__NestedExpressionCalcul__Group__2
             {
             pushFollow(FOLLOW_9);
             rule__NestedExpressionCalcul__Group__1__Impl();
@@ -14640,21 +15047,21 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__NestedExpressionCalcul__Group__1__Impl"
-    // InternalMyCsv.g:4693:1: rule__NestedExpressionCalcul__Group__1__Impl : ( ( rule__NestedExpressionCalcul__ExprAssignment_1 ) ) ;
+    // InternalMyCsv.g:4828:1: rule__NestedExpressionCalcul__Group__1__Impl : ( ( rule__NestedExpressionCalcul__ExprAssignment_1 ) ) ;
     public final void rule__NestedExpressionCalcul__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:4697:1: ( ( ( rule__NestedExpressionCalcul__ExprAssignment_1 ) ) )
-            // InternalMyCsv.g:4698:1: ( ( rule__NestedExpressionCalcul__ExprAssignment_1 ) )
+            // InternalMyCsv.g:4832:1: ( ( ( rule__NestedExpressionCalcul__ExprAssignment_1 ) ) )
+            // InternalMyCsv.g:4833:1: ( ( rule__NestedExpressionCalcul__ExprAssignment_1 ) )
             {
-            // InternalMyCsv.g:4698:1: ( ( rule__NestedExpressionCalcul__ExprAssignment_1 ) )
-            // InternalMyCsv.g:4699:2: ( rule__NestedExpressionCalcul__ExprAssignment_1 )
+            // InternalMyCsv.g:4833:1: ( ( rule__NestedExpressionCalcul__ExprAssignment_1 ) )
+            // InternalMyCsv.g:4834:2: ( rule__NestedExpressionCalcul__ExprAssignment_1 )
             {
              before(grammarAccess.getNestedExpressionCalculAccess().getExprAssignment_1()); 
-            // InternalMyCsv.g:4700:2: ( rule__NestedExpressionCalcul__ExprAssignment_1 )
-            // InternalMyCsv.g:4700:3: rule__NestedExpressionCalcul__ExprAssignment_1
+            // InternalMyCsv.g:4835:2: ( rule__NestedExpressionCalcul__ExprAssignment_1 )
+            // InternalMyCsv.g:4835:3: rule__NestedExpressionCalcul__ExprAssignment_1
             {
             pushFollow(FOLLOW_2);
             rule__NestedExpressionCalcul__ExprAssignment_1();
@@ -14687,14 +15094,14 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__NestedExpressionCalcul__Group__2"
-    // InternalMyCsv.g:4708:1: rule__NestedExpressionCalcul__Group__2 : rule__NestedExpressionCalcul__Group__2__Impl ;
+    // InternalMyCsv.g:4843:1: rule__NestedExpressionCalcul__Group__2 : rule__NestedExpressionCalcul__Group__2__Impl ;
     public final void rule__NestedExpressionCalcul__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:4712:1: ( rule__NestedExpressionCalcul__Group__2__Impl )
-            // InternalMyCsv.g:4713:2: rule__NestedExpressionCalcul__Group__2__Impl
+            // InternalMyCsv.g:4847:1: ( rule__NestedExpressionCalcul__Group__2__Impl )
+            // InternalMyCsv.g:4848:2: rule__NestedExpressionCalcul__Group__2__Impl
             {
             pushFollow(FOLLOW_2);
             rule__NestedExpressionCalcul__Group__2__Impl();
@@ -14720,17 +15127,17 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__NestedExpressionCalcul__Group__2__Impl"
-    // InternalMyCsv.g:4719:1: rule__NestedExpressionCalcul__Group__2__Impl : ( ')' ) ;
+    // InternalMyCsv.g:4854:1: rule__NestedExpressionCalcul__Group__2__Impl : ( ')' ) ;
     public final void rule__NestedExpressionCalcul__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:4723:1: ( ( ')' ) )
-            // InternalMyCsv.g:4724:1: ( ')' )
+            // InternalMyCsv.g:4858:1: ( ( ')' ) )
+            // InternalMyCsv.g:4859:1: ( ')' )
             {
-            // InternalMyCsv.g:4724:1: ( ')' )
-            // InternalMyCsv.g:4725:2: ')'
+            // InternalMyCsv.g:4859:1: ( ')' )
+            // InternalMyCsv.g:4860:2: ')'
             {
              before(grammarAccess.getNestedExpressionCalculAccess().getRightParenthesisKeyword_2()); 
             match(input,29,FOLLOW_2); 
@@ -14757,14 +15164,14 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FLOAT__Group__0"
-    // InternalMyCsv.g:4735:1: rule__FLOAT__Group__0 : rule__FLOAT__Group__0__Impl rule__FLOAT__Group__1 ;
+    // InternalMyCsv.g:4870:1: rule__FLOAT__Group__0 : rule__FLOAT__Group__0__Impl rule__FLOAT__Group__1 ;
     public final void rule__FLOAT__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:4739:1: ( rule__FLOAT__Group__0__Impl rule__FLOAT__Group__1 )
-            // InternalMyCsv.g:4740:2: rule__FLOAT__Group__0__Impl rule__FLOAT__Group__1
+            // InternalMyCsv.g:4874:1: ( rule__FLOAT__Group__0__Impl rule__FLOAT__Group__1 )
+            // InternalMyCsv.g:4875:2: rule__FLOAT__Group__0__Impl rule__FLOAT__Group__1
             {
             pushFollow(FOLLOW_39);
             rule__FLOAT__Group__0__Impl();
@@ -14795,17 +15202,17 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FLOAT__Group__0__Impl"
-    // InternalMyCsv.g:4747:1: rule__FLOAT__Group__0__Impl : ( RULE_INT ) ;
+    // InternalMyCsv.g:4882:1: rule__FLOAT__Group__0__Impl : ( RULE_INT ) ;
     public final void rule__FLOAT__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:4751:1: ( ( RULE_INT ) )
-            // InternalMyCsv.g:4752:1: ( RULE_INT )
+            // InternalMyCsv.g:4886:1: ( ( RULE_INT ) )
+            // InternalMyCsv.g:4887:1: ( RULE_INT )
             {
-            // InternalMyCsv.g:4752:1: ( RULE_INT )
-            // InternalMyCsv.g:4753:2: RULE_INT
+            // InternalMyCsv.g:4887:1: ( RULE_INT )
+            // InternalMyCsv.g:4888:2: RULE_INT
             {
              before(grammarAccess.getFLOATAccess().getINTTerminalRuleCall_0()); 
             match(input,RULE_INT,FOLLOW_2); 
@@ -14832,14 +15239,14 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FLOAT__Group__1"
-    // InternalMyCsv.g:4762:1: rule__FLOAT__Group__1 : rule__FLOAT__Group__1__Impl rule__FLOAT__Group__2 ;
+    // InternalMyCsv.g:4897:1: rule__FLOAT__Group__1 : rule__FLOAT__Group__1__Impl rule__FLOAT__Group__2 ;
     public final void rule__FLOAT__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:4766:1: ( rule__FLOAT__Group__1__Impl rule__FLOAT__Group__2 )
-            // InternalMyCsv.g:4767:2: rule__FLOAT__Group__1__Impl rule__FLOAT__Group__2
+            // InternalMyCsv.g:4901:1: ( rule__FLOAT__Group__1__Impl rule__FLOAT__Group__2 )
+            // InternalMyCsv.g:4902:2: rule__FLOAT__Group__1__Impl rule__FLOAT__Group__2
             {
             pushFollow(FOLLOW_6);
             rule__FLOAT__Group__1__Impl();
@@ -14870,20 +15277,20 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FLOAT__Group__1__Impl"
-    // InternalMyCsv.g:4774:1: rule__FLOAT__Group__1__Impl : ( '.' ) ;
+    // InternalMyCsv.g:4909:1: rule__FLOAT__Group__1__Impl : ( '.' ) ;
     public final void rule__FLOAT__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:4778:1: ( ( '.' ) )
-            // InternalMyCsv.g:4779:1: ( '.' )
+            // InternalMyCsv.g:4913:1: ( ( '.' ) )
+            // InternalMyCsv.g:4914:1: ( '.' )
             {
-            // InternalMyCsv.g:4779:1: ( '.' )
-            // InternalMyCsv.g:4780:2: '.'
+            // InternalMyCsv.g:4914:1: ( '.' )
+            // InternalMyCsv.g:4915:2: '.'
             {
              before(grammarAccess.getFLOATAccess().getFullStopKeyword_1()); 
-            match(input,51,FOLLOW_2); 
+            match(input,52,FOLLOW_2); 
              after(grammarAccess.getFLOATAccess().getFullStopKeyword_1()); 
 
             }
@@ -14907,14 +15314,14 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FLOAT__Group__2"
-    // InternalMyCsv.g:4789:1: rule__FLOAT__Group__2 : rule__FLOAT__Group__2__Impl ;
+    // InternalMyCsv.g:4924:1: rule__FLOAT__Group__2 : rule__FLOAT__Group__2__Impl ;
     public final void rule__FLOAT__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:4793:1: ( rule__FLOAT__Group__2__Impl )
-            // InternalMyCsv.g:4794:2: rule__FLOAT__Group__2__Impl
+            // InternalMyCsv.g:4928:1: ( rule__FLOAT__Group__2__Impl )
+            // InternalMyCsv.g:4929:2: rule__FLOAT__Group__2__Impl
             {
             pushFollow(FOLLOW_2);
             rule__FLOAT__Group__2__Impl();
@@ -14940,17 +15347,17 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FLOAT__Group__2__Impl"
-    // InternalMyCsv.g:4800:1: rule__FLOAT__Group__2__Impl : ( RULE_INT ) ;
+    // InternalMyCsv.g:4935:1: rule__FLOAT__Group__2__Impl : ( RULE_INT ) ;
     public final void rule__FLOAT__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:4804:1: ( ( RULE_INT ) )
-            // InternalMyCsv.g:4805:1: ( RULE_INT )
+            // InternalMyCsv.g:4939:1: ( ( RULE_INT ) )
+            // InternalMyCsv.g:4940:1: ( RULE_INT )
             {
-            // InternalMyCsv.g:4805:1: ( RULE_INT )
-            // InternalMyCsv.g:4806:2: RULE_INT
+            // InternalMyCsv.g:4940:1: ( RULE_INT )
+            // InternalMyCsv.g:4941:2: RULE_INT
             {
              before(grammarAccess.getFLOATAccess().getINTTerminalRuleCall_2()); 
             match(input,RULE_INT,FOLLOW_2); 
@@ -14977,17 +15384,17 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Program__StmtsAssignment"
-    // InternalMyCsv.g:4816:1: rule__Program__StmtsAssignment : ( ruleStatement ) ;
+    // InternalMyCsv.g:4951:1: rule__Program__StmtsAssignment : ( ruleStatement ) ;
     public final void rule__Program__StmtsAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:4820:1: ( ( ruleStatement ) )
-            // InternalMyCsv.g:4821:2: ( ruleStatement )
+            // InternalMyCsv.g:4955:1: ( ( ruleStatement ) )
+            // InternalMyCsv.g:4956:2: ( ruleStatement )
             {
-            // InternalMyCsv.g:4821:2: ( ruleStatement )
-            // InternalMyCsv.g:4822:3: ruleStatement
+            // InternalMyCsv.g:4956:2: ( ruleStatement )
+            // InternalMyCsv.g:4957:3: ruleStatement
             {
              before(grammarAccess.getProgramAccess().getStmtsStatementParserRuleCall_0()); 
             pushFollow(FOLLOW_2);
@@ -15018,17 +15425,17 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__LineIndexCond__CondAssignment"
-    // InternalMyCsv.g:4831:1: rule__LineIndexCond__CondAssignment : ( ruleExpressionLog ) ;
+    // InternalMyCsv.g:4966:1: rule__LineIndexCond__CondAssignment : ( ruleExpressionLog ) ;
     public final void rule__LineIndexCond__CondAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:4835:1: ( ( ruleExpressionLog ) )
-            // InternalMyCsv.g:4836:2: ( ruleExpressionLog )
+            // InternalMyCsv.g:4970:1: ( ( ruleExpressionLog ) )
+            // InternalMyCsv.g:4971:2: ( ruleExpressionLog )
             {
-            // InternalMyCsv.g:4836:2: ( ruleExpressionLog )
-            // InternalMyCsv.g:4837:3: ruleExpressionLog
+            // InternalMyCsv.g:4971:2: ( ruleExpressionLog )
+            // InternalMyCsv.g:4972:3: ruleExpressionLog
             {
              before(grammarAccess.getLineIndexCondAccess().getCondExpressionLogParserRuleCall_0()); 
             pushFollow(FOLLOW_2);
@@ -15059,17 +15466,17 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__LineIndexNum__LinesAssignment"
-    // InternalMyCsv.g:4846:1: rule__LineIndexNum__LinesAssignment : ( RULE_INT ) ;
+    // InternalMyCsv.g:4981:1: rule__LineIndexNum__LinesAssignment : ( RULE_INT ) ;
     public final void rule__LineIndexNum__LinesAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:4850:1: ( ( RULE_INT ) )
-            // InternalMyCsv.g:4851:2: ( RULE_INT )
+            // InternalMyCsv.g:4985:1: ( ( RULE_INT ) )
+            // InternalMyCsv.g:4986:2: ( RULE_INT )
             {
-            // InternalMyCsv.g:4851:2: ( RULE_INT )
-            // InternalMyCsv.g:4852:3: RULE_INT
+            // InternalMyCsv.g:4986:2: ( RULE_INT )
+            // InternalMyCsv.g:4987:3: RULE_INT
             {
              before(grammarAccess.getLineIndexNumAccess().getLinesINTTerminalRuleCall_0()); 
             match(input,RULE_INT,FOLLOW_2); 
@@ -15096,17 +15503,17 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FieldIndexName__FieldsAssignment"
-    // InternalMyCsv.g:4861:1: rule__FieldIndexName__FieldsAssignment : ( ruleField ) ;
+    // InternalMyCsv.g:4996:1: rule__FieldIndexName__FieldsAssignment : ( ruleField ) ;
     public final void rule__FieldIndexName__FieldsAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:4865:1: ( ( ruleField ) )
-            // InternalMyCsv.g:4866:2: ( ruleField )
+            // InternalMyCsv.g:5000:1: ( ( ruleField ) )
+            // InternalMyCsv.g:5001:2: ( ruleField )
             {
-            // InternalMyCsv.g:4866:2: ( ruleField )
-            // InternalMyCsv.g:4867:3: ruleField
+            // InternalMyCsv.g:5001:2: ( ruleField )
+            // InternalMyCsv.g:5002:3: ruleField
             {
              before(grammarAccess.getFieldIndexNameAccess().getFieldsFieldParserRuleCall_0()); 
             pushFollow(FOLLOW_2);
@@ -15137,17 +15544,17 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FieldIndexNum__ColumnsAssignment"
-    // InternalMyCsv.g:4876:1: rule__FieldIndexNum__ColumnsAssignment : ( RULE_INT ) ;
+    // InternalMyCsv.g:5011:1: rule__FieldIndexNum__ColumnsAssignment : ( RULE_INT ) ;
     public final void rule__FieldIndexNum__ColumnsAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:4880:1: ( ( RULE_INT ) )
-            // InternalMyCsv.g:4881:2: ( RULE_INT )
+            // InternalMyCsv.g:5015:1: ( ( RULE_INT ) )
+            // InternalMyCsv.g:5016:2: ( RULE_INT )
             {
-            // InternalMyCsv.g:4881:2: ( RULE_INT )
-            // InternalMyCsv.g:4882:3: RULE_INT
+            // InternalMyCsv.g:5016:2: ( RULE_INT )
+            // InternalMyCsv.g:5017:3: RULE_INT
             {
              before(grammarAccess.getFieldIndexNumAccess().getColumnsINTTerminalRuleCall_0()); 
             match(input,RULE_INT,FOLLOW_2); 
@@ -15174,17 +15581,17 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__CellIndex__LineAssignment_1"
-    // InternalMyCsv.g:4891:1: rule__CellIndex__LineAssignment_1 : ( RULE_INT ) ;
+    // InternalMyCsv.g:5026:1: rule__CellIndex__LineAssignment_1 : ( RULE_INT ) ;
     public final void rule__CellIndex__LineAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:4895:1: ( ( RULE_INT ) )
-            // InternalMyCsv.g:4896:2: ( RULE_INT )
+            // InternalMyCsv.g:5030:1: ( ( RULE_INT ) )
+            // InternalMyCsv.g:5031:2: ( RULE_INT )
             {
-            // InternalMyCsv.g:4896:2: ( RULE_INT )
-            // InternalMyCsv.g:4897:3: RULE_INT
+            // InternalMyCsv.g:5031:2: ( RULE_INT )
+            // InternalMyCsv.g:5032:3: RULE_INT
             {
              before(grammarAccess.getCellIndexAccess().getLineINTTerminalRuleCall_1_0()); 
             match(input,RULE_INT,FOLLOW_2); 
@@ -15211,17 +15618,17 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__CellIndex__ColnumAssignment_3_0"
-    // InternalMyCsv.g:4906:1: rule__CellIndex__ColnumAssignment_3_0 : ( RULE_INT ) ;
+    // InternalMyCsv.g:5041:1: rule__CellIndex__ColnumAssignment_3_0 : ( RULE_INT ) ;
     public final void rule__CellIndex__ColnumAssignment_3_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:4910:1: ( ( RULE_INT ) )
-            // InternalMyCsv.g:4911:2: ( RULE_INT )
+            // InternalMyCsv.g:5045:1: ( ( RULE_INT ) )
+            // InternalMyCsv.g:5046:2: ( RULE_INT )
             {
-            // InternalMyCsv.g:4911:2: ( RULE_INT )
-            // InternalMyCsv.g:4912:3: RULE_INT
+            // InternalMyCsv.g:5046:2: ( RULE_INT )
+            // InternalMyCsv.g:5047:3: RULE_INT
             {
              before(grammarAccess.getCellIndexAccess().getColnumINTTerminalRuleCall_3_0_0()); 
             match(input,RULE_INT,FOLLOW_2); 
@@ -15248,17 +15655,17 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__CellIndex__ColnameAssignment_3_1"
-    // InternalMyCsv.g:4921:1: rule__CellIndex__ColnameAssignment_3_1 : ( ruleField ) ;
+    // InternalMyCsv.g:5056:1: rule__CellIndex__ColnameAssignment_3_1 : ( ruleField ) ;
     public final void rule__CellIndex__ColnameAssignment_3_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:4925:1: ( ( ruleField ) )
-            // InternalMyCsv.g:4926:2: ( ruleField )
+            // InternalMyCsv.g:5060:1: ( ( ruleField ) )
+            // InternalMyCsv.g:5061:2: ( ruleField )
             {
-            // InternalMyCsv.g:4926:2: ( ruleField )
-            // InternalMyCsv.g:4927:3: ruleField
+            // InternalMyCsv.g:5061:2: ( ruleField )
+            // InternalMyCsv.g:5062:3: ruleField
             {
              before(grammarAccess.getCellIndexAccess().getColnameFieldParserRuleCall_3_1_0()); 
             pushFollow(FOLLOW_2);
@@ -15289,17 +15696,17 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Values__ValuesAssignment_1"
-    // InternalMyCsv.g:4936:1: rule__Values__ValuesAssignment_1 : ( ruleValue ) ;
+    // InternalMyCsv.g:5071:1: rule__Values__ValuesAssignment_1 : ( ruleValue ) ;
     public final void rule__Values__ValuesAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:4940:1: ( ( ruleValue ) )
-            // InternalMyCsv.g:4941:2: ( ruleValue )
+            // InternalMyCsv.g:5075:1: ( ( ruleValue ) )
+            // InternalMyCsv.g:5076:2: ( ruleValue )
             {
-            // InternalMyCsv.g:4941:2: ( ruleValue )
-            // InternalMyCsv.g:4942:3: ruleValue
+            // InternalMyCsv.g:5076:2: ( ruleValue )
+            // InternalMyCsv.g:5077:3: ruleValue
             {
              before(grammarAccess.getValuesAccess().getValuesValueParserRuleCall_1_0()); 
             pushFollow(FOLLOW_2);
@@ -15330,17 +15737,17 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Values__ValuesAssignment_2_1"
-    // InternalMyCsv.g:4951:1: rule__Values__ValuesAssignment_2_1 : ( ruleValue ) ;
+    // InternalMyCsv.g:5086:1: rule__Values__ValuesAssignment_2_1 : ( ruleValue ) ;
     public final void rule__Values__ValuesAssignment_2_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:4955:1: ( ( ruleValue ) )
-            // InternalMyCsv.g:4956:2: ( ruleValue )
+            // InternalMyCsv.g:5090:1: ( ( ruleValue ) )
+            // InternalMyCsv.g:5091:2: ( ruleValue )
             {
-            // InternalMyCsv.g:4956:2: ( ruleValue )
-            // InternalMyCsv.g:4957:3: ruleValue
+            // InternalMyCsv.g:5091:2: ( ruleValue )
+            // InternalMyCsv.g:5092:3: ruleValue
             {
              before(grammarAccess.getValuesAccess().getValuesValueParserRuleCall_2_1_0()); 
             pushFollow(FOLLOW_2);
@@ -15371,17 +15778,17 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Path__ValueAssignment"
-    // InternalMyCsv.g:4966:1: rule__Path__ValueAssignment : ( RULE_STRING ) ;
+    // InternalMyCsv.g:5101:1: rule__Path__ValueAssignment : ( RULE_STRING ) ;
     public final void rule__Path__ValueAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:4970:1: ( ( RULE_STRING ) )
-            // InternalMyCsv.g:4971:2: ( RULE_STRING )
+            // InternalMyCsv.g:5105:1: ( ( RULE_STRING ) )
+            // InternalMyCsv.g:5106:2: ( RULE_STRING )
             {
-            // InternalMyCsv.g:4971:2: ( RULE_STRING )
-            // InternalMyCsv.g:4972:3: RULE_STRING
+            // InternalMyCsv.g:5106:2: ( RULE_STRING )
+            // InternalMyCsv.g:5107:3: RULE_STRING
             {
              before(grammarAccess.getPathAccess().getValueSTRINGTerminalRuleCall_0()); 
             match(input,RULE_STRING,FOLLOW_2); 
@@ -15408,17 +15815,17 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Field__ValueAssignment"
-    // InternalMyCsv.g:4981:1: rule__Field__ValueAssignment : ( RULE_ID ) ;
+    // InternalMyCsv.g:5116:1: rule__Field__ValueAssignment : ( RULE_ID ) ;
     public final void rule__Field__ValueAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:4985:1: ( ( RULE_ID ) )
-            // InternalMyCsv.g:4986:2: ( RULE_ID )
+            // InternalMyCsv.g:5120:1: ( ( RULE_ID ) )
+            // InternalMyCsv.g:5121:2: ( RULE_ID )
             {
-            // InternalMyCsv.g:4986:2: ( RULE_ID )
-            // InternalMyCsv.g:4987:3: RULE_ID
+            // InternalMyCsv.g:5121:2: ( RULE_ID )
+            // InternalMyCsv.g:5122:3: RULE_ID
             {
              before(grammarAccess.getFieldAccess().getValueIDTerminalRuleCall_0()); 
             match(input,RULE_ID,FOLLOW_2); 
@@ -15445,17 +15852,17 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Load__PathAssignment_1"
-    // InternalMyCsv.g:4996:1: rule__Load__PathAssignment_1 : ( rulePath ) ;
+    // InternalMyCsv.g:5131:1: rule__Load__PathAssignment_1 : ( rulePath ) ;
     public final void rule__Load__PathAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:5000:1: ( ( rulePath ) )
-            // InternalMyCsv.g:5001:2: ( rulePath )
+            // InternalMyCsv.g:5135:1: ( ( rulePath ) )
+            // InternalMyCsv.g:5136:2: ( rulePath )
             {
-            // InternalMyCsv.g:5001:2: ( rulePath )
-            // InternalMyCsv.g:5002:3: rulePath
+            // InternalMyCsv.g:5136:2: ( rulePath )
+            // InternalMyCsv.g:5137:3: rulePath
             {
              before(grammarAccess.getLoadAccess().getPathPathParserRuleCall_1_0()); 
             pushFollow(FOLLOW_2);
@@ -15486,24 +15893,24 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Load__SepDefinedAssignment_2_0"
-    // InternalMyCsv.g:5011:1: rule__Load__SepDefinedAssignment_2_0 : ( ( 'sep' ) ) ;
+    // InternalMyCsv.g:5146:1: rule__Load__SepDefinedAssignment_2_0 : ( ( 'sep' ) ) ;
     public final void rule__Load__SepDefinedAssignment_2_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:5015:1: ( ( ( 'sep' ) ) )
-            // InternalMyCsv.g:5016:2: ( ( 'sep' ) )
+            // InternalMyCsv.g:5150:1: ( ( ( 'sep' ) ) )
+            // InternalMyCsv.g:5151:2: ( ( 'sep' ) )
             {
-            // InternalMyCsv.g:5016:2: ( ( 'sep' ) )
-            // InternalMyCsv.g:5017:3: ( 'sep' )
-            {
-             before(grammarAccess.getLoadAccess().getSepDefinedSepKeyword_2_0_0()); 
-            // InternalMyCsv.g:5018:3: ( 'sep' )
-            // InternalMyCsv.g:5019:4: 'sep'
+            // InternalMyCsv.g:5151:2: ( ( 'sep' ) )
+            // InternalMyCsv.g:5152:3: ( 'sep' )
             {
              before(grammarAccess.getLoadAccess().getSepDefinedSepKeyword_2_0_0()); 
-            match(input,52,FOLLOW_2); 
+            // InternalMyCsv.g:5153:3: ( 'sep' )
+            // InternalMyCsv.g:5154:4: 'sep'
+            {
+             before(grammarAccess.getLoadAccess().getSepDefinedSepKeyword_2_0_0()); 
+            match(input,53,FOLLOW_2); 
              after(grammarAccess.getLoadAccess().getSepDefinedSepKeyword_2_0_0()); 
 
             }
@@ -15531,17 +15938,17 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Load__SepAssignment_2_2"
-    // InternalMyCsv.g:5030:1: rule__Load__SepAssignment_2_2 : ( RULE_STRING ) ;
+    // InternalMyCsv.g:5165:1: rule__Load__SepAssignment_2_2 : ( RULE_STRING ) ;
     public final void rule__Load__SepAssignment_2_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:5034:1: ( ( RULE_STRING ) )
-            // InternalMyCsv.g:5035:2: ( RULE_STRING )
+            // InternalMyCsv.g:5169:1: ( ( RULE_STRING ) )
+            // InternalMyCsv.g:5170:2: ( RULE_STRING )
             {
-            // InternalMyCsv.g:5035:2: ( RULE_STRING )
-            // InternalMyCsv.g:5036:3: RULE_STRING
+            // InternalMyCsv.g:5170:2: ( RULE_STRING )
+            // InternalMyCsv.g:5171:3: RULE_STRING
             {
              before(grammarAccess.getLoadAccess().getSepSTRINGTerminalRuleCall_2_2_0()); 
             match(input,RULE_STRING,FOLLOW_2); 
@@ -15567,30 +15974,30 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__Load__SepAssignment_2_2"
 
 
-    // $ANTLR start "rule__Load__NoHeaderAssignment_3"
-    // InternalMyCsv.g:5045:1: rule__Load__NoHeaderAssignment_3 : ( ( 'noheader' ) ) ;
-    public final void rule__Load__NoHeaderAssignment_3() throws RecognitionException {
+    // $ANTLR start "rule__Load__NoHeaderAssignment_3_0"
+    // InternalMyCsv.g:5180:1: rule__Load__NoHeaderAssignment_3_0 : ( ( 'no' ) ) ;
+    public final void rule__Load__NoHeaderAssignment_3_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:5049:1: ( ( ( 'noheader' ) ) )
-            // InternalMyCsv.g:5050:2: ( ( 'noheader' ) )
+            // InternalMyCsv.g:5184:1: ( ( ( 'no' ) ) )
+            // InternalMyCsv.g:5185:2: ( ( 'no' ) )
             {
-            // InternalMyCsv.g:5050:2: ( ( 'noheader' ) )
-            // InternalMyCsv.g:5051:3: ( 'noheader' )
+            // InternalMyCsv.g:5185:2: ( ( 'no' ) )
+            // InternalMyCsv.g:5186:3: ( 'no' )
             {
-             before(grammarAccess.getLoadAccess().getNoHeaderNoheaderKeyword_3_0()); 
-            // InternalMyCsv.g:5052:3: ( 'noheader' )
-            // InternalMyCsv.g:5053:4: 'noheader'
+             before(grammarAccess.getLoadAccess().getNoHeaderNoKeyword_3_0_0()); 
+            // InternalMyCsv.g:5187:3: ( 'no' )
+            // InternalMyCsv.g:5188:4: 'no'
             {
-             before(grammarAccess.getLoadAccess().getNoHeaderNoheaderKeyword_3_0()); 
-            match(input,53,FOLLOW_2); 
-             after(grammarAccess.getLoadAccess().getNoHeaderNoheaderKeyword_3_0()); 
+             before(grammarAccess.getLoadAccess().getNoHeaderNoKeyword_3_0_0()); 
+            match(input,54,FOLLOW_2); 
+             after(grammarAccess.getLoadAccess().getNoHeaderNoKeyword_3_0_0()); 
 
             }
 
-             after(grammarAccess.getLoadAccess().getNoHeaderNoheaderKeyword_3_0()); 
+             after(grammarAccess.getLoadAccess().getNoHeaderNoKeyword_3_0_0()); 
 
             }
 
@@ -15609,21 +16016,21 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Load__NoHeaderAssignment_3"
+    // $ANTLR end "rule__Load__NoHeaderAssignment_3_0"
 
 
     // $ANTLR start "rule__Store__PathAssignment_1"
-    // InternalMyCsv.g:5064:1: rule__Store__PathAssignment_1 : ( rulePath ) ;
+    // InternalMyCsv.g:5199:1: rule__Store__PathAssignment_1 : ( rulePath ) ;
     public final void rule__Store__PathAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:5068:1: ( ( rulePath ) )
-            // InternalMyCsv.g:5069:2: ( rulePath )
+            // InternalMyCsv.g:5203:1: ( ( rulePath ) )
+            // InternalMyCsv.g:5204:2: ( rulePath )
             {
-            // InternalMyCsv.g:5069:2: ( rulePath )
-            // InternalMyCsv.g:5070:3: rulePath
+            // InternalMyCsv.g:5204:2: ( rulePath )
+            // InternalMyCsv.g:5205:3: rulePath
             {
              before(grammarAccess.getStoreAccess().getPathPathParserRuleCall_1_0()); 
             pushFollow(FOLLOW_2);
@@ -15654,24 +16061,24 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Store__SepDefinedAssignment_2_0"
-    // InternalMyCsv.g:5079:1: rule__Store__SepDefinedAssignment_2_0 : ( ( 'sep' ) ) ;
+    // InternalMyCsv.g:5214:1: rule__Store__SepDefinedAssignment_2_0 : ( ( 'sep' ) ) ;
     public final void rule__Store__SepDefinedAssignment_2_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:5083:1: ( ( ( 'sep' ) ) )
-            // InternalMyCsv.g:5084:2: ( ( 'sep' ) )
+            // InternalMyCsv.g:5218:1: ( ( ( 'sep' ) ) )
+            // InternalMyCsv.g:5219:2: ( ( 'sep' ) )
             {
-            // InternalMyCsv.g:5084:2: ( ( 'sep' ) )
-            // InternalMyCsv.g:5085:3: ( 'sep' )
-            {
-             before(grammarAccess.getStoreAccess().getSepDefinedSepKeyword_2_0_0()); 
-            // InternalMyCsv.g:5086:3: ( 'sep' )
-            // InternalMyCsv.g:5087:4: 'sep'
+            // InternalMyCsv.g:5219:2: ( ( 'sep' ) )
+            // InternalMyCsv.g:5220:3: ( 'sep' )
             {
              before(grammarAccess.getStoreAccess().getSepDefinedSepKeyword_2_0_0()); 
-            match(input,52,FOLLOW_2); 
+            // InternalMyCsv.g:5221:3: ( 'sep' )
+            // InternalMyCsv.g:5222:4: 'sep'
+            {
+             before(grammarAccess.getStoreAccess().getSepDefinedSepKeyword_2_0_0()); 
+            match(input,53,FOLLOW_2); 
              after(grammarAccess.getStoreAccess().getSepDefinedSepKeyword_2_0_0()); 
 
             }
@@ -15699,17 +16106,17 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Store__SepAssignment_2_2"
-    // InternalMyCsv.g:5098:1: rule__Store__SepAssignment_2_2 : ( RULE_STRING ) ;
+    // InternalMyCsv.g:5233:1: rule__Store__SepAssignment_2_2 : ( RULE_STRING ) ;
     public final void rule__Store__SepAssignment_2_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:5102:1: ( ( RULE_STRING ) )
-            // InternalMyCsv.g:5103:2: ( RULE_STRING )
+            // InternalMyCsv.g:5237:1: ( ( RULE_STRING ) )
+            // InternalMyCsv.g:5238:2: ( RULE_STRING )
             {
-            // InternalMyCsv.g:5103:2: ( RULE_STRING )
-            // InternalMyCsv.g:5104:3: RULE_STRING
+            // InternalMyCsv.g:5238:2: ( RULE_STRING )
+            // InternalMyCsv.g:5239:3: RULE_STRING
             {
              before(grammarAccess.getStoreAccess().getSepSTRINGTerminalRuleCall_2_2_0()); 
             match(input,RULE_STRING,FOLLOW_2); 
@@ -15735,18 +16142,63 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__Store__SepAssignment_2_2"
 
 
+    // $ANTLR start "rule__Store__NoHeaderAssignment_3_0"
+    // InternalMyCsv.g:5248:1: rule__Store__NoHeaderAssignment_3_0 : ( ( 'no' ) ) ;
+    public final void rule__Store__NoHeaderAssignment_3_0() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalMyCsv.g:5252:1: ( ( ( 'no' ) ) )
+            // InternalMyCsv.g:5253:2: ( ( 'no' ) )
+            {
+            // InternalMyCsv.g:5253:2: ( ( 'no' ) )
+            // InternalMyCsv.g:5254:3: ( 'no' )
+            {
+             before(grammarAccess.getStoreAccess().getNoHeaderNoKeyword_3_0_0()); 
+            // InternalMyCsv.g:5255:3: ( 'no' )
+            // InternalMyCsv.g:5256:4: 'no'
+            {
+             before(grammarAccess.getStoreAccess().getNoHeaderNoKeyword_3_0_0()); 
+            match(input,54,FOLLOW_2); 
+             after(grammarAccess.getStoreAccess().getNoHeaderNoKeyword_3_0_0()); 
+
+            }
+
+             after(grammarAccess.getStoreAccess().getNoHeaderNoKeyword_3_0_0()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__Store__NoHeaderAssignment_3_0"
+
+
     // $ANTLR start "rule__ExportJson__PathAssignment_1"
-    // InternalMyCsv.g:5113:1: rule__ExportJson__PathAssignment_1 : ( rulePath ) ;
+    // InternalMyCsv.g:5267:1: rule__ExportJson__PathAssignment_1 : ( rulePath ) ;
     public final void rule__ExportJson__PathAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:5117:1: ( ( rulePath ) )
-            // InternalMyCsv.g:5118:2: ( rulePath )
+            // InternalMyCsv.g:5271:1: ( ( rulePath ) )
+            // InternalMyCsv.g:5272:2: ( rulePath )
             {
-            // InternalMyCsv.g:5118:2: ( rulePath )
-            // InternalMyCsv.g:5119:3: rulePath
+            // InternalMyCsv.g:5272:2: ( rulePath )
+            // InternalMyCsv.g:5273:3: rulePath
             {
              before(grammarAccess.getExportJsonAccess().getPathPathParserRuleCall_1_0()); 
             pushFollow(FOLLOW_2);
@@ -15777,17 +16229,17 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Projection__FieldAssignment_1"
-    // InternalMyCsv.g:5128:1: rule__Projection__FieldAssignment_1 : ( ruleFieldIndex ) ;
+    // InternalMyCsv.g:5282:1: rule__Projection__FieldAssignment_1 : ( ruleFieldIndex ) ;
     public final void rule__Projection__FieldAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:5132:1: ( ( ruleFieldIndex ) )
-            // InternalMyCsv.g:5133:2: ( ruleFieldIndex )
+            // InternalMyCsv.g:5286:1: ( ( ruleFieldIndex ) )
+            // InternalMyCsv.g:5287:2: ( ruleFieldIndex )
             {
-            // InternalMyCsv.g:5133:2: ( ruleFieldIndex )
-            // InternalMyCsv.g:5134:3: ruleFieldIndex
+            // InternalMyCsv.g:5287:2: ( ruleFieldIndex )
+            // InternalMyCsv.g:5288:3: ruleFieldIndex
             {
              before(grammarAccess.getProjectionAccess().getFieldFieldIndexParserRuleCall_1_0()); 
             pushFollow(FOLLOW_2);
@@ -15818,17 +16270,17 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Select__LineAssignment_1"
-    // InternalMyCsv.g:5143:1: rule__Select__LineAssignment_1 : ( ruleLineIndex ) ;
+    // InternalMyCsv.g:5297:1: rule__Select__LineAssignment_1 : ( ruleLineIndex ) ;
     public final void rule__Select__LineAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:5147:1: ( ( ruleLineIndex ) )
-            // InternalMyCsv.g:5148:2: ( ruleLineIndex )
+            // InternalMyCsv.g:5301:1: ( ( ruleLineIndex ) )
+            // InternalMyCsv.g:5302:2: ( ruleLineIndex )
             {
-            // InternalMyCsv.g:5148:2: ( ruleLineIndex )
-            // InternalMyCsv.g:5149:3: ruleLineIndex
+            // InternalMyCsv.g:5302:2: ( ruleLineIndex )
+            // InternalMyCsv.g:5303:3: ruleLineIndex
             {
              before(grammarAccess.getSelectAccess().getLineLineIndexParserRuleCall_1_0()); 
             pushFollow(FOLLOW_2);
@@ -15859,17 +16311,17 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__DeleteLine__LinesAssignment_1"
-    // InternalMyCsv.g:5158:1: rule__DeleteLine__LinesAssignment_1 : ( ruleLineIndex ) ;
+    // InternalMyCsv.g:5312:1: rule__DeleteLine__LinesAssignment_1 : ( ruleLineIndex ) ;
     public final void rule__DeleteLine__LinesAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:5162:1: ( ( ruleLineIndex ) )
-            // InternalMyCsv.g:5163:2: ( ruleLineIndex )
+            // InternalMyCsv.g:5316:1: ( ( ruleLineIndex ) )
+            // InternalMyCsv.g:5317:2: ( ruleLineIndex )
             {
-            // InternalMyCsv.g:5163:2: ( ruleLineIndex )
-            // InternalMyCsv.g:5164:3: ruleLineIndex
+            // InternalMyCsv.g:5317:2: ( ruleLineIndex )
+            // InternalMyCsv.g:5318:3: ruleLineIndex
             {
              before(grammarAccess.getDeleteLineAccess().getLinesLineIndexParserRuleCall_1_0()); 
             pushFollow(FOLLOW_2);
@@ -15900,17 +16352,17 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__DeleteField__FieldsAssignment_1"
-    // InternalMyCsv.g:5173:1: rule__DeleteField__FieldsAssignment_1 : ( ruleFieldIndex ) ;
+    // InternalMyCsv.g:5327:1: rule__DeleteField__FieldsAssignment_1 : ( ruleFieldIndex ) ;
     public final void rule__DeleteField__FieldsAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:5177:1: ( ( ruleFieldIndex ) )
-            // InternalMyCsv.g:5178:2: ( ruleFieldIndex )
+            // InternalMyCsv.g:5331:1: ( ( ruleFieldIndex ) )
+            // InternalMyCsv.g:5332:2: ( ruleFieldIndex )
             {
-            // InternalMyCsv.g:5178:2: ( ruleFieldIndex )
-            // InternalMyCsv.g:5179:3: ruleFieldIndex
+            // InternalMyCsv.g:5332:2: ( ruleFieldIndex )
+            // InternalMyCsv.g:5333:3: ruleFieldIndex
             {
              before(grammarAccess.getDeleteFieldAccess().getFieldsFieldIndexParserRuleCall_1_0()); 
             pushFollow(FOLLOW_2);
@@ -15941,17 +16393,17 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__InsertLine__ValuesAssignment_1"
-    // InternalMyCsv.g:5188:1: rule__InsertLine__ValuesAssignment_1 : ( ruleValues ) ;
+    // InternalMyCsv.g:5342:1: rule__InsertLine__ValuesAssignment_1 : ( ruleValues ) ;
     public final void rule__InsertLine__ValuesAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:5192:1: ( ( ruleValues ) )
-            // InternalMyCsv.g:5193:2: ( ruleValues )
+            // InternalMyCsv.g:5346:1: ( ( ruleValues ) )
+            // InternalMyCsv.g:5347:2: ( ruleValues )
             {
-            // InternalMyCsv.g:5193:2: ( ruleValues )
-            // InternalMyCsv.g:5194:3: ruleValues
+            // InternalMyCsv.g:5347:2: ( ruleValues )
+            // InternalMyCsv.g:5348:3: ruleValues
             {
              before(grammarAccess.getInsertLineAccess().getValuesValuesParserRuleCall_1_0()); 
             pushFollow(FOLLOW_2);
@@ -15982,17 +16434,17 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__InsertField__FieldnameAssignment_1"
-    // InternalMyCsv.g:5203:1: rule__InsertField__FieldnameAssignment_1 : ( ruleField ) ;
+    // InternalMyCsv.g:5357:1: rule__InsertField__FieldnameAssignment_1 : ( ruleField ) ;
     public final void rule__InsertField__FieldnameAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:5207:1: ( ( ruleField ) )
-            // InternalMyCsv.g:5208:2: ( ruleField )
+            // InternalMyCsv.g:5361:1: ( ( ruleField ) )
+            // InternalMyCsv.g:5362:2: ( ruleField )
             {
-            // InternalMyCsv.g:5208:2: ( ruleField )
-            // InternalMyCsv.g:5209:3: ruleField
+            // InternalMyCsv.g:5362:2: ( ruleField )
+            // InternalMyCsv.g:5363:3: ruleField
             {
              before(grammarAccess.getInsertFieldAccess().getFieldnameFieldParserRuleCall_1_0()); 
             pushFollow(FOLLOW_2);
@@ -16023,17 +16475,17 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__InsertField__ValuesAssignment_3"
-    // InternalMyCsv.g:5218:1: rule__InsertField__ValuesAssignment_3 : ( ruleValues ) ;
+    // InternalMyCsv.g:5372:1: rule__InsertField__ValuesAssignment_3 : ( ruleValues ) ;
     public final void rule__InsertField__ValuesAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:5222:1: ( ( ruleValues ) )
-            // InternalMyCsv.g:5223:2: ( ruleValues )
+            // InternalMyCsv.g:5376:1: ( ( ruleValues ) )
+            // InternalMyCsv.g:5377:2: ( ruleValues )
             {
-            // InternalMyCsv.g:5223:2: ( ruleValues )
-            // InternalMyCsv.g:5224:3: ruleValues
+            // InternalMyCsv.g:5377:2: ( ruleValues )
+            // InternalMyCsv.g:5378:3: ruleValues
             {
              before(grammarAccess.getInsertFieldAccess().getValuesValuesParserRuleCall_3_0()); 
             pushFollow(FOLLOW_2);
@@ -16064,17 +16516,17 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ModifyLine__LinesAssignment_1"
-    // InternalMyCsv.g:5233:1: rule__ModifyLine__LinesAssignment_1 : ( ruleLineIndex ) ;
+    // InternalMyCsv.g:5387:1: rule__ModifyLine__LinesAssignment_1 : ( ruleLineIndex ) ;
     public final void rule__ModifyLine__LinesAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:5237:1: ( ( ruleLineIndex ) )
-            // InternalMyCsv.g:5238:2: ( ruleLineIndex )
+            // InternalMyCsv.g:5391:1: ( ( ruleLineIndex ) )
+            // InternalMyCsv.g:5392:2: ( ruleLineIndex )
             {
-            // InternalMyCsv.g:5238:2: ( ruleLineIndex )
-            // InternalMyCsv.g:5239:3: ruleLineIndex
+            // InternalMyCsv.g:5392:2: ( ruleLineIndex )
+            // InternalMyCsv.g:5393:3: ruleLineIndex
             {
              before(grammarAccess.getModifyLineAccess().getLinesLineIndexParserRuleCall_1_0()); 
             pushFollow(FOLLOW_2);
@@ -16105,17 +16557,17 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ModifyLine__ValuesAssignment_3"
-    // InternalMyCsv.g:5248:1: rule__ModifyLine__ValuesAssignment_3 : ( ruleValues ) ;
+    // InternalMyCsv.g:5402:1: rule__ModifyLine__ValuesAssignment_3 : ( ruleValues ) ;
     public final void rule__ModifyLine__ValuesAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:5252:1: ( ( ruleValues ) )
-            // InternalMyCsv.g:5253:2: ( ruleValues )
+            // InternalMyCsv.g:5406:1: ( ( ruleValues ) )
+            // InternalMyCsv.g:5407:2: ( ruleValues )
             {
-            // InternalMyCsv.g:5253:2: ( ruleValues )
-            // InternalMyCsv.g:5254:3: ruleValues
+            // InternalMyCsv.g:5407:2: ( ruleValues )
+            // InternalMyCsv.g:5408:3: ruleValues
             {
              before(grammarAccess.getModifyLineAccess().getValuesValuesParserRuleCall_3_0()); 
             pushFollow(FOLLOW_2);
@@ -16146,17 +16598,17 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ModifyField__FieldsAssignment_1"
-    // InternalMyCsv.g:5263:1: rule__ModifyField__FieldsAssignment_1 : ( ruleFieldIndex ) ;
+    // InternalMyCsv.g:5417:1: rule__ModifyField__FieldsAssignment_1 : ( ruleFieldIndex ) ;
     public final void rule__ModifyField__FieldsAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:5267:1: ( ( ruleFieldIndex ) )
-            // InternalMyCsv.g:5268:2: ( ruleFieldIndex )
+            // InternalMyCsv.g:5421:1: ( ( ruleFieldIndex ) )
+            // InternalMyCsv.g:5422:2: ( ruleFieldIndex )
             {
-            // InternalMyCsv.g:5268:2: ( ruleFieldIndex )
-            // InternalMyCsv.g:5269:3: ruleFieldIndex
+            // InternalMyCsv.g:5422:2: ( ruleFieldIndex )
+            // InternalMyCsv.g:5423:3: ruleFieldIndex
             {
              before(grammarAccess.getModifyFieldAccess().getFieldsFieldIndexParserRuleCall_1_0()); 
             pushFollow(FOLLOW_2);
@@ -16187,17 +16639,17 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ModifyField__ValuesAssignment_3"
-    // InternalMyCsv.g:5278:1: rule__ModifyField__ValuesAssignment_3 : ( ruleValues ) ;
+    // InternalMyCsv.g:5432:1: rule__ModifyField__ValuesAssignment_3 : ( ruleValues ) ;
     public final void rule__ModifyField__ValuesAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:5282:1: ( ( ruleValues ) )
-            // InternalMyCsv.g:5283:2: ( ruleValues )
+            // InternalMyCsv.g:5436:1: ( ( ruleValues ) )
+            // InternalMyCsv.g:5437:2: ( ruleValues )
             {
-            // InternalMyCsv.g:5283:2: ( ruleValues )
-            // InternalMyCsv.g:5284:3: ruleValues
+            // InternalMyCsv.g:5437:2: ( ruleValues )
+            // InternalMyCsv.g:5438:3: ruleValues
             {
              before(grammarAccess.getModifyFieldAccess().getValuesValuesParserRuleCall_3_0()); 
             pushFollow(FOLLOW_2);
@@ -16228,17 +16680,17 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ModifyCell__CellAssignment_1"
-    // InternalMyCsv.g:5293:1: rule__ModifyCell__CellAssignment_1 : ( ruleCellIndex ) ;
+    // InternalMyCsv.g:5447:1: rule__ModifyCell__CellAssignment_1 : ( ruleCellIndex ) ;
     public final void rule__ModifyCell__CellAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:5297:1: ( ( ruleCellIndex ) )
-            // InternalMyCsv.g:5298:2: ( ruleCellIndex )
+            // InternalMyCsv.g:5451:1: ( ( ruleCellIndex ) )
+            // InternalMyCsv.g:5452:2: ( ruleCellIndex )
             {
-            // InternalMyCsv.g:5298:2: ( ruleCellIndex )
-            // InternalMyCsv.g:5299:3: ruleCellIndex
+            // InternalMyCsv.g:5452:2: ( ruleCellIndex )
+            // InternalMyCsv.g:5453:3: ruleCellIndex
             {
              before(grammarAccess.getModifyCellAccess().getCellCellIndexParserRuleCall_1_0()); 
             pushFollow(FOLLOW_2);
@@ -16269,17 +16721,17 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ModifyCell__ValueAssignment_3"
-    // InternalMyCsv.g:5308:1: rule__ModifyCell__ValueAssignment_3 : ( ruleValue ) ;
+    // InternalMyCsv.g:5462:1: rule__ModifyCell__ValueAssignment_3 : ( ruleValue ) ;
     public final void rule__ModifyCell__ValueAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:5312:1: ( ( ruleValue ) )
-            // InternalMyCsv.g:5313:2: ( ruleValue )
+            // InternalMyCsv.g:5466:1: ( ( ruleValue ) )
+            // InternalMyCsv.g:5467:2: ( ruleValue )
             {
-            // InternalMyCsv.g:5313:2: ( ruleValue )
-            // InternalMyCsv.g:5314:3: ruleValue
+            // InternalMyCsv.g:5467:2: ( ruleValue )
+            // InternalMyCsv.g:5468:3: ruleValue
             {
              before(grammarAccess.getModifyCellAccess().getValueValueParserRuleCall_3_0()); 
             pushFollow(FOLLOW_2);
@@ -16310,17 +16762,17 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PrintLine__LinesAssignment_1"
-    // InternalMyCsv.g:5323:1: rule__PrintLine__LinesAssignment_1 : ( ruleLineIndex ) ;
+    // InternalMyCsv.g:5477:1: rule__PrintLine__LinesAssignment_1 : ( ruleLineIndex ) ;
     public final void rule__PrintLine__LinesAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:5327:1: ( ( ruleLineIndex ) )
-            // InternalMyCsv.g:5328:2: ( ruleLineIndex )
+            // InternalMyCsv.g:5481:1: ( ( ruleLineIndex ) )
+            // InternalMyCsv.g:5482:2: ( ruleLineIndex )
             {
-            // InternalMyCsv.g:5328:2: ( ruleLineIndex )
-            // InternalMyCsv.g:5329:3: ruleLineIndex
+            // InternalMyCsv.g:5482:2: ( ruleLineIndex )
+            // InternalMyCsv.g:5483:3: ruleLineIndex
             {
              before(grammarAccess.getPrintLineAccess().getLinesLineIndexParserRuleCall_1_0()); 
             pushFollow(FOLLOW_2);
@@ -16351,17 +16803,17 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PrintField__FieldsAssignment_1"
-    // InternalMyCsv.g:5338:1: rule__PrintField__FieldsAssignment_1 : ( ruleFieldIndex ) ;
+    // InternalMyCsv.g:5492:1: rule__PrintField__FieldsAssignment_1 : ( ruleFieldIndex ) ;
     public final void rule__PrintField__FieldsAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:5342:1: ( ( ruleFieldIndex ) )
-            // InternalMyCsv.g:5343:2: ( ruleFieldIndex )
+            // InternalMyCsv.g:5496:1: ( ( ruleFieldIndex ) )
+            // InternalMyCsv.g:5497:2: ( ruleFieldIndex )
             {
-            // InternalMyCsv.g:5343:2: ( ruleFieldIndex )
-            // InternalMyCsv.g:5344:3: ruleFieldIndex
+            // InternalMyCsv.g:5497:2: ( ruleFieldIndex )
+            // InternalMyCsv.g:5498:3: ruleFieldIndex
             {
              before(grammarAccess.getPrintFieldAccess().getFieldsFieldIndexParserRuleCall_1_0()); 
             pushFollow(FOLLOW_2);
@@ -16392,17 +16844,17 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PrintCell__CellAssignment_1"
-    // InternalMyCsv.g:5353:1: rule__PrintCell__CellAssignment_1 : ( ruleCellIndex ) ;
+    // InternalMyCsv.g:5507:1: rule__PrintCell__CellAssignment_1 : ( ruleCellIndex ) ;
     public final void rule__PrintCell__CellAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:5357:1: ( ( ruleCellIndex ) )
-            // InternalMyCsv.g:5358:2: ( ruleCellIndex )
+            // InternalMyCsv.g:5511:1: ( ( ruleCellIndex ) )
+            // InternalMyCsv.g:5512:2: ( ruleCellIndex )
             {
-            // InternalMyCsv.g:5358:2: ( ruleCellIndex )
-            // InternalMyCsv.g:5359:3: ruleCellIndex
+            // InternalMyCsv.g:5512:2: ( ruleCellIndex )
+            // InternalMyCsv.g:5513:3: ruleCellIndex
             {
              before(grammarAccess.getPrintCellAccess().getCellCellIndexParserRuleCall_1_0()); 
             pushFollow(FOLLOW_2);
@@ -16433,17 +16885,17 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__PrintExpr__ExpAssignment_1"
-    // InternalMyCsv.g:5368:1: rule__PrintExpr__ExpAssignment_1 : ( ruleValue ) ;
+    // InternalMyCsv.g:5522:1: rule__PrintExpr__ExpAssignment_1 : ( ruleValue ) ;
     public final void rule__PrintExpr__ExpAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:5372:1: ( ( ruleValue ) )
-            // InternalMyCsv.g:5373:2: ( ruleValue )
+            // InternalMyCsv.g:5526:1: ( ( ruleValue ) )
+            // InternalMyCsv.g:5527:2: ( ruleValue )
             {
-            // InternalMyCsv.g:5373:2: ( ruleValue )
-            // InternalMyCsv.g:5374:3: ruleValue
+            // InternalMyCsv.g:5527:2: ( ruleValue )
+            // InternalMyCsv.g:5528:3: ruleValue
             {
              before(grammarAccess.getPrintExprAccess().getExpValueParserRuleCall_1_0()); 
             pushFollow(FOLLOW_2);
@@ -16474,17 +16926,17 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ExpressionLog__ExprAssignment"
-    // InternalMyCsv.g:5383:1: rule__ExpressionLog__ExprAssignment : ( ruleOrExpression ) ;
+    // InternalMyCsv.g:5537:1: rule__ExpressionLog__ExprAssignment : ( ruleOrExpression ) ;
     public final void rule__ExpressionLog__ExprAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:5387:1: ( ( ruleOrExpression ) )
-            // InternalMyCsv.g:5388:2: ( ruleOrExpression )
+            // InternalMyCsv.g:5541:1: ( ( ruleOrExpression ) )
+            // InternalMyCsv.g:5542:2: ( ruleOrExpression )
             {
-            // InternalMyCsv.g:5388:2: ( ruleOrExpression )
-            // InternalMyCsv.g:5389:3: ruleOrExpression
+            // InternalMyCsv.g:5542:2: ( ruleOrExpression )
+            // InternalMyCsv.g:5543:3: ruleOrExpression
             {
              before(grammarAccess.getExpressionLogAccess().getExprOrExpressionParserRuleCall_0()); 
             pushFollow(FOLLOW_2);
@@ -16515,17 +16967,17 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__OrExpression__LhsAssignment_0"
-    // InternalMyCsv.g:5398:1: rule__OrExpression__LhsAssignment_0 : ( ruleAndExpression ) ;
+    // InternalMyCsv.g:5552:1: rule__OrExpression__LhsAssignment_0 : ( ruleAndExpression ) ;
     public final void rule__OrExpression__LhsAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:5402:1: ( ( ruleAndExpression ) )
-            // InternalMyCsv.g:5403:2: ( ruleAndExpression )
+            // InternalMyCsv.g:5556:1: ( ( ruleAndExpression ) )
+            // InternalMyCsv.g:5557:2: ( ruleAndExpression )
             {
-            // InternalMyCsv.g:5403:2: ( ruleAndExpression )
-            // InternalMyCsv.g:5404:3: ruleAndExpression
+            // InternalMyCsv.g:5557:2: ( ruleAndExpression )
+            // InternalMyCsv.g:5558:3: ruleAndExpression
             {
              before(grammarAccess.getOrExpressionAccess().getLhsAndExpressionParserRuleCall_0_0()); 
             pushFollow(FOLLOW_2);
@@ -16556,17 +17008,17 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__OrExpression__RhsAssignment_1_1"
-    // InternalMyCsv.g:5413:1: rule__OrExpression__RhsAssignment_1_1 : ( ruleAndExpression ) ;
+    // InternalMyCsv.g:5567:1: rule__OrExpression__RhsAssignment_1_1 : ( ruleAndExpression ) ;
     public final void rule__OrExpression__RhsAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:5417:1: ( ( ruleAndExpression ) )
-            // InternalMyCsv.g:5418:2: ( ruleAndExpression )
+            // InternalMyCsv.g:5571:1: ( ( ruleAndExpression ) )
+            // InternalMyCsv.g:5572:2: ( ruleAndExpression )
             {
-            // InternalMyCsv.g:5418:2: ( ruleAndExpression )
-            // InternalMyCsv.g:5419:3: ruleAndExpression
+            // InternalMyCsv.g:5572:2: ( ruleAndExpression )
+            // InternalMyCsv.g:5573:3: ruleAndExpression
             {
              before(grammarAccess.getOrExpressionAccess().getRhsAndExpressionParserRuleCall_1_1_0()); 
             pushFollow(FOLLOW_2);
@@ -16597,17 +17049,17 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AndExpression__LhsAssignment_0"
-    // InternalMyCsv.g:5428:1: rule__AndExpression__LhsAssignment_0 : ( ruleUnaryLogExpression ) ;
+    // InternalMyCsv.g:5582:1: rule__AndExpression__LhsAssignment_0 : ( ruleUnaryLogExpression ) ;
     public final void rule__AndExpression__LhsAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:5432:1: ( ( ruleUnaryLogExpression ) )
-            // InternalMyCsv.g:5433:2: ( ruleUnaryLogExpression )
+            // InternalMyCsv.g:5586:1: ( ( ruleUnaryLogExpression ) )
+            // InternalMyCsv.g:5587:2: ( ruleUnaryLogExpression )
             {
-            // InternalMyCsv.g:5433:2: ( ruleUnaryLogExpression )
-            // InternalMyCsv.g:5434:3: ruleUnaryLogExpression
+            // InternalMyCsv.g:5587:2: ( ruleUnaryLogExpression )
+            // InternalMyCsv.g:5588:3: ruleUnaryLogExpression
             {
              before(grammarAccess.getAndExpressionAccess().getLhsUnaryLogExpressionParserRuleCall_0_0()); 
             pushFollow(FOLLOW_2);
@@ -16638,17 +17090,17 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AndExpression__RhsAssignment_1_1"
-    // InternalMyCsv.g:5443:1: rule__AndExpression__RhsAssignment_1_1 : ( ruleUnaryLogExpression ) ;
+    // InternalMyCsv.g:5597:1: rule__AndExpression__RhsAssignment_1_1 : ( ruleUnaryLogExpression ) ;
     public final void rule__AndExpression__RhsAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:5447:1: ( ( ruleUnaryLogExpression ) )
-            // InternalMyCsv.g:5448:2: ( ruleUnaryLogExpression )
+            // InternalMyCsv.g:5601:1: ( ( ruleUnaryLogExpression ) )
+            // InternalMyCsv.g:5602:2: ( ruleUnaryLogExpression )
             {
-            // InternalMyCsv.g:5448:2: ( ruleUnaryLogExpression )
-            // InternalMyCsv.g:5449:3: ruleUnaryLogExpression
+            // InternalMyCsv.g:5602:2: ( ruleUnaryLogExpression )
+            // InternalMyCsv.g:5603:3: ruleUnaryLogExpression
             {
              before(grammarAccess.getAndExpressionAccess().getRhsUnaryLogExpressionParserRuleCall_1_1_0()); 
             pushFollow(FOLLOW_2);
@@ -16679,24 +17131,24 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__UnaryLogExpression__NotAssignment_0"
-    // InternalMyCsv.g:5458:1: rule__UnaryLogExpression__NotAssignment_0 : ( ( 'not' ) ) ;
+    // InternalMyCsv.g:5612:1: rule__UnaryLogExpression__NotAssignment_0 : ( ( 'not' ) ) ;
     public final void rule__UnaryLogExpression__NotAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:5462:1: ( ( ( 'not' ) ) )
-            // InternalMyCsv.g:5463:2: ( ( 'not' ) )
+            // InternalMyCsv.g:5616:1: ( ( ( 'not' ) ) )
+            // InternalMyCsv.g:5617:2: ( ( 'not' ) )
             {
-            // InternalMyCsv.g:5463:2: ( ( 'not' ) )
-            // InternalMyCsv.g:5464:3: ( 'not' )
-            {
-             before(grammarAccess.getUnaryLogExpressionAccess().getNotNotKeyword_0_0()); 
-            // InternalMyCsv.g:5465:3: ( 'not' )
-            // InternalMyCsv.g:5466:4: 'not'
+            // InternalMyCsv.g:5617:2: ( ( 'not' ) )
+            // InternalMyCsv.g:5618:3: ( 'not' )
             {
              before(grammarAccess.getUnaryLogExpressionAccess().getNotNotKeyword_0_0()); 
-            match(input,54,FOLLOW_2); 
+            // InternalMyCsv.g:5619:3: ( 'not' )
+            // InternalMyCsv.g:5620:4: 'not'
+            {
+             before(grammarAccess.getUnaryLogExpressionAccess().getNotNotKeyword_0_0()); 
+            match(input,55,FOLLOW_2); 
              after(grammarAccess.getUnaryLogExpressionAccess().getNotNotKeyword_0_0()); 
 
             }
@@ -16724,17 +17176,17 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__UnaryLogExpression__ExprAssignment_1"
-    // InternalMyCsv.g:5477:1: rule__UnaryLogExpression__ExprAssignment_1 : ( ruleExpressionLogPrimary ) ;
+    // InternalMyCsv.g:5631:1: rule__UnaryLogExpression__ExprAssignment_1 : ( ruleExpressionLogPrimary ) ;
     public final void rule__UnaryLogExpression__ExprAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:5481:1: ( ( ruleExpressionLogPrimary ) )
-            // InternalMyCsv.g:5482:2: ( ruleExpressionLogPrimary )
+            // InternalMyCsv.g:5635:1: ( ( ruleExpressionLogPrimary ) )
+            // InternalMyCsv.g:5636:2: ( ruleExpressionLogPrimary )
             {
-            // InternalMyCsv.g:5482:2: ( ruleExpressionLogPrimary )
-            // InternalMyCsv.g:5483:3: ruleExpressionLogPrimary
+            // InternalMyCsv.g:5636:2: ( ruleExpressionLogPrimary )
+            // InternalMyCsv.g:5637:3: ruleExpressionLogPrimary
             {
              before(grammarAccess.getUnaryLogExpressionAccess().getExprExpressionLogPrimaryParserRuleCall_1_0()); 
             pushFollow(FOLLOW_2);
@@ -16765,17 +17217,17 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__NestedLogExpression__ExprAssignment_1"
-    // InternalMyCsv.g:5492:1: rule__NestedLogExpression__ExprAssignment_1 : ( ruleExpressionLog ) ;
+    // InternalMyCsv.g:5646:1: rule__NestedLogExpression__ExprAssignment_1 : ( ruleExpressionLog ) ;
     public final void rule__NestedLogExpression__ExprAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:5496:1: ( ( ruleExpressionLog ) )
-            // InternalMyCsv.g:5497:2: ( ruleExpressionLog )
+            // InternalMyCsv.g:5650:1: ( ( ruleExpressionLog ) )
+            // InternalMyCsv.g:5651:2: ( ruleExpressionLog )
             {
-            // InternalMyCsv.g:5497:2: ( ruleExpressionLog )
-            // InternalMyCsv.g:5498:3: ruleExpressionLog
+            // InternalMyCsv.g:5651:2: ( ruleExpressionLog )
+            // InternalMyCsv.g:5652:3: ruleExpressionLog
             {
              before(grammarAccess.getNestedLogExpressionAccess().getExprExpressionLogParserRuleCall_1_0()); 
             pushFollow(FOLLOW_2);
@@ -16806,17 +17258,17 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ExpressionRel__FieldAssignment_0"
-    // InternalMyCsv.g:5507:1: rule__ExpressionRel__FieldAssignment_0 : ( ruleField ) ;
+    // InternalMyCsv.g:5661:1: rule__ExpressionRel__FieldAssignment_0 : ( ruleField ) ;
     public final void rule__ExpressionRel__FieldAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:5511:1: ( ( ruleField ) )
-            // InternalMyCsv.g:5512:2: ( ruleField )
+            // InternalMyCsv.g:5665:1: ( ( ruleField ) )
+            // InternalMyCsv.g:5666:2: ( ruleField )
             {
-            // InternalMyCsv.g:5512:2: ( ruleField )
-            // InternalMyCsv.g:5513:3: ruleField
+            // InternalMyCsv.g:5666:2: ( ruleField )
+            // InternalMyCsv.g:5667:3: ruleField
             {
              before(grammarAccess.getExpressionRelAccess().getFieldFieldParserRuleCall_0_0()); 
             pushFollow(FOLLOW_2);
@@ -16847,17 +17299,17 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ExpressionRel__OpAssignment_1"
-    // InternalMyCsv.g:5522:1: rule__ExpressionRel__OpAssignment_1 : ( ruleBinOpRel ) ;
+    // InternalMyCsv.g:5676:1: rule__ExpressionRel__OpAssignment_1 : ( ruleBinOpRel ) ;
     public final void rule__ExpressionRel__OpAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:5526:1: ( ( ruleBinOpRel ) )
-            // InternalMyCsv.g:5527:2: ( ruleBinOpRel )
+            // InternalMyCsv.g:5680:1: ( ( ruleBinOpRel ) )
+            // InternalMyCsv.g:5681:2: ( ruleBinOpRel )
             {
-            // InternalMyCsv.g:5527:2: ( ruleBinOpRel )
-            // InternalMyCsv.g:5528:3: ruleBinOpRel
+            // InternalMyCsv.g:5681:2: ( ruleBinOpRel )
+            // InternalMyCsv.g:5682:3: ruleBinOpRel
             {
              before(grammarAccess.getExpressionRelAccess().getOpBinOpRelEnumRuleCall_1_0()); 
             pushFollow(FOLLOW_2);
@@ -16888,17 +17340,17 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ExpressionRel__ValAssignment_2"
-    // InternalMyCsv.g:5537:1: rule__ExpressionRel__ValAssignment_2 : ( ruleValue ) ;
+    // InternalMyCsv.g:5691:1: rule__ExpressionRel__ValAssignment_2 : ( ruleValue ) ;
     public final void rule__ExpressionRel__ValAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:5541:1: ( ( ruleValue ) )
-            // InternalMyCsv.g:5542:2: ( ruleValue )
+            // InternalMyCsv.g:5695:1: ( ( ruleValue ) )
+            // InternalMyCsv.g:5696:2: ( ruleValue )
             {
-            // InternalMyCsv.g:5542:2: ( ruleValue )
-            // InternalMyCsv.g:5543:3: ruleValue
+            // InternalMyCsv.g:5696:2: ( ruleValue )
+            // InternalMyCsv.g:5697:3: ruleValue
             {
              before(grammarAccess.getExpressionRelAccess().getValValueParserRuleCall_2_0()); 
             pushFollow(FOLLOW_2);
@@ -16929,17 +17381,17 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ExpressionCalcul__ExprAssignment"
-    // InternalMyCsv.g:5552:1: rule__ExpressionCalcul__ExprAssignment : ( ruleAdditiveExpression ) ;
+    // InternalMyCsv.g:5706:1: rule__ExpressionCalcul__ExprAssignment : ( ruleAdditiveExpression ) ;
     public final void rule__ExpressionCalcul__ExprAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:5556:1: ( ( ruleAdditiveExpression ) )
-            // InternalMyCsv.g:5557:2: ( ruleAdditiveExpression )
+            // InternalMyCsv.g:5710:1: ( ( ruleAdditiveExpression ) )
+            // InternalMyCsv.g:5711:2: ( ruleAdditiveExpression )
             {
-            // InternalMyCsv.g:5557:2: ( ruleAdditiveExpression )
-            // InternalMyCsv.g:5558:3: ruleAdditiveExpression
+            // InternalMyCsv.g:5711:2: ( ruleAdditiveExpression )
+            // InternalMyCsv.g:5712:3: ruleAdditiveExpression
             {
              before(grammarAccess.getExpressionCalculAccess().getExprAdditiveExpressionParserRuleCall_0()); 
             pushFollow(FOLLOW_2);
@@ -16970,17 +17422,17 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AdditiveExpression__LhsAssignment_0"
-    // InternalMyCsv.g:5567:1: rule__AdditiveExpression__LhsAssignment_0 : ( ruleMultiplicativeExpression ) ;
+    // InternalMyCsv.g:5721:1: rule__AdditiveExpression__LhsAssignment_0 : ( ruleMultiplicativeExpression ) ;
     public final void rule__AdditiveExpression__LhsAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:5571:1: ( ( ruleMultiplicativeExpression ) )
-            // InternalMyCsv.g:5572:2: ( ruleMultiplicativeExpression )
+            // InternalMyCsv.g:5725:1: ( ( ruleMultiplicativeExpression ) )
+            // InternalMyCsv.g:5726:2: ( ruleMultiplicativeExpression )
             {
-            // InternalMyCsv.g:5572:2: ( ruleMultiplicativeExpression )
-            // InternalMyCsv.g:5573:3: ruleMultiplicativeExpression
+            // InternalMyCsv.g:5726:2: ( ruleMultiplicativeExpression )
+            // InternalMyCsv.g:5727:3: ruleMultiplicativeExpression
             {
              before(grammarAccess.getAdditiveExpressionAccess().getLhsMultiplicativeExpressionParserRuleCall_0_0()); 
             pushFollow(FOLLOW_2);
@@ -17011,17 +17463,17 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AdditiveExpression__RhsAssignment_1"
-    // InternalMyCsv.g:5582:1: rule__AdditiveExpression__RhsAssignment_1 : ( ruleAdditiveExpressionRhs ) ;
+    // InternalMyCsv.g:5736:1: rule__AdditiveExpression__RhsAssignment_1 : ( ruleAdditiveExpressionRhs ) ;
     public final void rule__AdditiveExpression__RhsAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:5586:1: ( ( ruleAdditiveExpressionRhs ) )
-            // InternalMyCsv.g:5587:2: ( ruleAdditiveExpressionRhs )
+            // InternalMyCsv.g:5740:1: ( ( ruleAdditiveExpressionRhs ) )
+            // InternalMyCsv.g:5741:2: ( ruleAdditiveExpressionRhs )
             {
-            // InternalMyCsv.g:5587:2: ( ruleAdditiveExpressionRhs )
-            // InternalMyCsv.g:5588:3: ruleAdditiveExpressionRhs
+            // InternalMyCsv.g:5741:2: ( ruleAdditiveExpressionRhs )
+            // InternalMyCsv.g:5742:3: ruleAdditiveExpressionRhs
             {
              before(grammarAccess.getAdditiveExpressionAccess().getRhsAdditiveExpressionRhsParserRuleCall_1_0()); 
             pushFollow(FOLLOW_2);
@@ -17052,17 +17504,17 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AdditiveExpressionRhs__OpAssignment_0"
-    // InternalMyCsv.g:5597:1: rule__AdditiveExpressionRhs__OpAssignment_0 : ( ruleBinOpAdd ) ;
+    // InternalMyCsv.g:5751:1: rule__AdditiveExpressionRhs__OpAssignment_0 : ( ruleBinOpAdd ) ;
     public final void rule__AdditiveExpressionRhs__OpAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:5601:1: ( ( ruleBinOpAdd ) )
-            // InternalMyCsv.g:5602:2: ( ruleBinOpAdd )
+            // InternalMyCsv.g:5755:1: ( ( ruleBinOpAdd ) )
+            // InternalMyCsv.g:5756:2: ( ruleBinOpAdd )
             {
-            // InternalMyCsv.g:5602:2: ( ruleBinOpAdd )
-            // InternalMyCsv.g:5603:3: ruleBinOpAdd
+            // InternalMyCsv.g:5756:2: ( ruleBinOpAdd )
+            // InternalMyCsv.g:5757:3: ruleBinOpAdd
             {
              before(grammarAccess.getAdditiveExpressionRhsAccess().getOpBinOpAddEnumRuleCall_0_0()); 
             pushFollow(FOLLOW_2);
@@ -17093,17 +17545,17 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AdditiveExpressionRhs__RhsAssignment_1"
-    // InternalMyCsv.g:5612:1: rule__AdditiveExpressionRhs__RhsAssignment_1 : ( ruleMultiplicativeExpression ) ;
+    // InternalMyCsv.g:5766:1: rule__AdditiveExpressionRhs__RhsAssignment_1 : ( ruleMultiplicativeExpression ) ;
     public final void rule__AdditiveExpressionRhs__RhsAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:5616:1: ( ( ruleMultiplicativeExpression ) )
-            // InternalMyCsv.g:5617:2: ( ruleMultiplicativeExpression )
+            // InternalMyCsv.g:5770:1: ( ( ruleMultiplicativeExpression ) )
+            // InternalMyCsv.g:5771:2: ( ruleMultiplicativeExpression )
             {
-            // InternalMyCsv.g:5617:2: ( ruleMultiplicativeExpression )
-            // InternalMyCsv.g:5618:3: ruleMultiplicativeExpression
+            // InternalMyCsv.g:5771:2: ( ruleMultiplicativeExpression )
+            // InternalMyCsv.g:5772:3: ruleMultiplicativeExpression
             {
              before(grammarAccess.getAdditiveExpressionRhsAccess().getRhsMultiplicativeExpressionParserRuleCall_1_0()); 
             pushFollow(FOLLOW_2);
@@ -17134,17 +17586,17 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MultiplicativeExpression__LhsAssignment_0"
-    // InternalMyCsv.g:5627:1: rule__MultiplicativeExpression__LhsAssignment_0 : ( ruleUnaryExpression ) ;
+    // InternalMyCsv.g:5781:1: rule__MultiplicativeExpression__LhsAssignment_0 : ( ruleUnaryExpression ) ;
     public final void rule__MultiplicativeExpression__LhsAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:5631:1: ( ( ruleUnaryExpression ) )
-            // InternalMyCsv.g:5632:2: ( ruleUnaryExpression )
+            // InternalMyCsv.g:5785:1: ( ( ruleUnaryExpression ) )
+            // InternalMyCsv.g:5786:2: ( ruleUnaryExpression )
             {
-            // InternalMyCsv.g:5632:2: ( ruleUnaryExpression )
-            // InternalMyCsv.g:5633:3: ruleUnaryExpression
+            // InternalMyCsv.g:5786:2: ( ruleUnaryExpression )
+            // InternalMyCsv.g:5787:3: ruleUnaryExpression
             {
              before(grammarAccess.getMultiplicativeExpressionAccess().getLhsUnaryExpressionParserRuleCall_0_0()); 
             pushFollow(FOLLOW_2);
@@ -17175,17 +17627,17 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MultiplicativeExpression__RhsAssignment_1"
-    // InternalMyCsv.g:5642:1: rule__MultiplicativeExpression__RhsAssignment_1 : ( ruleMultiplicativeExpressionRhs ) ;
+    // InternalMyCsv.g:5796:1: rule__MultiplicativeExpression__RhsAssignment_1 : ( ruleMultiplicativeExpressionRhs ) ;
     public final void rule__MultiplicativeExpression__RhsAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:5646:1: ( ( ruleMultiplicativeExpressionRhs ) )
-            // InternalMyCsv.g:5647:2: ( ruleMultiplicativeExpressionRhs )
+            // InternalMyCsv.g:5800:1: ( ( ruleMultiplicativeExpressionRhs ) )
+            // InternalMyCsv.g:5801:2: ( ruleMultiplicativeExpressionRhs )
             {
-            // InternalMyCsv.g:5647:2: ( ruleMultiplicativeExpressionRhs )
-            // InternalMyCsv.g:5648:3: ruleMultiplicativeExpressionRhs
+            // InternalMyCsv.g:5801:2: ( ruleMultiplicativeExpressionRhs )
+            // InternalMyCsv.g:5802:3: ruleMultiplicativeExpressionRhs
             {
              before(grammarAccess.getMultiplicativeExpressionAccess().getRhsMultiplicativeExpressionRhsParserRuleCall_1_0()); 
             pushFollow(FOLLOW_2);
@@ -17216,17 +17668,17 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MultiplicativeExpressionRhs__OpAssignment_0"
-    // InternalMyCsv.g:5657:1: rule__MultiplicativeExpressionRhs__OpAssignment_0 : ( ruleBinOpMult ) ;
+    // InternalMyCsv.g:5811:1: rule__MultiplicativeExpressionRhs__OpAssignment_0 : ( ruleBinOpMult ) ;
     public final void rule__MultiplicativeExpressionRhs__OpAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:5661:1: ( ( ruleBinOpMult ) )
-            // InternalMyCsv.g:5662:2: ( ruleBinOpMult )
+            // InternalMyCsv.g:5815:1: ( ( ruleBinOpMult ) )
+            // InternalMyCsv.g:5816:2: ( ruleBinOpMult )
             {
-            // InternalMyCsv.g:5662:2: ( ruleBinOpMult )
-            // InternalMyCsv.g:5663:3: ruleBinOpMult
+            // InternalMyCsv.g:5816:2: ( ruleBinOpMult )
+            // InternalMyCsv.g:5817:3: ruleBinOpMult
             {
              before(grammarAccess.getMultiplicativeExpressionRhsAccess().getOpBinOpMultEnumRuleCall_0_0()); 
             pushFollow(FOLLOW_2);
@@ -17257,17 +17709,17 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__MultiplicativeExpressionRhs__RhsAssignment_1"
-    // InternalMyCsv.g:5672:1: rule__MultiplicativeExpressionRhs__RhsAssignment_1 : ( ruleUnaryExpression ) ;
+    // InternalMyCsv.g:5826:1: rule__MultiplicativeExpressionRhs__RhsAssignment_1 : ( ruleUnaryExpression ) ;
     public final void rule__MultiplicativeExpressionRhs__RhsAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:5676:1: ( ( ruleUnaryExpression ) )
-            // InternalMyCsv.g:5677:2: ( ruleUnaryExpression )
+            // InternalMyCsv.g:5830:1: ( ( ruleUnaryExpression ) )
+            // InternalMyCsv.g:5831:2: ( ruleUnaryExpression )
             {
-            // InternalMyCsv.g:5677:2: ( ruleUnaryExpression )
-            // InternalMyCsv.g:5678:3: ruleUnaryExpression
+            // InternalMyCsv.g:5831:2: ( ruleUnaryExpression )
+            // InternalMyCsv.g:5832:3: ruleUnaryExpression
             {
              before(grammarAccess.getMultiplicativeExpressionRhsAccess().getRhsUnaryExpressionParserRuleCall_1_0()); 
             pushFollow(FOLLOW_2);
@@ -17298,21 +17750,21 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__UnaryExpression__OpAssignment_0"
-    // InternalMyCsv.g:5687:1: rule__UnaryExpression__OpAssignment_0 : ( ( '-' ) ) ;
+    // InternalMyCsv.g:5841:1: rule__UnaryExpression__OpAssignment_0 : ( ( '-' ) ) ;
     public final void rule__UnaryExpression__OpAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:5691:1: ( ( ( '-' ) ) )
-            // InternalMyCsv.g:5692:2: ( ( '-' ) )
+            // InternalMyCsv.g:5845:1: ( ( ( '-' ) ) )
+            // InternalMyCsv.g:5846:2: ( ( '-' ) )
             {
-            // InternalMyCsv.g:5692:2: ( ( '-' ) )
-            // InternalMyCsv.g:5693:3: ( '-' )
+            // InternalMyCsv.g:5846:2: ( ( '-' ) )
+            // InternalMyCsv.g:5847:3: ( '-' )
             {
              before(grammarAccess.getUnaryExpressionAccess().getOpHyphenMinusKeyword_0_0()); 
-            // InternalMyCsv.g:5694:3: ( '-' )
-            // InternalMyCsv.g:5695:4: '-'
+            // InternalMyCsv.g:5848:3: ( '-' )
+            // InternalMyCsv.g:5849:4: '-'
             {
              before(grammarAccess.getUnaryExpressionAccess().getOpHyphenMinusKeyword_0_0()); 
             match(input,24,FOLLOW_2); 
@@ -17343,17 +17795,17 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__UnaryExpression__ExprAssignment_1"
-    // InternalMyCsv.g:5706:1: rule__UnaryExpression__ExprAssignment_1 : ( ruleExpressionCalculPrimary ) ;
+    // InternalMyCsv.g:5860:1: rule__UnaryExpression__ExprAssignment_1 : ( ruleExpressionCalculPrimary ) ;
     public final void rule__UnaryExpression__ExprAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:5710:1: ( ( ruleExpressionCalculPrimary ) )
-            // InternalMyCsv.g:5711:2: ( ruleExpressionCalculPrimary )
+            // InternalMyCsv.g:5864:1: ( ( ruleExpressionCalculPrimary ) )
+            // InternalMyCsv.g:5865:2: ( ruleExpressionCalculPrimary )
             {
-            // InternalMyCsv.g:5711:2: ( ruleExpressionCalculPrimary )
-            // InternalMyCsv.g:5712:3: ruleExpressionCalculPrimary
+            // InternalMyCsv.g:5865:2: ( ruleExpressionCalculPrimary )
+            // InternalMyCsv.g:5866:3: ruleExpressionCalculPrimary
             {
              before(grammarAccess.getUnaryExpressionAccess().getExprExpressionCalculPrimaryParserRuleCall_1_0()); 
             pushFollow(FOLLOW_2);
@@ -17384,17 +17836,17 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AggregatExpression__AggregatOpAssignment_0"
-    // InternalMyCsv.g:5721:1: rule__AggregatExpression__AggregatOpAssignment_0 : ( ruleAggregat ) ;
+    // InternalMyCsv.g:5875:1: rule__AggregatExpression__AggregatOpAssignment_0 : ( ruleAggregat ) ;
     public final void rule__AggregatExpression__AggregatOpAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:5725:1: ( ( ruleAggregat ) )
-            // InternalMyCsv.g:5726:2: ( ruleAggregat )
+            // InternalMyCsv.g:5879:1: ( ( ruleAggregat ) )
+            // InternalMyCsv.g:5880:2: ( ruleAggregat )
             {
-            // InternalMyCsv.g:5726:2: ( ruleAggregat )
-            // InternalMyCsv.g:5727:3: ruleAggregat
+            // InternalMyCsv.g:5880:2: ( ruleAggregat )
+            // InternalMyCsv.g:5881:3: ruleAggregat
             {
              before(grammarAccess.getAggregatExpressionAccess().getAggregatOpAggregatEnumRuleCall_0_0()); 
             pushFollow(FOLLOW_2);
@@ -17425,17 +17877,17 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AggregatExpression__ArgAssignment_1"
-    // InternalMyCsv.g:5736:1: rule__AggregatExpression__ArgAssignment_1 : ( ruleField ) ;
+    // InternalMyCsv.g:5890:1: rule__AggregatExpression__ArgAssignment_1 : ( ruleField ) ;
     public final void rule__AggregatExpression__ArgAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:5740:1: ( ( ruleField ) )
-            // InternalMyCsv.g:5741:2: ( ruleField )
+            // InternalMyCsv.g:5894:1: ( ( ruleField ) )
+            // InternalMyCsv.g:5895:2: ( ruleField )
             {
-            // InternalMyCsv.g:5741:2: ( ruleField )
-            // InternalMyCsv.g:5742:3: ruleField
+            // InternalMyCsv.g:5895:2: ( ruleField )
+            // InternalMyCsv.g:5896:3: ruleField
             {
              before(grammarAccess.getAggregatExpressionAccess().getArgFieldParserRuleCall_1_0()); 
             pushFollow(FOLLOW_2);
@@ -17466,17 +17918,17 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__LitteralInt__ValAssignment"
-    // InternalMyCsv.g:5751:1: rule__LitteralInt__ValAssignment : ( RULE_INT ) ;
+    // InternalMyCsv.g:5905:1: rule__LitteralInt__ValAssignment : ( RULE_INT ) ;
     public final void rule__LitteralInt__ValAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:5755:1: ( ( RULE_INT ) )
-            // InternalMyCsv.g:5756:2: ( RULE_INT )
+            // InternalMyCsv.g:5909:1: ( ( RULE_INT ) )
+            // InternalMyCsv.g:5910:2: ( RULE_INT )
             {
-            // InternalMyCsv.g:5756:2: ( RULE_INT )
-            // InternalMyCsv.g:5757:3: RULE_INT
+            // InternalMyCsv.g:5910:2: ( RULE_INT )
+            // InternalMyCsv.g:5911:3: RULE_INT
             {
              before(grammarAccess.getLitteralIntAccess().getValINTTerminalRuleCall_0()); 
             match(input,RULE_INT,FOLLOW_2); 
@@ -17503,17 +17955,17 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__LitteralFloat__ValAssignment"
-    // InternalMyCsv.g:5766:1: rule__LitteralFloat__ValAssignment : ( ruleFLOAT ) ;
+    // InternalMyCsv.g:5920:1: rule__LitteralFloat__ValAssignment : ( ruleFLOAT ) ;
     public final void rule__LitteralFloat__ValAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:5770:1: ( ( ruleFLOAT ) )
-            // InternalMyCsv.g:5771:2: ( ruleFLOAT )
+            // InternalMyCsv.g:5924:1: ( ( ruleFLOAT ) )
+            // InternalMyCsv.g:5925:2: ( ruleFLOAT )
             {
-            // InternalMyCsv.g:5771:2: ( ruleFLOAT )
-            // InternalMyCsv.g:5772:3: ruleFLOAT
+            // InternalMyCsv.g:5925:2: ( ruleFLOAT )
+            // InternalMyCsv.g:5926:3: ruleFLOAT
             {
              before(grammarAccess.getLitteralFloatAccess().getValFLOATParserRuleCall_0()); 
             pushFollow(FOLLOW_2);
@@ -17544,17 +17996,17 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__LitteralString__ValAssignment"
-    // InternalMyCsv.g:5781:1: rule__LitteralString__ValAssignment : ( RULE_STRING ) ;
+    // InternalMyCsv.g:5935:1: rule__LitteralString__ValAssignment : ( RULE_STRING ) ;
     public final void rule__LitteralString__ValAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:5785:1: ( ( RULE_STRING ) )
-            // InternalMyCsv.g:5786:2: ( RULE_STRING )
+            // InternalMyCsv.g:5939:1: ( ( RULE_STRING ) )
+            // InternalMyCsv.g:5940:2: ( RULE_STRING )
             {
-            // InternalMyCsv.g:5786:2: ( RULE_STRING )
-            // InternalMyCsv.g:5787:3: RULE_STRING
+            // InternalMyCsv.g:5940:2: ( RULE_STRING )
+            // InternalMyCsv.g:5941:3: RULE_STRING
             {
              before(grammarAccess.getLitteralStringAccess().getValSTRINGTerminalRuleCall_0()); 
             match(input,RULE_STRING,FOLLOW_2); 
@@ -17581,17 +18033,17 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__NestedExpressionCalcul__ExprAssignment_1"
-    // InternalMyCsv.g:5796:1: rule__NestedExpressionCalcul__ExprAssignment_1 : ( ruleExpressionCalcul ) ;
+    // InternalMyCsv.g:5950:1: rule__NestedExpressionCalcul__ExprAssignment_1 : ( ruleExpressionCalcul ) ;
     public final void rule__NestedExpressionCalcul__ExprAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyCsv.g:5800:1: ( ( ruleExpressionCalcul ) )
-            // InternalMyCsv.g:5801:2: ( ruleExpressionCalcul )
+            // InternalMyCsv.g:5954:1: ( ( ruleExpressionCalcul ) )
+            // InternalMyCsv.g:5955:2: ( ruleExpressionCalcul )
             {
-            // InternalMyCsv.g:5801:2: ( ruleExpressionCalcul )
-            // InternalMyCsv.g:5802:3: ruleExpressionCalcul
+            // InternalMyCsv.g:5955:2: ( ruleExpressionCalcul )
+            // InternalMyCsv.g:5956:3: ruleExpressionCalcul
             {
              before(grammarAccess.getNestedExpressionCalculAccess().getExprExpressionCalculParserRuleCall_1_0()); 
             pushFollow(FOLLOW_2);
@@ -17627,7 +18079,7 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
 
     public static final BitSet FOLLOW_1 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_2 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_3 = new BitSet(new long[]{0x000094FA00000002L});
+    public static final BitSet FOLLOW_3 = new BitSet(new long[]{0x000129F200000002L});
     public static final BitSet FOLLOW_4 = new BitSet(new long[]{0x0000000000000012L});
     public static final BitSet FOLLOW_5 = new BitSet(new long[]{0x0000000000000042L});
     public static final BitSet FOLLOW_6 = new BitSet(new long[]{0x0000000000000010L});
@@ -17638,24 +18090,24 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_11 = new BitSet(new long[]{0x0000000180000000L});
     public static final BitSet FOLLOW_12 = new BitSet(new long[]{0x0000000100000002L});
     public static final BitSet FOLLOW_13 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_14 = new BitSet(new long[]{0x0030000000000000L});
+    public static final BitSet FOLLOW_14 = new BitSet(new long[]{0x0060000000000000L});
     public static final BitSet FOLLOW_15 = new BitSet(new long[]{0x0000000400000000L});
-    public static final BitSet FOLLOW_16 = new BitSet(new long[]{0x0010000000000000L});
-    public static final BitSet FOLLOW_17 = new BitSet(new long[]{0x0040000008000050L});
-    public static final BitSet FOLLOW_18 = new BitSet(new long[]{0x0000030000000000L});
+    public static final BitSet FOLLOW_16 = new BitSet(new long[]{0x0000000800000000L});
+    public static final BitSet FOLLOW_17 = new BitSet(new long[]{0x0080000008000050L});
+    public static final BitSet FOLLOW_18 = new BitSet(new long[]{0x0000060000000000L});
     public static final BitSet FOLLOW_19 = new BitSet(new long[]{0x0000000049781030L});
     public static final BitSet FOLLOW_20 = new BitSet(new long[]{0x0000000000000040L});
-    public static final BitSet FOLLOW_21 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_22 = new BitSet(new long[]{0x0000430000000000L});
-    public static final BitSet FOLLOW_23 = new BitSet(new long[]{0x0000200000000000L});
+    public static final BitSet FOLLOW_21 = new BitSet(new long[]{0x0000100000000000L});
+    public static final BitSet FOLLOW_22 = new BitSet(new long[]{0x0000860000000000L});
+    public static final BitSet FOLLOW_23 = new BitSet(new long[]{0x0000400000000000L});
     public static final BitSet FOLLOW_24 = new BitSet(new long[]{0x0000000008000000L});
-    public static final BitSet FOLLOW_25 = new BitSet(new long[]{0x0001430000000800L});
+    public static final BitSet FOLLOW_25 = new BitSet(new long[]{0x0002860000000800L});
     public static final BitSet FOLLOW_26 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_27 = new BitSet(new long[]{0x0002000000000000L});
-    public static final BitSet FOLLOW_28 = new BitSet(new long[]{0x0002000000000002L});
-    public static final BitSet FOLLOW_29 = new BitSet(new long[]{0x0040000008000040L});
-    public static final BitSet FOLLOW_30 = new BitSet(new long[]{0x0004000000000000L});
-    public static final BitSet FOLLOW_31 = new BitSet(new long[]{0x0004000000000002L});
+    public static final BitSet FOLLOW_27 = new BitSet(new long[]{0x0004000000000000L});
+    public static final BitSet FOLLOW_28 = new BitSet(new long[]{0x0004000000000002L});
+    public static final BitSet FOLLOW_29 = new BitSet(new long[]{0x0080000008000040L});
+    public static final BitSet FOLLOW_30 = new BitSet(new long[]{0x0008000000000000L});
+    public static final BitSet FOLLOW_31 = new BitSet(new long[]{0x0008000000000002L});
     public static final BitSet FOLLOW_32 = new BitSet(new long[]{0x000000000007E000L});
     public static final BitSet FOLLOW_33 = new BitSet(new long[]{0x0000000001800000L});
     public static final BitSet FOLLOW_34 = new BitSet(new long[]{0x0000000001800002L});
@@ -17663,6 +18115,6 @@ public class InternalMyCsvParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_36 = new BitSet(new long[]{0x0000000006000000L});
     public static final BitSet FOLLOW_37 = new BitSet(new long[]{0x0000000006000002L});
     public static final BitSet FOLLOW_38 = new BitSet(new long[]{0x0000000000001000L});
-    public static final BitSet FOLLOW_39 = new BitSet(new long[]{0x0008000000000000L});
+    public static final BitSet FOLLOW_39 = new BitSet(new long[]{0x0010000000000000L});
 
 }
