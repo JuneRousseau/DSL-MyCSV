@@ -43,6 +43,7 @@ import org.xtext.myCsv.LitteralInt
 import org.xtext.myCsv.LitteralFloat
 import org.xtext.myCsv.LitteralString
 import java.util.ArrayList
+import java.util.HashSet
 
 /**
  * Interpreter for MyCsv
@@ -82,20 +83,32 @@ class MyCsvInterpreter {
 	 	return res
 	}
 	
-	def dispatch ArrayList<Integer> interpretLineIndex(LineIndexNum f){
-		return new ArrayList<Integer>(f.lines)
-	}
-	
-	def dispatch ArrayList<Integer> interpretFieldIndex(FieldIndexName f){
+	def ArrayList<Integer> uniquefy(ArrayList<Integer> arg){
+		val memo = new HashSet<Integer>
 		val res = new ArrayList<Integer>
-		for(field : f.fields)
-		{
-			res.add(currentCsv.getFieldNum(field.value))
+		for (i : arg){
+			if(!memo.contains(i)){
+				memo.add(i)
+				res.add(i)
+			}
 		}
 		return res
 	}
+	
+	def dispatch ArrayList<Integer> interpretLineIndex(LineIndexNum f){
+		return uniquefy(new ArrayList(f.lines))
+	}
+	
+	def dispatch ArrayList<Integer> interpretFieldIndex(FieldIndexName f){
+		val indexes = new ArrayList<Integer>
+		for(field : f.fields)
+		{
+			indexes.add(currentCsv.getFieldNum(field.value))
+		}
+		return uniquefy(indexes)
+	}
 	def dispatch ArrayList<Integer> interpretFieldIndex(FieldIndexNum f){
-		return new ArrayList<Integer>(f.columns)
+		return uniquefy(new ArrayList<Integer>(f.columns))
 	}
 	
 	def Pair<Integer, Integer> interpretCellIndex(CellIndex f){
@@ -150,7 +163,6 @@ class MyCsvInterpreter {
 	}
 	def dispatch void interpret(ModifyLine l){
 		currentCsv.modifyLine(l.lines.interpretLineIndex, l.values.interpretValues)
-	 	
 	}
 	def dispatch void interpret(ModifyCell l){
 		var cell = l.cell.interpretCellIndex

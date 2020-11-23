@@ -1,6 +1,6 @@
 Load "../input.csv" sep=","
 Select 0 1 2 3 4 5
 Modify cell (0,lastname) with "Bisounours"
-Modify line 1 with ["42"; "PasDePrenom"; "PasDeNom"; "SAMF@pasmail.com"; "sansadresse@mailfixe.nulpart"; "personne"; "errorOupas?"]
+Modify line 1 with ["42"; "PasDePrenom"; "Pas_De_Nom"; "SAMF@pasmail.com"; "sansadresse@mailfixe.nulpart"; "personne"; "errorOupas?"]
 Modify field firstname with "prenom1"; "prenom2"
 Store "outputModify.csv" sep=";"

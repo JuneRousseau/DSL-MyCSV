@@ -77,6 +77,15 @@ class MyCsvCompilerPython {
 		res += "def Mean(x):\n"
 		res += "\treturn Sum(x) / Count(x)\n\n"
 		
+		res += "def uniquefy(l):\n"
+		res += "\tmemo = set()\n"
+		res += "\tres = []\n"
+		res += "\tfor i in l:\n"
+		res += "\t\tif not(i in memo):\n"
+		res += "\t\t\tres.append(i)\n"
+		res += "\t\t\tmemo.add(i)\n"
+		res += "\treturn res\n\n"
+		
 		res += 'def exportJson(x):\n'
 		res += '\tjsonText=""\n'
 		res += '\tjsonText+="[\\n"\n'
@@ -172,7 +181,7 @@ class MyCsvCompilerPython {
 	}
 	
 	def dispatch String compile(LineIndexNum f){
-		var res = "lines = ["
+		var res = "lines = uniquefy(["
 		var first = true
 		for(lineNum : f.lines)
 		{
@@ -181,12 +190,12 @@ class MyCsvCompilerPython {
 			res += lineNum
 			first = false
 		}
-		res += "]\n"
+		res += "])\n"
 		return res
 	}
 	
 	def dispatch String compile(FieldIndexName f){
-		var res = "fields = list(set(["
+		var res = "fields = uniquefy(["
 		var first = true
 		for(field : f.fields)
 		{
@@ -195,11 +204,11 @@ class MyCsvCompilerPython {
 			res += 'headerDict["' + field.value + '"]'
 			first = false
 		}
-		res += "]))\n"
+		res += "])\n"
 		return res
 	}
 	def dispatch String compile(FieldIndexNum f){
-		var res = "fields = list(set(["
+		var res = "fields = uniquefy(["
 		var first = true
 		for(colNum : f.columns)
 		{
@@ -208,7 +217,7 @@ class MyCsvCompilerPython {
 			res += colNum
 			first = false
 		}
-		res += "]))\n"
+		res += "])\n"
 		return res
 	}
 	

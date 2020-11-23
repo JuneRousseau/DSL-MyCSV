@@ -93,17 +93,31 @@ class MyCsvCompilerBash {
 		
 		res += "# Aggregative function summing over a field\n"
 		res += "sum () {\n"
-			res += "\techo 0\n"
+			res += "\tres=0\n"
+			res += "\tf=${headerDict[$1]}\n"
+			res += "\tfor i in `seq 2 $(($(countLines) + 1))`; do\n"
+				res += "\t\tline=$(head -n $i "+ currentCsvPath + " | tail -n 1)\n"
+				res += "\t\tv=$(echo $line | cut -d $sep -f $f)\n"
+				res += "\t\tres=$(echo $res+$v | bc)\n"
+			res += "\tdone\n"
+			res += "\techo $res\n"
 		res += "}\n\n"
 		
 		res += "# Aggregative function making the product over a field\n"
 		res+="product() {\n"
-		  res+="\techo 0\n"
-		res+="}\n\n"
+			res += "\tres=0\n"
+			res += "\tf=${headerDict[$1]}\n"
+			res += "\tfor i in `seq 2 $(($(countLines) + 1))`; do\n"
+				res += "\t\tline=$(head -n $i "+ currentCsvPath + " | tail -n 1)\n"
+				res += "\t\tv=$(echo $line | cut -d $sep -f $f)\n"
+				res += "\t\tres=$(echo $res*$v | bc)\n"
+			res += "\tdone\n"
+			res += "\techo $res\n"
+		res += "}\n\n"
 		
 		res += "# Aggregative function computing the mean of a field\n"
 		res+="mean() {\n"
-		  res+="\techo 0\n"
+			res+="\techo scale=10\\; $(sum $1)/$(countLines)| bc\n"
 		res+="}\n\n"
 		
 		res += "# Takes a number n and a list l of natural under n.\n"
@@ -195,10 +209,8 @@ class MyCsvCompilerBash {
 	def dispatch String compile(LineIndexNum f){
 		var res = "unset lineIndex\n"
 		res += "declare lineIndex\n"
-		var c = 0
 		for(i : f.lines){
-			res += "lineIndex["+c+"]="+(i+2)+"\n"
-			c++
+			res += "lineIndex["+i+2+"]="+(i+2)+"\n"
 		}
 		return res
 	}
@@ -252,7 +264,7 @@ class MyCsvCompilerBash {
 		res+="values=( "
 		for(value : v.values)
 		{
-			res+= value.compileValue+" "
+			res+= '"'+value.compileValue+'" '
 		}
 		res+=")\n"
 		return res
@@ -365,7 +377,7 @@ class MyCsvCompilerBash {
 	}
 	
 	def dispatch String compile(InsertField l){
-		var res = "# INSERT FIELDS\n"
+		var res = "# INSERT FIELD\n"
 		res += l.values.compile
 		val tmpCsvInsert = tmpCompilerPath + "tmpInsert.csv"
 		res += "echo $(echo ${headerString})${sep}"+l.fieldname.value+">>"+ tmpCsvInsert + "\n"
@@ -395,7 +407,7 @@ class MyCsvCompilerBash {
 	}
 	
 	def dispatch String compile(ModifyField l){
-		var res = "# MODIFY FIELDS\n"
+		var res = "# MODIFY FIELD\n"
 		val tmpCsvModify = tmpCompilerPath + "tmpModify.csv"
 		res += l.values.compile //result in $values
 		res += l.fields.compile //result in $fieldIndex
@@ -588,13 +600,13 @@ class MyCsvCompilerBash {
 				return "$(countLines)"
 			}
 			case SUM: {
-				return "$(sum "+l.arg.value+")" //TODO
+				return "$(sum "+l.arg.value+")"
 			}
 			case PRODUCT: {
-				return "0" //TODO
+				return "$(product "+l.arg.value+")"
 			}
 			case MEAN: {
-				return "0" //TODO
+				return "$(mean "+l.arg.value+")"
 			}
 			default: {
 				throw new IllegalArgumentException("Aggregative expression implemented are only Count, Sum, Product, and Mean.")

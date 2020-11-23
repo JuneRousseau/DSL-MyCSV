@@ -1,5 +1,5 @@
 Load "../input.csv" sep=","
 Select 0 1 2 3 4 5
-Insert line 42;"prenom";"nom";"mail"
+Insert line 42;"prenom_de_qqn";"nom";"mail"
 Insert field age: 40;41;42
 Store "outputInsert.csv"
