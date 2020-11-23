@@ -155,10 +155,10 @@ public class MyCsvBenchmarkTest {
           int _waitFor_1 = prSh.waitFor();
           boolean _equals_1 = (_waitFor_1 == 0);
           Assertions.assertEquals(Boolean.valueOf((interpReturnCode == 0)), Boolean.valueOf(_equals_1));
-          final Csv csvInterpreter = new Csv(outputInterpreterPath);
-          Csv _csv = new Csv(outputPyPath);
+          final Csv csvInterpreter = new Csv(outputInterpreterPath, ";", false);
+          Csv _csv = new Csv(outputPyPath, ";", false);
           Assertions.assertEquals(csvInterpreter, _csv);
-          Csv _csv_1 = new Csv(outputShPath);
+          Csv _csv_1 = new Csv(outputShPath, ";", false);
           Assertions.assertEquals(csvInterpreter, _csv_1);
           Assertions.assertTrue(this.compareJson(outputJsonInterpreterPath, outputJsonPyPath));
           Assertions.assertTrue(this.compareJson(outputJsonInterpreterPath, outputJsonShPath));

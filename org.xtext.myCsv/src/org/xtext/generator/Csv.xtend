@@ -80,9 +80,8 @@ class Csv {
 		return res
 	}
 	
-		
 	def count(String fieldId){
-		return data.length
+		return nbLines
 	}
 	
 	def sum(String fieldId){

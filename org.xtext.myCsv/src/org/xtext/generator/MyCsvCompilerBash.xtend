@@ -94,7 +94,7 @@ class MyCsvCompilerBash {
 		res += "# Aggregative function summing over a field\n"
 		res += "sum () {\n"
 			res += "\tres=0\n"
-			res += "\tf=${headerDict[$1]}\n"
+			res += "\tf=$((${headerDict[$1]}+1))\n"
 			res += "\tfor i in `seq 2 $(($(countLines) + 1))`; do\n"
 				res += "\t\tline=$(head -n $i "+ currentCsvPath + " | tail -n 1)\n"
 				res += "\t\tv=$(echo $line | cut -d $sep -f $f)\n"
@@ -106,7 +106,7 @@ class MyCsvCompilerBash {
 		res += "# Aggregative function making the product over a field\n"
 		res+="product() {\n"
 			res += "\tres=0\n"
-			res += "\tf=${headerDict[$1]}\n"
+			res += "\tf=$((${headerDict[$1]}+1))\n"
 			res += "\tfor i in `seq 2 $(($(countLines) + 1))`; do\n"
 				res += "\t\tline=$(head -n $i "+ currentCsvPath + " | tail -n 1)\n"
 				res += "\t\tv=$(echo $line | cut -d $sep -f $f)\n"
@@ -327,6 +327,7 @@ class MyCsvCompilerBash {
 		
 	 	return res
 	}
+	
 	def dispatch String compile(Projection l){
 		var res = "# PROJECTION\n"
 		res += l.field.compile()

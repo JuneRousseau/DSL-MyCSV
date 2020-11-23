@@ -288,7 +288,7 @@ class MyCsvInterpreter {
 	}
 	
 	def dispatch double interpretExpressionCalcul(NbField l){
-		return currentCsv.nbLines
+		return currentCsv.nbFields
 	}
 	
 	def dispatch double interpretExpressionCalcul(AggregatExpression l){

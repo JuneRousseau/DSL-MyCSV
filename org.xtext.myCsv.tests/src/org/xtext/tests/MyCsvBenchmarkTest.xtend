@@ -161,9 +161,10 @@ class MyCsvBenchmarkTest {
 				Assertions.assertEquals(interpReturnCode == 0, prSh.waitFor == 0)
 				
 				// Output should be the same
-				val csvInterpreter = new Csv(outputInterpreterPath)
-				Assertions.assertEquals(csvInterpreter, new Csv(outputPyPath))
-				Assertions.assertEquals(csvInterpreter, new Csv(outputShPath))		
+				val csvInterpreter = new Csv(outputInterpreterPath, ";", false)
+				Assertions.assertEquals(csvInterpreter, new Csv(outputPyPath, ";", false))
+				Assertions.assertEquals(csvInterpreter, new Csv(outputShPath, ";", false))
+				// FIXME: hardcoding the separator isn't robust.
 				
 				// Compare Json output
 				Assertions.assertTrue(compareJson(outputJsonInterpreterPath, outputJsonPyPath))
