@@ -1,7 +1,0 @@
-Load "input.csv" sep=","
-Print line 0
-Select 1 2 3
-Store "output.csv" sep=";"
-Print field 1 3 5
-Store "output.csv" sep=";"
-ExportJson "output.json"

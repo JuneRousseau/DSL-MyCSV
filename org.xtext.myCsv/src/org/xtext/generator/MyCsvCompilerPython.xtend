@@ -141,16 +141,19 @@ class MyCsvCompilerPython {
 		
 		if(!l.noHeader){
 			res += "\theader = next(reader)\n"
-			res += "\trefreshHeaderDict()\n"
-		} else {
-			res += "\traise Exception('Not yet implemented. (handling .csv without header)')\n"
 		}
 		
 		res += "\tfor line in reader:\n"
 		res += "\t\ttmprow=[]\n"
 		res += "\t\tfor ele in line:\n"
 		res += "\t\t\ttmprow.append(parseValue(ele))\n"
-		res += "\t\tdata.append(tmprow)"
+		res += "\t\tdata.append(tmprow)\n"
+		
+		 if(l.noHeader) {
+			res += "\tfor i in range(len(data[0])):\n"
+			res += "\t\theader.append(i)\n"
+		}
+		res +="refreshHeaderDict()\n"
 		
 		return res
 	}
@@ -165,7 +168,10 @@ class MyCsvCompilerPython {
 		}
 		res += ")\n"
 		
-		res += "\twriter.writerow(header)\n"
+		if(!l.noHeader){
+			res += "\twriter.writerow(header)\n"
+		}
+		
 		res += "\tfor line in data:\n"
 		res += "\t\twriter.writerow(line)\n"
 		

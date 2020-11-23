@@ -176,13 +176,14 @@ class MyCsvCompilerBash {
 		}
 		res += "sep='"+localSep+"'\n"
 		
-		if(!l.noHeader)
-			res += "nbField=$(awk -F\"${sep}\" '{print NF}' <<< \"${headerString}\")"
-			res += "headerLine=$(echo `seq $nbField` | sed 's/ /$sep/g' )"
+		if(l.noHeader) {
+			res += "headerString=$(head -n 1 "+ l.path.value +")\n"
+			res += "nbField=$(awk -F\"${sep}\" '{print NF}' <<< \"${headerString}\")\n"
+			res += "headerLine=$(echo `seq 0 $(($nbField-1))` | sed \"s/ /$sep/g\" )\n"
 			res += "echo $headerLine >> "+currentCsvPath+"\n"
-		
+			}
+			
 		res += "cat "+l.path.value+" >> "+currentCsvPath+"\n"
-
 		res += refreshRoutine()
 		return res
 	}
@@ -195,9 +196,10 @@ class MyCsvCompilerBash {
 		} else {
 			res += "cp "+currentCsvPath+" "+l.path.value+"\n"
 		}
+
 		if (l.noHeader){
 			val tmpPath = tmpCompilerPath+"tmp"
-			res += "tail -n $(countLines) "+currentCsvPath+" > "+tmpPath+"\n"
+			res += "tail -n $(countLines) "+l.path.value+" > "+tmpPath+"\n"
 			res += "cp "+tmpPath+" "+l.path.value+"\n"
 		}
 		
