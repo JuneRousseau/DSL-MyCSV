@@ -1,0 +1,2 @@
+Load "../input.csv" sep=","
+Store "outputNoHeader2.csv" sep=";" no header
