@@ -281,22 +281,10 @@ class MyCsvCompilerBash {
 			res += "\techo { >> " + path + "\n"
 			res += "\tline=$(head -n $l "+ currentCsvPath + " | tail -n 1 | sed 's/\\r//g')\n"
 			res += "\tfor f in `seq 1 $(($nbField-1))` ; do\n"
-				res += "\t\tvalue=$(echo $line | cut -d $sep -f $f)\n"
-				res += "\t\tif [ $(isNumber $value) = 1 ] ; then\n"
-					res += "\t\t\tquote=''\n"
-				res += "\t\telse\n"
-					res += "\t\t\tquote='\"'\n"
-				res += "\t\tfi\n"
-				res += "\t\techo -e '\t'\\\"${header[$(($f-1))]}\\\": $quote$value$quote, >> "+path+"\n"
+				res += exportJsonAttribute(false, path, "\t\t")
 			res += "\tdone\n"
 			// Last field
-			res += "\tvalue=$(echo $line | cut -d $sep -f $nbField)\n"
-			res += "\tif [ $(isNumber $value) = 1 ] ; then\n"
-				res += "\t\tquote=''\n"
-			res += "\telse\n"
-				res += "\t\tquote='\"'\n"
-			res += "\tfi\n"
-			res += "\techo -e '\t'\\\"${header[$(($nbField-1))]}\\\": $quote$value$quote >> "+path+"\n"
+			res += exportJsonAttribute(true, path, "\t")
 			res += "\techo }, >> " + path + "\n"
 		res += "done\n"
 		
@@ -304,28 +292,41 @@ class MyCsvCompilerBash {
 		res += "echo { >> " + path + "\n"
 		res += "line=$(tail -n 1 "+currentCsvPath+" | sed 's/\\r//g')\n"
 		res += "for f in `seq 1 $(($nbField-1))` ; do\n"
-			res += "\tvalue=$(echo $line | cut -d $sep -f $f)\n"
-			res += "\tif [ $(isNumber $value) = 1 ] ; then\n"
-				res += "\t\tquote=''\n"
-			res += "\telse\n"
-				res += "\t\tquote='\"'\n"
-			res += "\tfi\n"
-			res += "\techo -e '\t'\\\"${header[$(($f-1))]}\\\": $quote$value$quote, >> "+path+"\n"
+			res+= exportJsonAttribute(false, path, "\t")
 		res += "done\n"
 		// Last field
-		res += "value=$(echo $line | cut -d $sep -f $nbField)\n"
-		res += "if [ $(isNumber $value) = 1 ] ; then\n"
-				res += "\tquote=''\n"
-			res += "else\n"
-				res += "\tquote='\"'\n"
-			res += "fi\n"
-		res += "echo -e '\t'\\\"${header[$(($nbField-1))]}\\\": $quote$value$quote >> "+path+"\n"
+		res += exportJsonAttribute(true, path, "")
 		res += "echo } >> " + path + "\n"
 		
-		
 		res += "echo ] >> " + path + "\n"
-		
 	 	return res
+	}
+	
+	def String exportJsonAttribute(boolean last, String path, String tab){
+		var res = ""
+		var comma = ","
+		var varName = "$f"
+		if(last){
+			comma=""
+			varName="$nbField"
+		}
+		res += tab+"value=$(echo $line | cut -d $sep -f "+varName+")\n"
+		res += tab+"if [ $(isNumber $value) = 1 ] ; then\n"
+			res += tab+"\tquote=''\n"
+			/*
+			float=$(echo $value | grep -E "^[.][0-9]*")
+			if [ a$float != "a" ] ; do
+			  value=0$value
+			 */
+			res += tab+"\tfloat=$(echo $value | grep -E \"^[.][0-9]*\")\n"
+			res += tab+"\tif [ $(echo a$float) != \"a\" ] ; then\n"
+				res += tab+"\t\tvalue=$(echo 0$value)\n"
+			res += tab+"\tfi\n"
+		res += tab+"else\n"
+			res += tab+"\tquote='\"'\n"
+		res += tab+"fi\n"
+		res += tab+"echo -e '\t'\\\"${header[$(("+varName+"-1))]}\\\": $quote$value$quote"+comma+" >> "+path+"\n"
+		return res
 	}
 	
 	def dispatch String compile(Projection l){
