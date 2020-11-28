@@ -177,18 +177,19 @@ class MyCsvBenchmarkTest {
 				var int interpReturnCode = 0
 				var long tstart_interp=0
 				var long tend_interp=0
-				try {
-					for(var i=0; i<N; i++)
-					{
-					tstart_interp = System.nanoTime()
-					interpreter.interpretProgram(prog)
-					tend_interp = System.nanoTime()
-					interpTimes.add(tend_interp-tstart_interp)
-					outStream.flush()
+				for(var i=0; i<N; i++)
+				{
+					try {
+						
+						tstart_interp = System.nanoTime()
+						interpreter.interpretProgram(prog)
+						tend_interp = System.nanoTime()
+						outStream.flush()
+					} catch (Exception e){
+						interpReturnCode = 1
+						e.printStackTrace
 					}
-				} catch (Exception e){
-					interpReturnCode = 1
-					e.printStackTrace
+				interpTimes.add(tend_interp-tstart_interp)
 				}
 				
 				// restoring context

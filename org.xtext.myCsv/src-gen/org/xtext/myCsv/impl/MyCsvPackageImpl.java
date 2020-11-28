@@ -64,6 +64,7 @@ import org.xtext.myCsv.PrintLine;
 import org.xtext.myCsv.PrintTable;
 import org.xtext.myCsv.Program;
 import org.xtext.myCsv.Projection;
+import org.xtext.myCsv.RenameField;
 import org.xtext.myCsv.Select;
 import org.xtext.myCsv.Statement;
 import org.xtext.myCsv.Store;
@@ -310,6 +311,13 @@ public class MyCsvPackageImpl extends EPackageImpl implements MyCsvPackage
    * @generated
    */
   private EClass printExprEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass renameFieldEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -1314,6 +1322,39 @@ public class MyCsvPackageImpl extends EPackageImpl implements MyCsvPackage
    * @generated
    */
   @Override
+  public EClass getRenameField()
+  {
+    return renameFieldEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getRenameField_Last_field()
+  {
+    return (EReference)renameFieldEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getRenameField_New_field()
+  {
+    return (EReference)renameFieldEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public EClass getExpressionLog()
   {
     return expressionLogEClass;
@@ -2024,6 +2065,10 @@ public class MyCsvPackageImpl extends EPackageImpl implements MyCsvPackage
     printExprEClass = createEClass(PRINT_EXPR);
     createEReference(printExprEClass, PRINT_EXPR__EXP);
 
+    renameFieldEClass = createEClass(RENAME_FIELD);
+    createEReference(renameFieldEClass, RENAME_FIELD__LAST_FIELD);
+    createEReference(renameFieldEClass, RENAME_FIELD__NEW_FIELD);
+
     expressionLogEClass = createEClass(EXPRESSION_LOG);
     createEReference(expressionLogEClass, EXPRESSION_LOG__EXPR);
 
@@ -2154,6 +2199,7 @@ public class MyCsvPackageImpl extends EPackageImpl implements MyCsvPackage
     printFieldEClass.getESuperTypes().add(this.getPrint());
     printCellEClass.getESuperTypes().add(this.getPrint());
     printExprEClass.getESuperTypes().add(this.getPrint());
+    renameFieldEClass.getESuperTypes().add(this.getStatement());
     nestedLogExpressionEClass.getESuperTypes().add(this.getExpressionLogPrimary());
     expressionRelEClass.getESuperTypes().add(this.getExpressionLogPrimary());
     expressionCalculEClass.getESuperTypes().add(this.getValue());
@@ -2267,6 +2313,10 @@ public class MyCsvPackageImpl extends EPackageImpl implements MyCsvPackage
 
     initEClass(printExprEClass, PrintExpr.class, "PrintExpr", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getPrintExpr_Exp(), this.getValue(), null, "exp", null, 0, 1, PrintExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(renameFieldEClass, RenameField.class, "RenameField", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getRenameField_Last_field(), this.getField(), null, "last_field", null, 0, 1, RenameField.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getRenameField_New_field(), this.getField(), null, "new_field", null, 0, 1, RenameField.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(expressionLogEClass, ExpressionLog.class, "ExpressionLog", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getExpressionLog_Expr(), this.getOrExpression(), null, "expr", null, 0, 1, ExpressionLog.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

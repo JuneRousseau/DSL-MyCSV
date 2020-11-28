@@ -42,11 +42,13 @@ import org.xtext.myCsv.AggregatExpression
 import org.xtext.myCsv.LitteralInt
 import org.xtext.myCsv.LitteralFloat
 import org.xtext.myCsv.LitteralString
+import org.xtext.myCsv.RenameField
 
 class MyCsvCompilerPython {
 
 	def dispatch String compile(Program p){
-		var res = "# INTRO\n"
+		var res = "#!/bin/usr/env python3"
+		res += "# INTRO\n"
 		res += "import csv\n"
 		res += "import json\n\n"
 		res += "# Note, name convention is as follow:\n"
@@ -125,6 +127,15 @@ class MyCsvCompilerPython {
 		return res
 	}
 	
+	def dispatch String compile(RenameField l)
+	{
+		var res = "#RENAME FIELDS\n"
+		res += "header[header.index(\""+l.last_field.value+"\")]= \""+l.new_field.value+"\"\n"
+		res += "refreshHeaderDict()\n"
+		return res
+	}
+	
+	
 	def dispatch String compile(Load l){
 		// Note : loading .csv with header sharing names happens badly
 		// TODO : detect and differentiate strings and floats and ints
@@ -163,11 +174,12 @@ class MyCsvCompilerPython {
 		var res = "#STORE\n"
 		res += "with open('" + l.getPath.value + "', 'w', newline='') as csvfile:\n"
 		
-		res += "\twriter = csv.writer(csvfile"
 		if (l.isSepDefined()){
-			res += ', delimiter = "' + l.sep + '"'
+			res += "sep=\""+l.sep+"\"\n"
+			
 		}
-		res += ")\n"
+		
+		res += "\twriter = csv.writer(csvfile, delimiter = sep)\n"
 		
 		if(!l.noHeader){
 			res += "\twriter.writerow(header)\n"

@@ -1,0 +1,4 @@
+Load "../input.csv" sep=","
+Rename field id := identifier
+Rename field profession := job
+Store "outputRenameField.csv" sep=";"

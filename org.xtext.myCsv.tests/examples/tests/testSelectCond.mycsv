@@ -1,0 +1,3 @@
+Load "../input.csv" sep=","
+Select id<120 and profession=="developer"
+Store "outputSelectCond.csv" sep=";"

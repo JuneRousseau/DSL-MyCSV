@@ -927,6 +927,31 @@ finally {
 	restoreStackSize(stackSize);
 }
 
+// Entry rule entryRuleRenameField
+entryRuleRenameField
+:
+{ before(grammarAccess.getRenameFieldRule()); }
+	 ruleRenameField
+{ after(grammarAccess.getRenameFieldRule()); } 
+	 EOF 
+;
+
+// Rule RenameField
+ruleRenameField 
+	@init {
+		int stackSize = keepStackSize();
+	}
+	:
+	(
+		{ before(grammarAccess.getRenameFieldAccess().getGroup()); }
+		(rule__RenameField__Group__0)
+		{ after(grammarAccess.getRenameFieldAccess().getGroup()); }
+	)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
 // Entry rule entryRuleExpressionLog
 entryRuleExpressionLog
 :
@@ -1657,6 +1682,12 @@ rule__Statement__Alternatives
 		{ before(grammarAccess.getStatementAccess().getPrintParserRuleCall_8()); }
 		rulePrint
 		{ after(grammarAccess.getStatementAccess().getPrintParserRuleCall_8()); }
+	)
+	|
+	(
+		{ before(grammarAccess.getStatementAccess().getRenameFieldParserRuleCall_9()); }
+		ruleRenameField
+		{ after(grammarAccess.getStatementAccess().getRenameFieldParserRuleCall_9()); }
 	)
 ;
 finally {
@@ -3976,6 +4007,141 @@ finally {
 }
 
 
+rule__RenameField__Group__0
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	rule__RenameField__Group__0__Impl
+	rule__RenameField__Group__1
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__RenameField__Group__0__Impl
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+(
+	{ before(grammarAccess.getRenameFieldAccess().getRenameKeyword_0()); }
+	'Rename'
+	{ after(grammarAccess.getRenameFieldAccess().getRenameKeyword_0()); }
+)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__RenameField__Group__1
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	rule__RenameField__Group__1__Impl
+	rule__RenameField__Group__2
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__RenameField__Group__1__Impl
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+(
+	{ before(grammarAccess.getRenameFieldAccess().getFieldKeyword_1()); }
+	'field'
+	{ after(grammarAccess.getRenameFieldAccess().getFieldKeyword_1()); }
+)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__RenameField__Group__2
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	rule__RenameField__Group__2__Impl
+	rule__RenameField__Group__3
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__RenameField__Group__2__Impl
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+(
+	{ before(grammarAccess.getRenameFieldAccess().getLast_fieldAssignment_2()); }
+	(rule__RenameField__Last_fieldAssignment_2)
+	{ after(grammarAccess.getRenameFieldAccess().getLast_fieldAssignment_2()); }
+)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__RenameField__Group__3
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	rule__RenameField__Group__3__Impl
+	rule__RenameField__Group__4
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__RenameField__Group__3__Impl
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+(
+	{ before(grammarAccess.getRenameFieldAccess().getColonEqualsSignKeyword_3()); }
+	':='
+	{ after(grammarAccess.getRenameFieldAccess().getColonEqualsSignKeyword_3()); }
+)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__RenameField__Group__4
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	rule__RenameField__Group__4__Impl
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__RenameField__Group__4__Impl
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+(
+	{ before(grammarAccess.getRenameFieldAccess().getNew_fieldAssignment_4()); }
+	(rule__RenameField__New_fieldAssignment_4)
+	{ after(grammarAccess.getRenameFieldAccess().getNew_fieldAssignment_4()); }
+)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+
 rule__OrExpression__Group__0
 	@init {
 		int stackSize = keepStackSize();
@@ -5528,6 +5694,36 @@ rule__PrintExpr__ExpAssignment_1
 		{ before(grammarAccess.getPrintExprAccess().getExpValueParserRuleCall_1_0()); }
 		ruleValue
 		{ after(grammarAccess.getPrintExprAccess().getExpValueParserRuleCall_1_0()); }
+	)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__RenameField__Last_fieldAssignment_2
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	(
+		{ before(grammarAccess.getRenameFieldAccess().getLast_fieldFieldParserRuleCall_2_0()); }
+		ruleField
+		{ after(grammarAccess.getRenameFieldAccess().getLast_fieldFieldParserRuleCall_2_0()); }
+	)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__RenameField__New_fieldAssignment_4
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	(
+		{ before(grammarAccess.getRenameFieldAccess().getNew_fieldFieldParserRuleCall_4_0()); }
+		ruleField
+		{ after(grammarAccess.getRenameFieldAccess().getNew_fieldFieldParserRuleCall_4_0()); }
 	)
 ;
 finally {

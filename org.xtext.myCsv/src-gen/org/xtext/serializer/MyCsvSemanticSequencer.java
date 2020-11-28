@@ -54,6 +54,7 @@ import org.xtext.myCsv.PrintLine;
 import org.xtext.myCsv.PrintTable;
 import org.xtext.myCsv.Program;
 import org.xtext.myCsv.Projection;
+import org.xtext.myCsv.RenameField;
 import org.xtext.myCsv.Select;
 import org.xtext.myCsv.Store;
 import org.xtext.myCsv.UnaryExpression;
@@ -191,6 +192,9 @@ public class MyCsvSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 				return; 
 			case MyCsvPackage.PROJECTION:
 				sequence_Projection(context, (Projection) semanticObject); 
+				return; 
+			case MyCsvPackage.RENAME_FIELD:
+				sequence_RenameField(context, (RenameField) semanticObject); 
 				return; 
 			case MyCsvPackage.SELECT:
 				sequence_Select(context, (Select) semanticObject); 
@@ -903,6 +907,28 @@ public class MyCsvSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getProjectionAccess().getFieldFieldIndexParserRuleCall_1_0(), semanticObject.getField());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Statement returns RenameField
+	 *     RenameField returns RenameField
+	 *
+	 * Constraint:
+	 *     (last_field=Field new_field=Field)
+	 */
+	protected void sequence_RenameField(ISerializationContext context, RenameField semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, MyCsvPackage.Literals.RENAME_FIELD__LAST_FIELD) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyCsvPackage.Literals.RENAME_FIELD__LAST_FIELD));
+			if (transientValues.isValueTransient(semanticObject, MyCsvPackage.Literals.RENAME_FIELD__NEW_FIELD) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyCsvPackage.Literals.RENAME_FIELD__NEW_FIELD));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getRenameFieldAccess().getLast_fieldFieldParserRuleCall_2_0(), semanticObject.getLast_field());
+		feeder.accept(grammarAccess.getRenameFieldAccess().getNew_fieldFieldParserRuleCall_4_0(), semanticObject.getNew_field());
 		feeder.finish();
 	}
 	

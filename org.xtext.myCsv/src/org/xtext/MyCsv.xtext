@@ -61,6 +61,7 @@ Statement:
 	| Insert
 	| Modify
 	| Print
+	| RenameField
 ;
 
 Load:
@@ -141,6 +142,10 @@ PrintTable:
 ;
 PrintExpr:
 	'expr' exp=Value
+;
+
+RenameField:
+	'Rename' 'field' last_field=Field ':=' new_field=Field
 ;
 
 

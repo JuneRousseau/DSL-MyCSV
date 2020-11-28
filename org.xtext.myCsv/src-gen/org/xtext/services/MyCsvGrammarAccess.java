@@ -298,6 +298,7 @@ public class MyCsvGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final RuleCall cInsertParserRuleCall_6 = (RuleCall)cAlternatives.eContents().get(6);
 		private final RuleCall cModifyParserRuleCall_7 = (RuleCall)cAlternatives.eContents().get(7);
 		private final RuleCall cPrintParserRuleCall_8 = (RuleCall)cAlternatives.eContents().get(8);
+		private final RuleCall cRenameFieldParserRuleCall_9 = (RuleCall)cAlternatives.eContents().get(9);
 		
 		//// Statements and primitives
 		//Statement:
@@ -309,10 +310,11 @@ public class MyCsvGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//	| Delete
 		//	| Insert
 		//	| Modify
-		//	| Print;
+		//	| Print
+		//	| RenameField;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//Load | Store | ExportJson | Projection | Select | Delete | Insert | Modify | Print
+		//Load | Store | ExportJson | Projection | Select | Delete | Insert | Modify | Print | RenameField
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//Load
@@ -341,6 +343,9 @@ public class MyCsvGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		
 		//Print
 		public RuleCall getPrintParserRuleCall_8() { return cPrintParserRuleCall_8; }
+		
+		//RenameField
+		public RuleCall getRenameFieldParserRuleCall_9() { return cRenameFieldParserRuleCall_9; }
 	}
 	public class LoadElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.MyCsv.Load");
@@ -980,6 +985,45 @@ public class MyCsvGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		
 		//Value
 		public RuleCall getExpValueParserRuleCall_1_0() { return cExpValueParserRuleCall_1_0; }
+	}
+	public class RenameFieldElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.MyCsv.RenameField");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cRenameKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Keyword cFieldKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cLast_fieldAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cLast_fieldFieldParserRuleCall_2_0 = (RuleCall)cLast_fieldAssignment_2.eContents().get(0);
+		private final Keyword cColonEqualsSignKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Assignment cNew_fieldAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final RuleCall cNew_fieldFieldParserRuleCall_4_0 = (RuleCall)cNew_fieldAssignment_4.eContents().get(0);
+		
+		//RenameField:
+		//	'Rename' 'field' last_field=Field ':=' new_field=Field;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//'Rename' 'field' last_field=Field ':=' new_field=Field
+		public Group getGroup() { return cGroup; }
+		
+		//'Rename'
+		public Keyword getRenameKeyword_0() { return cRenameKeyword_0; }
+		
+		//'field'
+		public Keyword getFieldKeyword_1() { return cFieldKeyword_1; }
+		
+		//last_field=Field
+		public Assignment getLast_fieldAssignment_2() { return cLast_fieldAssignment_2; }
+		
+		//Field
+		public RuleCall getLast_fieldFieldParserRuleCall_2_0() { return cLast_fieldFieldParserRuleCall_2_0; }
+		
+		//':='
+		public Keyword getColonEqualsSignKeyword_3() { return cColonEqualsSignKeyword_3; }
+		
+		//new_field=Field
+		public Assignment getNew_fieldAssignment_4() { return cNew_fieldAssignment_4; }
+		
+		//Field
+		public RuleCall getNew_fieldFieldParserRuleCall_4_0() { return cNew_fieldFieldParserRuleCall_4_0; }
 	}
 	public class ExpressionLogElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.MyCsv.ExpressionLog");
@@ -1701,6 +1745,7 @@ public class MyCsvGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	private final PrintCellElements pPrintCell;
 	private final PrintTableElements pPrintTable;
 	private final PrintExprElements pPrintExpr;
+	private final RenameFieldElements pRenameField;
 	private final ExpressionLogElements pExpressionLog;
 	private final OrExpressionElements pOrExpression;
 	private final AndExpressionElements pAndExpression;
@@ -1770,6 +1815,7 @@ public class MyCsvGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		this.pPrintCell = new PrintCellElements();
 		this.pPrintTable = new PrintTableElements();
 		this.pPrintExpr = new PrintExprElements();
+		this.pRenameField = new RenameFieldElements();
 		this.pExpressionLog = new ExpressionLogElements();
 		this.pOrExpression = new OrExpressionElements();
 		this.pAndExpression = new AndExpressionElements();
@@ -1959,7 +2005,8 @@ public class MyCsvGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	//	| Delete
 	//	| Insert
 	//	| Modify
-	//	| Print;
+	//	| Print
+	//	| RenameField;
 	public StatementElements getStatementAccess() {
 		return pStatement;
 	}
@@ -2176,6 +2223,16 @@ public class MyCsvGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	
 	public ParserRule getPrintExprRule() {
 		return getPrintExprAccess().getRule();
+	}
+	
+	//RenameField:
+	//	'Rename' 'field' last_field=Field ':=' new_field=Field;
+	public RenameFieldElements getRenameFieldAccess() {
+		return pRenameField;
+	}
+	
+	public ParserRule getRenameFieldRule() {
+		return getRenameFieldAccess().getRule();
 	}
 	
 	//// Logical expressions

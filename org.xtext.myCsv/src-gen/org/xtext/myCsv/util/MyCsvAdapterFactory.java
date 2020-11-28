@@ -241,6 +241,11 @@ public class MyCsvAdapterFactory extends AdapterFactoryImpl
         return createPrintExprAdapter();
       }
       @Override
+      public Adapter caseRenameField(RenameField object)
+      {
+        return createRenameFieldAdapter();
+      }
+      @Override
       public Adapter caseExpressionLog(ExpressionLog object)
       {
         return createExpressionLogAdapter();
@@ -858,6 +863,21 @@ public class MyCsvAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createPrintExprAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.myCsv.RenameField <em>Rename Field</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.myCsv.RenameField
+   * @generated
+   */
+  public Adapter createRenameFieldAdapter()
   {
     return null;
   }

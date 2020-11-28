@@ -677,6 +677,15 @@ ruleStatement returns [EObject current=null]
 			$current = $this_Print_8.current;
 			afterParserOrEnumRuleCall();
 		}
+		    |
+		{
+			newCompositeNode(grammarAccess.getStatementAccess().getRenameFieldParserRuleCall_9());
+		}
+		this_RenameField_9=ruleRenameField
+		{
+			$current = $this_RenameField_9.current;
+			afterParserOrEnumRuleCall();
+		}
 	)
 ;
 
@@ -1787,6 +1796,75 @@ rulePrintExpr returns [EObject current=null]
 						"exp",
 						lv_exp_1_0,
 						"org.xtext.MyCsv.Value");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+	)
+;
+
+// Entry rule entryRuleRenameField
+entryRuleRenameField returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getRenameFieldRule()); }
+	iv_ruleRenameField=ruleRenameField
+	{ $current=$iv_ruleRenameField.current; }
+	EOF;
+
+// Rule RenameField
+ruleRenameField returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		otherlv_0='Rename'
+		{
+			newLeafNode(otherlv_0, grammarAccess.getRenameFieldAccess().getRenameKeyword_0());
+		}
+		otherlv_1='field'
+		{
+			newLeafNode(otherlv_1, grammarAccess.getRenameFieldAccess().getFieldKeyword_1());
+		}
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getRenameFieldAccess().getLast_fieldFieldParserRuleCall_2_0());
+				}
+				lv_last_field_2_0=ruleField
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getRenameFieldRule());
+					}
+					set(
+						$current,
+						"last_field",
+						lv_last_field_2_0,
+						"org.xtext.MyCsv.Field");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		otherlv_3=':='
+		{
+			newLeafNode(otherlv_3, grammarAccess.getRenameFieldAccess().getColonEqualsSignKeyword_3());
+		}
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getRenameFieldAccess().getNew_fieldFieldParserRuleCall_4_0());
+				}
+				lv_new_field_4_0=ruleField
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getRenameFieldRule());
+					}
+					set(
+						$current,
+						"new_field",
+						lv_new_field_4_0,
+						"org.xtext.MyCsv.Field");
 					afterParserOrEnumRuleCall();
 				}
 			)

@@ -99,6 +99,7 @@ public class MyCsvFactoryImpl extends EFactoryImpl implements MyCsvFactory
       case MyCsvPackage.PRINT_FIELD: return createPrintField();
       case MyCsvPackage.PRINT_CELL: return createPrintCell();
       case MyCsvPackage.PRINT_EXPR: return createPrintExpr();
+      case MyCsvPackage.RENAME_FIELD: return createRenameField();
       case MyCsvPackage.EXPRESSION_LOG: return createExpressionLog();
       case MyCsvPackage.OR_EXPRESSION: return createOrExpression();
       case MyCsvPackage.AND_EXPRESSION: return createAndExpression();
@@ -565,6 +566,18 @@ public class MyCsvFactoryImpl extends EFactoryImpl implements MyCsvFactory
   {
     PrintExprImpl printExpr = new PrintExprImpl();
     return printExpr;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public RenameField createRenameField()
+  {
+    RenameFieldImpl renameField = new RenameFieldImpl();
+    return renameField;
   }
 
   /**

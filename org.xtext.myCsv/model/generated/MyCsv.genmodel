@@ -122,6 +122,10 @@
     <genClasses ecoreClass="MyCsv.ecore#//PrintExpr">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyCsv.ecore#//PrintExpr/exp"/>
     </genClasses>
+    <genClasses ecoreClass="MyCsv.ecore#//RenameField">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyCsv.ecore#//RenameField/last_field"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyCsv.ecore#//RenameField/new_field"/>
+    </genClasses>
     <genClasses ecoreClass="MyCsv.ecore#//ExpressionLog">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyCsv.ecore#//ExpressionLog/expr"/>
     </genClasses>

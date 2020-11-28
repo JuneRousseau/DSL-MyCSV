@@ -22,7 +22,7 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class InternalMyCsvParser extends AbstractInternalAntlrParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_INT", "RULE_STRING", "RULE_ID", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'('", "','", "')'", "'['", "';'", "']'", "'Load'", "'sep'", "'='", "'no'", "'header'", "'Store'", "'ExportJson'", "'Projection'", "'Select'", "'Delete'", "'line'", "'field'", "'Insert'", "':'", "'Modify'", "'with'", "'cell'", "'Print'", "'table'", "'expr'", "'or'", "'and'", "'not'", "'-'", "'NbField'", "'.'", "'>'", "'<'", "'>='", "'<='", "'=='", "'!='", "'Count'", "'Sum'", "'Product'", "'Mean'", "'+'", "'*'", "'/'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_INT", "RULE_STRING", "RULE_ID", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'('", "','", "')'", "'['", "';'", "']'", "'Load'", "'sep'", "'='", "'no'", "'header'", "'Store'", "'ExportJson'", "'Projection'", "'Select'", "'Delete'", "'line'", "'field'", "'Insert'", "':'", "'Modify'", "'with'", "'cell'", "'Print'", "'table'", "'expr'", "'Rename'", "':='", "'or'", "'and'", "'not'", "'-'", "'NbField'", "'.'", "'>'", "'<'", "'>='", "'<='", "'=='", "'!='", "'Count'", "'Sum'", "'Product'", "'Mean'", "'+'", "'*'", "'/'"
     };
     public static final int T__50=50;
     public static final int T__19=19;
@@ -33,7 +33,9 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
     public static final int T__11=11;
     public static final int T__55=55;
     public static final int T__12=12;
+    public static final int T__56=56;
     public static final int T__13=13;
+    public static final int T__57=57;
     public static final int T__14=14;
     public static final int T__51=51;
     public static final int T__52=52;
@@ -175,7 +177,7 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
                 int alt1=2;
                 int LA1_0 = input.LA(1);
 
-                if ( (LA1_0==17||(LA1_0>=22 && LA1_0<=26)||LA1_0==29||LA1_0==31||LA1_0==34) ) {
+                if ( (LA1_0==17||(LA1_0>=22 && LA1_0<=26)||LA1_0==29||LA1_0==31||LA1_0==34||LA1_0==37) ) {
                     alt1=1;
                 }
 
@@ -298,7 +300,7 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
             int alt2=2;
             int LA2_0 = input.LA(1);
 
-            if ( (LA2_0==RULE_ID||LA2_0==11||LA2_0==39) ) {
+            if ( (LA2_0==RULE_ID||LA2_0==11||LA2_0==41) ) {
                 alt2=1;
             }
             else if ( (LA2_0==RULE_INT) ) {
@@ -1223,7 +1225,7 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
             int alt8=2;
             int LA8_0 = input.LA(1);
 
-            if ( (LA8_0==RULE_INT||LA8_0==11||(LA8_0>=40 && LA8_0<=41)||(LA8_0>=49 && LA8_0<=52)) ) {
+            if ( (LA8_0==RULE_INT||LA8_0==11||(LA8_0>=42 && LA8_0<=43)||(LA8_0>=51 && LA8_0<=54)) ) {
                 alt8=1;
             }
             else if ( (LA8_0==RULE_STRING) ) {
@@ -1734,7 +1736,7 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleStatement"
-    // InternalMyCsv.g:592:1: ruleStatement returns [EObject current=null] : (this_Load_0= ruleLoad | this_Store_1= ruleStore | this_ExportJson_2= ruleExportJson | this_Projection_3= ruleProjection | this_Select_4= ruleSelect | this_Delete_5= ruleDelete | this_Insert_6= ruleInsert | this_Modify_7= ruleModify | this_Print_8= rulePrint ) ;
+    // InternalMyCsv.g:592:1: ruleStatement returns [EObject current=null] : (this_Load_0= ruleLoad | this_Store_1= ruleStore | this_ExportJson_2= ruleExportJson | this_Projection_3= ruleProjection | this_Select_4= ruleSelect | this_Delete_5= ruleDelete | this_Insert_6= ruleInsert | this_Modify_7= ruleModify | this_Print_8= rulePrint | this_RenameField_9= ruleRenameField ) ;
     public final EObject ruleStatement() throws RecognitionException {
         EObject current = null;
 
@@ -1756,16 +1758,18 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
         EObject this_Print_8 = null;
 
+        EObject this_RenameField_9 = null;
+
 
 
         	enterRule();
 
         try {
-            // InternalMyCsv.g:598:2: ( (this_Load_0= ruleLoad | this_Store_1= ruleStore | this_ExportJson_2= ruleExportJson | this_Projection_3= ruleProjection | this_Select_4= ruleSelect | this_Delete_5= ruleDelete | this_Insert_6= ruleInsert | this_Modify_7= ruleModify | this_Print_8= rulePrint ) )
-            // InternalMyCsv.g:599:2: (this_Load_0= ruleLoad | this_Store_1= ruleStore | this_ExportJson_2= ruleExportJson | this_Projection_3= ruleProjection | this_Select_4= ruleSelect | this_Delete_5= ruleDelete | this_Insert_6= ruleInsert | this_Modify_7= ruleModify | this_Print_8= rulePrint )
+            // InternalMyCsv.g:598:2: ( (this_Load_0= ruleLoad | this_Store_1= ruleStore | this_ExportJson_2= ruleExportJson | this_Projection_3= ruleProjection | this_Select_4= ruleSelect | this_Delete_5= ruleDelete | this_Insert_6= ruleInsert | this_Modify_7= ruleModify | this_Print_8= rulePrint | this_RenameField_9= ruleRenameField ) )
+            // InternalMyCsv.g:599:2: (this_Load_0= ruleLoad | this_Store_1= ruleStore | this_ExportJson_2= ruleExportJson | this_Projection_3= ruleProjection | this_Select_4= ruleSelect | this_Delete_5= ruleDelete | this_Insert_6= ruleInsert | this_Modify_7= ruleModify | this_Print_8= rulePrint | this_RenameField_9= ruleRenameField )
             {
-            // InternalMyCsv.g:599:2: (this_Load_0= ruleLoad | this_Store_1= ruleStore | this_ExportJson_2= ruleExportJson | this_Projection_3= ruleProjection | this_Select_4= ruleSelect | this_Delete_5= ruleDelete | this_Insert_6= ruleInsert | this_Modify_7= ruleModify | this_Print_8= rulePrint )
-            int alt12=9;
+            // InternalMyCsv.g:599:2: (this_Load_0= ruleLoad | this_Store_1= ruleStore | this_ExportJson_2= ruleExportJson | this_Projection_3= ruleProjection | this_Select_4= ruleSelect | this_Delete_5= ruleDelete | this_Insert_6= ruleInsert | this_Modify_7= ruleModify | this_Print_8= rulePrint | this_RenameField_9= ruleRenameField )
+            int alt12=10;
             switch ( input.LA(1) ) {
             case 17:
                 {
@@ -1810,6 +1814,11 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
             case 34:
                 {
                 alt12=9;
+                }
+                break;
+            case 37:
+                {
+                alt12=10;
                 }
                 break;
             default:
@@ -1982,6 +1991,24 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
                     }
                     break;
+                case 10 :
+                    // InternalMyCsv.g:681:3: this_RenameField_9= ruleRenameField
+                    {
+
+                    			newCompositeNode(grammarAccess.getStatementAccess().getRenameFieldParserRuleCall_9());
+                    		
+                    pushFollow(FOLLOW_2);
+                    this_RenameField_9=ruleRenameField();
+
+                    state._fsp--;
+
+
+                    			current = this_RenameField_9;
+                    			afterParserOrEnumRuleCall();
+                    		
+
+                    }
+                    break;
 
             }
 
@@ -2005,7 +2032,7 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleLoad"
-    // InternalMyCsv.g:684:1: entryRuleLoad returns [EObject current=null] : iv_ruleLoad= ruleLoad EOF ;
+    // InternalMyCsv.g:693:1: entryRuleLoad returns [EObject current=null] : iv_ruleLoad= ruleLoad EOF ;
     public final EObject entryRuleLoad() throws RecognitionException {
         EObject current = null;
 
@@ -2013,8 +2040,8 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalMyCsv.g:684:45: (iv_ruleLoad= ruleLoad EOF )
-            // InternalMyCsv.g:685:2: iv_ruleLoad= ruleLoad EOF
+            // InternalMyCsv.g:693:45: (iv_ruleLoad= ruleLoad EOF )
+            // InternalMyCsv.g:694:2: iv_ruleLoad= ruleLoad EOF
             {
              newCompositeNode(grammarAccess.getLoadRule()); 
             pushFollow(FOLLOW_1);
@@ -2041,7 +2068,7 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleLoad"
-    // InternalMyCsv.g:691:1: ruleLoad returns [EObject current=null] : (otherlv_0= 'Load' ( (lv_path_1_0= rulePath ) ) ( ( (lv_sepDefined_2_0= 'sep' ) ) otherlv_3= '=' ( (lv_sep_4_0= RULE_STRING ) ) )? ( ( (lv_noHeader_5_0= 'no' ) ) otherlv_6= 'header' )? ) ;
+    // InternalMyCsv.g:700:1: ruleLoad returns [EObject current=null] : (otherlv_0= 'Load' ( (lv_path_1_0= rulePath ) ) ( ( (lv_sepDefined_2_0= 'sep' ) ) otherlv_3= '=' ( (lv_sep_4_0= RULE_STRING ) ) )? ( ( (lv_noHeader_5_0= 'no' ) ) otherlv_6= 'header' )? ) ;
     public final EObject ruleLoad() throws RecognitionException {
         EObject current = null;
 
@@ -2058,21 +2085,21 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalMyCsv.g:697:2: ( (otherlv_0= 'Load' ( (lv_path_1_0= rulePath ) ) ( ( (lv_sepDefined_2_0= 'sep' ) ) otherlv_3= '=' ( (lv_sep_4_0= RULE_STRING ) ) )? ( ( (lv_noHeader_5_0= 'no' ) ) otherlv_6= 'header' )? ) )
-            // InternalMyCsv.g:698:2: (otherlv_0= 'Load' ( (lv_path_1_0= rulePath ) ) ( ( (lv_sepDefined_2_0= 'sep' ) ) otherlv_3= '=' ( (lv_sep_4_0= RULE_STRING ) ) )? ( ( (lv_noHeader_5_0= 'no' ) ) otherlv_6= 'header' )? )
+            // InternalMyCsv.g:706:2: ( (otherlv_0= 'Load' ( (lv_path_1_0= rulePath ) ) ( ( (lv_sepDefined_2_0= 'sep' ) ) otherlv_3= '=' ( (lv_sep_4_0= RULE_STRING ) ) )? ( ( (lv_noHeader_5_0= 'no' ) ) otherlv_6= 'header' )? ) )
+            // InternalMyCsv.g:707:2: (otherlv_0= 'Load' ( (lv_path_1_0= rulePath ) ) ( ( (lv_sepDefined_2_0= 'sep' ) ) otherlv_3= '=' ( (lv_sep_4_0= RULE_STRING ) ) )? ( ( (lv_noHeader_5_0= 'no' ) ) otherlv_6= 'header' )? )
             {
-            // InternalMyCsv.g:698:2: (otherlv_0= 'Load' ( (lv_path_1_0= rulePath ) ) ( ( (lv_sepDefined_2_0= 'sep' ) ) otherlv_3= '=' ( (lv_sep_4_0= RULE_STRING ) ) )? ( ( (lv_noHeader_5_0= 'no' ) ) otherlv_6= 'header' )? )
-            // InternalMyCsv.g:699:3: otherlv_0= 'Load' ( (lv_path_1_0= rulePath ) ) ( ( (lv_sepDefined_2_0= 'sep' ) ) otherlv_3= '=' ( (lv_sep_4_0= RULE_STRING ) ) )? ( ( (lv_noHeader_5_0= 'no' ) ) otherlv_6= 'header' )?
+            // InternalMyCsv.g:707:2: (otherlv_0= 'Load' ( (lv_path_1_0= rulePath ) ) ( ( (lv_sepDefined_2_0= 'sep' ) ) otherlv_3= '=' ( (lv_sep_4_0= RULE_STRING ) ) )? ( ( (lv_noHeader_5_0= 'no' ) ) otherlv_6= 'header' )? )
+            // InternalMyCsv.g:708:3: otherlv_0= 'Load' ( (lv_path_1_0= rulePath ) ) ( ( (lv_sepDefined_2_0= 'sep' ) ) otherlv_3= '=' ( (lv_sep_4_0= RULE_STRING ) ) )? ( ( (lv_noHeader_5_0= 'no' ) ) otherlv_6= 'header' )?
             {
             otherlv_0=(Token)match(input,17,FOLLOW_12); 
 
             			newLeafNode(otherlv_0, grammarAccess.getLoadAccess().getLoadKeyword_0());
             		
-            // InternalMyCsv.g:703:3: ( (lv_path_1_0= rulePath ) )
-            // InternalMyCsv.g:704:4: (lv_path_1_0= rulePath )
+            // InternalMyCsv.g:712:3: ( (lv_path_1_0= rulePath ) )
+            // InternalMyCsv.g:713:4: (lv_path_1_0= rulePath )
             {
-            // InternalMyCsv.g:704:4: (lv_path_1_0= rulePath )
-            // InternalMyCsv.g:705:5: lv_path_1_0= rulePath
+            // InternalMyCsv.g:713:4: (lv_path_1_0= rulePath )
+            // InternalMyCsv.g:714:5: lv_path_1_0= rulePath
             {
 
             					newCompositeNode(grammarAccess.getLoadAccess().getPathPathParserRuleCall_1_0());
@@ -2099,7 +2126,7 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalMyCsv.g:722:3: ( ( (lv_sepDefined_2_0= 'sep' ) ) otherlv_3= '=' ( (lv_sep_4_0= RULE_STRING ) ) )?
+            // InternalMyCsv.g:731:3: ( ( (lv_sepDefined_2_0= 'sep' ) ) otherlv_3= '=' ( (lv_sep_4_0= RULE_STRING ) ) )?
             int alt13=2;
             int LA13_0 = input.LA(1);
 
@@ -2108,13 +2135,13 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
             }
             switch (alt13) {
                 case 1 :
-                    // InternalMyCsv.g:723:4: ( (lv_sepDefined_2_0= 'sep' ) ) otherlv_3= '=' ( (lv_sep_4_0= RULE_STRING ) )
+                    // InternalMyCsv.g:732:4: ( (lv_sepDefined_2_0= 'sep' ) ) otherlv_3= '=' ( (lv_sep_4_0= RULE_STRING ) )
                     {
-                    // InternalMyCsv.g:723:4: ( (lv_sepDefined_2_0= 'sep' ) )
-                    // InternalMyCsv.g:724:5: (lv_sepDefined_2_0= 'sep' )
+                    // InternalMyCsv.g:732:4: ( (lv_sepDefined_2_0= 'sep' ) )
+                    // InternalMyCsv.g:733:5: (lv_sepDefined_2_0= 'sep' )
                     {
-                    // InternalMyCsv.g:724:5: (lv_sepDefined_2_0= 'sep' )
-                    // InternalMyCsv.g:725:6: lv_sepDefined_2_0= 'sep'
+                    // InternalMyCsv.g:733:5: (lv_sepDefined_2_0= 'sep' )
+                    // InternalMyCsv.g:734:6: lv_sepDefined_2_0= 'sep'
                     {
                     lv_sepDefined_2_0=(Token)match(input,18,FOLLOW_14); 
 
@@ -2136,11 +2163,11 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
                     				newLeafNode(otherlv_3, grammarAccess.getLoadAccess().getEqualsSignKeyword_2_1());
                     			
-                    // InternalMyCsv.g:741:4: ( (lv_sep_4_0= RULE_STRING ) )
-                    // InternalMyCsv.g:742:5: (lv_sep_4_0= RULE_STRING )
+                    // InternalMyCsv.g:750:4: ( (lv_sep_4_0= RULE_STRING ) )
+                    // InternalMyCsv.g:751:5: (lv_sep_4_0= RULE_STRING )
                     {
-                    // InternalMyCsv.g:742:5: (lv_sep_4_0= RULE_STRING )
-                    // InternalMyCsv.g:743:6: lv_sep_4_0= RULE_STRING
+                    // InternalMyCsv.g:751:5: (lv_sep_4_0= RULE_STRING )
+                    // InternalMyCsv.g:752:6: lv_sep_4_0= RULE_STRING
                     {
                     lv_sep_4_0=(Token)match(input,RULE_STRING,FOLLOW_15); 
 
@@ -2168,7 +2195,7 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalMyCsv.g:760:3: ( ( (lv_noHeader_5_0= 'no' ) ) otherlv_6= 'header' )?
+            // InternalMyCsv.g:769:3: ( ( (lv_noHeader_5_0= 'no' ) ) otherlv_6= 'header' )?
             int alt14=2;
             int LA14_0 = input.LA(1);
 
@@ -2177,13 +2204,13 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
             }
             switch (alt14) {
                 case 1 :
-                    // InternalMyCsv.g:761:4: ( (lv_noHeader_5_0= 'no' ) ) otherlv_6= 'header'
+                    // InternalMyCsv.g:770:4: ( (lv_noHeader_5_0= 'no' ) ) otherlv_6= 'header'
                     {
-                    // InternalMyCsv.g:761:4: ( (lv_noHeader_5_0= 'no' ) )
-                    // InternalMyCsv.g:762:5: (lv_noHeader_5_0= 'no' )
+                    // InternalMyCsv.g:770:4: ( (lv_noHeader_5_0= 'no' ) )
+                    // InternalMyCsv.g:771:5: (lv_noHeader_5_0= 'no' )
                     {
-                    // InternalMyCsv.g:762:5: (lv_noHeader_5_0= 'no' )
-                    // InternalMyCsv.g:763:6: lv_noHeader_5_0= 'no'
+                    // InternalMyCsv.g:771:5: (lv_noHeader_5_0= 'no' )
+                    // InternalMyCsv.g:772:6: lv_noHeader_5_0= 'no'
                     {
                     lv_noHeader_5_0=(Token)match(input,20,FOLLOW_16); 
 
@@ -2234,7 +2261,7 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleStore"
-    // InternalMyCsv.g:784:1: entryRuleStore returns [EObject current=null] : iv_ruleStore= ruleStore EOF ;
+    // InternalMyCsv.g:793:1: entryRuleStore returns [EObject current=null] : iv_ruleStore= ruleStore EOF ;
     public final EObject entryRuleStore() throws RecognitionException {
         EObject current = null;
 
@@ -2242,8 +2269,8 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalMyCsv.g:784:46: (iv_ruleStore= ruleStore EOF )
-            // InternalMyCsv.g:785:2: iv_ruleStore= ruleStore EOF
+            // InternalMyCsv.g:793:46: (iv_ruleStore= ruleStore EOF )
+            // InternalMyCsv.g:794:2: iv_ruleStore= ruleStore EOF
             {
              newCompositeNode(grammarAccess.getStoreRule()); 
             pushFollow(FOLLOW_1);
@@ -2270,7 +2297,7 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleStore"
-    // InternalMyCsv.g:791:1: ruleStore returns [EObject current=null] : (otherlv_0= 'Store' ( (lv_path_1_0= rulePath ) ) ( ( (lv_sepDefined_2_0= 'sep' ) ) otherlv_3= '=' ( (lv_sep_4_0= RULE_STRING ) ) )? ( ( (lv_noHeader_5_0= 'no' ) ) otherlv_6= 'header' )? ) ;
+    // InternalMyCsv.g:800:1: ruleStore returns [EObject current=null] : (otherlv_0= 'Store' ( (lv_path_1_0= rulePath ) ) ( ( (lv_sepDefined_2_0= 'sep' ) ) otherlv_3= '=' ( (lv_sep_4_0= RULE_STRING ) ) )? ( ( (lv_noHeader_5_0= 'no' ) ) otherlv_6= 'header' )? ) ;
     public final EObject ruleStore() throws RecognitionException {
         EObject current = null;
 
@@ -2287,21 +2314,21 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalMyCsv.g:797:2: ( (otherlv_0= 'Store' ( (lv_path_1_0= rulePath ) ) ( ( (lv_sepDefined_2_0= 'sep' ) ) otherlv_3= '=' ( (lv_sep_4_0= RULE_STRING ) ) )? ( ( (lv_noHeader_5_0= 'no' ) ) otherlv_6= 'header' )? ) )
-            // InternalMyCsv.g:798:2: (otherlv_0= 'Store' ( (lv_path_1_0= rulePath ) ) ( ( (lv_sepDefined_2_0= 'sep' ) ) otherlv_3= '=' ( (lv_sep_4_0= RULE_STRING ) ) )? ( ( (lv_noHeader_5_0= 'no' ) ) otherlv_6= 'header' )? )
+            // InternalMyCsv.g:806:2: ( (otherlv_0= 'Store' ( (lv_path_1_0= rulePath ) ) ( ( (lv_sepDefined_2_0= 'sep' ) ) otherlv_3= '=' ( (lv_sep_4_0= RULE_STRING ) ) )? ( ( (lv_noHeader_5_0= 'no' ) ) otherlv_6= 'header' )? ) )
+            // InternalMyCsv.g:807:2: (otherlv_0= 'Store' ( (lv_path_1_0= rulePath ) ) ( ( (lv_sepDefined_2_0= 'sep' ) ) otherlv_3= '=' ( (lv_sep_4_0= RULE_STRING ) ) )? ( ( (lv_noHeader_5_0= 'no' ) ) otherlv_6= 'header' )? )
             {
-            // InternalMyCsv.g:798:2: (otherlv_0= 'Store' ( (lv_path_1_0= rulePath ) ) ( ( (lv_sepDefined_2_0= 'sep' ) ) otherlv_3= '=' ( (lv_sep_4_0= RULE_STRING ) ) )? ( ( (lv_noHeader_5_0= 'no' ) ) otherlv_6= 'header' )? )
-            // InternalMyCsv.g:799:3: otherlv_0= 'Store' ( (lv_path_1_0= rulePath ) ) ( ( (lv_sepDefined_2_0= 'sep' ) ) otherlv_3= '=' ( (lv_sep_4_0= RULE_STRING ) ) )? ( ( (lv_noHeader_5_0= 'no' ) ) otherlv_6= 'header' )?
+            // InternalMyCsv.g:807:2: (otherlv_0= 'Store' ( (lv_path_1_0= rulePath ) ) ( ( (lv_sepDefined_2_0= 'sep' ) ) otherlv_3= '=' ( (lv_sep_4_0= RULE_STRING ) ) )? ( ( (lv_noHeader_5_0= 'no' ) ) otherlv_6= 'header' )? )
+            // InternalMyCsv.g:808:3: otherlv_0= 'Store' ( (lv_path_1_0= rulePath ) ) ( ( (lv_sepDefined_2_0= 'sep' ) ) otherlv_3= '=' ( (lv_sep_4_0= RULE_STRING ) ) )? ( ( (lv_noHeader_5_0= 'no' ) ) otherlv_6= 'header' )?
             {
             otherlv_0=(Token)match(input,22,FOLLOW_12); 
 
             			newLeafNode(otherlv_0, grammarAccess.getStoreAccess().getStoreKeyword_0());
             		
-            // InternalMyCsv.g:803:3: ( (lv_path_1_0= rulePath ) )
-            // InternalMyCsv.g:804:4: (lv_path_1_0= rulePath )
+            // InternalMyCsv.g:812:3: ( (lv_path_1_0= rulePath ) )
+            // InternalMyCsv.g:813:4: (lv_path_1_0= rulePath )
             {
-            // InternalMyCsv.g:804:4: (lv_path_1_0= rulePath )
-            // InternalMyCsv.g:805:5: lv_path_1_0= rulePath
+            // InternalMyCsv.g:813:4: (lv_path_1_0= rulePath )
+            // InternalMyCsv.g:814:5: lv_path_1_0= rulePath
             {
 
             					newCompositeNode(grammarAccess.getStoreAccess().getPathPathParserRuleCall_1_0());
@@ -2328,7 +2355,7 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalMyCsv.g:822:3: ( ( (lv_sepDefined_2_0= 'sep' ) ) otherlv_3= '=' ( (lv_sep_4_0= RULE_STRING ) ) )?
+            // InternalMyCsv.g:831:3: ( ( (lv_sepDefined_2_0= 'sep' ) ) otherlv_3= '=' ( (lv_sep_4_0= RULE_STRING ) ) )?
             int alt15=2;
             int LA15_0 = input.LA(1);
 
@@ -2337,13 +2364,13 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
             }
             switch (alt15) {
                 case 1 :
-                    // InternalMyCsv.g:823:4: ( (lv_sepDefined_2_0= 'sep' ) ) otherlv_3= '=' ( (lv_sep_4_0= RULE_STRING ) )
+                    // InternalMyCsv.g:832:4: ( (lv_sepDefined_2_0= 'sep' ) ) otherlv_3= '=' ( (lv_sep_4_0= RULE_STRING ) )
                     {
-                    // InternalMyCsv.g:823:4: ( (lv_sepDefined_2_0= 'sep' ) )
-                    // InternalMyCsv.g:824:5: (lv_sepDefined_2_0= 'sep' )
+                    // InternalMyCsv.g:832:4: ( (lv_sepDefined_2_0= 'sep' ) )
+                    // InternalMyCsv.g:833:5: (lv_sepDefined_2_0= 'sep' )
                     {
-                    // InternalMyCsv.g:824:5: (lv_sepDefined_2_0= 'sep' )
-                    // InternalMyCsv.g:825:6: lv_sepDefined_2_0= 'sep'
+                    // InternalMyCsv.g:833:5: (lv_sepDefined_2_0= 'sep' )
+                    // InternalMyCsv.g:834:6: lv_sepDefined_2_0= 'sep'
                     {
                     lv_sepDefined_2_0=(Token)match(input,18,FOLLOW_14); 
 
@@ -2365,11 +2392,11 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
                     				newLeafNode(otherlv_3, grammarAccess.getStoreAccess().getEqualsSignKeyword_2_1());
                     			
-                    // InternalMyCsv.g:841:4: ( (lv_sep_4_0= RULE_STRING ) )
-                    // InternalMyCsv.g:842:5: (lv_sep_4_0= RULE_STRING )
+                    // InternalMyCsv.g:850:4: ( (lv_sep_4_0= RULE_STRING ) )
+                    // InternalMyCsv.g:851:5: (lv_sep_4_0= RULE_STRING )
                     {
-                    // InternalMyCsv.g:842:5: (lv_sep_4_0= RULE_STRING )
-                    // InternalMyCsv.g:843:6: lv_sep_4_0= RULE_STRING
+                    // InternalMyCsv.g:851:5: (lv_sep_4_0= RULE_STRING )
+                    // InternalMyCsv.g:852:6: lv_sep_4_0= RULE_STRING
                     {
                     lv_sep_4_0=(Token)match(input,RULE_STRING,FOLLOW_15); 
 
@@ -2397,7 +2424,7 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalMyCsv.g:860:3: ( ( (lv_noHeader_5_0= 'no' ) ) otherlv_6= 'header' )?
+            // InternalMyCsv.g:869:3: ( ( (lv_noHeader_5_0= 'no' ) ) otherlv_6= 'header' )?
             int alt16=2;
             int LA16_0 = input.LA(1);
 
@@ -2406,13 +2433,13 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
             }
             switch (alt16) {
                 case 1 :
-                    // InternalMyCsv.g:861:4: ( (lv_noHeader_5_0= 'no' ) ) otherlv_6= 'header'
+                    // InternalMyCsv.g:870:4: ( (lv_noHeader_5_0= 'no' ) ) otherlv_6= 'header'
                     {
-                    // InternalMyCsv.g:861:4: ( (lv_noHeader_5_0= 'no' ) )
-                    // InternalMyCsv.g:862:5: (lv_noHeader_5_0= 'no' )
+                    // InternalMyCsv.g:870:4: ( (lv_noHeader_5_0= 'no' ) )
+                    // InternalMyCsv.g:871:5: (lv_noHeader_5_0= 'no' )
                     {
-                    // InternalMyCsv.g:862:5: (lv_noHeader_5_0= 'no' )
-                    // InternalMyCsv.g:863:6: lv_noHeader_5_0= 'no'
+                    // InternalMyCsv.g:871:5: (lv_noHeader_5_0= 'no' )
+                    // InternalMyCsv.g:872:6: lv_noHeader_5_0= 'no'
                     {
                     lv_noHeader_5_0=(Token)match(input,20,FOLLOW_16); 
 
@@ -2463,7 +2490,7 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleExportJson"
-    // InternalMyCsv.g:884:1: entryRuleExportJson returns [EObject current=null] : iv_ruleExportJson= ruleExportJson EOF ;
+    // InternalMyCsv.g:893:1: entryRuleExportJson returns [EObject current=null] : iv_ruleExportJson= ruleExportJson EOF ;
     public final EObject entryRuleExportJson() throws RecognitionException {
         EObject current = null;
 
@@ -2471,8 +2498,8 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalMyCsv.g:884:51: (iv_ruleExportJson= ruleExportJson EOF )
-            // InternalMyCsv.g:885:2: iv_ruleExportJson= ruleExportJson EOF
+            // InternalMyCsv.g:893:51: (iv_ruleExportJson= ruleExportJson EOF )
+            // InternalMyCsv.g:894:2: iv_ruleExportJson= ruleExportJson EOF
             {
              newCompositeNode(grammarAccess.getExportJsonRule()); 
             pushFollow(FOLLOW_1);
@@ -2499,7 +2526,7 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleExportJson"
-    // InternalMyCsv.g:891:1: ruleExportJson returns [EObject current=null] : (otherlv_0= 'ExportJson' ( (lv_path_1_0= rulePath ) ) ) ;
+    // InternalMyCsv.g:900:1: ruleExportJson returns [EObject current=null] : (otherlv_0= 'ExportJson' ( (lv_path_1_0= rulePath ) ) ) ;
     public final EObject ruleExportJson() throws RecognitionException {
         EObject current = null;
 
@@ -2511,21 +2538,21 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalMyCsv.g:897:2: ( (otherlv_0= 'ExportJson' ( (lv_path_1_0= rulePath ) ) ) )
-            // InternalMyCsv.g:898:2: (otherlv_0= 'ExportJson' ( (lv_path_1_0= rulePath ) ) )
+            // InternalMyCsv.g:906:2: ( (otherlv_0= 'ExportJson' ( (lv_path_1_0= rulePath ) ) ) )
+            // InternalMyCsv.g:907:2: (otherlv_0= 'ExportJson' ( (lv_path_1_0= rulePath ) ) )
             {
-            // InternalMyCsv.g:898:2: (otherlv_0= 'ExportJson' ( (lv_path_1_0= rulePath ) ) )
-            // InternalMyCsv.g:899:3: otherlv_0= 'ExportJson' ( (lv_path_1_0= rulePath ) )
+            // InternalMyCsv.g:907:2: (otherlv_0= 'ExportJson' ( (lv_path_1_0= rulePath ) ) )
+            // InternalMyCsv.g:908:3: otherlv_0= 'ExportJson' ( (lv_path_1_0= rulePath ) )
             {
             otherlv_0=(Token)match(input,23,FOLLOW_12); 
 
             			newLeafNode(otherlv_0, grammarAccess.getExportJsonAccess().getExportJsonKeyword_0());
             		
-            // InternalMyCsv.g:903:3: ( (lv_path_1_0= rulePath ) )
-            // InternalMyCsv.g:904:4: (lv_path_1_0= rulePath )
+            // InternalMyCsv.g:912:3: ( (lv_path_1_0= rulePath ) )
+            // InternalMyCsv.g:913:4: (lv_path_1_0= rulePath )
             {
-            // InternalMyCsv.g:904:4: (lv_path_1_0= rulePath )
-            // InternalMyCsv.g:905:5: lv_path_1_0= rulePath
+            // InternalMyCsv.g:913:4: (lv_path_1_0= rulePath )
+            // InternalMyCsv.g:914:5: lv_path_1_0= rulePath
             {
 
             					newCompositeNode(grammarAccess.getExportJsonAccess().getPathPathParserRuleCall_1_0());
@@ -2575,7 +2602,7 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleProjection"
-    // InternalMyCsv.g:926:1: entryRuleProjection returns [EObject current=null] : iv_ruleProjection= ruleProjection EOF ;
+    // InternalMyCsv.g:935:1: entryRuleProjection returns [EObject current=null] : iv_ruleProjection= ruleProjection EOF ;
     public final EObject entryRuleProjection() throws RecognitionException {
         EObject current = null;
 
@@ -2583,8 +2610,8 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalMyCsv.g:926:51: (iv_ruleProjection= ruleProjection EOF )
-            // InternalMyCsv.g:927:2: iv_ruleProjection= ruleProjection EOF
+            // InternalMyCsv.g:935:51: (iv_ruleProjection= ruleProjection EOF )
+            // InternalMyCsv.g:936:2: iv_ruleProjection= ruleProjection EOF
             {
              newCompositeNode(grammarAccess.getProjectionRule()); 
             pushFollow(FOLLOW_1);
@@ -2611,7 +2638,7 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleProjection"
-    // InternalMyCsv.g:933:1: ruleProjection returns [EObject current=null] : (otherlv_0= 'Projection' ( (lv_field_1_0= ruleFieldIndex ) ) ) ;
+    // InternalMyCsv.g:942:1: ruleProjection returns [EObject current=null] : (otherlv_0= 'Projection' ( (lv_field_1_0= ruleFieldIndex ) ) ) ;
     public final EObject ruleProjection() throws RecognitionException {
         EObject current = null;
 
@@ -2623,21 +2650,21 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalMyCsv.g:939:2: ( (otherlv_0= 'Projection' ( (lv_field_1_0= ruleFieldIndex ) ) ) )
-            // InternalMyCsv.g:940:2: (otherlv_0= 'Projection' ( (lv_field_1_0= ruleFieldIndex ) ) )
+            // InternalMyCsv.g:948:2: ( (otherlv_0= 'Projection' ( (lv_field_1_0= ruleFieldIndex ) ) ) )
+            // InternalMyCsv.g:949:2: (otherlv_0= 'Projection' ( (lv_field_1_0= ruleFieldIndex ) ) )
             {
-            // InternalMyCsv.g:940:2: (otherlv_0= 'Projection' ( (lv_field_1_0= ruleFieldIndex ) ) )
-            // InternalMyCsv.g:941:3: otherlv_0= 'Projection' ( (lv_field_1_0= ruleFieldIndex ) )
+            // InternalMyCsv.g:949:2: (otherlv_0= 'Projection' ( (lv_field_1_0= ruleFieldIndex ) ) )
+            // InternalMyCsv.g:950:3: otherlv_0= 'Projection' ( (lv_field_1_0= ruleFieldIndex ) )
             {
             otherlv_0=(Token)match(input,24,FOLLOW_17); 
 
             			newLeafNode(otherlv_0, grammarAccess.getProjectionAccess().getProjectionKeyword_0());
             		
-            // InternalMyCsv.g:945:3: ( (lv_field_1_0= ruleFieldIndex ) )
-            // InternalMyCsv.g:946:4: (lv_field_1_0= ruleFieldIndex )
+            // InternalMyCsv.g:954:3: ( (lv_field_1_0= ruleFieldIndex ) )
+            // InternalMyCsv.g:955:4: (lv_field_1_0= ruleFieldIndex )
             {
-            // InternalMyCsv.g:946:4: (lv_field_1_0= ruleFieldIndex )
-            // InternalMyCsv.g:947:5: lv_field_1_0= ruleFieldIndex
+            // InternalMyCsv.g:955:4: (lv_field_1_0= ruleFieldIndex )
+            // InternalMyCsv.g:956:5: lv_field_1_0= ruleFieldIndex
             {
 
             					newCompositeNode(grammarAccess.getProjectionAccess().getFieldFieldIndexParserRuleCall_1_0());
@@ -2687,7 +2714,7 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleSelect"
-    // InternalMyCsv.g:968:1: entryRuleSelect returns [EObject current=null] : iv_ruleSelect= ruleSelect EOF ;
+    // InternalMyCsv.g:977:1: entryRuleSelect returns [EObject current=null] : iv_ruleSelect= ruleSelect EOF ;
     public final EObject entryRuleSelect() throws RecognitionException {
         EObject current = null;
 
@@ -2695,8 +2722,8 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalMyCsv.g:968:47: (iv_ruleSelect= ruleSelect EOF )
-            // InternalMyCsv.g:969:2: iv_ruleSelect= ruleSelect EOF
+            // InternalMyCsv.g:977:47: (iv_ruleSelect= ruleSelect EOF )
+            // InternalMyCsv.g:978:2: iv_ruleSelect= ruleSelect EOF
             {
              newCompositeNode(grammarAccess.getSelectRule()); 
             pushFollow(FOLLOW_1);
@@ -2723,7 +2750,7 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleSelect"
-    // InternalMyCsv.g:975:1: ruleSelect returns [EObject current=null] : (otherlv_0= 'Select' ( (lv_line_1_0= ruleLineIndex ) ) ) ;
+    // InternalMyCsv.g:984:1: ruleSelect returns [EObject current=null] : (otherlv_0= 'Select' ( (lv_line_1_0= ruleLineIndex ) ) ) ;
     public final EObject ruleSelect() throws RecognitionException {
         EObject current = null;
 
@@ -2735,21 +2762,21 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalMyCsv.g:981:2: ( (otherlv_0= 'Select' ( (lv_line_1_0= ruleLineIndex ) ) ) )
-            // InternalMyCsv.g:982:2: (otherlv_0= 'Select' ( (lv_line_1_0= ruleLineIndex ) ) )
+            // InternalMyCsv.g:990:2: ( (otherlv_0= 'Select' ( (lv_line_1_0= ruleLineIndex ) ) ) )
+            // InternalMyCsv.g:991:2: (otherlv_0= 'Select' ( (lv_line_1_0= ruleLineIndex ) ) )
             {
-            // InternalMyCsv.g:982:2: (otherlv_0= 'Select' ( (lv_line_1_0= ruleLineIndex ) ) )
-            // InternalMyCsv.g:983:3: otherlv_0= 'Select' ( (lv_line_1_0= ruleLineIndex ) )
+            // InternalMyCsv.g:991:2: (otherlv_0= 'Select' ( (lv_line_1_0= ruleLineIndex ) ) )
+            // InternalMyCsv.g:992:3: otherlv_0= 'Select' ( (lv_line_1_0= ruleLineIndex ) )
             {
             otherlv_0=(Token)match(input,25,FOLLOW_18); 
 
             			newLeafNode(otherlv_0, grammarAccess.getSelectAccess().getSelectKeyword_0());
             		
-            // InternalMyCsv.g:987:3: ( (lv_line_1_0= ruleLineIndex ) )
-            // InternalMyCsv.g:988:4: (lv_line_1_0= ruleLineIndex )
+            // InternalMyCsv.g:996:3: ( (lv_line_1_0= ruleLineIndex ) )
+            // InternalMyCsv.g:997:4: (lv_line_1_0= ruleLineIndex )
             {
-            // InternalMyCsv.g:988:4: (lv_line_1_0= ruleLineIndex )
-            // InternalMyCsv.g:989:5: lv_line_1_0= ruleLineIndex
+            // InternalMyCsv.g:997:4: (lv_line_1_0= ruleLineIndex )
+            // InternalMyCsv.g:998:5: lv_line_1_0= ruleLineIndex
             {
 
             					newCompositeNode(grammarAccess.getSelectAccess().getLineLineIndexParserRuleCall_1_0());
@@ -2799,7 +2826,7 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleDelete"
-    // InternalMyCsv.g:1010:1: entryRuleDelete returns [EObject current=null] : iv_ruleDelete= ruleDelete EOF ;
+    // InternalMyCsv.g:1019:1: entryRuleDelete returns [EObject current=null] : iv_ruleDelete= ruleDelete EOF ;
     public final EObject entryRuleDelete() throws RecognitionException {
         EObject current = null;
 
@@ -2807,8 +2834,8 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalMyCsv.g:1010:47: (iv_ruleDelete= ruleDelete EOF )
-            // InternalMyCsv.g:1011:2: iv_ruleDelete= ruleDelete EOF
+            // InternalMyCsv.g:1019:47: (iv_ruleDelete= ruleDelete EOF )
+            // InternalMyCsv.g:1020:2: iv_ruleDelete= ruleDelete EOF
             {
              newCompositeNode(grammarAccess.getDeleteRule()); 
             pushFollow(FOLLOW_1);
@@ -2835,7 +2862,7 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleDelete"
-    // InternalMyCsv.g:1017:1: ruleDelete returns [EObject current=null] : (otherlv_0= 'Delete' (this_DeleteLine_1= ruleDeleteLine | this_DeleteField_2= ruleDeleteField ) ) ;
+    // InternalMyCsv.g:1026:1: ruleDelete returns [EObject current=null] : (otherlv_0= 'Delete' (this_DeleteLine_1= ruleDeleteLine | this_DeleteField_2= ruleDeleteField ) ) ;
     public final EObject ruleDelete() throws RecognitionException {
         EObject current = null;
 
@@ -2849,17 +2876,17 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalMyCsv.g:1023:2: ( (otherlv_0= 'Delete' (this_DeleteLine_1= ruleDeleteLine | this_DeleteField_2= ruleDeleteField ) ) )
-            // InternalMyCsv.g:1024:2: (otherlv_0= 'Delete' (this_DeleteLine_1= ruleDeleteLine | this_DeleteField_2= ruleDeleteField ) )
+            // InternalMyCsv.g:1032:2: ( (otherlv_0= 'Delete' (this_DeleteLine_1= ruleDeleteLine | this_DeleteField_2= ruleDeleteField ) ) )
+            // InternalMyCsv.g:1033:2: (otherlv_0= 'Delete' (this_DeleteLine_1= ruleDeleteLine | this_DeleteField_2= ruleDeleteField ) )
             {
-            // InternalMyCsv.g:1024:2: (otherlv_0= 'Delete' (this_DeleteLine_1= ruleDeleteLine | this_DeleteField_2= ruleDeleteField ) )
-            // InternalMyCsv.g:1025:3: otherlv_0= 'Delete' (this_DeleteLine_1= ruleDeleteLine | this_DeleteField_2= ruleDeleteField )
+            // InternalMyCsv.g:1033:2: (otherlv_0= 'Delete' (this_DeleteLine_1= ruleDeleteLine | this_DeleteField_2= ruleDeleteField ) )
+            // InternalMyCsv.g:1034:3: otherlv_0= 'Delete' (this_DeleteLine_1= ruleDeleteLine | this_DeleteField_2= ruleDeleteField )
             {
             otherlv_0=(Token)match(input,26,FOLLOW_19); 
 
             			newLeafNode(otherlv_0, grammarAccess.getDeleteAccess().getDeleteKeyword_0());
             		
-            // InternalMyCsv.g:1029:3: (this_DeleteLine_1= ruleDeleteLine | this_DeleteField_2= ruleDeleteField )
+            // InternalMyCsv.g:1038:3: (this_DeleteLine_1= ruleDeleteLine | this_DeleteField_2= ruleDeleteField )
             int alt17=2;
             int LA17_0 = input.LA(1);
 
@@ -2877,7 +2904,7 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
             }
             switch (alt17) {
                 case 1 :
-                    // InternalMyCsv.g:1030:4: this_DeleteLine_1= ruleDeleteLine
+                    // InternalMyCsv.g:1039:4: this_DeleteLine_1= ruleDeleteLine
                     {
 
                     				newCompositeNode(grammarAccess.getDeleteAccess().getDeleteLineParserRuleCall_1_0());
@@ -2895,7 +2922,7 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalMyCsv.g:1039:4: this_DeleteField_2= ruleDeleteField
+                    // InternalMyCsv.g:1048:4: this_DeleteField_2= ruleDeleteField
                     {
 
                     				newCompositeNode(grammarAccess.getDeleteAccess().getDeleteFieldParserRuleCall_1_1());
@@ -2938,7 +2965,7 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleDeleteLine"
-    // InternalMyCsv.g:1052:1: entryRuleDeleteLine returns [EObject current=null] : iv_ruleDeleteLine= ruleDeleteLine EOF ;
+    // InternalMyCsv.g:1061:1: entryRuleDeleteLine returns [EObject current=null] : iv_ruleDeleteLine= ruleDeleteLine EOF ;
     public final EObject entryRuleDeleteLine() throws RecognitionException {
         EObject current = null;
 
@@ -2946,8 +2973,8 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalMyCsv.g:1052:51: (iv_ruleDeleteLine= ruleDeleteLine EOF )
-            // InternalMyCsv.g:1053:2: iv_ruleDeleteLine= ruleDeleteLine EOF
+            // InternalMyCsv.g:1061:51: (iv_ruleDeleteLine= ruleDeleteLine EOF )
+            // InternalMyCsv.g:1062:2: iv_ruleDeleteLine= ruleDeleteLine EOF
             {
              newCompositeNode(grammarAccess.getDeleteLineRule()); 
             pushFollow(FOLLOW_1);
@@ -2974,7 +3001,7 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleDeleteLine"
-    // InternalMyCsv.g:1059:1: ruleDeleteLine returns [EObject current=null] : (otherlv_0= 'line' ( (lv_lines_1_0= ruleLineIndex ) ) ) ;
+    // InternalMyCsv.g:1068:1: ruleDeleteLine returns [EObject current=null] : (otherlv_0= 'line' ( (lv_lines_1_0= ruleLineIndex ) ) ) ;
     public final EObject ruleDeleteLine() throws RecognitionException {
         EObject current = null;
 
@@ -2986,21 +3013,21 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalMyCsv.g:1065:2: ( (otherlv_0= 'line' ( (lv_lines_1_0= ruleLineIndex ) ) ) )
-            // InternalMyCsv.g:1066:2: (otherlv_0= 'line' ( (lv_lines_1_0= ruleLineIndex ) ) )
+            // InternalMyCsv.g:1074:2: ( (otherlv_0= 'line' ( (lv_lines_1_0= ruleLineIndex ) ) ) )
+            // InternalMyCsv.g:1075:2: (otherlv_0= 'line' ( (lv_lines_1_0= ruleLineIndex ) ) )
             {
-            // InternalMyCsv.g:1066:2: (otherlv_0= 'line' ( (lv_lines_1_0= ruleLineIndex ) ) )
-            // InternalMyCsv.g:1067:3: otherlv_0= 'line' ( (lv_lines_1_0= ruleLineIndex ) )
+            // InternalMyCsv.g:1075:2: (otherlv_0= 'line' ( (lv_lines_1_0= ruleLineIndex ) ) )
+            // InternalMyCsv.g:1076:3: otherlv_0= 'line' ( (lv_lines_1_0= ruleLineIndex ) )
             {
             otherlv_0=(Token)match(input,27,FOLLOW_18); 
 
             			newLeafNode(otherlv_0, grammarAccess.getDeleteLineAccess().getLineKeyword_0());
             		
-            // InternalMyCsv.g:1071:3: ( (lv_lines_1_0= ruleLineIndex ) )
-            // InternalMyCsv.g:1072:4: (lv_lines_1_0= ruleLineIndex )
+            // InternalMyCsv.g:1080:3: ( (lv_lines_1_0= ruleLineIndex ) )
+            // InternalMyCsv.g:1081:4: (lv_lines_1_0= ruleLineIndex )
             {
-            // InternalMyCsv.g:1072:4: (lv_lines_1_0= ruleLineIndex )
-            // InternalMyCsv.g:1073:5: lv_lines_1_0= ruleLineIndex
+            // InternalMyCsv.g:1081:4: (lv_lines_1_0= ruleLineIndex )
+            // InternalMyCsv.g:1082:5: lv_lines_1_0= ruleLineIndex
             {
 
             					newCompositeNode(grammarAccess.getDeleteLineAccess().getLinesLineIndexParserRuleCall_1_0());
@@ -3050,7 +3077,7 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleDeleteField"
-    // InternalMyCsv.g:1094:1: entryRuleDeleteField returns [EObject current=null] : iv_ruleDeleteField= ruleDeleteField EOF ;
+    // InternalMyCsv.g:1103:1: entryRuleDeleteField returns [EObject current=null] : iv_ruleDeleteField= ruleDeleteField EOF ;
     public final EObject entryRuleDeleteField() throws RecognitionException {
         EObject current = null;
 
@@ -3058,8 +3085,8 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalMyCsv.g:1094:52: (iv_ruleDeleteField= ruleDeleteField EOF )
-            // InternalMyCsv.g:1095:2: iv_ruleDeleteField= ruleDeleteField EOF
+            // InternalMyCsv.g:1103:52: (iv_ruleDeleteField= ruleDeleteField EOF )
+            // InternalMyCsv.g:1104:2: iv_ruleDeleteField= ruleDeleteField EOF
             {
              newCompositeNode(grammarAccess.getDeleteFieldRule()); 
             pushFollow(FOLLOW_1);
@@ -3086,7 +3113,7 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleDeleteField"
-    // InternalMyCsv.g:1101:1: ruleDeleteField returns [EObject current=null] : (otherlv_0= 'field' ( (lv_fields_1_0= ruleFieldIndex ) ) ) ;
+    // InternalMyCsv.g:1110:1: ruleDeleteField returns [EObject current=null] : (otherlv_0= 'field' ( (lv_fields_1_0= ruleFieldIndex ) ) ) ;
     public final EObject ruleDeleteField() throws RecognitionException {
         EObject current = null;
 
@@ -3098,21 +3125,21 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalMyCsv.g:1107:2: ( (otherlv_0= 'field' ( (lv_fields_1_0= ruleFieldIndex ) ) ) )
-            // InternalMyCsv.g:1108:2: (otherlv_0= 'field' ( (lv_fields_1_0= ruleFieldIndex ) ) )
+            // InternalMyCsv.g:1116:2: ( (otherlv_0= 'field' ( (lv_fields_1_0= ruleFieldIndex ) ) ) )
+            // InternalMyCsv.g:1117:2: (otherlv_0= 'field' ( (lv_fields_1_0= ruleFieldIndex ) ) )
             {
-            // InternalMyCsv.g:1108:2: (otherlv_0= 'field' ( (lv_fields_1_0= ruleFieldIndex ) ) )
-            // InternalMyCsv.g:1109:3: otherlv_0= 'field' ( (lv_fields_1_0= ruleFieldIndex ) )
+            // InternalMyCsv.g:1117:2: (otherlv_0= 'field' ( (lv_fields_1_0= ruleFieldIndex ) ) )
+            // InternalMyCsv.g:1118:3: otherlv_0= 'field' ( (lv_fields_1_0= ruleFieldIndex ) )
             {
             otherlv_0=(Token)match(input,28,FOLLOW_17); 
 
             			newLeafNode(otherlv_0, grammarAccess.getDeleteFieldAccess().getFieldKeyword_0());
             		
-            // InternalMyCsv.g:1113:3: ( (lv_fields_1_0= ruleFieldIndex ) )
-            // InternalMyCsv.g:1114:4: (lv_fields_1_0= ruleFieldIndex )
+            // InternalMyCsv.g:1122:3: ( (lv_fields_1_0= ruleFieldIndex ) )
+            // InternalMyCsv.g:1123:4: (lv_fields_1_0= ruleFieldIndex )
             {
-            // InternalMyCsv.g:1114:4: (lv_fields_1_0= ruleFieldIndex )
-            // InternalMyCsv.g:1115:5: lv_fields_1_0= ruleFieldIndex
+            // InternalMyCsv.g:1123:4: (lv_fields_1_0= ruleFieldIndex )
+            // InternalMyCsv.g:1124:5: lv_fields_1_0= ruleFieldIndex
             {
 
             					newCompositeNode(grammarAccess.getDeleteFieldAccess().getFieldsFieldIndexParserRuleCall_1_0());
@@ -3162,7 +3189,7 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleInsert"
-    // InternalMyCsv.g:1136:1: entryRuleInsert returns [EObject current=null] : iv_ruleInsert= ruleInsert EOF ;
+    // InternalMyCsv.g:1145:1: entryRuleInsert returns [EObject current=null] : iv_ruleInsert= ruleInsert EOF ;
     public final EObject entryRuleInsert() throws RecognitionException {
         EObject current = null;
 
@@ -3170,8 +3197,8 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalMyCsv.g:1136:47: (iv_ruleInsert= ruleInsert EOF )
-            // InternalMyCsv.g:1137:2: iv_ruleInsert= ruleInsert EOF
+            // InternalMyCsv.g:1145:47: (iv_ruleInsert= ruleInsert EOF )
+            // InternalMyCsv.g:1146:2: iv_ruleInsert= ruleInsert EOF
             {
              newCompositeNode(grammarAccess.getInsertRule()); 
             pushFollow(FOLLOW_1);
@@ -3198,7 +3225,7 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleInsert"
-    // InternalMyCsv.g:1143:1: ruleInsert returns [EObject current=null] : (otherlv_0= 'Insert' (this_InsertLine_1= ruleInsertLine | this_InsertField_2= ruleInsertField ) ) ;
+    // InternalMyCsv.g:1152:1: ruleInsert returns [EObject current=null] : (otherlv_0= 'Insert' (this_InsertLine_1= ruleInsertLine | this_InsertField_2= ruleInsertField ) ) ;
     public final EObject ruleInsert() throws RecognitionException {
         EObject current = null;
 
@@ -3212,17 +3239,17 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalMyCsv.g:1149:2: ( (otherlv_0= 'Insert' (this_InsertLine_1= ruleInsertLine | this_InsertField_2= ruleInsertField ) ) )
-            // InternalMyCsv.g:1150:2: (otherlv_0= 'Insert' (this_InsertLine_1= ruleInsertLine | this_InsertField_2= ruleInsertField ) )
+            // InternalMyCsv.g:1158:2: ( (otherlv_0= 'Insert' (this_InsertLine_1= ruleInsertLine | this_InsertField_2= ruleInsertField ) ) )
+            // InternalMyCsv.g:1159:2: (otherlv_0= 'Insert' (this_InsertLine_1= ruleInsertLine | this_InsertField_2= ruleInsertField ) )
             {
-            // InternalMyCsv.g:1150:2: (otherlv_0= 'Insert' (this_InsertLine_1= ruleInsertLine | this_InsertField_2= ruleInsertField ) )
-            // InternalMyCsv.g:1151:3: otherlv_0= 'Insert' (this_InsertLine_1= ruleInsertLine | this_InsertField_2= ruleInsertField )
+            // InternalMyCsv.g:1159:2: (otherlv_0= 'Insert' (this_InsertLine_1= ruleInsertLine | this_InsertField_2= ruleInsertField ) )
+            // InternalMyCsv.g:1160:3: otherlv_0= 'Insert' (this_InsertLine_1= ruleInsertLine | this_InsertField_2= ruleInsertField )
             {
             otherlv_0=(Token)match(input,29,FOLLOW_19); 
 
             			newLeafNode(otherlv_0, grammarAccess.getInsertAccess().getInsertKeyword_0());
             		
-            // InternalMyCsv.g:1155:3: (this_InsertLine_1= ruleInsertLine | this_InsertField_2= ruleInsertField )
+            // InternalMyCsv.g:1164:3: (this_InsertLine_1= ruleInsertLine | this_InsertField_2= ruleInsertField )
             int alt18=2;
             int LA18_0 = input.LA(1);
 
@@ -3240,7 +3267,7 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
             }
             switch (alt18) {
                 case 1 :
-                    // InternalMyCsv.g:1156:4: this_InsertLine_1= ruleInsertLine
+                    // InternalMyCsv.g:1165:4: this_InsertLine_1= ruleInsertLine
                     {
 
                     				newCompositeNode(grammarAccess.getInsertAccess().getInsertLineParserRuleCall_1_0());
@@ -3258,7 +3285,7 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalMyCsv.g:1165:4: this_InsertField_2= ruleInsertField
+                    // InternalMyCsv.g:1174:4: this_InsertField_2= ruleInsertField
                     {
 
                     				newCompositeNode(grammarAccess.getInsertAccess().getInsertFieldParserRuleCall_1_1());
@@ -3301,7 +3328,7 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleInsertLine"
-    // InternalMyCsv.g:1178:1: entryRuleInsertLine returns [EObject current=null] : iv_ruleInsertLine= ruleInsertLine EOF ;
+    // InternalMyCsv.g:1187:1: entryRuleInsertLine returns [EObject current=null] : iv_ruleInsertLine= ruleInsertLine EOF ;
     public final EObject entryRuleInsertLine() throws RecognitionException {
         EObject current = null;
 
@@ -3309,8 +3336,8 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalMyCsv.g:1178:51: (iv_ruleInsertLine= ruleInsertLine EOF )
-            // InternalMyCsv.g:1179:2: iv_ruleInsertLine= ruleInsertLine EOF
+            // InternalMyCsv.g:1187:51: (iv_ruleInsertLine= ruleInsertLine EOF )
+            // InternalMyCsv.g:1188:2: iv_ruleInsertLine= ruleInsertLine EOF
             {
              newCompositeNode(grammarAccess.getInsertLineRule()); 
             pushFollow(FOLLOW_1);
@@ -3337,7 +3364,7 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleInsertLine"
-    // InternalMyCsv.g:1185:1: ruleInsertLine returns [EObject current=null] : (otherlv_0= 'line' ( (lv_values_1_0= ruleValues ) ) ) ;
+    // InternalMyCsv.g:1194:1: ruleInsertLine returns [EObject current=null] : (otherlv_0= 'line' ( (lv_values_1_0= ruleValues ) ) ) ;
     public final EObject ruleInsertLine() throws RecognitionException {
         EObject current = null;
 
@@ -3349,21 +3376,21 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalMyCsv.g:1191:2: ( (otherlv_0= 'line' ( (lv_values_1_0= ruleValues ) ) ) )
-            // InternalMyCsv.g:1192:2: (otherlv_0= 'line' ( (lv_values_1_0= ruleValues ) ) )
+            // InternalMyCsv.g:1200:2: ( (otherlv_0= 'line' ( (lv_values_1_0= ruleValues ) ) ) )
+            // InternalMyCsv.g:1201:2: (otherlv_0= 'line' ( (lv_values_1_0= ruleValues ) ) )
             {
-            // InternalMyCsv.g:1192:2: (otherlv_0= 'line' ( (lv_values_1_0= ruleValues ) ) )
-            // InternalMyCsv.g:1193:3: otherlv_0= 'line' ( (lv_values_1_0= ruleValues ) )
+            // InternalMyCsv.g:1201:2: (otherlv_0= 'line' ( (lv_values_1_0= ruleValues ) ) )
+            // InternalMyCsv.g:1202:3: otherlv_0= 'line' ( (lv_values_1_0= ruleValues ) )
             {
             otherlv_0=(Token)match(input,27,FOLLOW_20); 
 
             			newLeafNode(otherlv_0, grammarAccess.getInsertLineAccess().getLineKeyword_0());
             		
-            // InternalMyCsv.g:1197:3: ( (lv_values_1_0= ruleValues ) )
-            // InternalMyCsv.g:1198:4: (lv_values_1_0= ruleValues )
+            // InternalMyCsv.g:1206:3: ( (lv_values_1_0= ruleValues ) )
+            // InternalMyCsv.g:1207:4: (lv_values_1_0= ruleValues )
             {
-            // InternalMyCsv.g:1198:4: (lv_values_1_0= ruleValues )
-            // InternalMyCsv.g:1199:5: lv_values_1_0= ruleValues
+            // InternalMyCsv.g:1207:4: (lv_values_1_0= ruleValues )
+            // InternalMyCsv.g:1208:5: lv_values_1_0= ruleValues
             {
 
             					newCompositeNode(grammarAccess.getInsertLineAccess().getValuesValuesParserRuleCall_1_0());
@@ -3413,7 +3440,7 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleInsertField"
-    // InternalMyCsv.g:1220:1: entryRuleInsertField returns [EObject current=null] : iv_ruleInsertField= ruleInsertField EOF ;
+    // InternalMyCsv.g:1229:1: entryRuleInsertField returns [EObject current=null] : iv_ruleInsertField= ruleInsertField EOF ;
     public final EObject entryRuleInsertField() throws RecognitionException {
         EObject current = null;
 
@@ -3421,8 +3448,8 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalMyCsv.g:1220:52: (iv_ruleInsertField= ruleInsertField EOF )
-            // InternalMyCsv.g:1221:2: iv_ruleInsertField= ruleInsertField EOF
+            // InternalMyCsv.g:1229:52: (iv_ruleInsertField= ruleInsertField EOF )
+            // InternalMyCsv.g:1230:2: iv_ruleInsertField= ruleInsertField EOF
             {
              newCompositeNode(grammarAccess.getInsertFieldRule()); 
             pushFollow(FOLLOW_1);
@@ -3449,7 +3476,7 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleInsertField"
-    // InternalMyCsv.g:1227:1: ruleInsertField returns [EObject current=null] : (otherlv_0= 'field' ( (lv_fieldname_1_0= ruleField ) ) otherlv_2= ':' ( (lv_values_3_0= ruleValues ) ) ) ;
+    // InternalMyCsv.g:1236:1: ruleInsertField returns [EObject current=null] : (otherlv_0= 'field' ( (lv_fieldname_1_0= ruleField ) ) otherlv_2= ':' ( (lv_values_3_0= ruleValues ) ) ) ;
     public final EObject ruleInsertField() throws RecognitionException {
         EObject current = null;
 
@@ -3464,21 +3491,21 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalMyCsv.g:1233:2: ( (otherlv_0= 'field' ( (lv_fieldname_1_0= ruleField ) ) otherlv_2= ':' ( (lv_values_3_0= ruleValues ) ) ) )
-            // InternalMyCsv.g:1234:2: (otherlv_0= 'field' ( (lv_fieldname_1_0= ruleField ) ) otherlv_2= ':' ( (lv_values_3_0= ruleValues ) ) )
+            // InternalMyCsv.g:1242:2: ( (otherlv_0= 'field' ( (lv_fieldname_1_0= ruleField ) ) otherlv_2= ':' ( (lv_values_3_0= ruleValues ) ) ) )
+            // InternalMyCsv.g:1243:2: (otherlv_0= 'field' ( (lv_fieldname_1_0= ruleField ) ) otherlv_2= ':' ( (lv_values_3_0= ruleValues ) ) )
             {
-            // InternalMyCsv.g:1234:2: (otherlv_0= 'field' ( (lv_fieldname_1_0= ruleField ) ) otherlv_2= ':' ( (lv_values_3_0= ruleValues ) ) )
-            // InternalMyCsv.g:1235:3: otherlv_0= 'field' ( (lv_fieldname_1_0= ruleField ) ) otherlv_2= ':' ( (lv_values_3_0= ruleValues ) )
+            // InternalMyCsv.g:1243:2: (otherlv_0= 'field' ( (lv_fieldname_1_0= ruleField ) ) otherlv_2= ':' ( (lv_values_3_0= ruleValues ) ) )
+            // InternalMyCsv.g:1244:3: otherlv_0= 'field' ( (lv_fieldname_1_0= ruleField ) ) otherlv_2= ':' ( (lv_values_3_0= ruleValues ) )
             {
             otherlv_0=(Token)match(input,28,FOLLOW_21); 
 
             			newLeafNode(otherlv_0, grammarAccess.getInsertFieldAccess().getFieldKeyword_0());
             		
-            // InternalMyCsv.g:1239:3: ( (lv_fieldname_1_0= ruleField ) )
-            // InternalMyCsv.g:1240:4: (lv_fieldname_1_0= ruleField )
+            // InternalMyCsv.g:1248:3: ( (lv_fieldname_1_0= ruleField ) )
+            // InternalMyCsv.g:1249:4: (lv_fieldname_1_0= ruleField )
             {
-            // InternalMyCsv.g:1240:4: (lv_fieldname_1_0= ruleField )
-            // InternalMyCsv.g:1241:5: lv_fieldname_1_0= ruleField
+            // InternalMyCsv.g:1249:4: (lv_fieldname_1_0= ruleField )
+            // InternalMyCsv.g:1250:5: lv_fieldname_1_0= ruleField
             {
 
             					newCompositeNode(grammarAccess.getInsertFieldAccess().getFieldnameFieldParserRuleCall_1_0());
@@ -3509,11 +3536,11 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
             			newLeafNode(otherlv_2, grammarAccess.getInsertFieldAccess().getColonKeyword_2());
             		
-            // InternalMyCsv.g:1262:3: ( (lv_values_3_0= ruleValues ) )
-            // InternalMyCsv.g:1263:4: (lv_values_3_0= ruleValues )
+            // InternalMyCsv.g:1271:3: ( (lv_values_3_0= ruleValues ) )
+            // InternalMyCsv.g:1272:4: (lv_values_3_0= ruleValues )
             {
-            // InternalMyCsv.g:1263:4: (lv_values_3_0= ruleValues )
-            // InternalMyCsv.g:1264:5: lv_values_3_0= ruleValues
+            // InternalMyCsv.g:1272:4: (lv_values_3_0= ruleValues )
+            // InternalMyCsv.g:1273:5: lv_values_3_0= ruleValues
             {
 
             					newCompositeNode(grammarAccess.getInsertFieldAccess().getValuesValuesParserRuleCall_3_0());
@@ -3563,7 +3590,7 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleModify"
-    // InternalMyCsv.g:1285:1: entryRuleModify returns [EObject current=null] : iv_ruleModify= ruleModify EOF ;
+    // InternalMyCsv.g:1294:1: entryRuleModify returns [EObject current=null] : iv_ruleModify= ruleModify EOF ;
     public final EObject entryRuleModify() throws RecognitionException {
         EObject current = null;
 
@@ -3571,8 +3598,8 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalMyCsv.g:1285:47: (iv_ruleModify= ruleModify EOF )
-            // InternalMyCsv.g:1286:2: iv_ruleModify= ruleModify EOF
+            // InternalMyCsv.g:1294:47: (iv_ruleModify= ruleModify EOF )
+            // InternalMyCsv.g:1295:2: iv_ruleModify= ruleModify EOF
             {
              newCompositeNode(grammarAccess.getModifyRule()); 
             pushFollow(FOLLOW_1);
@@ -3599,7 +3626,7 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleModify"
-    // InternalMyCsv.g:1292:1: ruleModify returns [EObject current=null] : (otherlv_0= 'Modify' (this_ModifyLine_1= ruleModifyLine | this_ModifyField_2= ruleModifyField | this_ModifyCell_3= ruleModifyCell ) ) ;
+    // InternalMyCsv.g:1301:1: ruleModify returns [EObject current=null] : (otherlv_0= 'Modify' (this_ModifyLine_1= ruleModifyLine | this_ModifyField_2= ruleModifyField | this_ModifyCell_3= ruleModifyCell ) ) ;
     public final EObject ruleModify() throws RecognitionException {
         EObject current = null;
 
@@ -3615,17 +3642,17 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalMyCsv.g:1298:2: ( (otherlv_0= 'Modify' (this_ModifyLine_1= ruleModifyLine | this_ModifyField_2= ruleModifyField | this_ModifyCell_3= ruleModifyCell ) ) )
-            // InternalMyCsv.g:1299:2: (otherlv_0= 'Modify' (this_ModifyLine_1= ruleModifyLine | this_ModifyField_2= ruleModifyField | this_ModifyCell_3= ruleModifyCell ) )
+            // InternalMyCsv.g:1307:2: ( (otherlv_0= 'Modify' (this_ModifyLine_1= ruleModifyLine | this_ModifyField_2= ruleModifyField | this_ModifyCell_3= ruleModifyCell ) ) )
+            // InternalMyCsv.g:1308:2: (otherlv_0= 'Modify' (this_ModifyLine_1= ruleModifyLine | this_ModifyField_2= ruleModifyField | this_ModifyCell_3= ruleModifyCell ) )
             {
-            // InternalMyCsv.g:1299:2: (otherlv_0= 'Modify' (this_ModifyLine_1= ruleModifyLine | this_ModifyField_2= ruleModifyField | this_ModifyCell_3= ruleModifyCell ) )
-            // InternalMyCsv.g:1300:3: otherlv_0= 'Modify' (this_ModifyLine_1= ruleModifyLine | this_ModifyField_2= ruleModifyField | this_ModifyCell_3= ruleModifyCell )
+            // InternalMyCsv.g:1308:2: (otherlv_0= 'Modify' (this_ModifyLine_1= ruleModifyLine | this_ModifyField_2= ruleModifyField | this_ModifyCell_3= ruleModifyCell ) )
+            // InternalMyCsv.g:1309:3: otherlv_0= 'Modify' (this_ModifyLine_1= ruleModifyLine | this_ModifyField_2= ruleModifyField | this_ModifyCell_3= ruleModifyCell )
             {
             otherlv_0=(Token)match(input,31,FOLLOW_23); 
 
             			newLeafNode(otherlv_0, grammarAccess.getModifyAccess().getModifyKeyword_0());
             		
-            // InternalMyCsv.g:1304:3: (this_ModifyLine_1= ruleModifyLine | this_ModifyField_2= ruleModifyField | this_ModifyCell_3= ruleModifyCell )
+            // InternalMyCsv.g:1313:3: (this_ModifyLine_1= ruleModifyLine | this_ModifyField_2= ruleModifyField | this_ModifyCell_3= ruleModifyCell )
             int alt19=3;
             switch ( input.LA(1) ) {
             case 27:
@@ -3652,7 +3679,7 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
             switch (alt19) {
                 case 1 :
-                    // InternalMyCsv.g:1305:4: this_ModifyLine_1= ruleModifyLine
+                    // InternalMyCsv.g:1314:4: this_ModifyLine_1= ruleModifyLine
                     {
 
                     				newCompositeNode(grammarAccess.getModifyAccess().getModifyLineParserRuleCall_1_0());
@@ -3670,7 +3697,7 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalMyCsv.g:1314:4: this_ModifyField_2= ruleModifyField
+                    // InternalMyCsv.g:1323:4: this_ModifyField_2= ruleModifyField
                     {
 
                     				newCompositeNode(grammarAccess.getModifyAccess().getModifyFieldParserRuleCall_1_1());
@@ -3688,7 +3715,7 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // InternalMyCsv.g:1323:4: this_ModifyCell_3= ruleModifyCell
+                    // InternalMyCsv.g:1332:4: this_ModifyCell_3= ruleModifyCell
                     {
 
                     				newCompositeNode(grammarAccess.getModifyAccess().getModifyCellParserRuleCall_1_2());
@@ -3731,7 +3758,7 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleModifyLine"
-    // InternalMyCsv.g:1336:1: entryRuleModifyLine returns [EObject current=null] : iv_ruleModifyLine= ruleModifyLine EOF ;
+    // InternalMyCsv.g:1345:1: entryRuleModifyLine returns [EObject current=null] : iv_ruleModifyLine= ruleModifyLine EOF ;
     public final EObject entryRuleModifyLine() throws RecognitionException {
         EObject current = null;
 
@@ -3739,8 +3766,8 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalMyCsv.g:1336:51: (iv_ruleModifyLine= ruleModifyLine EOF )
-            // InternalMyCsv.g:1337:2: iv_ruleModifyLine= ruleModifyLine EOF
+            // InternalMyCsv.g:1345:51: (iv_ruleModifyLine= ruleModifyLine EOF )
+            // InternalMyCsv.g:1346:2: iv_ruleModifyLine= ruleModifyLine EOF
             {
              newCompositeNode(grammarAccess.getModifyLineRule()); 
             pushFollow(FOLLOW_1);
@@ -3767,7 +3794,7 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleModifyLine"
-    // InternalMyCsv.g:1343:1: ruleModifyLine returns [EObject current=null] : (otherlv_0= 'line' ( (lv_lines_1_0= ruleLineIndex ) ) otherlv_2= 'with' ( (lv_values_3_0= ruleValues ) ) ) ;
+    // InternalMyCsv.g:1352:1: ruleModifyLine returns [EObject current=null] : (otherlv_0= 'line' ( (lv_lines_1_0= ruleLineIndex ) ) otherlv_2= 'with' ( (lv_values_3_0= ruleValues ) ) ) ;
     public final EObject ruleModifyLine() throws RecognitionException {
         EObject current = null;
 
@@ -3782,21 +3809,21 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalMyCsv.g:1349:2: ( (otherlv_0= 'line' ( (lv_lines_1_0= ruleLineIndex ) ) otherlv_2= 'with' ( (lv_values_3_0= ruleValues ) ) ) )
-            // InternalMyCsv.g:1350:2: (otherlv_0= 'line' ( (lv_lines_1_0= ruleLineIndex ) ) otherlv_2= 'with' ( (lv_values_3_0= ruleValues ) ) )
+            // InternalMyCsv.g:1358:2: ( (otherlv_0= 'line' ( (lv_lines_1_0= ruleLineIndex ) ) otherlv_2= 'with' ( (lv_values_3_0= ruleValues ) ) ) )
+            // InternalMyCsv.g:1359:2: (otherlv_0= 'line' ( (lv_lines_1_0= ruleLineIndex ) ) otherlv_2= 'with' ( (lv_values_3_0= ruleValues ) ) )
             {
-            // InternalMyCsv.g:1350:2: (otherlv_0= 'line' ( (lv_lines_1_0= ruleLineIndex ) ) otherlv_2= 'with' ( (lv_values_3_0= ruleValues ) ) )
-            // InternalMyCsv.g:1351:3: otherlv_0= 'line' ( (lv_lines_1_0= ruleLineIndex ) ) otherlv_2= 'with' ( (lv_values_3_0= ruleValues ) )
+            // InternalMyCsv.g:1359:2: (otherlv_0= 'line' ( (lv_lines_1_0= ruleLineIndex ) ) otherlv_2= 'with' ( (lv_values_3_0= ruleValues ) ) )
+            // InternalMyCsv.g:1360:3: otherlv_0= 'line' ( (lv_lines_1_0= ruleLineIndex ) ) otherlv_2= 'with' ( (lv_values_3_0= ruleValues ) )
             {
             otherlv_0=(Token)match(input,27,FOLLOW_18); 
 
             			newLeafNode(otherlv_0, grammarAccess.getModifyLineAccess().getLineKeyword_0());
             		
-            // InternalMyCsv.g:1355:3: ( (lv_lines_1_0= ruleLineIndex ) )
-            // InternalMyCsv.g:1356:4: (lv_lines_1_0= ruleLineIndex )
+            // InternalMyCsv.g:1364:3: ( (lv_lines_1_0= ruleLineIndex ) )
+            // InternalMyCsv.g:1365:4: (lv_lines_1_0= ruleLineIndex )
             {
-            // InternalMyCsv.g:1356:4: (lv_lines_1_0= ruleLineIndex )
-            // InternalMyCsv.g:1357:5: lv_lines_1_0= ruleLineIndex
+            // InternalMyCsv.g:1365:4: (lv_lines_1_0= ruleLineIndex )
+            // InternalMyCsv.g:1366:5: lv_lines_1_0= ruleLineIndex
             {
 
             					newCompositeNode(grammarAccess.getModifyLineAccess().getLinesLineIndexParserRuleCall_1_0());
@@ -3827,11 +3854,11 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
             			newLeafNode(otherlv_2, grammarAccess.getModifyLineAccess().getWithKeyword_2());
             		
-            // InternalMyCsv.g:1378:3: ( (lv_values_3_0= ruleValues ) )
-            // InternalMyCsv.g:1379:4: (lv_values_3_0= ruleValues )
+            // InternalMyCsv.g:1387:3: ( (lv_values_3_0= ruleValues ) )
+            // InternalMyCsv.g:1388:4: (lv_values_3_0= ruleValues )
             {
-            // InternalMyCsv.g:1379:4: (lv_values_3_0= ruleValues )
-            // InternalMyCsv.g:1380:5: lv_values_3_0= ruleValues
+            // InternalMyCsv.g:1388:4: (lv_values_3_0= ruleValues )
+            // InternalMyCsv.g:1389:5: lv_values_3_0= ruleValues
             {
 
             					newCompositeNode(grammarAccess.getModifyLineAccess().getValuesValuesParserRuleCall_3_0());
@@ -3881,7 +3908,7 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleModifyField"
-    // InternalMyCsv.g:1401:1: entryRuleModifyField returns [EObject current=null] : iv_ruleModifyField= ruleModifyField EOF ;
+    // InternalMyCsv.g:1410:1: entryRuleModifyField returns [EObject current=null] : iv_ruleModifyField= ruleModifyField EOF ;
     public final EObject entryRuleModifyField() throws RecognitionException {
         EObject current = null;
 
@@ -3889,8 +3916,8 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalMyCsv.g:1401:52: (iv_ruleModifyField= ruleModifyField EOF )
-            // InternalMyCsv.g:1402:2: iv_ruleModifyField= ruleModifyField EOF
+            // InternalMyCsv.g:1410:52: (iv_ruleModifyField= ruleModifyField EOF )
+            // InternalMyCsv.g:1411:2: iv_ruleModifyField= ruleModifyField EOF
             {
              newCompositeNode(grammarAccess.getModifyFieldRule()); 
             pushFollow(FOLLOW_1);
@@ -3917,7 +3944,7 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleModifyField"
-    // InternalMyCsv.g:1408:1: ruleModifyField returns [EObject current=null] : (otherlv_0= 'field' ( (lv_fields_1_0= ruleFieldIndex ) ) otherlv_2= 'with' ( (lv_values_3_0= ruleValues ) ) ) ;
+    // InternalMyCsv.g:1417:1: ruleModifyField returns [EObject current=null] : (otherlv_0= 'field' ( (lv_fields_1_0= ruleFieldIndex ) ) otherlv_2= 'with' ( (lv_values_3_0= ruleValues ) ) ) ;
     public final EObject ruleModifyField() throws RecognitionException {
         EObject current = null;
 
@@ -3932,21 +3959,21 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalMyCsv.g:1414:2: ( (otherlv_0= 'field' ( (lv_fields_1_0= ruleFieldIndex ) ) otherlv_2= 'with' ( (lv_values_3_0= ruleValues ) ) ) )
-            // InternalMyCsv.g:1415:2: (otherlv_0= 'field' ( (lv_fields_1_0= ruleFieldIndex ) ) otherlv_2= 'with' ( (lv_values_3_0= ruleValues ) ) )
+            // InternalMyCsv.g:1423:2: ( (otherlv_0= 'field' ( (lv_fields_1_0= ruleFieldIndex ) ) otherlv_2= 'with' ( (lv_values_3_0= ruleValues ) ) ) )
+            // InternalMyCsv.g:1424:2: (otherlv_0= 'field' ( (lv_fields_1_0= ruleFieldIndex ) ) otherlv_2= 'with' ( (lv_values_3_0= ruleValues ) ) )
             {
-            // InternalMyCsv.g:1415:2: (otherlv_0= 'field' ( (lv_fields_1_0= ruleFieldIndex ) ) otherlv_2= 'with' ( (lv_values_3_0= ruleValues ) ) )
-            // InternalMyCsv.g:1416:3: otherlv_0= 'field' ( (lv_fields_1_0= ruleFieldIndex ) ) otherlv_2= 'with' ( (lv_values_3_0= ruleValues ) )
+            // InternalMyCsv.g:1424:2: (otherlv_0= 'field' ( (lv_fields_1_0= ruleFieldIndex ) ) otherlv_2= 'with' ( (lv_values_3_0= ruleValues ) ) )
+            // InternalMyCsv.g:1425:3: otherlv_0= 'field' ( (lv_fields_1_0= ruleFieldIndex ) ) otherlv_2= 'with' ( (lv_values_3_0= ruleValues ) )
             {
             otherlv_0=(Token)match(input,28,FOLLOW_17); 
 
             			newLeafNode(otherlv_0, grammarAccess.getModifyFieldAccess().getFieldKeyword_0());
             		
-            // InternalMyCsv.g:1420:3: ( (lv_fields_1_0= ruleFieldIndex ) )
-            // InternalMyCsv.g:1421:4: (lv_fields_1_0= ruleFieldIndex )
+            // InternalMyCsv.g:1429:3: ( (lv_fields_1_0= ruleFieldIndex ) )
+            // InternalMyCsv.g:1430:4: (lv_fields_1_0= ruleFieldIndex )
             {
-            // InternalMyCsv.g:1421:4: (lv_fields_1_0= ruleFieldIndex )
-            // InternalMyCsv.g:1422:5: lv_fields_1_0= ruleFieldIndex
+            // InternalMyCsv.g:1430:4: (lv_fields_1_0= ruleFieldIndex )
+            // InternalMyCsv.g:1431:5: lv_fields_1_0= ruleFieldIndex
             {
 
             					newCompositeNode(grammarAccess.getModifyFieldAccess().getFieldsFieldIndexParserRuleCall_1_0());
@@ -3977,11 +4004,11 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
             			newLeafNode(otherlv_2, grammarAccess.getModifyFieldAccess().getWithKeyword_2());
             		
-            // InternalMyCsv.g:1443:3: ( (lv_values_3_0= ruleValues ) )
-            // InternalMyCsv.g:1444:4: (lv_values_3_0= ruleValues )
+            // InternalMyCsv.g:1452:3: ( (lv_values_3_0= ruleValues ) )
+            // InternalMyCsv.g:1453:4: (lv_values_3_0= ruleValues )
             {
-            // InternalMyCsv.g:1444:4: (lv_values_3_0= ruleValues )
-            // InternalMyCsv.g:1445:5: lv_values_3_0= ruleValues
+            // InternalMyCsv.g:1453:4: (lv_values_3_0= ruleValues )
+            // InternalMyCsv.g:1454:5: lv_values_3_0= ruleValues
             {
 
             					newCompositeNode(grammarAccess.getModifyFieldAccess().getValuesValuesParserRuleCall_3_0());
@@ -4031,7 +4058,7 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleModifyCell"
-    // InternalMyCsv.g:1466:1: entryRuleModifyCell returns [EObject current=null] : iv_ruleModifyCell= ruleModifyCell EOF ;
+    // InternalMyCsv.g:1475:1: entryRuleModifyCell returns [EObject current=null] : iv_ruleModifyCell= ruleModifyCell EOF ;
     public final EObject entryRuleModifyCell() throws RecognitionException {
         EObject current = null;
 
@@ -4039,8 +4066,8 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalMyCsv.g:1466:51: (iv_ruleModifyCell= ruleModifyCell EOF )
-            // InternalMyCsv.g:1467:2: iv_ruleModifyCell= ruleModifyCell EOF
+            // InternalMyCsv.g:1475:51: (iv_ruleModifyCell= ruleModifyCell EOF )
+            // InternalMyCsv.g:1476:2: iv_ruleModifyCell= ruleModifyCell EOF
             {
              newCompositeNode(grammarAccess.getModifyCellRule()); 
             pushFollow(FOLLOW_1);
@@ -4067,7 +4094,7 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleModifyCell"
-    // InternalMyCsv.g:1473:1: ruleModifyCell returns [EObject current=null] : (otherlv_0= 'cell' ( (lv_cell_1_0= ruleCellIndex ) ) otherlv_2= 'with' ( (lv_value_3_0= ruleValue ) ) ) ;
+    // InternalMyCsv.g:1482:1: ruleModifyCell returns [EObject current=null] : (otherlv_0= 'cell' ( (lv_cell_1_0= ruleCellIndex ) ) otherlv_2= 'with' ( (lv_value_3_0= ruleValue ) ) ) ;
     public final EObject ruleModifyCell() throws RecognitionException {
         EObject current = null;
 
@@ -4082,21 +4109,21 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalMyCsv.g:1479:2: ( (otherlv_0= 'cell' ( (lv_cell_1_0= ruleCellIndex ) ) otherlv_2= 'with' ( (lv_value_3_0= ruleValue ) ) ) )
-            // InternalMyCsv.g:1480:2: (otherlv_0= 'cell' ( (lv_cell_1_0= ruleCellIndex ) ) otherlv_2= 'with' ( (lv_value_3_0= ruleValue ) ) )
+            // InternalMyCsv.g:1488:2: ( (otherlv_0= 'cell' ( (lv_cell_1_0= ruleCellIndex ) ) otherlv_2= 'with' ( (lv_value_3_0= ruleValue ) ) ) )
+            // InternalMyCsv.g:1489:2: (otherlv_0= 'cell' ( (lv_cell_1_0= ruleCellIndex ) ) otherlv_2= 'with' ( (lv_value_3_0= ruleValue ) ) )
             {
-            // InternalMyCsv.g:1480:2: (otherlv_0= 'cell' ( (lv_cell_1_0= ruleCellIndex ) ) otherlv_2= 'with' ( (lv_value_3_0= ruleValue ) ) )
-            // InternalMyCsv.g:1481:3: otherlv_0= 'cell' ( (lv_cell_1_0= ruleCellIndex ) ) otherlv_2= 'with' ( (lv_value_3_0= ruleValue ) )
+            // InternalMyCsv.g:1489:2: (otherlv_0= 'cell' ( (lv_cell_1_0= ruleCellIndex ) ) otherlv_2= 'with' ( (lv_value_3_0= ruleValue ) ) )
+            // InternalMyCsv.g:1490:3: otherlv_0= 'cell' ( (lv_cell_1_0= ruleCellIndex ) ) otherlv_2= 'with' ( (lv_value_3_0= ruleValue ) )
             {
             otherlv_0=(Token)match(input,33,FOLLOW_25); 
 
             			newLeafNode(otherlv_0, grammarAccess.getModifyCellAccess().getCellKeyword_0());
             		
-            // InternalMyCsv.g:1485:3: ( (lv_cell_1_0= ruleCellIndex ) )
-            // InternalMyCsv.g:1486:4: (lv_cell_1_0= ruleCellIndex )
+            // InternalMyCsv.g:1494:3: ( (lv_cell_1_0= ruleCellIndex ) )
+            // InternalMyCsv.g:1495:4: (lv_cell_1_0= ruleCellIndex )
             {
-            // InternalMyCsv.g:1486:4: (lv_cell_1_0= ruleCellIndex )
-            // InternalMyCsv.g:1487:5: lv_cell_1_0= ruleCellIndex
+            // InternalMyCsv.g:1495:4: (lv_cell_1_0= ruleCellIndex )
+            // InternalMyCsv.g:1496:5: lv_cell_1_0= ruleCellIndex
             {
 
             					newCompositeNode(grammarAccess.getModifyCellAccess().getCellCellIndexParserRuleCall_1_0());
@@ -4127,11 +4154,11 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
             			newLeafNode(otherlv_2, grammarAccess.getModifyCellAccess().getWithKeyword_2());
             		
-            // InternalMyCsv.g:1508:3: ( (lv_value_3_0= ruleValue ) )
-            // InternalMyCsv.g:1509:4: (lv_value_3_0= ruleValue )
+            // InternalMyCsv.g:1517:3: ( (lv_value_3_0= ruleValue ) )
+            // InternalMyCsv.g:1518:4: (lv_value_3_0= ruleValue )
             {
-            // InternalMyCsv.g:1509:4: (lv_value_3_0= ruleValue )
-            // InternalMyCsv.g:1510:5: lv_value_3_0= ruleValue
+            // InternalMyCsv.g:1518:4: (lv_value_3_0= ruleValue )
+            // InternalMyCsv.g:1519:5: lv_value_3_0= ruleValue
             {
 
             					newCompositeNode(grammarAccess.getModifyCellAccess().getValueValueParserRuleCall_3_0());
@@ -4181,7 +4208,7 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRulePrint"
-    // InternalMyCsv.g:1531:1: entryRulePrint returns [EObject current=null] : iv_rulePrint= rulePrint EOF ;
+    // InternalMyCsv.g:1540:1: entryRulePrint returns [EObject current=null] : iv_rulePrint= rulePrint EOF ;
     public final EObject entryRulePrint() throws RecognitionException {
         EObject current = null;
 
@@ -4189,8 +4216,8 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalMyCsv.g:1531:46: (iv_rulePrint= rulePrint EOF )
-            // InternalMyCsv.g:1532:2: iv_rulePrint= rulePrint EOF
+            // InternalMyCsv.g:1540:46: (iv_rulePrint= rulePrint EOF )
+            // InternalMyCsv.g:1541:2: iv_rulePrint= rulePrint EOF
             {
              newCompositeNode(grammarAccess.getPrintRule()); 
             pushFollow(FOLLOW_1);
@@ -4217,7 +4244,7 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "rulePrint"
-    // InternalMyCsv.g:1538:1: rulePrint returns [EObject current=null] : (otherlv_0= 'Print' (this_PrintLine_1= rulePrintLine | this_PrintField_2= rulePrintField | this_PrintCell_3= rulePrintCell | ( () rulePrintTable ) | this_PrintExpr_6= rulePrintExpr ) ) ;
+    // InternalMyCsv.g:1547:1: rulePrint returns [EObject current=null] : (otherlv_0= 'Print' (this_PrintLine_1= rulePrintLine | this_PrintField_2= rulePrintField | this_PrintCell_3= rulePrintCell | ( () rulePrintTable ) | this_PrintExpr_6= rulePrintExpr ) ) ;
     public final EObject rulePrint() throws RecognitionException {
         EObject current = null;
 
@@ -4235,17 +4262,17 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalMyCsv.g:1544:2: ( (otherlv_0= 'Print' (this_PrintLine_1= rulePrintLine | this_PrintField_2= rulePrintField | this_PrintCell_3= rulePrintCell | ( () rulePrintTable ) | this_PrintExpr_6= rulePrintExpr ) ) )
-            // InternalMyCsv.g:1545:2: (otherlv_0= 'Print' (this_PrintLine_1= rulePrintLine | this_PrintField_2= rulePrintField | this_PrintCell_3= rulePrintCell | ( () rulePrintTable ) | this_PrintExpr_6= rulePrintExpr ) )
+            // InternalMyCsv.g:1553:2: ( (otherlv_0= 'Print' (this_PrintLine_1= rulePrintLine | this_PrintField_2= rulePrintField | this_PrintCell_3= rulePrintCell | ( () rulePrintTable ) | this_PrintExpr_6= rulePrintExpr ) ) )
+            // InternalMyCsv.g:1554:2: (otherlv_0= 'Print' (this_PrintLine_1= rulePrintLine | this_PrintField_2= rulePrintField | this_PrintCell_3= rulePrintCell | ( () rulePrintTable ) | this_PrintExpr_6= rulePrintExpr ) )
             {
-            // InternalMyCsv.g:1545:2: (otherlv_0= 'Print' (this_PrintLine_1= rulePrintLine | this_PrintField_2= rulePrintField | this_PrintCell_3= rulePrintCell | ( () rulePrintTable ) | this_PrintExpr_6= rulePrintExpr ) )
-            // InternalMyCsv.g:1546:3: otherlv_0= 'Print' (this_PrintLine_1= rulePrintLine | this_PrintField_2= rulePrintField | this_PrintCell_3= rulePrintCell | ( () rulePrintTable ) | this_PrintExpr_6= rulePrintExpr )
+            // InternalMyCsv.g:1554:2: (otherlv_0= 'Print' (this_PrintLine_1= rulePrintLine | this_PrintField_2= rulePrintField | this_PrintCell_3= rulePrintCell | ( () rulePrintTable ) | this_PrintExpr_6= rulePrintExpr ) )
+            // InternalMyCsv.g:1555:3: otherlv_0= 'Print' (this_PrintLine_1= rulePrintLine | this_PrintField_2= rulePrintField | this_PrintCell_3= rulePrintCell | ( () rulePrintTable ) | this_PrintExpr_6= rulePrintExpr )
             {
             otherlv_0=(Token)match(input,34,FOLLOW_26); 
 
             			newLeafNode(otherlv_0, grammarAccess.getPrintAccess().getPrintKeyword_0());
             		
-            // InternalMyCsv.g:1550:3: (this_PrintLine_1= rulePrintLine | this_PrintField_2= rulePrintField | this_PrintCell_3= rulePrintCell | ( () rulePrintTable ) | this_PrintExpr_6= rulePrintExpr )
+            // InternalMyCsv.g:1559:3: (this_PrintLine_1= rulePrintLine | this_PrintField_2= rulePrintField | this_PrintCell_3= rulePrintCell | ( () rulePrintTable ) | this_PrintExpr_6= rulePrintExpr )
             int alt20=5;
             switch ( input.LA(1) ) {
             case 27:
@@ -4282,7 +4309,7 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
             switch (alt20) {
                 case 1 :
-                    // InternalMyCsv.g:1551:4: this_PrintLine_1= rulePrintLine
+                    // InternalMyCsv.g:1560:4: this_PrintLine_1= rulePrintLine
                     {
 
                     				newCompositeNode(grammarAccess.getPrintAccess().getPrintLineParserRuleCall_1_0());
@@ -4300,7 +4327,7 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalMyCsv.g:1560:4: this_PrintField_2= rulePrintField
+                    // InternalMyCsv.g:1569:4: this_PrintField_2= rulePrintField
                     {
 
                     				newCompositeNode(grammarAccess.getPrintAccess().getPrintFieldParserRuleCall_1_1());
@@ -4318,7 +4345,7 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // InternalMyCsv.g:1569:4: this_PrintCell_3= rulePrintCell
+                    // InternalMyCsv.g:1578:4: this_PrintCell_3= rulePrintCell
                     {
 
                     				newCompositeNode(grammarAccess.getPrintAccess().getPrintCellParserRuleCall_1_2());
@@ -4336,13 +4363,13 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 4 :
-                    // InternalMyCsv.g:1578:4: ( () rulePrintTable )
+                    // InternalMyCsv.g:1587:4: ( () rulePrintTable )
                     {
-                    // InternalMyCsv.g:1578:4: ( () rulePrintTable )
-                    // InternalMyCsv.g:1579:5: () rulePrintTable
+                    // InternalMyCsv.g:1587:4: ( () rulePrintTable )
+                    // InternalMyCsv.g:1588:5: () rulePrintTable
                     {
-                    // InternalMyCsv.g:1579:5: ()
-                    // InternalMyCsv.g:1580:6: 
+                    // InternalMyCsv.g:1588:5: ()
+                    // InternalMyCsv.g:1589:6: 
                     {
 
                     						current = forceCreateModelElement(
@@ -4370,7 +4397,7 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 5 :
-                    // InternalMyCsv.g:1595:4: this_PrintExpr_6= rulePrintExpr
+                    // InternalMyCsv.g:1604:4: this_PrintExpr_6= rulePrintExpr
                     {
 
                     				newCompositeNode(grammarAccess.getPrintAccess().getPrintExprParserRuleCall_1_4());
@@ -4413,7 +4440,7 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRulePrintLine"
-    // InternalMyCsv.g:1608:1: entryRulePrintLine returns [EObject current=null] : iv_rulePrintLine= rulePrintLine EOF ;
+    // InternalMyCsv.g:1617:1: entryRulePrintLine returns [EObject current=null] : iv_rulePrintLine= rulePrintLine EOF ;
     public final EObject entryRulePrintLine() throws RecognitionException {
         EObject current = null;
 
@@ -4421,8 +4448,8 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalMyCsv.g:1608:50: (iv_rulePrintLine= rulePrintLine EOF )
-            // InternalMyCsv.g:1609:2: iv_rulePrintLine= rulePrintLine EOF
+            // InternalMyCsv.g:1617:50: (iv_rulePrintLine= rulePrintLine EOF )
+            // InternalMyCsv.g:1618:2: iv_rulePrintLine= rulePrintLine EOF
             {
              newCompositeNode(grammarAccess.getPrintLineRule()); 
             pushFollow(FOLLOW_1);
@@ -4449,7 +4476,7 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "rulePrintLine"
-    // InternalMyCsv.g:1615:1: rulePrintLine returns [EObject current=null] : (otherlv_0= 'line' ( (lv_lines_1_0= ruleLineIndex ) ) ) ;
+    // InternalMyCsv.g:1624:1: rulePrintLine returns [EObject current=null] : (otherlv_0= 'line' ( (lv_lines_1_0= ruleLineIndex ) ) ) ;
     public final EObject rulePrintLine() throws RecognitionException {
         EObject current = null;
 
@@ -4461,21 +4488,21 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalMyCsv.g:1621:2: ( (otherlv_0= 'line' ( (lv_lines_1_0= ruleLineIndex ) ) ) )
-            // InternalMyCsv.g:1622:2: (otherlv_0= 'line' ( (lv_lines_1_0= ruleLineIndex ) ) )
+            // InternalMyCsv.g:1630:2: ( (otherlv_0= 'line' ( (lv_lines_1_0= ruleLineIndex ) ) ) )
+            // InternalMyCsv.g:1631:2: (otherlv_0= 'line' ( (lv_lines_1_0= ruleLineIndex ) ) )
             {
-            // InternalMyCsv.g:1622:2: (otherlv_0= 'line' ( (lv_lines_1_0= ruleLineIndex ) ) )
-            // InternalMyCsv.g:1623:3: otherlv_0= 'line' ( (lv_lines_1_0= ruleLineIndex ) )
+            // InternalMyCsv.g:1631:2: (otherlv_0= 'line' ( (lv_lines_1_0= ruleLineIndex ) ) )
+            // InternalMyCsv.g:1632:3: otherlv_0= 'line' ( (lv_lines_1_0= ruleLineIndex ) )
             {
             otherlv_0=(Token)match(input,27,FOLLOW_18); 
 
             			newLeafNode(otherlv_0, grammarAccess.getPrintLineAccess().getLineKeyword_0());
             		
-            // InternalMyCsv.g:1627:3: ( (lv_lines_1_0= ruleLineIndex ) )
-            // InternalMyCsv.g:1628:4: (lv_lines_1_0= ruleLineIndex )
+            // InternalMyCsv.g:1636:3: ( (lv_lines_1_0= ruleLineIndex ) )
+            // InternalMyCsv.g:1637:4: (lv_lines_1_0= ruleLineIndex )
             {
-            // InternalMyCsv.g:1628:4: (lv_lines_1_0= ruleLineIndex )
-            // InternalMyCsv.g:1629:5: lv_lines_1_0= ruleLineIndex
+            // InternalMyCsv.g:1637:4: (lv_lines_1_0= ruleLineIndex )
+            // InternalMyCsv.g:1638:5: lv_lines_1_0= ruleLineIndex
             {
 
             					newCompositeNode(grammarAccess.getPrintLineAccess().getLinesLineIndexParserRuleCall_1_0());
@@ -4525,7 +4552,7 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRulePrintField"
-    // InternalMyCsv.g:1650:1: entryRulePrintField returns [EObject current=null] : iv_rulePrintField= rulePrintField EOF ;
+    // InternalMyCsv.g:1659:1: entryRulePrintField returns [EObject current=null] : iv_rulePrintField= rulePrintField EOF ;
     public final EObject entryRulePrintField() throws RecognitionException {
         EObject current = null;
 
@@ -4533,8 +4560,8 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalMyCsv.g:1650:51: (iv_rulePrintField= rulePrintField EOF )
-            // InternalMyCsv.g:1651:2: iv_rulePrintField= rulePrintField EOF
+            // InternalMyCsv.g:1659:51: (iv_rulePrintField= rulePrintField EOF )
+            // InternalMyCsv.g:1660:2: iv_rulePrintField= rulePrintField EOF
             {
              newCompositeNode(grammarAccess.getPrintFieldRule()); 
             pushFollow(FOLLOW_1);
@@ -4561,7 +4588,7 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "rulePrintField"
-    // InternalMyCsv.g:1657:1: rulePrintField returns [EObject current=null] : (otherlv_0= 'field' ( (lv_fields_1_0= ruleFieldIndex ) ) ) ;
+    // InternalMyCsv.g:1666:1: rulePrintField returns [EObject current=null] : (otherlv_0= 'field' ( (lv_fields_1_0= ruleFieldIndex ) ) ) ;
     public final EObject rulePrintField() throws RecognitionException {
         EObject current = null;
 
@@ -4573,21 +4600,21 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalMyCsv.g:1663:2: ( (otherlv_0= 'field' ( (lv_fields_1_0= ruleFieldIndex ) ) ) )
-            // InternalMyCsv.g:1664:2: (otherlv_0= 'field' ( (lv_fields_1_0= ruleFieldIndex ) ) )
+            // InternalMyCsv.g:1672:2: ( (otherlv_0= 'field' ( (lv_fields_1_0= ruleFieldIndex ) ) ) )
+            // InternalMyCsv.g:1673:2: (otherlv_0= 'field' ( (lv_fields_1_0= ruleFieldIndex ) ) )
             {
-            // InternalMyCsv.g:1664:2: (otherlv_0= 'field' ( (lv_fields_1_0= ruleFieldIndex ) ) )
-            // InternalMyCsv.g:1665:3: otherlv_0= 'field' ( (lv_fields_1_0= ruleFieldIndex ) )
+            // InternalMyCsv.g:1673:2: (otherlv_0= 'field' ( (lv_fields_1_0= ruleFieldIndex ) ) )
+            // InternalMyCsv.g:1674:3: otherlv_0= 'field' ( (lv_fields_1_0= ruleFieldIndex ) )
             {
             otherlv_0=(Token)match(input,28,FOLLOW_17); 
 
             			newLeafNode(otherlv_0, grammarAccess.getPrintFieldAccess().getFieldKeyword_0());
             		
-            // InternalMyCsv.g:1669:3: ( (lv_fields_1_0= ruleFieldIndex ) )
-            // InternalMyCsv.g:1670:4: (lv_fields_1_0= ruleFieldIndex )
+            // InternalMyCsv.g:1678:3: ( (lv_fields_1_0= ruleFieldIndex ) )
+            // InternalMyCsv.g:1679:4: (lv_fields_1_0= ruleFieldIndex )
             {
-            // InternalMyCsv.g:1670:4: (lv_fields_1_0= ruleFieldIndex )
-            // InternalMyCsv.g:1671:5: lv_fields_1_0= ruleFieldIndex
+            // InternalMyCsv.g:1679:4: (lv_fields_1_0= ruleFieldIndex )
+            // InternalMyCsv.g:1680:5: lv_fields_1_0= ruleFieldIndex
             {
 
             					newCompositeNode(grammarAccess.getPrintFieldAccess().getFieldsFieldIndexParserRuleCall_1_0());
@@ -4637,7 +4664,7 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRulePrintCell"
-    // InternalMyCsv.g:1692:1: entryRulePrintCell returns [EObject current=null] : iv_rulePrintCell= rulePrintCell EOF ;
+    // InternalMyCsv.g:1701:1: entryRulePrintCell returns [EObject current=null] : iv_rulePrintCell= rulePrintCell EOF ;
     public final EObject entryRulePrintCell() throws RecognitionException {
         EObject current = null;
 
@@ -4645,8 +4672,8 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalMyCsv.g:1692:50: (iv_rulePrintCell= rulePrintCell EOF )
-            // InternalMyCsv.g:1693:2: iv_rulePrintCell= rulePrintCell EOF
+            // InternalMyCsv.g:1701:50: (iv_rulePrintCell= rulePrintCell EOF )
+            // InternalMyCsv.g:1702:2: iv_rulePrintCell= rulePrintCell EOF
             {
              newCompositeNode(grammarAccess.getPrintCellRule()); 
             pushFollow(FOLLOW_1);
@@ -4673,7 +4700,7 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "rulePrintCell"
-    // InternalMyCsv.g:1699:1: rulePrintCell returns [EObject current=null] : (otherlv_0= 'cell' ( (lv_cell_1_0= ruleCellIndex ) ) ) ;
+    // InternalMyCsv.g:1708:1: rulePrintCell returns [EObject current=null] : (otherlv_0= 'cell' ( (lv_cell_1_0= ruleCellIndex ) ) ) ;
     public final EObject rulePrintCell() throws RecognitionException {
         EObject current = null;
 
@@ -4685,21 +4712,21 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalMyCsv.g:1705:2: ( (otherlv_0= 'cell' ( (lv_cell_1_0= ruleCellIndex ) ) ) )
-            // InternalMyCsv.g:1706:2: (otherlv_0= 'cell' ( (lv_cell_1_0= ruleCellIndex ) ) )
+            // InternalMyCsv.g:1714:2: ( (otherlv_0= 'cell' ( (lv_cell_1_0= ruleCellIndex ) ) ) )
+            // InternalMyCsv.g:1715:2: (otherlv_0= 'cell' ( (lv_cell_1_0= ruleCellIndex ) ) )
             {
-            // InternalMyCsv.g:1706:2: (otherlv_0= 'cell' ( (lv_cell_1_0= ruleCellIndex ) ) )
-            // InternalMyCsv.g:1707:3: otherlv_0= 'cell' ( (lv_cell_1_0= ruleCellIndex ) )
+            // InternalMyCsv.g:1715:2: (otherlv_0= 'cell' ( (lv_cell_1_0= ruleCellIndex ) ) )
+            // InternalMyCsv.g:1716:3: otherlv_0= 'cell' ( (lv_cell_1_0= ruleCellIndex ) )
             {
             otherlv_0=(Token)match(input,33,FOLLOW_25); 
 
             			newLeafNode(otherlv_0, grammarAccess.getPrintCellAccess().getCellKeyword_0());
             		
-            // InternalMyCsv.g:1711:3: ( (lv_cell_1_0= ruleCellIndex ) )
-            // InternalMyCsv.g:1712:4: (lv_cell_1_0= ruleCellIndex )
+            // InternalMyCsv.g:1720:3: ( (lv_cell_1_0= ruleCellIndex ) )
+            // InternalMyCsv.g:1721:4: (lv_cell_1_0= ruleCellIndex )
             {
-            // InternalMyCsv.g:1712:4: (lv_cell_1_0= ruleCellIndex )
-            // InternalMyCsv.g:1713:5: lv_cell_1_0= ruleCellIndex
+            // InternalMyCsv.g:1721:4: (lv_cell_1_0= ruleCellIndex )
+            // InternalMyCsv.g:1722:5: lv_cell_1_0= ruleCellIndex
             {
 
             					newCompositeNode(grammarAccess.getPrintCellAccess().getCellCellIndexParserRuleCall_1_0());
@@ -4749,7 +4776,7 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRulePrintTable"
-    // InternalMyCsv.g:1734:1: entryRulePrintTable returns [String current=null] : iv_rulePrintTable= rulePrintTable EOF ;
+    // InternalMyCsv.g:1743:1: entryRulePrintTable returns [String current=null] : iv_rulePrintTable= rulePrintTable EOF ;
     public final String entryRulePrintTable() throws RecognitionException {
         String current = null;
 
@@ -4757,8 +4784,8 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalMyCsv.g:1734:50: (iv_rulePrintTable= rulePrintTable EOF )
-            // InternalMyCsv.g:1735:2: iv_rulePrintTable= rulePrintTable EOF
+            // InternalMyCsv.g:1743:50: (iv_rulePrintTable= rulePrintTable EOF )
+            // InternalMyCsv.g:1744:2: iv_rulePrintTable= rulePrintTable EOF
             {
              newCompositeNode(grammarAccess.getPrintTableRule()); 
             pushFollow(FOLLOW_1);
@@ -4785,7 +4812,7 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "rulePrintTable"
-    // InternalMyCsv.g:1741:1: rulePrintTable returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : kw= 'table' ;
+    // InternalMyCsv.g:1750:1: rulePrintTable returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : kw= 'table' ;
     public final AntlrDatatypeRuleToken rulePrintTable() throws RecognitionException {
         AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
@@ -4795,8 +4822,8 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalMyCsv.g:1747:2: (kw= 'table' )
-            // InternalMyCsv.g:1748:2: kw= 'table'
+            // InternalMyCsv.g:1756:2: (kw= 'table' )
+            // InternalMyCsv.g:1757:2: kw= 'table'
             {
             kw=(Token)match(input,35,FOLLOW_2); 
 
@@ -4823,7 +4850,7 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRulePrintExpr"
-    // InternalMyCsv.g:1756:1: entryRulePrintExpr returns [EObject current=null] : iv_rulePrintExpr= rulePrintExpr EOF ;
+    // InternalMyCsv.g:1765:1: entryRulePrintExpr returns [EObject current=null] : iv_rulePrintExpr= rulePrintExpr EOF ;
     public final EObject entryRulePrintExpr() throws RecognitionException {
         EObject current = null;
 
@@ -4831,8 +4858,8 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalMyCsv.g:1756:50: (iv_rulePrintExpr= rulePrintExpr EOF )
-            // InternalMyCsv.g:1757:2: iv_rulePrintExpr= rulePrintExpr EOF
+            // InternalMyCsv.g:1765:50: (iv_rulePrintExpr= rulePrintExpr EOF )
+            // InternalMyCsv.g:1766:2: iv_rulePrintExpr= rulePrintExpr EOF
             {
              newCompositeNode(grammarAccess.getPrintExprRule()); 
             pushFollow(FOLLOW_1);
@@ -4859,7 +4886,7 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "rulePrintExpr"
-    // InternalMyCsv.g:1763:1: rulePrintExpr returns [EObject current=null] : (otherlv_0= 'expr' ( (lv_exp_1_0= ruleValue ) ) ) ;
+    // InternalMyCsv.g:1772:1: rulePrintExpr returns [EObject current=null] : (otherlv_0= 'expr' ( (lv_exp_1_0= ruleValue ) ) ) ;
     public final EObject rulePrintExpr() throws RecognitionException {
         EObject current = null;
 
@@ -4871,21 +4898,21 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalMyCsv.g:1769:2: ( (otherlv_0= 'expr' ( (lv_exp_1_0= ruleValue ) ) ) )
-            // InternalMyCsv.g:1770:2: (otherlv_0= 'expr' ( (lv_exp_1_0= ruleValue ) ) )
+            // InternalMyCsv.g:1778:2: ( (otherlv_0= 'expr' ( (lv_exp_1_0= ruleValue ) ) ) )
+            // InternalMyCsv.g:1779:2: (otherlv_0= 'expr' ( (lv_exp_1_0= ruleValue ) ) )
             {
-            // InternalMyCsv.g:1770:2: (otherlv_0= 'expr' ( (lv_exp_1_0= ruleValue ) ) )
-            // InternalMyCsv.g:1771:3: otherlv_0= 'expr' ( (lv_exp_1_0= ruleValue ) )
+            // InternalMyCsv.g:1779:2: (otherlv_0= 'expr' ( (lv_exp_1_0= ruleValue ) ) )
+            // InternalMyCsv.g:1780:3: otherlv_0= 'expr' ( (lv_exp_1_0= ruleValue ) )
             {
             otherlv_0=(Token)match(input,36,FOLLOW_10); 
 
             			newLeafNode(otherlv_0, grammarAccess.getPrintExprAccess().getExprKeyword_0());
             		
-            // InternalMyCsv.g:1775:3: ( (lv_exp_1_0= ruleValue ) )
-            // InternalMyCsv.g:1776:4: (lv_exp_1_0= ruleValue )
+            // InternalMyCsv.g:1784:3: ( (lv_exp_1_0= ruleValue ) )
+            // InternalMyCsv.g:1785:4: (lv_exp_1_0= ruleValue )
             {
-            // InternalMyCsv.g:1776:4: (lv_exp_1_0= ruleValue )
-            // InternalMyCsv.g:1777:5: lv_exp_1_0= ruleValue
+            // InternalMyCsv.g:1785:4: (lv_exp_1_0= ruleValue )
+            // InternalMyCsv.g:1786:5: lv_exp_1_0= ruleValue
             {
 
             					newCompositeNode(grammarAccess.getPrintExprAccess().getExpValueParserRuleCall_1_0());
@@ -4934,8 +4961,163 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
     // $ANTLR end "rulePrintExpr"
 
 
+    // $ANTLR start "entryRuleRenameField"
+    // InternalMyCsv.g:1807:1: entryRuleRenameField returns [EObject current=null] : iv_ruleRenameField= ruleRenameField EOF ;
+    public final EObject entryRuleRenameField() throws RecognitionException {
+        EObject current = null;
+
+        EObject iv_ruleRenameField = null;
+
+
+        try {
+            // InternalMyCsv.g:1807:52: (iv_ruleRenameField= ruleRenameField EOF )
+            // InternalMyCsv.g:1808:2: iv_ruleRenameField= ruleRenameField EOF
+            {
+             newCompositeNode(grammarAccess.getRenameFieldRule()); 
+            pushFollow(FOLLOW_1);
+            iv_ruleRenameField=ruleRenameField();
+
+            state._fsp--;
+
+             current =iv_ruleRenameField; 
+            match(input,EOF,FOLLOW_2); 
+
+            }
+
+        }
+
+            catch (RecognitionException re) {
+                recover(input,re);
+                appendSkippedTokens();
+            }
+        finally {
+        }
+        return current;
+    }
+    // $ANTLR end "entryRuleRenameField"
+
+
+    // $ANTLR start "ruleRenameField"
+    // InternalMyCsv.g:1814:1: ruleRenameField returns [EObject current=null] : (otherlv_0= 'Rename' otherlv_1= 'field' ( (lv_last_field_2_0= ruleField ) ) otherlv_3= ':=' ( (lv_new_field_4_0= ruleField ) ) ) ;
+    public final EObject ruleRenameField() throws RecognitionException {
+        EObject current = null;
+
+        Token otherlv_0=null;
+        Token otherlv_1=null;
+        Token otherlv_3=null;
+        EObject lv_last_field_2_0 = null;
+
+        EObject lv_new_field_4_0 = null;
+
+
+
+        	enterRule();
+
+        try {
+            // InternalMyCsv.g:1820:2: ( (otherlv_0= 'Rename' otherlv_1= 'field' ( (lv_last_field_2_0= ruleField ) ) otherlv_3= ':=' ( (lv_new_field_4_0= ruleField ) ) ) )
+            // InternalMyCsv.g:1821:2: (otherlv_0= 'Rename' otherlv_1= 'field' ( (lv_last_field_2_0= ruleField ) ) otherlv_3= ':=' ( (lv_new_field_4_0= ruleField ) ) )
+            {
+            // InternalMyCsv.g:1821:2: (otherlv_0= 'Rename' otherlv_1= 'field' ( (lv_last_field_2_0= ruleField ) ) otherlv_3= ':=' ( (lv_new_field_4_0= ruleField ) ) )
+            // InternalMyCsv.g:1822:3: otherlv_0= 'Rename' otherlv_1= 'field' ( (lv_last_field_2_0= ruleField ) ) otherlv_3= ':=' ( (lv_new_field_4_0= ruleField ) )
+            {
+            otherlv_0=(Token)match(input,37,FOLLOW_27); 
+
+            			newLeafNode(otherlv_0, grammarAccess.getRenameFieldAccess().getRenameKeyword_0());
+            		
+            otherlv_1=(Token)match(input,28,FOLLOW_28); 
+
+            			newLeafNode(otherlv_1, grammarAccess.getRenameFieldAccess().getFieldKeyword_1());
+            		
+            // InternalMyCsv.g:1830:3: ( (lv_last_field_2_0= ruleField ) )
+            // InternalMyCsv.g:1831:4: (lv_last_field_2_0= ruleField )
+            {
+            // InternalMyCsv.g:1831:4: (lv_last_field_2_0= ruleField )
+            // InternalMyCsv.g:1832:5: lv_last_field_2_0= ruleField
+            {
+
+            					newCompositeNode(grammarAccess.getRenameFieldAccess().getLast_fieldFieldParserRuleCall_2_0());
+            				
+            pushFollow(FOLLOW_29);
+            lv_last_field_2_0=ruleField();
+
+            state._fsp--;
+
+
+            					if (current==null) {
+            						current = createModelElementForParent(grammarAccess.getRenameFieldRule());
+            					}
+            					set(
+            						current,
+            						"last_field",
+            						lv_last_field_2_0,
+            						"org.xtext.MyCsv.Field");
+            					afterParserOrEnumRuleCall();
+            				
+
+            }
+
+
+            }
+
+            otherlv_3=(Token)match(input,38,FOLLOW_30); 
+
+            			newLeafNode(otherlv_3, grammarAccess.getRenameFieldAccess().getColonEqualsSignKeyword_3());
+            		
+            // InternalMyCsv.g:1853:3: ( (lv_new_field_4_0= ruleField ) )
+            // InternalMyCsv.g:1854:4: (lv_new_field_4_0= ruleField )
+            {
+            // InternalMyCsv.g:1854:4: (lv_new_field_4_0= ruleField )
+            // InternalMyCsv.g:1855:5: lv_new_field_4_0= ruleField
+            {
+
+            					newCompositeNode(grammarAccess.getRenameFieldAccess().getNew_fieldFieldParserRuleCall_4_0());
+            				
+            pushFollow(FOLLOW_2);
+            lv_new_field_4_0=ruleField();
+
+            state._fsp--;
+
+
+            					if (current==null) {
+            						current = createModelElementForParent(grammarAccess.getRenameFieldRule());
+            					}
+            					set(
+            						current,
+            						"new_field",
+            						lv_new_field_4_0,
+            						"org.xtext.MyCsv.Field");
+            					afterParserOrEnumRuleCall();
+            				
+
+            }
+
+
+            }
+
+
+            }
+
+
+            }
+
+
+            	leaveRule();
+
+        }
+
+            catch (RecognitionException re) {
+                recover(input,re);
+                appendSkippedTokens();
+            }
+        finally {
+        }
+        return current;
+    }
+    // $ANTLR end "ruleRenameField"
+
+
     // $ANTLR start "entryRuleExpressionLog"
-    // InternalMyCsv.g:1798:1: entryRuleExpressionLog returns [EObject current=null] : iv_ruleExpressionLog= ruleExpressionLog EOF ;
+    // InternalMyCsv.g:1876:1: entryRuleExpressionLog returns [EObject current=null] : iv_ruleExpressionLog= ruleExpressionLog EOF ;
     public final EObject entryRuleExpressionLog() throws RecognitionException {
         EObject current = null;
 
@@ -4943,8 +5125,8 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalMyCsv.g:1798:54: (iv_ruleExpressionLog= ruleExpressionLog EOF )
-            // InternalMyCsv.g:1799:2: iv_ruleExpressionLog= ruleExpressionLog EOF
+            // InternalMyCsv.g:1876:54: (iv_ruleExpressionLog= ruleExpressionLog EOF )
+            // InternalMyCsv.g:1877:2: iv_ruleExpressionLog= ruleExpressionLog EOF
             {
              newCompositeNode(grammarAccess.getExpressionLogRule()); 
             pushFollow(FOLLOW_1);
@@ -4971,7 +5153,7 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleExpressionLog"
-    // InternalMyCsv.g:1805:1: ruleExpressionLog returns [EObject current=null] : ( (lv_expr_0_0= ruleOrExpression ) ) ;
+    // InternalMyCsv.g:1883:1: ruleExpressionLog returns [EObject current=null] : ( (lv_expr_0_0= ruleOrExpression ) ) ;
     public final EObject ruleExpressionLog() throws RecognitionException {
         EObject current = null;
 
@@ -4982,14 +5164,14 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalMyCsv.g:1811:2: ( ( (lv_expr_0_0= ruleOrExpression ) ) )
-            // InternalMyCsv.g:1812:2: ( (lv_expr_0_0= ruleOrExpression ) )
+            // InternalMyCsv.g:1889:2: ( ( (lv_expr_0_0= ruleOrExpression ) ) )
+            // InternalMyCsv.g:1890:2: ( (lv_expr_0_0= ruleOrExpression ) )
             {
-            // InternalMyCsv.g:1812:2: ( (lv_expr_0_0= ruleOrExpression ) )
-            // InternalMyCsv.g:1813:3: (lv_expr_0_0= ruleOrExpression )
+            // InternalMyCsv.g:1890:2: ( (lv_expr_0_0= ruleOrExpression ) )
+            // InternalMyCsv.g:1891:3: (lv_expr_0_0= ruleOrExpression )
             {
-            // InternalMyCsv.g:1813:3: (lv_expr_0_0= ruleOrExpression )
-            // InternalMyCsv.g:1814:4: lv_expr_0_0= ruleOrExpression
+            // InternalMyCsv.g:1891:3: (lv_expr_0_0= ruleOrExpression )
+            // InternalMyCsv.g:1892:4: lv_expr_0_0= ruleOrExpression
             {
 
             				newCompositeNode(grammarAccess.getExpressionLogAccess().getExprOrExpressionParserRuleCall_0());
@@ -5036,7 +5218,7 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleOrExpression"
-    // InternalMyCsv.g:1834:1: entryRuleOrExpression returns [EObject current=null] : iv_ruleOrExpression= ruleOrExpression EOF ;
+    // InternalMyCsv.g:1912:1: entryRuleOrExpression returns [EObject current=null] : iv_ruleOrExpression= ruleOrExpression EOF ;
     public final EObject entryRuleOrExpression() throws RecognitionException {
         EObject current = null;
 
@@ -5044,8 +5226,8 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalMyCsv.g:1834:53: (iv_ruleOrExpression= ruleOrExpression EOF )
-            // InternalMyCsv.g:1835:2: iv_ruleOrExpression= ruleOrExpression EOF
+            // InternalMyCsv.g:1912:53: (iv_ruleOrExpression= ruleOrExpression EOF )
+            // InternalMyCsv.g:1913:2: iv_ruleOrExpression= ruleOrExpression EOF
             {
              newCompositeNode(grammarAccess.getOrExpressionRule()); 
             pushFollow(FOLLOW_1);
@@ -5072,7 +5254,7 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleOrExpression"
-    // InternalMyCsv.g:1841:1: ruleOrExpression returns [EObject current=null] : ( ( (lv_lhs_0_0= ruleAndExpression ) ) (otherlv_1= 'or' ( (lv_rhs_2_0= ruleAndExpression ) ) )* ) ;
+    // InternalMyCsv.g:1919:1: ruleOrExpression returns [EObject current=null] : ( ( (lv_lhs_0_0= ruleAndExpression ) ) (otherlv_1= 'or' ( (lv_rhs_2_0= ruleAndExpression ) ) )* ) ;
     public final EObject ruleOrExpression() throws RecognitionException {
         EObject current = null;
 
@@ -5086,22 +5268,22 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalMyCsv.g:1847:2: ( ( ( (lv_lhs_0_0= ruleAndExpression ) ) (otherlv_1= 'or' ( (lv_rhs_2_0= ruleAndExpression ) ) )* ) )
-            // InternalMyCsv.g:1848:2: ( ( (lv_lhs_0_0= ruleAndExpression ) ) (otherlv_1= 'or' ( (lv_rhs_2_0= ruleAndExpression ) ) )* )
+            // InternalMyCsv.g:1925:2: ( ( ( (lv_lhs_0_0= ruleAndExpression ) ) (otherlv_1= 'or' ( (lv_rhs_2_0= ruleAndExpression ) ) )* ) )
+            // InternalMyCsv.g:1926:2: ( ( (lv_lhs_0_0= ruleAndExpression ) ) (otherlv_1= 'or' ( (lv_rhs_2_0= ruleAndExpression ) ) )* )
             {
-            // InternalMyCsv.g:1848:2: ( ( (lv_lhs_0_0= ruleAndExpression ) ) (otherlv_1= 'or' ( (lv_rhs_2_0= ruleAndExpression ) ) )* )
-            // InternalMyCsv.g:1849:3: ( (lv_lhs_0_0= ruleAndExpression ) ) (otherlv_1= 'or' ( (lv_rhs_2_0= ruleAndExpression ) ) )*
+            // InternalMyCsv.g:1926:2: ( ( (lv_lhs_0_0= ruleAndExpression ) ) (otherlv_1= 'or' ( (lv_rhs_2_0= ruleAndExpression ) ) )* )
+            // InternalMyCsv.g:1927:3: ( (lv_lhs_0_0= ruleAndExpression ) ) (otherlv_1= 'or' ( (lv_rhs_2_0= ruleAndExpression ) ) )*
             {
-            // InternalMyCsv.g:1849:3: ( (lv_lhs_0_0= ruleAndExpression ) )
-            // InternalMyCsv.g:1850:4: (lv_lhs_0_0= ruleAndExpression )
+            // InternalMyCsv.g:1927:3: ( (lv_lhs_0_0= ruleAndExpression ) )
+            // InternalMyCsv.g:1928:4: (lv_lhs_0_0= ruleAndExpression )
             {
-            // InternalMyCsv.g:1850:4: (lv_lhs_0_0= ruleAndExpression )
-            // InternalMyCsv.g:1851:5: lv_lhs_0_0= ruleAndExpression
+            // InternalMyCsv.g:1928:4: (lv_lhs_0_0= ruleAndExpression )
+            // InternalMyCsv.g:1929:5: lv_lhs_0_0= ruleAndExpression
             {
 
             					newCompositeNode(grammarAccess.getOrExpressionAccess().getLhsAndExpressionParserRuleCall_0_0());
             				
-            pushFollow(FOLLOW_27);
+            pushFollow(FOLLOW_31);
             lv_lhs_0_0=ruleAndExpression();
 
             state._fsp--;
@@ -5123,35 +5305,35 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalMyCsv.g:1868:3: (otherlv_1= 'or' ( (lv_rhs_2_0= ruleAndExpression ) ) )*
+            // InternalMyCsv.g:1946:3: (otherlv_1= 'or' ( (lv_rhs_2_0= ruleAndExpression ) ) )*
             loop21:
             do {
                 int alt21=2;
                 int LA21_0 = input.LA(1);
 
-                if ( (LA21_0==37) ) {
+                if ( (LA21_0==39) ) {
                     alt21=1;
                 }
 
 
                 switch (alt21) {
             	case 1 :
-            	    // InternalMyCsv.g:1869:4: otherlv_1= 'or' ( (lv_rhs_2_0= ruleAndExpression ) )
+            	    // InternalMyCsv.g:1947:4: otherlv_1= 'or' ( (lv_rhs_2_0= ruleAndExpression ) )
             	    {
-            	    otherlv_1=(Token)match(input,37,FOLLOW_28); 
+            	    otherlv_1=(Token)match(input,39,FOLLOW_32); 
 
             	    				newLeafNode(otherlv_1, grammarAccess.getOrExpressionAccess().getOrKeyword_1_0());
             	    			
-            	    // InternalMyCsv.g:1873:4: ( (lv_rhs_2_0= ruleAndExpression ) )
-            	    // InternalMyCsv.g:1874:5: (lv_rhs_2_0= ruleAndExpression )
+            	    // InternalMyCsv.g:1951:4: ( (lv_rhs_2_0= ruleAndExpression ) )
+            	    // InternalMyCsv.g:1952:5: (lv_rhs_2_0= ruleAndExpression )
             	    {
-            	    // InternalMyCsv.g:1874:5: (lv_rhs_2_0= ruleAndExpression )
-            	    // InternalMyCsv.g:1875:6: lv_rhs_2_0= ruleAndExpression
+            	    // InternalMyCsv.g:1952:5: (lv_rhs_2_0= ruleAndExpression )
+            	    // InternalMyCsv.g:1953:6: lv_rhs_2_0= ruleAndExpression
             	    {
 
             	    						newCompositeNode(grammarAccess.getOrExpressionAccess().getRhsAndExpressionParserRuleCall_1_1_0());
             	    					
-            	    pushFollow(FOLLOW_27);
+            	    pushFollow(FOLLOW_31);
             	    lv_rhs_2_0=ruleAndExpression();
 
             	    state._fsp--;
@@ -5205,7 +5387,7 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleAndExpression"
-    // InternalMyCsv.g:1897:1: entryRuleAndExpression returns [EObject current=null] : iv_ruleAndExpression= ruleAndExpression EOF ;
+    // InternalMyCsv.g:1975:1: entryRuleAndExpression returns [EObject current=null] : iv_ruleAndExpression= ruleAndExpression EOF ;
     public final EObject entryRuleAndExpression() throws RecognitionException {
         EObject current = null;
 
@@ -5213,8 +5395,8 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalMyCsv.g:1897:54: (iv_ruleAndExpression= ruleAndExpression EOF )
-            // InternalMyCsv.g:1898:2: iv_ruleAndExpression= ruleAndExpression EOF
+            // InternalMyCsv.g:1975:54: (iv_ruleAndExpression= ruleAndExpression EOF )
+            // InternalMyCsv.g:1976:2: iv_ruleAndExpression= ruleAndExpression EOF
             {
              newCompositeNode(grammarAccess.getAndExpressionRule()); 
             pushFollow(FOLLOW_1);
@@ -5241,7 +5423,7 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleAndExpression"
-    // InternalMyCsv.g:1904:1: ruleAndExpression returns [EObject current=null] : ( ( (lv_lhs_0_0= ruleUnaryLogExpression ) ) (otherlv_1= 'and' ( (lv_rhs_2_0= ruleUnaryLogExpression ) ) )* ) ;
+    // InternalMyCsv.g:1982:1: ruleAndExpression returns [EObject current=null] : ( ( (lv_lhs_0_0= ruleUnaryLogExpression ) ) (otherlv_1= 'and' ( (lv_rhs_2_0= ruleUnaryLogExpression ) ) )* ) ;
     public final EObject ruleAndExpression() throws RecognitionException {
         EObject current = null;
 
@@ -5255,22 +5437,22 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalMyCsv.g:1910:2: ( ( ( (lv_lhs_0_0= ruleUnaryLogExpression ) ) (otherlv_1= 'and' ( (lv_rhs_2_0= ruleUnaryLogExpression ) ) )* ) )
-            // InternalMyCsv.g:1911:2: ( ( (lv_lhs_0_0= ruleUnaryLogExpression ) ) (otherlv_1= 'and' ( (lv_rhs_2_0= ruleUnaryLogExpression ) ) )* )
+            // InternalMyCsv.g:1988:2: ( ( ( (lv_lhs_0_0= ruleUnaryLogExpression ) ) (otherlv_1= 'and' ( (lv_rhs_2_0= ruleUnaryLogExpression ) ) )* ) )
+            // InternalMyCsv.g:1989:2: ( ( (lv_lhs_0_0= ruleUnaryLogExpression ) ) (otherlv_1= 'and' ( (lv_rhs_2_0= ruleUnaryLogExpression ) ) )* )
             {
-            // InternalMyCsv.g:1911:2: ( ( (lv_lhs_0_0= ruleUnaryLogExpression ) ) (otherlv_1= 'and' ( (lv_rhs_2_0= ruleUnaryLogExpression ) ) )* )
-            // InternalMyCsv.g:1912:3: ( (lv_lhs_0_0= ruleUnaryLogExpression ) ) (otherlv_1= 'and' ( (lv_rhs_2_0= ruleUnaryLogExpression ) ) )*
+            // InternalMyCsv.g:1989:2: ( ( (lv_lhs_0_0= ruleUnaryLogExpression ) ) (otherlv_1= 'and' ( (lv_rhs_2_0= ruleUnaryLogExpression ) ) )* )
+            // InternalMyCsv.g:1990:3: ( (lv_lhs_0_0= ruleUnaryLogExpression ) ) (otherlv_1= 'and' ( (lv_rhs_2_0= ruleUnaryLogExpression ) ) )*
             {
-            // InternalMyCsv.g:1912:3: ( (lv_lhs_0_0= ruleUnaryLogExpression ) )
-            // InternalMyCsv.g:1913:4: (lv_lhs_0_0= ruleUnaryLogExpression )
+            // InternalMyCsv.g:1990:3: ( (lv_lhs_0_0= ruleUnaryLogExpression ) )
+            // InternalMyCsv.g:1991:4: (lv_lhs_0_0= ruleUnaryLogExpression )
             {
-            // InternalMyCsv.g:1913:4: (lv_lhs_0_0= ruleUnaryLogExpression )
-            // InternalMyCsv.g:1914:5: lv_lhs_0_0= ruleUnaryLogExpression
+            // InternalMyCsv.g:1991:4: (lv_lhs_0_0= ruleUnaryLogExpression )
+            // InternalMyCsv.g:1992:5: lv_lhs_0_0= ruleUnaryLogExpression
             {
 
             					newCompositeNode(grammarAccess.getAndExpressionAccess().getLhsUnaryLogExpressionParserRuleCall_0_0());
             				
-            pushFollow(FOLLOW_29);
+            pushFollow(FOLLOW_33);
             lv_lhs_0_0=ruleUnaryLogExpression();
 
             state._fsp--;
@@ -5292,35 +5474,35 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalMyCsv.g:1931:3: (otherlv_1= 'and' ( (lv_rhs_2_0= ruleUnaryLogExpression ) ) )*
+            // InternalMyCsv.g:2009:3: (otherlv_1= 'and' ( (lv_rhs_2_0= ruleUnaryLogExpression ) ) )*
             loop22:
             do {
                 int alt22=2;
                 int LA22_0 = input.LA(1);
 
-                if ( (LA22_0==38) ) {
+                if ( (LA22_0==40) ) {
                     alt22=1;
                 }
 
 
                 switch (alt22) {
             	case 1 :
-            	    // InternalMyCsv.g:1932:4: otherlv_1= 'and' ( (lv_rhs_2_0= ruleUnaryLogExpression ) )
+            	    // InternalMyCsv.g:2010:4: otherlv_1= 'and' ( (lv_rhs_2_0= ruleUnaryLogExpression ) )
             	    {
-            	    otherlv_1=(Token)match(input,38,FOLLOW_28); 
+            	    otherlv_1=(Token)match(input,40,FOLLOW_32); 
 
             	    				newLeafNode(otherlv_1, grammarAccess.getAndExpressionAccess().getAndKeyword_1_0());
             	    			
-            	    // InternalMyCsv.g:1936:4: ( (lv_rhs_2_0= ruleUnaryLogExpression ) )
-            	    // InternalMyCsv.g:1937:5: (lv_rhs_2_0= ruleUnaryLogExpression )
+            	    // InternalMyCsv.g:2014:4: ( (lv_rhs_2_0= ruleUnaryLogExpression ) )
+            	    // InternalMyCsv.g:2015:5: (lv_rhs_2_0= ruleUnaryLogExpression )
             	    {
-            	    // InternalMyCsv.g:1937:5: (lv_rhs_2_0= ruleUnaryLogExpression )
-            	    // InternalMyCsv.g:1938:6: lv_rhs_2_0= ruleUnaryLogExpression
+            	    // InternalMyCsv.g:2015:5: (lv_rhs_2_0= ruleUnaryLogExpression )
+            	    // InternalMyCsv.g:2016:6: lv_rhs_2_0= ruleUnaryLogExpression
             	    {
 
             	    						newCompositeNode(grammarAccess.getAndExpressionAccess().getRhsUnaryLogExpressionParserRuleCall_1_1_0());
             	    					
-            	    pushFollow(FOLLOW_29);
+            	    pushFollow(FOLLOW_33);
             	    lv_rhs_2_0=ruleUnaryLogExpression();
 
             	    state._fsp--;
@@ -5374,7 +5556,7 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleUnaryLogExpression"
-    // InternalMyCsv.g:1960:1: entryRuleUnaryLogExpression returns [EObject current=null] : iv_ruleUnaryLogExpression= ruleUnaryLogExpression EOF ;
+    // InternalMyCsv.g:2038:1: entryRuleUnaryLogExpression returns [EObject current=null] : iv_ruleUnaryLogExpression= ruleUnaryLogExpression EOF ;
     public final EObject entryRuleUnaryLogExpression() throws RecognitionException {
         EObject current = null;
 
@@ -5382,8 +5564,8 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalMyCsv.g:1960:59: (iv_ruleUnaryLogExpression= ruleUnaryLogExpression EOF )
-            // InternalMyCsv.g:1961:2: iv_ruleUnaryLogExpression= ruleUnaryLogExpression EOF
+            // InternalMyCsv.g:2038:59: (iv_ruleUnaryLogExpression= ruleUnaryLogExpression EOF )
+            // InternalMyCsv.g:2039:2: iv_ruleUnaryLogExpression= ruleUnaryLogExpression EOF
             {
              newCompositeNode(grammarAccess.getUnaryLogExpressionRule()); 
             pushFollow(FOLLOW_1);
@@ -5410,7 +5592,7 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleUnaryLogExpression"
-    // InternalMyCsv.g:1967:1: ruleUnaryLogExpression returns [EObject current=null] : ( ( (lv_not_0_0= 'not' ) )? ( (lv_expr_1_0= ruleExpressionLogPrimary ) ) ) ;
+    // InternalMyCsv.g:2045:1: ruleUnaryLogExpression returns [EObject current=null] : ( ( (lv_not_0_0= 'not' ) )? ( (lv_expr_1_0= ruleExpressionLogPrimary ) ) ) ;
     public final EObject ruleUnaryLogExpression() throws RecognitionException {
         EObject current = null;
 
@@ -5422,27 +5604,27 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalMyCsv.g:1973:2: ( ( ( (lv_not_0_0= 'not' ) )? ( (lv_expr_1_0= ruleExpressionLogPrimary ) ) ) )
-            // InternalMyCsv.g:1974:2: ( ( (lv_not_0_0= 'not' ) )? ( (lv_expr_1_0= ruleExpressionLogPrimary ) ) )
+            // InternalMyCsv.g:2051:2: ( ( ( (lv_not_0_0= 'not' ) )? ( (lv_expr_1_0= ruleExpressionLogPrimary ) ) ) )
+            // InternalMyCsv.g:2052:2: ( ( (lv_not_0_0= 'not' ) )? ( (lv_expr_1_0= ruleExpressionLogPrimary ) ) )
             {
-            // InternalMyCsv.g:1974:2: ( ( (lv_not_0_0= 'not' ) )? ( (lv_expr_1_0= ruleExpressionLogPrimary ) ) )
-            // InternalMyCsv.g:1975:3: ( (lv_not_0_0= 'not' ) )? ( (lv_expr_1_0= ruleExpressionLogPrimary ) )
+            // InternalMyCsv.g:2052:2: ( ( (lv_not_0_0= 'not' ) )? ( (lv_expr_1_0= ruleExpressionLogPrimary ) ) )
+            // InternalMyCsv.g:2053:3: ( (lv_not_0_0= 'not' ) )? ( (lv_expr_1_0= ruleExpressionLogPrimary ) )
             {
-            // InternalMyCsv.g:1975:3: ( (lv_not_0_0= 'not' ) )?
+            // InternalMyCsv.g:2053:3: ( (lv_not_0_0= 'not' ) )?
             int alt23=2;
             int LA23_0 = input.LA(1);
 
-            if ( (LA23_0==39) ) {
+            if ( (LA23_0==41) ) {
                 alt23=1;
             }
             switch (alt23) {
                 case 1 :
-                    // InternalMyCsv.g:1976:4: (lv_not_0_0= 'not' )
+                    // InternalMyCsv.g:2054:4: (lv_not_0_0= 'not' )
                     {
-                    // InternalMyCsv.g:1976:4: (lv_not_0_0= 'not' )
-                    // InternalMyCsv.g:1977:5: lv_not_0_0= 'not'
+                    // InternalMyCsv.g:2054:4: (lv_not_0_0= 'not' )
+                    // InternalMyCsv.g:2055:5: lv_not_0_0= 'not'
                     {
-                    lv_not_0_0=(Token)match(input,39,FOLLOW_28); 
+                    lv_not_0_0=(Token)match(input,41,FOLLOW_32); 
 
                     					newLeafNode(lv_not_0_0, grammarAccess.getUnaryLogExpressionAccess().getNotNotKeyword_0_0());
                     				
@@ -5461,11 +5643,11 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalMyCsv.g:1989:3: ( (lv_expr_1_0= ruleExpressionLogPrimary ) )
-            // InternalMyCsv.g:1990:4: (lv_expr_1_0= ruleExpressionLogPrimary )
+            // InternalMyCsv.g:2067:3: ( (lv_expr_1_0= ruleExpressionLogPrimary ) )
+            // InternalMyCsv.g:2068:4: (lv_expr_1_0= ruleExpressionLogPrimary )
             {
-            // InternalMyCsv.g:1990:4: (lv_expr_1_0= ruleExpressionLogPrimary )
-            // InternalMyCsv.g:1991:5: lv_expr_1_0= ruleExpressionLogPrimary
+            // InternalMyCsv.g:2068:4: (lv_expr_1_0= ruleExpressionLogPrimary )
+            // InternalMyCsv.g:2069:5: lv_expr_1_0= ruleExpressionLogPrimary
             {
 
             					newCompositeNode(grammarAccess.getUnaryLogExpressionAccess().getExprExpressionLogPrimaryParserRuleCall_1_0());
@@ -5515,7 +5697,7 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleExpressionLogPrimary"
-    // InternalMyCsv.g:2012:1: entryRuleExpressionLogPrimary returns [EObject current=null] : iv_ruleExpressionLogPrimary= ruleExpressionLogPrimary EOF ;
+    // InternalMyCsv.g:2090:1: entryRuleExpressionLogPrimary returns [EObject current=null] : iv_ruleExpressionLogPrimary= ruleExpressionLogPrimary EOF ;
     public final EObject entryRuleExpressionLogPrimary() throws RecognitionException {
         EObject current = null;
 
@@ -5523,8 +5705,8 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalMyCsv.g:2012:61: (iv_ruleExpressionLogPrimary= ruleExpressionLogPrimary EOF )
-            // InternalMyCsv.g:2013:2: iv_ruleExpressionLogPrimary= ruleExpressionLogPrimary EOF
+            // InternalMyCsv.g:2090:61: (iv_ruleExpressionLogPrimary= ruleExpressionLogPrimary EOF )
+            // InternalMyCsv.g:2091:2: iv_ruleExpressionLogPrimary= ruleExpressionLogPrimary EOF
             {
              newCompositeNode(grammarAccess.getExpressionLogPrimaryRule()); 
             pushFollow(FOLLOW_1);
@@ -5551,7 +5733,7 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleExpressionLogPrimary"
-    // InternalMyCsv.g:2019:1: ruleExpressionLogPrimary returns [EObject current=null] : (this_ExpressionRel_0= ruleExpressionRel | this_NestedLogExpression_1= ruleNestedLogExpression ) ;
+    // InternalMyCsv.g:2097:1: ruleExpressionLogPrimary returns [EObject current=null] : (this_ExpressionRel_0= ruleExpressionRel | this_NestedLogExpression_1= ruleNestedLogExpression ) ;
     public final EObject ruleExpressionLogPrimary() throws RecognitionException {
         EObject current = null;
 
@@ -5564,10 +5746,10 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalMyCsv.g:2025:2: ( (this_ExpressionRel_0= ruleExpressionRel | this_NestedLogExpression_1= ruleNestedLogExpression ) )
-            // InternalMyCsv.g:2026:2: (this_ExpressionRel_0= ruleExpressionRel | this_NestedLogExpression_1= ruleNestedLogExpression )
+            // InternalMyCsv.g:2103:2: ( (this_ExpressionRel_0= ruleExpressionRel | this_NestedLogExpression_1= ruleNestedLogExpression ) )
+            // InternalMyCsv.g:2104:2: (this_ExpressionRel_0= ruleExpressionRel | this_NestedLogExpression_1= ruleNestedLogExpression )
             {
-            // InternalMyCsv.g:2026:2: (this_ExpressionRel_0= ruleExpressionRel | this_NestedLogExpression_1= ruleNestedLogExpression )
+            // InternalMyCsv.g:2104:2: (this_ExpressionRel_0= ruleExpressionRel | this_NestedLogExpression_1= ruleNestedLogExpression )
             int alt24=2;
             int LA24_0 = input.LA(1);
 
@@ -5585,7 +5767,7 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
             }
             switch (alt24) {
                 case 1 :
-                    // InternalMyCsv.g:2027:3: this_ExpressionRel_0= ruleExpressionRel
+                    // InternalMyCsv.g:2105:3: this_ExpressionRel_0= ruleExpressionRel
                     {
 
                     			newCompositeNode(grammarAccess.getExpressionLogPrimaryAccess().getExpressionRelParserRuleCall_0());
@@ -5603,7 +5785,7 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalMyCsv.g:2036:3: this_NestedLogExpression_1= ruleNestedLogExpression
+                    // InternalMyCsv.g:2114:3: this_NestedLogExpression_1= ruleNestedLogExpression
                     {
 
                     			newCompositeNode(grammarAccess.getExpressionLogPrimaryAccess().getNestedLogExpressionParserRuleCall_1());
@@ -5643,7 +5825,7 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleNestedLogExpression"
-    // InternalMyCsv.g:2048:1: entryRuleNestedLogExpression returns [EObject current=null] : iv_ruleNestedLogExpression= ruleNestedLogExpression EOF ;
+    // InternalMyCsv.g:2126:1: entryRuleNestedLogExpression returns [EObject current=null] : iv_ruleNestedLogExpression= ruleNestedLogExpression EOF ;
     public final EObject entryRuleNestedLogExpression() throws RecognitionException {
         EObject current = null;
 
@@ -5651,8 +5833,8 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalMyCsv.g:2048:60: (iv_ruleNestedLogExpression= ruleNestedLogExpression EOF )
-            // InternalMyCsv.g:2049:2: iv_ruleNestedLogExpression= ruleNestedLogExpression EOF
+            // InternalMyCsv.g:2126:60: (iv_ruleNestedLogExpression= ruleNestedLogExpression EOF )
+            // InternalMyCsv.g:2127:2: iv_ruleNestedLogExpression= ruleNestedLogExpression EOF
             {
              newCompositeNode(grammarAccess.getNestedLogExpressionRule()); 
             pushFollow(FOLLOW_1);
@@ -5679,7 +5861,7 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleNestedLogExpression"
-    // InternalMyCsv.g:2055:1: ruleNestedLogExpression returns [EObject current=null] : (otherlv_0= '(' ( (lv_expr_1_0= ruleExpressionLog ) ) otherlv_2= ')' ) ;
+    // InternalMyCsv.g:2133:1: ruleNestedLogExpression returns [EObject current=null] : (otherlv_0= '(' ( (lv_expr_1_0= ruleExpressionLog ) ) otherlv_2= ')' ) ;
     public final EObject ruleNestedLogExpression() throws RecognitionException {
         EObject current = null;
 
@@ -5692,21 +5874,21 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalMyCsv.g:2061:2: ( (otherlv_0= '(' ( (lv_expr_1_0= ruleExpressionLog ) ) otherlv_2= ')' ) )
-            // InternalMyCsv.g:2062:2: (otherlv_0= '(' ( (lv_expr_1_0= ruleExpressionLog ) ) otherlv_2= ')' )
+            // InternalMyCsv.g:2139:2: ( (otherlv_0= '(' ( (lv_expr_1_0= ruleExpressionLog ) ) otherlv_2= ')' ) )
+            // InternalMyCsv.g:2140:2: (otherlv_0= '(' ( (lv_expr_1_0= ruleExpressionLog ) ) otherlv_2= ')' )
             {
-            // InternalMyCsv.g:2062:2: (otherlv_0= '(' ( (lv_expr_1_0= ruleExpressionLog ) ) otherlv_2= ')' )
-            // InternalMyCsv.g:2063:3: otherlv_0= '(' ( (lv_expr_1_0= ruleExpressionLog ) ) otherlv_2= ')'
+            // InternalMyCsv.g:2140:2: (otherlv_0= '(' ( (lv_expr_1_0= ruleExpressionLog ) ) otherlv_2= ')' )
+            // InternalMyCsv.g:2141:3: otherlv_0= '(' ( (lv_expr_1_0= ruleExpressionLog ) ) otherlv_2= ')'
             {
-            otherlv_0=(Token)match(input,11,FOLLOW_28); 
+            otherlv_0=(Token)match(input,11,FOLLOW_32); 
 
             			newLeafNode(otherlv_0, grammarAccess.getNestedLogExpressionAccess().getLeftParenthesisKeyword_0());
             		
-            // InternalMyCsv.g:2067:3: ( (lv_expr_1_0= ruleExpressionLog ) )
-            // InternalMyCsv.g:2068:4: (lv_expr_1_0= ruleExpressionLog )
+            // InternalMyCsv.g:2145:3: ( (lv_expr_1_0= ruleExpressionLog ) )
+            // InternalMyCsv.g:2146:4: (lv_expr_1_0= ruleExpressionLog )
             {
-            // InternalMyCsv.g:2068:4: (lv_expr_1_0= ruleExpressionLog )
-            // InternalMyCsv.g:2069:5: lv_expr_1_0= ruleExpressionLog
+            // InternalMyCsv.g:2146:4: (lv_expr_1_0= ruleExpressionLog )
+            // InternalMyCsv.g:2147:5: lv_expr_1_0= ruleExpressionLog
             {
 
             					newCompositeNode(grammarAccess.getNestedLogExpressionAccess().getExprExpressionLogParserRuleCall_1_0());
@@ -5760,7 +5942,7 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleExpressionRel"
-    // InternalMyCsv.g:2094:1: entryRuleExpressionRel returns [EObject current=null] : iv_ruleExpressionRel= ruleExpressionRel EOF ;
+    // InternalMyCsv.g:2172:1: entryRuleExpressionRel returns [EObject current=null] : iv_ruleExpressionRel= ruleExpressionRel EOF ;
     public final EObject entryRuleExpressionRel() throws RecognitionException {
         EObject current = null;
 
@@ -5768,8 +5950,8 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalMyCsv.g:2094:54: (iv_ruleExpressionRel= ruleExpressionRel EOF )
-            // InternalMyCsv.g:2095:2: iv_ruleExpressionRel= ruleExpressionRel EOF
+            // InternalMyCsv.g:2172:54: (iv_ruleExpressionRel= ruleExpressionRel EOF )
+            // InternalMyCsv.g:2173:2: iv_ruleExpressionRel= ruleExpressionRel EOF
             {
              newCompositeNode(grammarAccess.getExpressionRelRule()); 
             pushFollow(FOLLOW_1);
@@ -5796,7 +5978,7 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleExpressionRel"
-    // InternalMyCsv.g:2101:1: ruleExpressionRel returns [EObject current=null] : ( ( (lv_field_0_0= ruleField ) ) ( (lv_op_1_0= ruleBinOpRel ) ) ( (lv_val_2_0= ruleValue ) ) ) ;
+    // InternalMyCsv.g:2179:1: ruleExpressionRel returns [EObject current=null] : ( ( (lv_field_0_0= ruleField ) ) ( (lv_op_1_0= ruleBinOpRel ) ) ( (lv_val_2_0= ruleValue ) ) ) ;
     public final EObject ruleExpressionRel() throws RecognitionException {
         EObject current = null;
 
@@ -5811,22 +5993,22 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalMyCsv.g:2107:2: ( ( ( (lv_field_0_0= ruleField ) ) ( (lv_op_1_0= ruleBinOpRel ) ) ( (lv_val_2_0= ruleValue ) ) ) )
-            // InternalMyCsv.g:2108:2: ( ( (lv_field_0_0= ruleField ) ) ( (lv_op_1_0= ruleBinOpRel ) ) ( (lv_val_2_0= ruleValue ) ) )
+            // InternalMyCsv.g:2185:2: ( ( ( (lv_field_0_0= ruleField ) ) ( (lv_op_1_0= ruleBinOpRel ) ) ( (lv_val_2_0= ruleValue ) ) ) )
+            // InternalMyCsv.g:2186:2: ( ( (lv_field_0_0= ruleField ) ) ( (lv_op_1_0= ruleBinOpRel ) ) ( (lv_val_2_0= ruleValue ) ) )
             {
-            // InternalMyCsv.g:2108:2: ( ( (lv_field_0_0= ruleField ) ) ( (lv_op_1_0= ruleBinOpRel ) ) ( (lv_val_2_0= ruleValue ) ) )
-            // InternalMyCsv.g:2109:3: ( (lv_field_0_0= ruleField ) ) ( (lv_op_1_0= ruleBinOpRel ) ) ( (lv_val_2_0= ruleValue ) )
+            // InternalMyCsv.g:2186:2: ( ( (lv_field_0_0= ruleField ) ) ( (lv_op_1_0= ruleBinOpRel ) ) ( (lv_val_2_0= ruleValue ) ) )
+            // InternalMyCsv.g:2187:3: ( (lv_field_0_0= ruleField ) ) ( (lv_op_1_0= ruleBinOpRel ) ) ( (lv_val_2_0= ruleValue ) )
             {
-            // InternalMyCsv.g:2109:3: ( (lv_field_0_0= ruleField ) )
-            // InternalMyCsv.g:2110:4: (lv_field_0_0= ruleField )
+            // InternalMyCsv.g:2187:3: ( (lv_field_0_0= ruleField ) )
+            // InternalMyCsv.g:2188:4: (lv_field_0_0= ruleField )
             {
-            // InternalMyCsv.g:2110:4: (lv_field_0_0= ruleField )
-            // InternalMyCsv.g:2111:5: lv_field_0_0= ruleField
+            // InternalMyCsv.g:2188:4: (lv_field_0_0= ruleField )
+            // InternalMyCsv.g:2189:5: lv_field_0_0= ruleField
             {
 
             					newCompositeNode(grammarAccess.getExpressionRelAccess().getFieldFieldParserRuleCall_0_0());
             				
-            pushFollow(FOLLOW_30);
+            pushFollow(FOLLOW_34);
             lv_field_0_0=ruleField();
 
             state._fsp--;
@@ -5848,11 +6030,11 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalMyCsv.g:2128:3: ( (lv_op_1_0= ruleBinOpRel ) )
-            // InternalMyCsv.g:2129:4: (lv_op_1_0= ruleBinOpRel )
+            // InternalMyCsv.g:2206:3: ( (lv_op_1_0= ruleBinOpRel ) )
+            // InternalMyCsv.g:2207:4: (lv_op_1_0= ruleBinOpRel )
             {
-            // InternalMyCsv.g:2129:4: (lv_op_1_0= ruleBinOpRel )
-            // InternalMyCsv.g:2130:5: lv_op_1_0= ruleBinOpRel
+            // InternalMyCsv.g:2207:4: (lv_op_1_0= ruleBinOpRel )
+            // InternalMyCsv.g:2208:5: lv_op_1_0= ruleBinOpRel
             {
 
             					newCompositeNode(grammarAccess.getExpressionRelAccess().getOpBinOpRelEnumRuleCall_1_0());
@@ -5879,11 +6061,11 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalMyCsv.g:2147:3: ( (lv_val_2_0= ruleValue ) )
-            // InternalMyCsv.g:2148:4: (lv_val_2_0= ruleValue )
+            // InternalMyCsv.g:2225:3: ( (lv_val_2_0= ruleValue ) )
+            // InternalMyCsv.g:2226:4: (lv_val_2_0= ruleValue )
             {
-            // InternalMyCsv.g:2148:4: (lv_val_2_0= ruleValue )
-            // InternalMyCsv.g:2149:5: lv_val_2_0= ruleValue
+            // InternalMyCsv.g:2226:4: (lv_val_2_0= ruleValue )
+            // InternalMyCsv.g:2227:5: lv_val_2_0= ruleValue
             {
 
             					newCompositeNode(grammarAccess.getExpressionRelAccess().getValValueParserRuleCall_2_0());
@@ -5933,7 +6115,7 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleExpressionCalcul"
-    // InternalMyCsv.g:2170:1: entryRuleExpressionCalcul returns [EObject current=null] : iv_ruleExpressionCalcul= ruleExpressionCalcul EOF ;
+    // InternalMyCsv.g:2248:1: entryRuleExpressionCalcul returns [EObject current=null] : iv_ruleExpressionCalcul= ruleExpressionCalcul EOF ;
     public final EObject entryRuleExpressionCalcul() throws RecognitionException {
         EObject current = null;
 
@@ -5941,8 +6123,8 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalMyCsv.g:2170:57: (iv_ruleExpressionCalcul= ruleExpressionCalcul EOF )
-            // InternalMyCsv.g:2171:2: iv_ruleExpressionCalcul= ruleExpressionCalcul EOF
+            // InternalMyCsv.g:2248:57: (iv_ruleExpressionCalcul= ruleExpressionCalcul EOF )
+            // InternalMyCsv.g:2249:2: iv_ruleExpressionCalcul= ruleExpressionCalcul EOF
             {
              newCompositeNode(grammarAccess.getExpressionCalculRule()); 
             pushFollow(FOLLOW_1);
@@ -5969,7 +6151,7 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleExpressionCalcul"
-    // InternalMyCsv.g:2177:1: ruleExpressionCalcul returns [EObject current=null] : ( (lv_expr_0_0= ruleAdditiveExpression ) ) ;
+    // InternalMyCsv.g:2255:1: ruleExpressionCalcul returns [EObject current=null] : ( (lv_expr_0_0= ruleAdditiveExpression ) ) ;
     public final EObject ruleExpressionCalcul() throws RecognitionException {
         EObject current = null;
 
@@ -5980,14 +6162,14 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalMyCsv.g:2183:2: ( ( (lv_expr_0_0= ruleAdditiveExpression ) ) )
-            // InternalMyCsv.g:2184:2: ( (lv_expr_0_0= ruleAdditiveExpression ) )
+            // InternalMyCsv.g:2261:2: ( ( (lv_expr_0_0= ruleAdditiveExpression ) ) )
+            // InternalMyCsv.g:2262:2: ( (lv_expr_0_0= ruleAdditiveExpression ) )
             {
-            // InternalMyCsv.g:2184:2: ( (lv_expr_0_0= ruleAdditiveExpression ) )
-            // InternalMyCsv.g:2185:3: (lv_expr_0_0= ruleAdditiveExpression )
+            // InternalMyCsv.g:2262:2: ( (lv_expr_0_0= ruleAdditiveExpression ) )
+            // InternalMyCsv.g:2263:3: (lv_expr_0_0= ruleAdditiveExpression )
             {
-            // InternalMyCsv.g:2185:3: (lv_expr_0_0= ruleAdditiveExpression )
-            // InternalMyCsv.g:2186:4: lv_expr_0_0= ruleAdditiveExpression
+            // InternalMyCsv.g:2263:3: (lv_expr_0_0= ruleAdditiveExpression )
+            // InternalMyCsv.g:2264:4: lv_expr_0_0= ruleAdditiveExpression
             {
 
             				newCompositeNode(grammarAccess.getExpressionCalculAccess().getExprAdditiveExpressionParserRuleCall_0());
@@ -6034,7 +6216,7 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleAdditiveExpression"
-    // InternalMyCsv.g:2206:1: entryRuleAdditiveExpression returns [EObject current=null] : iv_ruleAdditiveExpression= ruleAdditiveExpression EOF ;
+    // InternalMyCsv.g:2284:1: entryRuleAdditiveExpression returns [EObject current=null] : iv_ruleAdditiveExpression= ruleAdditiveExpression EOF ;
     public final EObject entryRuleAdditiveExpression() throws RecognitionException {
         EObject current = null;
 
@@ -6042,8 +6224,8 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalMyCsv.g:2206:59: (iv_ruleAdditiveExpression= ruleAdditiveExpression EOF )
-            // InternalMyCsv.g:2207:2: iv_ruleAdditiveExpression= ruleAdditiveExpression EOF
+            // InternalMyCsv.g:2284:59: (iv_ruleAdditiveExpression= ruleAdditiveExpression EOF )
+            // InternalMyCsv.g:2285:2: iv_ruleAdditiveExpression= ruleAdditiveExpression EOF
             {
              newCompositeNode(grammarAccess.getAdditiveExpressionRule()); 
             pushFollow(FOLLOW_1);
@@ -6070,7 +6252,7 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleAdditiveExpression"
-    // InternalMyCsv.g:2213:1: ruleAdditiveExpression returns [EObject current=null] : ( ( (lv_lhs_0_0= ruleMultiplicativeExpression ) ) ( (lv_rhs_1_0= ruleAdditiveExpressionRhs ) )* ) ;
+    // InternalMyCsv.g:2291:1: ruleAdditiveExpression returns [EObject current=null] : ( ( (lv_lhs_0_0= ruleMultiplicativeExpression ) ) ( (lv_rhs_1_0= ruleAdditiveExpressionRhs ) )* ) ;
     public final EObject ruleAdditiveExpression() throws RecognitionException {
         EObject current = null;
 
@@ -6083,22 +6265,22 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalMyCsv.g:2219:2: ( ( ( (lv_lhs_0_0= ruleMultiplicativeExpression ) ) ( (lv_rhs_1_0= ruleAdditiveExpressionRhs ) )* ) )
-            // InternalMyCsv.g:2220:2: ( ( (lv_lhs_0_0= ruleMultiplicativeExpression ) ) ( (lv_rhs_1_0= ruleAdditiveExpressionRhs ) )* )
+            // InternalMyCsv.g:2297:2: ( ( ( (lv_lhs_0_0= ruleMultiplicativeExpression ) ) ( (lv_rhs_1_0= ruleAdditiveExpressionRhs ) )* ) )
+            // InternalMyCsv.g:2298:2: ( ( (lv_lhs_0_0= ruleMultiplicativeExpression ) ) ( (lv_rhs_1_0= ruleAdditiveExpressionRhs ) )* )
             {
-            // InternalMyCsv.g:2220:2: ( ( (lv_lhs_0_0= ruleMultiplicativeExpression ) ) ( (lv_rhs_1_0= ruleAdditiveExpressionRhs ) )* )
-            // InternalMyCsv.g:2221:3: ( (lv_lhs_0_0= ruleMultiplicativeExpression ) ) ( (lv_rhs_1_0= ruleAdditiveExpressionRhs ) )*
+            // InternalMyCsv.g:2298:2: ( ( (lv_lhs_0_0= ruleMultiplicativeExpression ) ) ( (lv_rhs_1_0= ruleAdditiveExpressionRhs ) )* )
+            // InternalMyCsv.g:2299:3: ( (lv_lhs_0_0= ruleMultiplicativeExpression ) ) ( (lv_rhs_1_0= ruleAdditiveExpressionRhs ) )*
             {
-            // InternalMyCsv.g:2221:3: ( (lv_lhs_0_0= ruleMultiplicativeExpression ) )
-            // InternalMyCsv.g:2222:4: (lv_lhs_0_0= ruleMultiplicativeExpression )
+            // InternalMyCsv.g:2299:3: ( (lv_lhs_0_0= ruleMultiplicativeExpression ) )
+            // InternalMyCsv.g:2300:4: (lv_lhs_0_0= ruleMultiplicativeExpression )
             {
-            // InternalMyCsv.g:2222:4: (lv_lhs_0_0= ruleMultiplicativeExpression )
-            // InternalMyCsv.g:2223:5: lv_lhs_0_0= ruleMultiplicativeExpression
+            // InternalMyCsv.g:2300:4: (lv_lhs_0_0= ruleMultiplicativeExpression )
+            // InternalMyCsv.g:2301:5: lv_lhs_0_0= ruleMultiplicativeExpression
             {
 
             					newCompositeNode(grammarAccess.getAdditiveExpressionAccess().getLhsMultiplicativeExpressionParserRuleCall_0_0());
             				
-            pushFollow(FOLLOW_31);
+            pushFollow(FOLLOW_35);
             lv_lhs_0_0=ruleMultiplicativeExpression();
 
             state._fsp--;
@@ -6120,28 +6302,28 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalMyCsv.g:2240:3: ( (lv_rhs_1_0= ruleAdditiveExpressionRhs ) )*
+            // InternalMyCsv.g:2318:3: ( (lv_rhs_1_0= ruleAdditiveExpressionRhs ) )*
             loop25:
             do {
                 int alt25=2;
                 int LA25_0 = input.LA(1);
 
-                if ( (LA25_0==40||LA25_0==53) ) {
+                if ( (LA25_0==42||LA25_0==55) ) {
                     alt25=1;
                 }
 
 
                 switch (alt25) {
             	case 1 :
-            	    // InternalMyCsv.g:2241:4: (lv_rhs_1_0= ruleAdditiveExpressionRhs )
+            	    // InternalMyCsv.g:2319:4: (lv_rhs_1_0= ruleAdditiveExpressionRhs )
             	    {
-            	    // InternalMyCsv.g:2241:4: (lv_rhs_1_0= ruleAdditiveExpressionRhs )
-            	    // InternalMyCsv.g:2242:5: lv_rhs_1_0= ruleAdditiveExpressionRhs
+            	    // InternalMyCsv.g:2319:4: (lv_rhs_1_0= ruleAdditiveExpressionRhs )
+            	    // InternalMyCsv.g:2320:5: lv_rhs_1_0= ruleAdditiveExpressionRhs
             	    {
 
             	    					newCompositeNode(grammarAccess.getAdditiveExpressionAccess().getRhsAdditiveExpressionRhsParserRuleCall_1_0());
             	    				
-            	    pushFollow(FOLLOW_31);
+            	    pushFollow(FOLLOW_35);
             	    lv_rhs_1_0=ruleAdditiveExpressionRhs();
 
             	    state._fsp--;
@@ -6192,7 +6374,7 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleAdditiveExpressionRhs"
-    // InternalMyCsv.g:2263:1: entryRuleAdditiveExpressionRhs returns [EObject current=null] : iv_ruleAdditiveExpressionRhs= ruleAdditiveExpressionRhs EOF ;
+    // InternalMyCsv.g:2341:1: entryRuleAdditiveExpressionRhs returns [EObject current=null] : iv_ruleAdditiveExpressionRhs= ruleAdditiveExpressionRhs EOF ;
     public final EObject entryRuleAdditiveExpressionRhs() throws RecognitionException {
         EObject current = null;
 
@@ -6200,8 +6382,8 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalMyCsv.g:2263:62: (iv_ruleAdditiveExpressionRhs= ruleAdditiveExpressionRhs EOF )
-            // InternalMyCsv.g:2264:2: iv_ruleAdditiveExpressionRhs= ruleAdditiveExpressionRhs EOF
+            // InternalMyCsv.g:2341:62: (iv_ruleAdditiveExpressionRhs= ruleAdditiveExpressionRhs EOF )
+            // InternalMyCsv.g:2342:2: iv_ruleAdditiveExpressionRhs= ruleAdditiveExpressionRhs EOF
             {
              newCompositeNode(grammarAccess.getAdditiveExpressionRhsRule()); 
             pushFollow(FOLLOW_1);
@@ -6228,7 +6410,7 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleAdditiveExpressionRhs"
-    // InternalMyCsv.g:2270:1: ruleAdditiveExpressionRhs returns [EObject current=null] : ( ( (lv_op_0_0= ruleBinOpAdd ) ) ( (lv_rhs_1_0= ruleMultiplicativeExpression ) ) ) ;
+    // InternalMyCsv.g:2348:1: ruleAdditiveExpressionRhs returns [EObject current=null] : ( ( (lv_op_0_0= ruleBinOpAdd ) ) ( (lv_rhs_1_0= ruleMultiplicativeExpression ) ) ) ;
     public final EObject ruleAdditiveExpressionRhs() throws RecognitionException {
         EObject current = null;
 
@@ -6241,22 +6423,22 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalMyCsv.g:2276:2: ( ( ( (lv_op_0_0= ruleBinOpAdd ) ) ( (lv_rhs_1_0= ruleMultiplicativeExpression ) ) ) )
-            // InternalMyCsv.g:2277:2: ( ( (lv_op_0_0= ruleBinOpAdd ) ) ( (lv_rhs_1_0= ruleMultiplicativeExpression ) ) )
+            // InternalMyCsv.g:2354:2: ( ( ( (lv_op_0_0= ruleBinOpAdd ) ) ( (lv_rhs_1_0= ruleMultiplicativeExpression ) ) ) )
+            // InternalMyCsv.g:2355:2: ( ( (lv_op_0_0= ruleBinOpAdd ) ) ( (lv_rhs_1_0= ruleMultiplicativeExpression ) ) )
             {
-            // InternalMyCsv.g:2277:2: ( ( (lv_op_0_0= ruleBinOpAdd ) ) ( (lv_rhs_1_0= ruleMultiplicativeExpression ) ) )
-            // InternalMyCsv.g:2278:3: ( (lv_op_0_0= ruleBinOpAdd ) ) ( (lv_rhs_1_0= ruleMultiplicativeExpression ) )
+            // InternalMyCsv.g:2355:2: ( ( (lv_op_0_0= ruleBinOpAdd ) ) ( (lv_rhs_1_0= ruleMultiplicativeExpression ) ) )
+            // InternalMyCsv.g:2356:3: ( (lv_op_0_0= ruleBinOpAdd ) ) ( (lv_rhs_1_0= ruleMultiplicativeExpression ) )
             {
-            // InternalMyCsv.g:2278:3: ( (lv_op_0_0= ruleBinOpAdd ) )
-            // InternalMyCsv.g:2279:4: (lv_op_0_0= ruleBinOpAdd )
+            // InternalMyCsv.g:2356:3: ( (lv_op_0_0= ruleBinOpAdd ) )
+            // InternalMyCsv.g:2357:4: (lv_op_0_0= ruleBinOpAdd )
             {
-            // InternalMyCsv.g:2279:4: (lv_op_0_0= ruleBinOpAdd )
-            // InternalMyCsv.g:2280:5: lv_op_0_0= ruleBinOpAdd
+            // InternalMyCsv.g:2357:4: (lv_op_0_0= ruleBinOpAdd )
+            // InternalMyCsv.g:2358:5: lv_op_0_0= ruleBinOpAdd
             {
 
             					newCompositeNode(grammarAccess.getAdditiveExpressionRhsAccess().getOpBinOpAddEnumRuleCall_0_0());
             				
-            pushFollow(FOLLOW_32);
+            pushFollow(FOLLOW_36);
             lv_op_0_0=ruleBinOpAdd();
 
             state._fsp--;
@@ -6278,11 +6460,11 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalMyCsv.g:2297:3: ( (lv_rhs_1_0= ruleMultiplicativeExpression ) )
-            // InternalMyCsv.g:2298:4: (lv_rhs_1_0= ruleMultiplicativeExpression )
+            // InternalMyCsv.g:2375:3: ( (lv_rhs_1_0= ruleMultiplicativeExpression ) )
+            // InternalMyCsv.g:2376:4: (lv_rhs_1_0= ruleMultiplicativeExpression )
             {
-            // InternalMyCsv.g:2298:4: (lv_rhs_1_0= ruleMultiplicativeExpression )
-            // InternalMyCsv.g:2299:5: lv_rhs_1_0= ruleMultiplicativeExpression
+            // InternalMyCsv.g:2376:4: (lv_rhs_1_0= ruleMultiplicativeExpression )
+            // InternalMyCsv.g:2377:5: lv_rhs_1_0= ruleMultiplicativeExpression
             {
 
             					newCompositeNode(grammarAccess.getAdditiveExpressionRhsAccess().getRhsMultiplicativeExpressionParserRuleCall_1_0());
@@ -6332,7 +6514,7 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleMultiplicativeExpression"
-    // InternalMyCsv.g:2320:1: entryRuleMultiplicativeExpression returns [EObject current=null] : iv_ruleMultiplicativeExpression= ruleMultiplicativeExpression EOF ;
+    // InternalMyCsv.g:2398:1: entryRuleMultiplicativeExpression returns [EObject current=null] : iv_ruleMultiplicativeExpression= ruleMultiplicativeExpression EOF ;
     public final EObject entryRuleMultiplicativeExpression() throws RecognitionException {
         EObject current = null;
 
@@ -6340,8 +6522,8 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalMyCsv.g:2320:65: (iv_ruleMultiplicativeExpression= ruleMultiplicativeExpression EOF )
-            // InternalMyCsv.g:2321:2: iv_ruleMultiplicativeExpression= ruleMultiplicativeExpression EOF
+            // InternalMyCsv.g:2398:65: (iv_ruleMultiplicativeExpression= ruleMultiplicativeExpression EOF )
+            // InternalMyCsv.g:2399:2: iv_ruleMultiplicativeExpression= ruleMultiplicativeExpression EOF
             {
              newCompositeNode(grammarAccess.getMultiplicativeExpressionRule()); 
             pushFollow(FOLLOW_1);
@@ -6368,7 +6550,7 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleMultiplicativeExpression"
-    // InternalMyCsv.g:2327:1: ruleMultiplicativeExpression returns [EObject current=null] : ( ( (lv_lhs_0_0= ruleUnaryExpression ) ) ( (lv_rhs_1_0= ruleMultiplicativeExpressionRhs ) )* ) ;
+    // InternalMyCsv.g:2405:1: ruleMultiplicativeExpression returns [EObject current=null] : ( ( (lv_lhs_0_0= ruleUnaryExpression ) ) ( (lv_rhs_1_0= ruleMultiplicativeExpressionRhs ) )* ) ;
     public final EObject ruleMultiplicativeExpression() throws RecognitionException {
         EObject current = null;
 
@@ -6381,22 +6563,22 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalMyCsv.g:2333:2: ( ( ( (lv_lhs_0_0= ruleUnaryExpression ) ) ( (lv_rhs_1_0= ruleMultiplicativeExpressionRhs ) )* ) )
-            // InternalMyCsv.g:2334:2: ( ( (lv_lhs_0_0= ruleUnaryExpression ) ) ( (lv_rhs_1_0= ruleMultiplicativeExpressionRhs ) )* )
+            // InternalMyCsv.g:2411:2: ( ( ( (lv_lhs_0_0= ruleUnaryExpression ) ) ( (lv_rhs_1_0= ruleMultiplicativeExpressionRhs ) )* ) )
+            // InternalMyCsv.g:2412:2: ( ( (lv_lhs_0_0= ruleUnaryExpression ) ) ( (lv_rhs_1_0= ruleMultiplicativeExpressionRhs ) )* )
             {
-            // InternalMyCsv.g:2334:2: ( ( (lv_lhs_0_0= ruleUnaryExpression ) ) ( (lv_rhs_1_0= ruleMultiplicativeExpressionRhs ) )* )
-            // InternalMyCsv.g:2335:3: ( (lv_lhs_0_0= ruleUnaryExpression ) ) ( (lv_rhs_1_0= ruleMultiplicativeExpressionRhs ) )*
+            // InternalMyCsv.g:2412:2: ( ( (lv_lhs_0_0= ruleUnaryExpression ) ) ( (lv_rhs_1_0= ruleMultiplicativeExpressionRhs ) )* )
+            // InternalMyCsv.g:2413:3: ( (lv_lhs_0_0= ruleUnaryExpression ) ) ( (lv_rhs_1_0= ruleMultiplicativeExpressionRhs ) )*
             {
-            // InternalMyCsv.g:2335:3: ( (lv_lhs_0_0= ruleUnaryExpression ) )
-            // InternalMyCsv.g:2336:4: (lv_lhs_0_0= ruleUnaryExpression )
+            // InternalMyCsv.g:2413:3: ( (lv_lhs_0_0= ruleUnaryExpression ) )
+            // InternalMyCsv.g:2414:4: (lv_lhs_0_0= ruleUnaryExpression )
             {
-            // InternalMyCsv.g:2336:4: (lv_lhs_0_0= ruleUnaryExpression )
-            // InternalMyCsv.g:2337:5: lv_lhs_0_0= ruleUnaryExpression
+            // InternalMyCsv.g:2414:4: (lv_lhs_0_0= ruleUnaryExpression )
+            // InternalMyCsv.g:2415:5: lv_lhs_0_0= ruleUnaryExpression
             {
 
             					newCompositeNode(grammarAccess.getMultiplicativeExpressionAccess().getLhsUnaryExpressionParserRuleCall_0_0());
             				
-            pushFollow(FOLLOW_33);
+            pushFollow(FOLLOW_37);
             lv_lhs_0_0=ruleUnaryExpression();
 
             state._fsp--;
@@ -6418,28 +6600,28 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalMyCsv.g:2354:3: ( (lv_rhs_1_0= ruleMultiplicativeExpressionRhs ) )*
+            // InternalMyCsv.g:2432:3: ( (lv_rhs_1_0= ruleMultiplicativeExpressionRhs ) )*
             loop26:
             do {
                 int alt26=2;
                 int LA26_0 = input.LA(1);
 
-                if ( ((LA26_0>=54 && LA26_0<=55)) ) {
+                if ( ((LA26_0>=56 && LA26_0<=57)) ) {
                     alt26=1;
                 }
 
 
                 switch (alt26) {
             	case 1 :
-            	    // InternalMyCsv.g:2355:4: (lv_rhs_1_0= ruleMultiplicativeExpressionRhs )
+            	    // InternalMyCsv.g:2433:4: (lv_rhs_1_0= ruleMultiplicativeExpressionRhs )
             	    {
-            	    // InternalMyCsv.g:2355:4: (lv_rhs_1_0= ruleMultiplicativeExpressionRhs )
-            	    // InternalMyCsv.g:2356:5: lv_rhs_1_0= ruleMultiplicativeExpressionRhs
+            	    // InternalMyCsv.g:2433:4: (lv_rhs_1_0= ruleMultiplicativeExpressionRhs )
+            	    // InternalMyCsv.g:2434:5: lv_rhs_1_0= ruleMultiplicativeExpressionRhs
             	    {
 
             	    					newCompositeNode(grammarAccess.getMultiplicativeExpressionAccess().getRhsMultiplicativeExpressionRhsParserRuleCall_1_0());
             	    				
-            	    pushFollow(FOLLOW_33);
+            	    pushFollow(FOLLOW_37);
             	    lv_rhs_1_0=ruleMultiplicativeExpressionRhs();
 
             	    state._fsp--;
@@ -6490,7 +6672,7 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleMultiplicativeExpressionRhs"
-    // InternalMyCsv.g:2377:1: entryRuleMultiplicativeExpressionRhs returns [EObject current=null] : iv_ruleMultiplicativeExpressionRhs= ruleMultiplicativeExpressionRhs EOF ;
+    // InternalMyCsv.g:2455:1: entryRuleMultiplicativeExpressionRhs returns [EObject current=null] : iv_ruleMultiplicativeExpressionRhs= ruleMultiplicativeExpressionRhs EOF ;
     public final EObject entryRuleMultiplicativeExpressionRhs() throws RecognitionException {
         EObject current = null;
 
@@ -6498,8 +6680,8 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalMyCsv.g:2377:68: (iv_ruleMultiplicativeExpressionRhs= ruleMultiplicativeExpressionRhs EOF )
-            // InternalMyCsv.g:2378:2: iv_ruleMultiplicativeExpressionRhs= ruleMultiplicativeExpressionRhs EOF
+            // InternalMyCsv.g:2455:68: (iv_ruleMultiplicativeExpressionRhs= ruleMultiplicativeExpressionRhs EOF )
+            // InternalMyCsv.g:2456:2: iv_ruleMultiplicativeExpressionRhs= ruleMultiplicativeExpressionRhs EOF
             {
              newCompositeNode(grammarAccess.getMultiplicativeExpressionRhsRule()); 
             pushFollow(FOLLOW_1);
@@ -6526,7 +6708,7 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleMultiplicativeExpressionRhs"
-    // InternalMyCsv.g:2384:1: ruleMultiplicativeExpressionRhs returns [EObject current=null] : ( ( (lv_op_0_0= ruleBinOpMult ) ) ( (lv_rhs_1_0= ruleUnaryExpression ) ) ) ;
+    // InternalMyCsv.g:2462:1: ruleMultiplicativeExpressionRhs returns [EObject current=null] : ( ( (lv_op_0_0= ruleBinOpMult ) ) ( (lv_rhs_1_0= ruleUnaryExpression ) ) ) ;
     public final EObject ruleMultiplicativeExpressionRhs() throws RecognitionException {
         EObject current = null;
 
@@ -6539,22 +6721,22 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalMyCsv.g:2390:2: ( ( ( (lv_op_0_0= ruleBinOpMult ) ) ( (lv_rhs_1_0= ruleUnaryExpression ) ) ) )
-            // InternalMyCsv.g:2391:2: ( ( (lv_op_0_0= ruleBinOpMult ) ) ( (lv_rhs_1_0= ruleUnaryExpression ) ) )
+            // InternalMyCsv.g:2468:2: ( ( ( (lv_op_0_0= ruleBinOpMult ) ) ( (lv_rhs_1_0= ruleUnaryExpression ) ) ) )
+            // InternalMyCsv.g:2469:2: ( ( (lv_op_0_0= ruleBinOpMult ) ) ( (lv_rhs_1_0= ruleUnaryExpression ) ) )
             {
-            // InternalMyCsv.g:2391:2: ( ( (lv_op_0_0= ruleBinOpMult ) ) ( (lv_rhs_1_0= ruleUnaryExpression ) ) )
-            // InternalMyCsv.g:2392:3: ( (lv_op_0_0= ruleBinOpMult ) ) ( (lv_rhs_1_0= ruleUnaryExpression ) )
+            // InternalMyCsv.g:2469:2: ( ( (lv_op_0_0= ruleBinOpMult ) ) ( (lv_rhs_1_0= ruleUnaryExpression ) ) )
+            // InternalMyCsv.g:2470:3: ( (lv_op_0_0= ruleBinOpMult ) ) ( (lv_rhs_1_0= ruleUnaryExpression ) )
             {
-            // InternalMyCsv.g:2392:3: ( (lv_op_0_0= ruleBinOpMult ) )
-            // InternalMyCsv.g:2393:4: (lv_op_0_0= ruleBinOpMult )
+            // InternalMyCsv.g:2470:3: ( (lv_op_0_0= ruleBinOpMult ) )
+            // InternalMyCsv.g:2471:4: (lv_op_0_0= ruleBinOpMult )
             {
-            // InternalMyCsv.g:2393:4: (lv_op_0_0= ruleBinOpMult )
-            // InternalMyCsv.g:2394:5: lv_op_0_0= ruleBinOpMult
+            // InternalMyCsv.g:2471:4: (lv_op_0_0= ruleBinOpMult )
+            // InternalMyCsv.g:2472:5: lv_op_0_0= ruleBinOpMult
             {
 
             					newCompositeNode(grammarAccess.getMultiplicativeExpressionRhsAccess().getOpBinOpMultEnumRuleCall_0_0());
             				
-            pushFollow(FOLLOW_32);
+            pushFollow(FOLLOW_36);
             lv_op_0_0=ruleBinOpMult();
 
             state._fsp--;
@@ -6576,11 +6758,11 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalMyCsv.g:2411:3: ( (lv_rhs_1_0= ruleUnaryExpression ) )
-            // InternalMyCsv.g:2412:4: (lv_rhs_1_0= ruleUnaryExpression )
+            // InternalMyCsv.g:2489:3: ( (lv_rhs_1_0= ruleUnaryExpression ) )
+            // InternalMyCsv.g:2490:4: (lv_rhs_1_0= ruleUnaryExpression )
             {
-            // InternalMyCsv.g:2412:4: (lv_rhs_1_0= ruleUnaryExpression )
-            // InternalMyCsv.g:2413:5: lv_rhs_1_0= ruleUnaryExpression
+            // InternalMyCsv.g:2490:4: (lv_rhs_1_0= ruleUnaryExpression )
+            // InternalMyCsv.g:2491:5: lv_rhs_1_0= ruleUnaryExpression
             {
 
             					newCompositeNode(grammarAccess.getMultiplicativeExpressionRhsAccess().getRhsUnaryExpressionParserRuleCall_1_0());
@@ -6630,7 +6812,7 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleUnaryExpression"
-    // InternalMyCsv.g:2434:1: entryRuleUnaryExpression returns [EObject current=null] : iv_ruleUnaryExpression= ruleUnaryExpression EOF ;
+    // InternalMyCsv.g:2512:1: entryRuleUnaryExpression returns [EObject current=null] : iv_ruleUnaryExpression= ruleUnaryExpression EOF ;
     public final EObject entryRuleUnaryExpression() throws RecognitionException {
         EObject current = null;
 
@@ -6638,8 +6820,8 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalMyCsv.g:2434:56: (iv_ruleUnaryExpression= ruleUnaryExpression EOF )
-            // InternalMyCsv.g:2435:2: iv_ruleUnaryExpression= ruleUnaryExpression EOF
+            // InternalMyCsv.g:2512:56: (iv_ruleUnaryExpression= ruleUnaryExpression EOF )
+            // InternalMyCsv.g:2513:2: iv_ruleUnaryExpression= ruleUnaryExpression EOF
             {
              newCompositeNode(grammarAccess.getUnaryExpressionRule()); 
             pushFollow(FOLLOW_1);
@@ -6666,7 +6848,7 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleUnaryExpression"
-    // InternalMyCsv.g:2441:1: ruleUnaryExpression returns [EObject current=null] : ( ( (lv_op_0_0= '-' ) )? ( (lv_expr_1_0= ruleExpressionCalculPrimary ) ) ) ;
+    // InternalMyCsv.g:2519:1: ruleUnaryExpression returns [EObject current=null] : ( ( (lv_op_0_0= '-' ) )? ( (lv_expr_1_0= ruleExpressionCalculPrimary ) ) ) ;
     public final EObject ruleUnaryExpression() throws RecognitionException {
         EObject current = null;
 
@@ -6678,27 +6860,27 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalMyCsv.g:2447:2: ( ( ( (lv_op_0_0= '-' ) )? ( (lv_expr_1_0= ruleExpressionCalculPrimary ) ) ) )
-            // InternalMyCsv.g:2448:2: ( ( (lv_op_0_0= '-' ) )? ( (lv_expr_1_0= ruleExpressionCalculPrimary ) ) )
+            // InternalMyCsv.g:2525:2: ( ( ( (lv_op_0_0= '-' ) )? ( (lv_expr_1_0= ruleExpressionCalculPrimary ) ) ) )
+            // InternalMyCsv.g:2526:2: ( ( (lv_op_0_0= '-' ) )? ( (lv_expr_1_0= ruleExpressionCalculPrimary ) ) )
             {
-            // InternalMyCsv.g:2448:2: ( ( (lv_op_0_0= '-' ) )? ( (lv_expr_1_0= ruleExpressionCalculPrimary ) ) )
-            // InternalMyCsv.g:2449:3: ( (lv_op_0_0= '-' ) )? ( (lv_expr_1_0= ruleExpressionCalculPrimary ) )
+            // InternalMyCsv.g:2526:2: ( ( (lv_op_0_0= '-' ) )? ( (lv_expr_1_0= ruleExpressionCalculPrimary ) ) )
+            // InternalMyCsv.g:2527:3: ( (lv_op_0_0= '-' ) )? ( (lv_expr_1_0= ruleExpressionCalculPrimary ) )
             {
-            // InternalMyCsv.g:2449:3: ( (lv_op_0_0= '-' ) )?
+            // InternalMyCsv.g:2527:3: ( (lv_op_0_0= '-' ) )?
             int alt27=2;
             int LA27_0 = input.LA(1);
 
-            if ( (LA27_0==40) ) {
+            if ( (LA27_0==42) ) {
                 alt27=1;
             }
             switch (alt27) {
                 case 1 :
-                    // InternalMyCsv.g:2450:4: (lv_op_0_0= '-' )
+                    // InternalMyCsv.g:2528:4: (lv_op_0_0= '-' )
                     {
-                    // InternalMyCsv.g:2450:4: (lv_op_0_0= '-' )
-                    // InternalMyCsv.g:2451:5: lv_op_0_0= '-'
+                    // InternalMyCsv.g:2528:4: (lv_op_0_0= '-' )
+                    // InternalMyCsv.g:2529:5: lv_op_0_0= '-'
                     {
-                    lv_op_0_0=(Token)match(input,40,FOLLOW_32); 
+                    lv_op_0_0=(Token)match(input,42,FOLLOW_36); 
 
                     					newLeafNode(lv_op_0_0, grammarAccess.getUnaryExpressionAccess().getOpHyphenMinusKeyword_0_0());
                     				
@@ -6717,11 +6899,11 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalMyCsv.g:2463:3: ( (lv_expr_1_0= ruleExpressionCalculPrimary ) )
-            // InternalMyCsv.g:2464:4: (lv_expr_1_0= ruleExpressionCalculPrimary )
+            // InternalMyCsv.g:2541:3: ( (lv_expr_1_0= ruleExpressionCalculPrimary ) )
+            // InternalMyCsv.g:2542:4: (lv_expr_1_0= ruleExpressionCalculPrimary )
             {
-            // InternalMyCsv.g:2464:4: (lv_expr_1_0= ruleExpressionCalculPrimary )
-            // InternalMyCsv.g:2465:5: lv_expr_1_0= ruleExpressionCalculPrimary
+            // InternalMyCsv.g:2542:4: (lv_expr_1_0= ruleExpressionCalculPrimary )
+            // InternalMyCsv.g:2543:5: lv_expr_1_0= ruleExpressionCalculPrimary
             {
 
             					newCompositeNode(grammarAccess.getUnaryExpressionAccess().getExprExpressionCalculPrimaryParserRuleCall_1_0());
@@ -6771,7 +6953,7 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleExpressionCalculPrimary"
-    // InternalMyCsv.g:2486:1: entryRuleExpressionCalculPrimary returns [EObject current=null] : iv_ruleExpressionCalculPrimary= ruleExpressionCalculPrimary EOF ;
+    // InternalMyCsv.g:2564:1: entryRuleExpressionCalculPrimary returns [EObject current=null] : iv_ruleExpressionCalculPrimary= ruleExpressionCalculPrimary EOF ;
     public final EObject entryRuleExpressionCalculPrimary() throws RecognitionException {
         EObject current = null;
 
@@ -6779,8 +6961,8 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalMyCsv.g:2486:64: (iv_ruleExpressionCalculPrimary= ruleExpressionCalculPrimary EOF )
-            // InternalMyCsv.g:2487:2: iv_ruleExpressionCalculPrimary= ruleExpressionCalculPrimary EOF
+            // InternalMyCsv.g:2564:64: (iv_ruleExpressionCalculPrimary= ruleExpressionCalculPrimary EOF )
+            // InternalMyCsv.g:2565:2: iv_ruleExpressionCalculPrimary= ruleExpressionCalculPrimary EOF
             {
              newCompositeNode(grammarAccess.getExpressionCalculPrimaryRule()); 
             pushFollow(FOLLOW_1);
@@ -6807,7 +6989,7 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleExpressionCalculPrimary"
-    // InternalMyCsv.g:2493:1: ruleExpressionCalculPrimary returns [EObject current=null] : ( ( () ruleNbField ) | this_AggregatExpression_2= ruleAggregatExpression | this_LitteralInt_3= ruleLitteralInt | this_LitteralFloat_4= ruleLitteralFloat | this_NestedExpressionCalcul_5= ruleNestedExpressionCalcul ) ;
+    // InternalMyCsv.g:2571:1: ruleExpressionCalculPrimary returns [EObject current=null] : ( ( () ruleNbField ) | this_AggregatExpression_2= ruleAggregatExpression | this_LitteralInt_3= ruleLitteralInt | this_LitteralFloat_4= ruleLitteralFloat | this_NestedExpressionCalcul_5= ruleNestedExpressionCalcul ) ;
     public final EObject ruleExpressionCalculPrimary() throws RecognitionException {
         EObject current = null;
 
@@ -6824,21 +7006,21 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalMyCsv.g:2499:2: ( ( ( () ruleNbField ) | this_AggregatExpression_2= ruleAggregatExpression | this_LitteralInt_3= ruleLitteralInt | this_LitteralFloat_4= ruleLitteralFloat | this_NestedExpressionCalcul_5= ruleNestedExpressionCalcul ) )
-            // InternalMyCsv.g:2500:2: ( ( () ruleNbField ) | this_AggregatExpression_2= ruleAggregatExpression | this_LitteralInt_3= ruleLitteralInt | this_LitteralFloat_4= ruleLitteralFloat | this_NestedExpressionCalcul_5= ruleNestedExpressionCalcul )
+            // InternalMyCsv.g:2577:2: ( ( ( () ruleNbField ) | this_AggregatExpression_2= ruleAggregatExpression | this_LitteralInt_3= ruleLitteralInt | this_LitteralFloat_4= ruleLitteralFloat | this_NestedExpressionCalcul_5= ruleNestedExpressionCalcul ) )
+            // InternalMyCsv.g:2578:2: ( ( () ruleNbField ) | this_AggregatExpression_2= ruleAggregatExpression | this_LitteralInt_3= ruleLitteralInt | this_LitteralFloat_4= ruleLitteralFloat | this_NestedExpressionCalcul_5= ruleNestedExpressionCalcul )
             {
-            // InternalMyCsv.g:2500:2: ( ( () ruleNbField ) | this_AggregatExpression_2= ruleAggregatExpression | this_LitteralInt_3= ruleLitteralInt | this_LitteralFloat_4= ruleLitteralFloat | this_NestedExpressionCalcul_5= ruleNestedExpressionCalcul )
+            // InternalMyCsv.g:2578:2: ( ( () ruleNbField ) | this_AggregatExpression_2= ruleAggregatExpression | this_LitteralInt_3= ruleLitteralInt | this_LitteralFloat_4= ruleLitteralFloat | this_NestedExpressionCalcul_5= ruleNestedExpressionCalcul )
             int alt28=5;
             switch ( input.LA(1) ) {
-            case 41:
+            case 43:
                 {
                 alt28=1;
                 }
                 break;
-            case 49:
-            case 50:
             case 51:
             case 52:
+            case 53:
+            case 54:
                 {
                 alt28=2;
                 }
@@ -6847,10 +7029,10 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
                 {
                 int LA28_3 = input.LA(2);
 
-                if ( (LA28_3==EOF||LA28_3==13||(LA28_3>=15 && LA28_3<=17)||(LA28_3>=22 && LA28_3<=26)||LA28_3==29||(LA28_3>=31 && LA28_3<=32)||LA28_3==34||(LA28_3>=37 && LA28_3<=38)||LA28_3==40||(LA28_3>=53 && LA28_3<=55)) ) {
+                if ( (LA28_3==EOF||LA28_3==13||(LA28_3>=15 && LA28_3<=17)||(LA28_3>=22 && LA28_3<=26)||LA28_3==29||(LA28_3>=31 && LA28_3<=32)||LA28_3==34||LA28_3==37||(LA28_3>=39 && LA28_3<=40)||LA28_3==42||(LA28_3>=55 && LA28_3<=57)) ) {
                     alt28=3;
                 }
-                else if ( (LA28_3==42) ) {
+                else if ( (LA28_3==44) ) {
                     alt28=4;
                 }
                 else {
@@ -6875,13 +7057,13 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
             switch (alt28) {
                 case 1 :
-                    // InternalMyCsv.g:2501:3: ( () ruleNbField )
+                    // InternalMyCsv.g:2579:3: ( () ruleNbField )
                     {
-                    // InternalMyCsv.g:2501:3: ( () ruleNbField )
-                    // InternalMyCsv.g:2502:4: () ruleNbField
+                    // InternalMyCsv.g:2579:3: ( () ruleNbField )
+                    // InternalMyCsv.g:2580:4: () ruleNbField
                     {
-                    // InternalMyCsv.g:2502:4: ()
-                    // InternalMyCsv.g:2503:5: 
+                    // InternalMyCsv.g:2580:4: ()
+                    // InternalMyCsv.g:2581:5: 
                     {
 
                     					current = forceCreateModelElement(
@@ -6909,7 +7091,7 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalMyCsv.g:2518:3: this_AggregatExpression_2= ruleAggregatExpression
+                    // InternalMyCsv.g:2596:3: this_AggregatExpression_2= ruleAggregatExpression
                     {
 
                     			newCompositeNode(grammarAccess.getExpressionCalculPrimaryAccess().getAggregatExpressionParserRuleCall_1());
@@ -6927,7 +7109,7 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // InternalMyCsv.g:2527:3: this_LitteralInt_3= ruleLitteralInt
+                    // InternalMyCsv.g:2605:3: this_LitteralInt_3= ruleLitteralInt
                     {
 
                     			newCompositeNode(grammarAccess.getExpressionCalculPrimaryAccess().getLitteralIntParserRuleCall_2());
@@ -6945,7 +7127,7 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 4 :
-                    // InternalMyCsv.g:2536:3: this_LitteralFloat_4= ruleLitteralFloat
+                    // InternalMyCsv.g:2614:3: this_LitteralFloat_4= ruleLitteralFloat
                     {
 
                     			newCompositeNode(grammarAccess.getExpressionCalculPrimaryAccess().getLitteralFloatParserRuleCall_3());
@@ -6963,7 +7145,7 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 5 :
-                    // InternalMyCsv.g:2545:3: this_NestedExpressionCalcul_5= ruleNestedExpressionCalcul
+                    // InternalMyCsv.g:2623:3: this_NestedExpressionCalcul_5= ruleNestedExpressionCalcul
                     {
 
                     			newCompositeNode(grammarAccess.getExpressionCalculPrimaryAccess().getNestedExpressionCalculParserRuleCall_4());
@@ -7003,7 +7185,7 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleAggregatExpression"
-    // InternalMyCsv.g:2557:1: entryRuleAggregatExpression returns [EObject current=null] : iv_ruleAggregatExpression= ruleAggregatExpression EOF ;
+    // InternalMyCsv.g:2635:1: entryRuleAggregatExpression returns [EObject current=null] : iv_ruleAggregatExpression= ruleAggregatExpression EOF ;
     public final EObject entryRuleAggregatExpression() throws RecognitionException {
         EObject current = null;
 
@@ -7011,8 +7193,8 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalMyCsv.g:2557:59: (iv_ruleAggregatExpression= ruleAggregatExpression EOF )
-            // InternalMyCsv.g:2558:2: iv_ruleAggregatExpression= ruleAggregatExpression EOF
+            // InternalMyCsv.g:2635:59: (iv_ruleAggregatExpression= ruleAggregatExpression EOF )
+            // InternalMyCsv.g:2636:2: iv_ruleAggregatExpression= ruleAggregatExpression EOF
             {
              newCompositeNode(grammarAccess.getAggregatExpressionRule()); 
             pushFollow(FOLLOW_1);
@@ -7039,7 +7221,7 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleAggregatExpression"
-    // InternalMyCsv.g:2564:1: ruleAggregatExpression returns [EObject current=null] : ( ( (lv_aggregatOp_0_0= ruleAggregat ) ) ( (lv_arg_1_0= ruleField ) ) ) ;
+    // InternalMyCsv.g:2642:1: ruleAggregatExpression returns [EObject current=null] : ( ( (lv_aggregatOp_0_0= ruleAggregat ) ) ( (lv_arg_1_0= ruleField ) ) ) ;
     public final EObject ruleAggregatExpression() throws RecognitionException {
         EObject current = null;
 
@@ -7052,22 +7234,22 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalMyCsv.g:2570:2: ( ( ( (lv_aggregatOp_0_0= ruleAggregat ) ) ( (lv_arg_1_0= ruleField ) ) ) )
-            // InternalMyCsv.g:2571:2: ( ( (lv_aggregatOp_0_0= ruleAggregat ) ) ( (lv_arg_1_0= ruleField ) ) )
+            // InternalMyCsv.g:2648:2: ( ( ( (lv_aggregatOp_0_0= ruleAggregat ) ) ( (lv_arg_1_0= ruleField ) ) ) )
+            // InternalMyCsv.g:2649:2: ( ( (lv_aggregatOp_0_0= ruleAggregat ) ) ( (lv_arg_1_0= ruleField ) ) )
             {
-            // InternalMyCsv.g:2571:2: ( ( (lv_aggregatOp_0_0= ruleAggregat ) ) ( (lv_arg_1_0= ruleField ) ) )
-            // InternalMyCsv.g:2572:3: ( (lv_aggregatOp_0_0= ruleAggregat ) ) ( (lv_arg_1_0= ruleField ) )
+            // InternalMyCsv.g:2649:2: ( ( (lv_aggregatOp_0_0= ruleAggregat ) ) ( (lv_arg_1_0= ruleField ) ) )
+            // InternalMyCsv.g:2650:3: ( (lv_aggregatOp_0_0= ruleAggregat ) ) ( (lv_arg_1_0= ruleField ) )
             {
-            // InternalMyCsv.g:2572:3: ( (lv_aggregatOp_0_0= ruleAggregat ) )
-            // InternalMyCsv.g:2573:4: (lv_aggregatOp_0_0= ruleAggregat )
+            // InternalMyCsv.g:2650:3: ( (lv_aggregatOp_0_0= ruleAggregat ) )
+            // InternalMyCsv.g:2651:4: (lv_aggregatOp_0_0= ruleAggregat )
             {
-            // InternalMyCsv.g:2573:4: (lv_aggregatOp_0_0= ruleAggregat )
-            // InternalMyCsv.g:2574:5: lv_aggregatOp_0_0= ruleAggregat
+            // InternalMyCsv.g:2651:4: (lv_aggregatOp_0_0= ruleAggregat )
+            // InternalMyCsv.g:2652:5: lv_aggregatOp_0_0= ruleAggregat
             {
 
             					newCompositeNode(grammarAccess.getAggregatExpressionAccess().getAggregatOpAggregatEnumRuleCall_0_0());
             				
-            pushFollow(FOLLOW_34);
+            pushFollow(FOLLOW_30);
             lv_aggregatOp_0_0=ruleAggregat();
 
             state._fsp--;
@@ -7089,11 +7271,11 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalMyCsv.g:2591:3: ( (lv_arg_1_0= ruleField ) )
-            // InternalMyCsv.g:2592:4: (lv_arg_1_0= ruleField )
+            // InternalMyCsv.g:2669:3: ( (lv_arg_1_0= ruleField ) )
+            // InternalMyCsv.g:2670:4: (lv_arg_1_0= ruleField )
             {
-            // InternalMyCsv.g:2592:4: (lv_arg_1_0= ruleField )
-            // InternalMyCsv.g:2593:5: lv_arg_1_0= ruleField
+            // InternalMyCsv.g:2670:4: (lv_arg_1_0= ruleField )
+            // InternalMyCsv.g:2671:5: lv_arg_1_0= ruleField
             {
 
             					newCompositeNode(grammarAccess.getAggregatExpressionAccess().getArgFieldParserRuleCall_1_0());
@@ -7143,7 +7325,7 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleLitteralInt"
-    // InternalMyCsv.g:2614:1: entryRuleLitteralInt returns [EObject current=null] : iv_ruleLitteralInt= ruleLitteralInt EOF ;
+    // InternalMyCsv.g:2692:1: entryRuleLitteralInt returns [EObject current=null] : iv_ruleLitteralInt= ruleLitteralInt EOF ;
     public final EObject entryRuleLitteralInt() throws RecognitionException {
         EObject current = null;
 
@@ -7151,8 +7333,8 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalMyCsv.g:2614:52: (iv_ruleLitteralInt= ruleLitteralInt EOF )
-            // InternalMyCsv.g:2615:2: iv_ruleLitteralInt= ruleLitteralInt EOF
+            // InternalMyCsv.g:2692:52: (iv_ruleLitteralInt= ruleLitteralInt EOF )
+            // InternalMyCsv.g:2693:2: iv_ruleLitteralInt= ruleLitteralInt EOF
             {
              newCompositeNode(grammarAccess.getLitteralIntRule()); 
             pushFollow(FOLLOW_1);
@@ -7179,7 +7361,7 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleLitteralInt"
-    // InternalMyCsv.g:2621:1: ruleLitteralInt returns [EObject current=null] : ( (lv_val_0_0= RULE_INT ) ) ;
+    // InternalMyCsv.g:2699:1: ruleLitteralInt returns [EObject current=null] : ( (lv_val_0_0= RULE_INT ) ) ;
     public final EObject ruleLitteralInt() throws RecognitionException {
         EObject current = null;
 
@@ -7189,14 +7371,14 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalMyCsv.g:2627:2: ( ( (lv_val_0_0= RULE_INT ) ) )
-            // InternalMyCsv.g:2628:2: ( (lv_val_0_0= RULE_INT ) )
+            // InternalMyCsv.g:2705:2: ( ( (lv_val_0_0= RULE_INT ) ) )
+            // InternalMyCsv.g:2706:2: ( (lv_val_0_0= RULE_INT ) )
             {
-            // InternalMyCsv.g:2628:2: ( (lv_val_0_0= RULE_INT ) )
-            // InternalMyCsv.g:2629:3: (lv_val_0_0= RULE_INT )
+            // InternalMyCsv.g:2706:2: ( (lv_val_0_0= RULE_INT ) )
+            // InternalMyCsv.g:2707:3: (lv_val_0_0= RULE_INT )
             {
-            // InternalMyCsv.g:2629:3: (lv_val_0_0= RULE_INT )
-            // InternalMyCsv.g:2630:4: lv_val_0_0= RULE_INT
+            // InternalMyCsv.g:2707:3: (lv_val_0_0= RULE_INT )
+            // InternalMyCsv.g:2708:4: lv_val_0_0= RULE_INT
             {
             lv_val_0_0=(Token)match(input,RULE_INT,FOLLOW_2); 
 
@@ -7238,7 +7420,7 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleLitteralFloat"
-    // InternalMyCsv.g:2649:1: entryRuleLitteralFloat returns [EObject current=null] : iv_ruleLitteralFloat= ruleLitteralFloat EOF ;
+    // InternalMyCsv.g:2727:1: entryRuleLitteralFloat returns [EObject current=null] : iv_ruleLitteralFloat= ruleLitteralFloat EOF ;
     public final EObject entryRuleLitteralFloat() throws RecognitionException {
         EObject current = null;
 
@@ -7246,8 +7428,8 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalMyCsv.g:2649:54: (iv_ruleLitteralFloat= ruleLitteralFloat EOF )
-            // InternalMyCsv.g:2650:2: iv_ruleLitteralFloat= ruleLitteralFloat EOF
+            // InternalMyCsv.g:2727:54: (iv_ruleLitteralFloat= ruleLitteralFloat EOF )
+            // InternalMyCsv.g:2728:2: iv_ruleLitteralFloat= ruleLitteralFloat EOF
             {
              newCompositeNode(grammarAccess.getLitteralFloatRule()); 
             pushFollow(FOLLOW_1);
@@ -7274,7 +7456,7 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleLitteralFloat"
-    // InternalMyCsv.g:2656:1: ruleLitteralFloat returns [EObject current=null] : ( (lv_val_0_0= ruleFLOAT ) ) ;
+    // InternalMyCsv.g:2734:1: ruleLitteralFloat returns [EObject current=null] : ( (lv_val_0_0= ruleFLOAT ) ) ;
     public final EObject ruleLitteralFloat() throws RecognitionException {
         EObject current = null;
 
@@ -7285,14 +7467,14 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalMyCsv.g:2662:2: ( ( (lv_val_0_0= ruleFLOAT ) ) )
-            // InternalMyCsv.g:2663:2: ( (lv_val_0_0= ruleFLOAT ) )
+            // InternalMyCsv.g:2740:2: ( ( (lv_val_0_0= ruleFLOAT ) ) )
+            // InternalMyCsv.g:2741:2: ( (lv_val_0_0= ruleFLOAT ) )
             {
-            // InternalMyCsv.g:2663:2: ( (lv_val_0_0= ruleFLOAT ) )
-            // InternalMyCsv.g:2664:3: (lv_val_0_0= ruleFLOAT )
+            // InternalMyCsv.g:2741:2: ( (lv_val_0_0= ruleFLOAT ) )
+            // InternalMyCsv.g:2742:3: (lv_val_0_0= ruleFLOAT )
             {
-            // InternalMyCsv.g:2664:3: (lv_val_0_0= ruleFLOAT )
-            // InternalMyCsv.g:2665:4: lv_val_0_0= ruleFLOAT
+            // InternalMyCsv.g:2742:3: (lv_val_0_0= ruleFLOAT )
+            // InternalMyCsv.g:2743:4: lv_val_0_0= ruleFLOAT
             {
 
             				newCompositeNode(grammarAccess.getLitteralFloatAccess().getValFLOATParserRuleCall_0());
@@ -7339,7 +7521,7 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleLitteralString"
-    // InternalMyCsv.g:2685:1: entryRuleLitteralString returns [EObject current=null] : iv_ruleLitteralString= ruleLitteralString EOF ;
+    // InternalMyCsv.g:2763:1: entryRuleLitteralString returns [EObject current=null] : iv_ruleLitteralString= ruleLitteralString EOF ;
     public final EObject entryRuleLitteralString() throws RecognitionException {
         EObject current = null;
 
@@ -7347,8 +7529,8 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalMyCsv.g:2685:55: (iv_ruleLitteralString= ruleLitteralString EOF )
-            // InternalMyCsv.g:2686:2: iv_ruleLitteralString= ruleLitteralString EOF
+            // InternalMyCsv.g:2763:55: (iv_ruleLitteralString= ruleLitteralString EOF )
+            // InternalMyCsv.g:2764:2: iv_ruleLitteralString= ruleLitteralString EOF
             {
              newCompositeNode(grammarAccess.getLitteralStringRule()); 
             pushFollow(FOLLOW_1);
@@ -7375,7 +7557,7 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleLitteralString"
-    // InternalMyCsv.g:2692:1: ruleLitteralString returns [EObject current=null] : ( (lv_val_0_0= RULE_STRING ) ) ;
+    // InternalMyCsv.g:2770:1: ruleLitteralString returns [EObject current=null] : ( (lv_val_0_0= RULE_STRING ) ) ;
     public final EObject ruleLitteralString() throws RecognitionException {
         EObject current = null;
 
@@ -7385,14 +7567,14 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalMyCsv.g:2698:2: ( ( (lv_val_0_0= RULE_STRING ) ) )
-            // InternalMyCsv.g:2699:2: ( (lv_val_0_0= RULE_STRING ) )
+            // InternalMyCsv.g:2776:2: ( ( (lv_val_0_0= RULE_STRING ) ) )
+            // InternalMyCsv.g:2777:2: ( (lv_val_0_0= RULE_STRING ) )
             {
-            // InternalMyCsv.g:2699:2: ( (lv_val_0_0= RULE_STRING ) )
-            // InternalMyCsv.g:2700:3: (lv_val_0_0= RULE_STRING )
+            // InternalMyCsv.g:2777:2: ( (lv_val_0_0= RULE_STRING ) )
+            // InternalMyCsv.g:2778:3: (lv_val_0_0= RULE_STRING )
             {
-            // InternalMyCsv.g:2700:3: (lv_val_0_0= RULE_STRING )
-            // InternalMyCsv.g:2701:4: lv_val_0_0= RULE_STRING
+            // InternalMyCsv.g:2778:3: (lv_val_0_0= RULE_STRING )
+            // InternalMyCsv.g:2779:4: lv_val_0_0= RULE_STRING
             {
             lv_val_0_0=(Token)match(input,RULE_STRING,FOLLOW_2); 
 
@@ -7434,7 +7616,7 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleNestedExpressionCalcul"
-    // InternalMyCsv.g:2720:1: entryRuleNestedExpressionCalcul returns [EObject current=null] : iv_ruleNestedExpressionCalcul= ruleNestedExpressionCalcul EOF ;
+    // InternalMyCsv.g:2798:1: entryRuleNestedExpressionCalcul returns [EObject current=null] : iv_ruleNestedExpressionCalcul= ruleNestedExpressionCalcul EOF ;
     public final EObject entryRuleNestedExpressionCalcul() throws RecognitionException {
         EObject current = null;
 
@@ -7442,8 +7624,8 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalMyCsv.g:2720:63: (iv_ruleNestedExpressionCalcul= ruleNestedExpressionCalcul EOF )
-            // InternalMyCsv.g:2721:2: iv_ruleNestedExpressionCalcul= ruleNestedExpressionCalcul EOF
+            // InternalMyCsv.g:2798:63: (iv_ruleNestedExpressionCalcul= ruleNestedExpressionCalcul EOF )
+            // InternalMyCsv.g:2799:2: iv_ruleNestedExpressionCalcul= ruleNestedExpressionCalcul EOF
             {
              newCompositeNode(grammarAccess.getNestedExpressionCalculRule()); 
             pushFollow(FOLLOW_1);
@@ -7470,7 +7652,7 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleNestedExpressionCalcul"
-    // InternalMyCsv.g:2727:1: ruleNestedExpressionCalcul returns [EObject current=null] : (otherlv_0= '(' ( (lv_expr_1_0= ruleExpressionCalcul ) ) otherlv_2= ')' ) ;
+    // InternalMyCsv.g:2805:1: ruleNestedExpressionCalcul returns [EObject current=null] : (otherlv_0= '(' ( (lv_expr_1_0= ruleExpressionCalcul ) ) otherlv_2= ')' ) ;
     public final EObject ruleNestedExpressionCalcul() throws RecognitionException {
         EObject current = null;
 
@@ -7483,21 +7665,21 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalMyCsv.g:2733:2: ( (otherlv_0= '(' ( (lv_expr_1_0= ruleExpressionCalcul ) ) otherlv_2= ')' ) )
-            // InternalMyCsv.g:2734:2: (otherlv_0= '(' ( (lv_expr_1_0= ruleExpressionCalcul ) ) otherlv_2= ')' )
+            // InternalMyCsv.g:2811:2: ( (otherlv_0= '(' ( (lv_expr_1_0= ruleExpressionCalcul ) ) otherlv_2= ')' ) )
+            // InternalMyCsv.g:2812:2: (otherlv_0= '(' ( (lv_expr_1_0= ruleExpressionCalcul ) ) otherlv_2= ')' )
             {
-            // InternalMyCsv.g:2734:2: (otherlv_0= '(' ( (lv_expr_1_0= ruleExpressionCalcul ) ) otherlv_2= ')' )
-            // InternalMyCsv.g:2735:3: otherlv_0= '(' ( (lv_expr_1_0= ruleExpressionCalcul ) ) otherlv_2= ')'
+            // InternalMyCsv.g:2812:2: (otherlv_0= '(' ( (lv_expr_1_0= ruleExpressionCalcul ) ) otherlv_2= ')' )
+            // InternalMyCsv.g:2813:3: otherlv_0= '(' ( (lv_expr_1_0= ruleExpressionCalcul ) ) otherlv_2= ')'
             {
-            otherlv_0=(Token)match(input,11,FOLLOW_32); 
+            otherlv_0=(Token)match(input,11,FOLLOW_36); 
 
             			newLeafNode(otherlv_0, grammarAccess.getNestedExpressionCalculAccess().getLeftParenthesisKeyword_0());
             		
-            // InternalMyCsv.g:2739:3: ( (lv_expr_1_0= ruleExpressionCalcul ) )
-            // InternalMyCsv.g:2740:4: (lv_expr_1_0= ruleExpressionCalcul )
+            // InternalMyCsv.g:2817:3: ( (lv_expr_1_0= ruleExpressionCalcul ) )
+            // InternalMyCsv.g:2818:4: (lv_expr_1_0= ruleExpressionCalcul )
             {
-            // InternalMyCsv.g:2740:4: (lv_expr_1_0= ruleExpressionCalcul )
-            // InternalMyCsv.g:2741:5: lv_expr_1_0= ruleExpressionCalcul
+            // InternalMyCsv.g:2818:4: (lv_expr_1_0= ruleExpressionCalcul )
+            // InternalMyCsv.g:2819:5: lv_expr_1_0= ruleExpressionCalcul
             {
 
             					newCompositeNode(grammarAccess.getNestedExpressionCalculAccess().getExprExpressionCalculParserRuleCall_1_0());
@@ -7551,7 +7733,7 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleNbField"
-    // InternalMyCsv.g:2766:1: entryRuleNbField returns [String current=null] : iv_ruleNbField= ruleNbField EOF ;
+    // InternalMyCsv.g:2844:1: entryRuleNbField returns [String current=null] : iv_ruleNbField= ruleNbField EOF ;
     public final String entryRuleNbField() throws RecognitionException {
         String current = null;
 
@@ -7559,8 +7741,8 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalMyCsv.g:2766:47: (iv_ruleNbField= ruleNbField EOF )
-            // InternalMyCsv.g:2767:2: iv_ruleNbField= ruleNbField EOF
+            // InternalMyCsv.g:2844:47: (iv_ruleNbField= ruleNbField EOF )
+            // InternalMyCsv.g:2845:2: iv_ruleNbField= ruleNbField EOF
             {
              newCompositeNode(grammarAccess.getNbFieldRule()); 
             pushFollow(FOLLOW_1);
@@ -7587,7 +7769,7 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleNbField"
-    // InternalMyCsv.g:2773:1: ruleNbField returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : kw= 'NbField' ;
+    // InternalMyCsv.g:2851:1: ruleNbField returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : kw= 'NbField' ;
     public final AntlrDatatypeRuleToken ruleNbField() throws RecognitionException {
         AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
@@ -7597,10 +7779,10 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalMyCsv.g:2779:2: (kw= 'NbField' )
-            // InternalMyCsv.g:2780:2: kw= 'NbField'
+            // InternalMyCsv.g:2857:2: (kw= 'NbField' )
+            // InternalMyCsv.g:2858:2: kw= 'NbField'
             {
-            kw=(Token)match(input,41,FOLLOW_2); 
+            kw=(Token)match(input,43,FOLLOW_2); 
 
             		current.merge(kw);
             		newLeafNode(kw, grammarAccess.getNbFieldAccess().getNbFieldKeyword());
@@ -7625,7 +7807,7 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleFLOAT"
-    // InternalMyCsv.g:2788:1: entryRuleFLOAT returns [String current=null] : iv_ruleFLOAT= ruleFLOAT EOF ;
+    // InternalMyCsv.g:2866:1: entryRuleFLOAT returns [String current=null] : iv_ruleFLOAT= ruleFLOAT EOF ;
     public final String entryRuleFLOAT() throws RecognitionException {
         String current = null;
 
@@ -7633,8 +7815,8 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalMyCsv.g:2788:45: (iv_ruleFLOAT= ruleFLOAT EOF )
-            // InternalMyCsv.g:2789:2: iv_ruleFLOAT= ruleFLOAT EOF
+            // InternalMyCsv.g:2866:45: (iv_ruleFLOAT= ruleFLOAT EOF )
+            // InternalMyCsv.g:2867:2: iv_ruleFLOAT= ruleFLOAT EOF
             {
              newCompositeNode(grammarAccess.getFLOATRule()); 
             pushFollow(FOLLOW_1);
@@ -7661,7 +7843,7 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleFLOAT"
-    // InternalMyCsv.g:2795:1: ruleFLOAT returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_INT_0= RULE_INT kw= '.' this_INT_2= RULE_INT ) ;
+    // InternalMyCsv.g:2873:1: ruleFLOAT returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_INT_0= RULE_INT kw= '.' this_INT_2= RULE_INT ) ;
     public final AntlrDatatypeRuleToken ruleFLOAT() throws RecognitionException {
         AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
@@ -7673,20 +7855,20 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalMyCsv.g:2801:2: ( (this_INT_0= RULE_INT kw= '.' this_INT_2= RULE_INT ) )
-            // InternalMyCsv.g:2802:2: (this_INT_0= RULE_INT kw= '.' this_INT_2= RULE_INT )
+            // InternalMyCsv.g:2879:2: ( (this_INT_0= RULE_INT kw= '.' this_INT_2= RULE_INT ) )
+            // InternalMyCsv.g:2880:2: (this_INT_0= RULE_INT kw= '.' this_INT_2= RULE_INT )
             {
-            // InternalMyCsv.g:2802:2: (this_INT_0= RULE_INT kw= '.' this_INT_2= RULE_INT )
-            // InternalMyCsv.g:2803:3: this_INT_0= RULE_INT kw= '.' this_INT_2= RULE_INT
+            // InternalMyCsv.g:2880:2: (this_INT_0= RULE_INT kw= '.' this_INT_2= RULE_INT )
+            // InternalMyCsv.g:2881:3: this_INT_0= RULE_INT kw= '.' this_INT_2= RULE_INT
             {
-            this_INT_0=(Token)match(input,RULE_INT,FOLLOW_35); 
+            this_INT_0=(Token)match(input,RULE_INT,FOLLOW_38); 
 
             			current.merge(this_INT_0);
             		
 
             			newLeafNode(this_INT_0, grammarAccess.getFLOATAccess().getINTTerminalRuleCall_0());
             		
-            kw=(Token)match(input,42,FOLLOW_6); 
+            kw=(Token)match(input,44,FOLLOW_6); 
 
             			current.merge(kw);
             			newLeafNode(kw, grammarAccess.getFLOATAccess().getFullStopKeyword_1());
@@ -7721,7 +7903,7 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleBinOpRel"
-    // InternalMyCsv.g:2826:1: ruleBinOpRel returns [Enumerator current=null] : ( (enumLiteral_0= '>' ) | (enumLiteral_1= '<' ) | (enumLiteral_2= '>=' ) | (enumLiteral_3= '<=' ) | (enumLiteral_4= '==' ) | (enumLiteral_5= '!=' ) ) ;
+    // InternalMyCsv.g:2904:1: ruleBinOpRel returns [Enumerator current=null] : ( (enumLiteral_0= '>' ) | (enumLiteral_1= '<' ) | (enumLiteral_2= '>=' ) | (enumLiteral_3= '<=' ) | (enumLiteral_4= '==' ) | (enumLiteral_5= '!=' ) ) ;
     public final Enumerator ruleBinOpRel() throws RecognitionException {
         Enumerator current = null;
 
@@ -7736,38 +7918,38 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalMyCsv.g:2832:2: ( ( (enumLiteral_0= '>' ) | (enumLiteral_1= '<' ) | (enumLiteral_2= '>=' ) | (enumLiteral_3= '<=' ) | (enumLiteral_4= '==' ) | (enumLiteral_5= '!=' ) ) )
-            // InternalMyCsv.g:2833:2: ( (enumLiteral_0= '>' ) | (enumLiteral_1= '<' ) | (enumLiteral_2= '>=' ) | (enumLiteral_3= '<=' ) | (enumLiteral_4= '==' ) | (enumLiteral_5= '!=' ) )
+            // InternalMyCsv.g:2910:2: ( ( (enumLiteral_0= '>' ) | (enumLiteral_1= '<' ) | (enumLiteral_2= '>=' ) | (enumLiteral_3= '<=' ) | (enumLiteral_4= '==' ) | (enumLiteral_5= '!=' ) ) )
+            // InternalMyCsv.g:2911:2: ( (enumLiteral_0= '>' ) | (enumLiteral_1= '<' ) | (enumLiteral_2= '>=' ) | (enumLiteral_3= '<=' ) | (enumLiteral_4= '==' ) | (enumLiteral_5= '!=' ) )
             {
-            // InternalMyCsv.g:2833:2: ( (enumLiteral_0= '>' ) | (enumLiteral_1= '<' ) | (enumLiteral_2= '>=' ) | (enumLiteral_3= '<=' ) | (enumLiteral_4= '==' ) | (enumLiteral_5= '!=' ) )
+            // InternalMyCsv.g:2911:2: ( (enumLiteral_0= '>' ) | (enumLiteral_1= '<' ) | (enumLiteral_2= '>=' ) | (enumLiteral_3= '<=' ) | (enumLiteral_4= '==' ) | (enumLiteral_5= '!=' ) )
             int alt29=6;
             switch ( input.LA(1) ) {
-            case 43:
+            case 45:
                 {
                 alt29=1;
                 }
                 break;
-            case 44:
+            case 46:
                 {
                 alt29=2;
                 }
                 break;
-            case 45:
+            case 47:
                 {
                 alt29=3;
                 }
                 break;
-            case 46:
+            case 48:
                 {
                 alt29=4;
                 }
                 break;
-            case 47:
+            case 49:
                 {
                 alt29=5;
                 }
                 break;
-            case 48:
+            case 50:
                 {
                 alt29=6;
                 }
@@ -7781,12 +7963,12 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
             switch (alt29) {
                 case 1 :
-                    // InternalMyCsv.g:2834:3: (enumLiteral_0= '>' )
+                    // InternalMyCsv.g:2912:3: (enumLiteral_0= '>' )
                     {
-                    // InternalMyCsv.g:2834:3: (enumLiteral_0= '>' )
-                    // InternalMyCsv.g:2835:4: enumLiteral_0= '>'
+                    // InternalMyCsv.g:2912:3: (enumLiteral_0= '>' )
+                    // InternalMyCsv.g:2913:4: enumLiteral_0= '>'
                     {
-                    enumLiteral_0=(Token)match(input,43,FOLLOW_2); 
+                    enumLiteral_0=(Token)match(input,45,FOLLOW_2); 
 
                     				current = grammarAccess.getBinOpRelAccess().getGtEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
                     				newLeafNode(enumLiteral_0, grammarAccess.getBinOpRelAccess().getGtEnumLiteralDeclaration_0());
@@ -7798,12 +7980,12 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalMyCsv.g:2842:3: (enumLiteral_1= '<' )
+                    // InternalMyCsv.g:2920:3: (enumLiteral_1= '<' )
                     {
-                    // InternalMyCsv.g:2842:3: (enumLiteral_1= '<' )
-                    // InternalMyCsv.g:2843:4: enumLiteral_1= '<'
+                    // InternalMyCsv.g:2920:3: (enumLiteral_1= '<' )
+                    // InternalMyCsv.g:2921:4: enumLiteral_1= '<'
                     {
-                    enumLiteral_1=(Token)match(input,44,FOLLOW_2); 
+                    enumLiteral_1=(Token)match(input,46,FOLLOW_2); 
 
                     				current = grammarAccess.getBinOpRelAccess().getLtEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
                     				newLeafNode(enumLiteral_1, grammarAccess.getBinOpRelAccess().getLtEnumLiteralDeclaration_1());
@@ -7815,12 +7997,12 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // InternalMyCsv.g:2850:3: (enumLiteral_2= '>=' )
+                    // InternalMyCsv.g:2928:3: (enumLiteral_2= '>=' )
                     {
-                    // InternalMyCsv.g:2850:3: (enumLiteral_2= '>=' )
-                    // InternalMyCsv.g:2851:4: enumLiteral_2= '>='
+                    // InternalMyCsv.g:2928:3: (enumLiteral_2= '>=' )
+                    // InternalMyCsv.g:2929:4: enumLiteral_2= '>='
                     {
-                    enumLiteral_2=(Token)match(input,45,FOLLOW_2); 
+                    enumLiteral_2=(Token)match(input,47,FOLLOW_2); 
 
                     				current = grammarAccess.getBinOpRelAccess().getGeEnumLiteralDeclaration_2().getEnumLiteral().getInstance();
                     				newLeafNode(enumLiteral_2, grammarAccess.getBinOpRelAccess().getGeEnumLiteralDeclaration_2());
@@ -7832,12 +8014,12 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 4 :
-                    // InternalMyCsv.g:2858:3: (enumLiteral_3= '<=' )
+                    // InternalMyCsv.g:2936:3: (enumLiteral_3= '<=' )
                     {
-                    // InternalMyCsv.g:2858:3: (enumLiteral_3= '<=' )
-                    // InternalMyCsv.g:2859:4: enumLiteral_3= '<='
+                    // InternalMyCsv.g:2936:3: (enumLiteral_3= '<=' )
+                    // InternalMyCsv.g:2937:4: enumLiteral_3= '<='
                     {
-                    enumLiteral_3=(Token)match(input,46,FOLLOW_2); 
+                    enumLiteral_3=(Token)match(input,48,FOLLOW_2); 
 
                     				current = grammarAccess.getBinOpRelAccess().getLeEnumLiteralDeclaration_3().getEnumLiteral().getInstance();
                     				newLeafNode(enumLiteral_3, grammarAccess.getBinOpRelAccess().getLeEnumLiteralDeclaration_3());
@@ -7849,12 +8031,12 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 5 :
-                    // InternalMyCsv.g:2866:3: (enumLiteral_4= '==' )
+                    // InternalMyCsv.g:2944:3: (enumLiteral_4= '==' )
                     {
-                    // InternalMyCsv.g:2866:3: (enumLiteral_4= '==' )
-                    // InternalMyCsv.g:2867:4: enumLiteral_4= '=='
+                    // InternalMyCsv.g:2944:3: (enumLiteral_4= '==' )
+                    // InternalMyCsv.g:2945:4: enumLiteral_4= '=='
                     {
-                    enumLiteral_4=(Token)match(input,47,FOLLOW_2); 
+                    enumLiteral_4=(Token)match(input,49,FOLLOW_2); 
 
                     				current = grammarAccess.getBinOpRelAccess().getEqEnumLiteralDeclaration_4().getEnumLiteral().getInstance();
                     				newLeafNode(enumLiteral_4, grammarAccess.getBinOpRelAccess().getEqEnumLiteralDeclaration_4());
@@ -7866,12 +8048,12 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 6 :
-                    // InternalMyCsv.g:2874:3: (enumLiteral_5= '!=' )
+                    // InternalMyCsv.g:2952:3: (enumLiteral_5= '!=' )
                     {
-                    // InternalMyCsv.g:2874:3: (enumLiteral_5= '!=' )
-                    // InternalMyCsv.g:2875:4: enumLiteral_5= '!='
+                    // InternalMyCsv.g:2952:3: (enumLiteral_5= '!=' )
+                    // InternalMyCsv.g:2953:4: enumLiteral_5= '!='
                     {
-                    enumLiteral_5=(Token)match(input,48,FOLLOW_2); 
+                    enumLiteral_5=(Token)match(input,50,FOLLOW_2); 
 
                     				current = grammarAccess.getBinOpRelAccess().getNeqEnumLiteralDeclaration_5().getEnumLiteral().getInstance();
                     				newLeafNode(enumLiteral_5, grammarAccess.getBinOpRelAccess().getNeqEnumLiteralDeclaration_5());
@@ -7905,7 +8087,7 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleAggregat"
-    // InternalMyCsv.g:2885:1: ruleAggregat returns [Enumerator current=null] : ( (enumLiteral_0= 'Count' ) | (enumLiteral_1= 'Sum' ) | (enumLiteral_2= 'Product' ) | (enumLiteral_3= 'Mean' ) ) ;
+    // InternalMyCsv.g:2963:1: ruleAggregat returns [Enumerator current=null] : ( (enumLiteral_0= 'Count' ) | (enumLiteral_1= 'Sum' ) | (enumLiteral_2= 'Product' ) | (enumLiteral_3= 'Mean' ) ) ;
     public final Enumerator ruleAggregat() throws RecognitionException {
         Enumerator current = null;
 
@@ -7918,28 +8100,28 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalMyCsv.g:2891:2: ( ( (enumLiteral_0= 'Count' ) | (enumLiteral_1= 'Sum' ) | (enumLiteral_2= 'Product' ) | (enumLiteral_3= 'Mean' ) ) )
-            // InternalMyCsv.g:2892:2: ( (enumLiteral_0= 'Count' ) | (enumLiteral_1= 'Sum' ) | (enumLiteral_2= 'Product' ) | (enumLiteral_3= 'Mean' ) )
+            // InternalMyCsv.g:2969:2: ( ( (enumLiteral_0= 'Count' ) | (enumLiteral_1= 'Sum' ) | (enumLiteral_2= 'Product' ) | (enumLiteral_3= 'Mean' ) ) )
+            // InternalMyCsv.g:2970:2: ( (enumLiteral_0= 'Count' ) | (enumLiteral_1= 'Sum' ) | (enumLiteral_2= 'Product' ) | (enumLiteral_3= 'Mean' ) )
             {
-            // InternalMyCsv.g:2892:2: ( (enumLiteral_0= 'Count' ) | (enumLiteral_1= 'Sum' ) | (enumLiteral_2= 'Product' ) | (enumLiteral_3= 'Mean' ) )
+            // InternalMyCsv.g:2970:2: ( (enumLiteral_0= 'Count' ) | (enumLiteral_1= 'Sum' ) | (enumLiteral_2= 'Product' ) | (enumLiteral_3= 'Mean' ) )
             int alt30=4;
             switch ( input.LA(1) ) {
-            case 49:
+            case 51:
                 {
                 alt30=1;
                 }
                 break;
-            case 50:
+            case 52:
                 {
                 alt30=2;
                 }
                 break;
-            case 51:
+            case 53:
                 {
                 alt30=3;
                 }
                 break;
-            case 52:
+            case 54:
                 {
                 alt30=4;
                 }
@@ -7953,12 +8135,12 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
             switch (alt30) {
                 case 1 :
-                    // InternalMyCsv.g:2893:3: (enumLiteral_0= 'Count' )
+                    // InternalMyCsv.g:2971:3: (enumLiteral_0= 'Count' )
                     {
-                    // InternalMyCsv.g:2893:3: (enumLiteral_0= 'Count' )
-                    // InternalMyCsv.g:2894:4: enumLiteral_0= 'Count'
+                    // InternalMyCsv.g:2971:3: (enumLiteral_0= 'Count' )
+                    // InternalMyCsv.g:2972:4: enumLiteral_0= 'Count'
                     {
-                    enumLiteral_0=(Token)match(input,49,FOLLOW_2); 
+                    enumLiteral_0=(Token)match(input,51,FOLLOW_2); 
 
                     				current = grammarAccess.getAggregatAccess().getCountEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
                     				newLeafNode(enumLiteral_0, grammarAccess.getAggregatAccess().getCountEnumLiteralDeclaration_0());
@@ -7970,12 +8152,12 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalMyCsv.g:2901:3: (enumLiteral_1= 'Sum' )
+                    // InternalMyCsv.g:2979:3: (enumLiteral_1= 'Sum' )
                     {
-                    // InternalMyCsv.g:2901:3: (enumLiteral_1= 'Sum' )
-                    // InternalMyCsv.g:2902:4: enumLiteral_1= 'Sum'
+                    // InternalMyCsv.g:2979:3: (enumLiteral_1= 'Sum' )
+                    // InternalMyCsv.g:2980:4: enumLiteral_1= 'Sum'
                     {
-                    enumLiteral_1=(Token)match(input,50,FOLLOW_2); 
+                    enumLiteral_1=(Token)match(input,52,FOLLOW_2); 
 
                     				current = grammarAccess.getAggregatAccess().getSumEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
                     				newLeafNode(enumLiteral_1, grammarAccess.getAggregatAccess().getSumEnumLiteralDeclaration_1());
@@ -7987,12 +8169,12 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // InternalMyCsv.g:2909:3: (enumLiteral_2= 'Product' )
+                    // InternalMyCsv.g:2987:3: (enumLiteral_2= 'Product' )
                     {
-                    // InternalMyCsv.g:2909:3: (enumLiteral_2= 'Product' )
-                    // InternalMyCsv.g:2910:4: enumLiteral_2= 'Product'
+                    // InternalMyCsv.g:2987:3: (enumLiteral_2= 'Product' )
+                    // InternalMyCsv.g:2988:4: enumLiteral_2= 'Product'
                     {
-                    enumLiteral_2=(Token)match(input,51,FOLLOW_2); 
+                    enumLiteral_2=(Token)match(input,53,FOLLOW_2); 
 
                     				current = grammarAccess.getAggregatAccess().getProductEnumLiteralDeclaration_2().getEnumLiteral().getInstance();
                     				newLeafNode(enumLiteral_2, grammarAccess.getAggregatAccess().getProductEnumLiteralDeclaration_2());
@@ -8004,12 +8186,12 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 4 :
-                    // InternalMyCsv.g:2917:3: (enumLiteral_3= 'Mean' )
+                    // InternalMyCsv.g:2995:3: (enumLiteral_3= 'Mean' )
                     {
-                    // InternalMyCsv.g:2917:3: (enumLiteral_3= 'Mean' )
-                    // InternalMyCsv.g:2918:4: enumLiteral_3= 'Mean'
+                    // InternalMyCsv.g:2995:3: (enumLiteral_3= 'Mean' )
+                    // InternalMyCsv.g:2996:4: enumLiteral_3= 'Mean'
                     {
-                    enumLiteral_3=(Token)match(input,52,FOLLOW_2); 
+                    enumLiteral_3=(Token)match(input,54,FOLLOW_2); 
 
                     				current = grammarAccess.getAggregatAccess().getMeanEnumLiteralDeclaration_3().getEnumLiteral().getInstance();
                     				newLeafNode(enumLiteral_3, grammarAccess.getAggregatAccess().getMeanEnumLiteralDeclaration_3());
@@ -8043,7 +8225,7 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleBinOpAdd"
-    // InternalMyCsv.g:2928:1: ruleBinOpAdd returns [Enumerator current=null] : ( (enumLiteral_0= '+' ) | (enumLiteral_1= '-' ) ) ;
+    // InternalMyCsv.g:3006:1: ruleBinOpAdd returns [Enumerator current=null] : ( (enumLiteral_0= '+' ) | (enumLiteral_1= '-' ) ) ;
     public final Enumerator ruleBinOpAdd() throws RecognitionException {
         Enumerator current = null;
 
@@ -8054,17 +8236,17 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalMyCsv.g:2934:2: ( ( (enumLiteral_0= '+' ) | (enumLiteral_1= '-' ) ) )
-            // InternalMyCsv.g:2935:2: ( (enumLiteral_0= '+' ) | (enumLiteral_1= '-' ) )
+            // InternalMyCsv.g:3012:2: ( ( (enumLiteral_0= '+' ) | (enumLiteral_1= '-' ) ) )
+            // InternalMyCsv.g:3013:2: ( (enumLiteral_0= '+' ) | (enumLiteral_1= '-' ) )
             {
-            // InternalMyCsv.g:2935:2: ( (enumLiteral_0= '+' ) | (enumLiteral_1= '-' ) )
+            // InternalMyCsv.g:3013:2: ( (enumLiteral_0= '+' ) | (enumLiteral_1= '-' ) )
             int alt31=2;
             int LA31_0 = input.LA(1);
 
-            if ( (LA31_0==53) ) {
+            if ( (LA31_0==55) ) {
                 alt31=1;
             }
-            else if ( (LA31_0==40) ) {
+            else if ( (LA31_0==42) ) {
                 alt31=2;
             }
             else {
@@ -8075,12 +8257,12 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
             }
             switch (alt31) {
                 case 1 :
-                    // InternalMyCsv.g:2936:3: (enumLiteral_0= '+' )
+                    // InternalMyCsv.g:3014:3: (enumLiteral_0= '+' )
                     {
-                    // InternalMyCsv.g:2936:3: (enumLiteral_0= '+' )
-                    // InternalMyCsv.g:2937:4: enumLiteral_0= '+'
+                    // InternalMyCsv.g:3014:3: (enumLiteral_0= '+' )
+                    // InternalMyCsv.g:3015:4: enumLiteral_0= '+'
                     {
-                    enumLiteral_0=(Token)match(input,53,FOLLOW_2); 
+                    enumLiteral_0=(Token)match(input,55,FOLLOW_2); 
 
                     				current = grammarAccess.getBinOpAddAccess().getPlusEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
                     				newLeafNode(enumLiteral_0, grammarAccess.getBinOpAddAccess().getPlusEnumLiteralDeclaration_0());
@@ -8092,12 +8274,12 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalMyCsv.g:2944:3: (enumLiteral_1= '-' )
+                    // InternalMyCsv.g:3022:3: (enumLiteral_1= '-' )
                     {
-                    // InternalMyCsv.g:2944:3: (enumLiteral_1= '-' )
-                    // InternalMyCsv.g:2945:4: enumLiteral_1= '-'
+                    // InternalMyCsv.g:3022:3: (enumLiteral_1= '-' )
+                    // InternalMyCsv.g:3023:4: enumLiteral_1= '-'
                     {
-                    enumLiteral_1=(Token)match(input,40,FOLLOW_2); 
+                    enumLiteral_1=(Token)match(input,42,FOLLOW_2); 
 
                     				current = grammarAccess.getBinOpAddAccess().getMinusEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
                     				newLeafNode(enumLiteral_1, grammarAccess.getBinOpAddAccess().getMinusEnumLiteralDeclaration_1());
@@ -8131,7 +8313,7 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleBinOpMult"
-    // InternalMyCsv.g:2955:1: ruleBinOpMult returns [Enumerator current=null] : ( (enumLiteral_0= '*' ) | (enumLiteral_1= '/' ) ) ;
+    // InternalMyCsv.g:3033:1: ruleBinOpMult returns [Enumerator current=null] : ( (enumLiteral_0= '*' ) | (enumLiteral_1= '/' ) ) ;
     public final Enumerator ruleBinOpMult() throws RecognitionException {
         Enumerator current = null;
 
@@ -8142,17 +8324,17 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalMyCsv.g:2961:2: ( ( (enumLiteral_0= '*' ) | (enumLiteral_1= '/' ) ) )
-            // InternalMyCsv.g:2962:2: ( (enumLiteral_0= '*' ) | (enumLiteral_1= '/' ) )
+            // InternalMyCsv.g:3039:2: ( ( (enumLiteral_0= '*' ) | (enumLiteral_1= '/' ) ) )
+            // InternalMyCsv.g:3040:2: ( (enumLiteral_0= '*' ) | (enumLiteral_1= '/' ) )
             {
-            // InternalMyCsv.g:2962:2: ( (enumLiteral_0= '*' ) | (enumLiteral_1= '/' ) )
+            // InternalMyCsv.g:3040:2: ( (enumLiteral_0= '*' ) | (enumLiteral_1= '/' ) )
             int alt32=2;
             int LA32_0 = input.LA(1);
 
-            if ( (LA32_0==54) ) {
+            if ( (LA32_0==56) ) {
                 alt32=1;
             }
-            else if ( (LA32_0==55) ) {
+            else if ( (LA32_0==57) ) {
                 alt32=2;
             }
             else {
@@ -8163,12 +8345,12 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
             }
             switch (alt32) {
                 case 1 :
-                    // InternalMyCsv.g:2963:3: (enumLiteral_0= '*' )
+                    // InternalMyCsv.g:3041:3: (enumLiteral_0= '*' )
                     {
-                    // InternalMyCsv.g:2963:3: (enumLiteral_0= '*' )
-                    // InternalMyCsv.g:2964:4: enumLiteral_0= '*'
+                    // InternalMyCsv.g:3041:3: (enumLiteral_0= '*' )
+                    // InternalMyCsv.g:3042:4: enumLiteral_0= '*'
                     {
-                    enumLiteral_0=(Token)match(input,54,FOLLOW_2); 
+                    enumLiteral_0=(Token)match(input,56,FOLLOW_2); 
 
                     				current = grammarAccess.getBinOpMultAccess().getTimesEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
                     				newLeafNode(enumLiteral_0, grammarAccess.getBinOpMultAccess().getTimesEnumLiteralDeclaration_0());
@@ -8180,12 +8362,12 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalMyCsv.g:2971:3: (enumLiteral_1= '/' )
+                    // InternalMyCsv.g:3049:3: (enumLiteral_1= '/' )
                     {
-                    // InternalMyCsv.g:2971:3: (enumLiteral_1= '/' )
-                    // InternalMyCsv.g:2972:4: enumLiteral_1= '/'
+                    // InternalMyCsv.g:3049:3: (enumLiteral_1= '/' )
+                    // InternalMyCsv.g:3050:4: enumLiteral_1= '/'
                     {
-                    enumLiteral_1=(Token)match(input,55,FOLLOW_2); 
+                    enumLiteral_1=(Token)match(input,57,FOLLOW_2); 
 
                     				current = grammarAccess.getBinOpMultAccess().getDivEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
                     				newLeafNode(enumLiteral_1, grammarAccess.getBinOpMultAccess().getDivEnumLiteralDeclaration_1());
@@ -8224,14 +8406,14 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
 
     public static final BitSet FOLLOW_1 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_2 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_3 = new BitSet(new long[]{0x00000004A7C20002L});
+    public static final BitSet FOLLOW_3 = new BitSet(new long[]{0x00000024A7C20002L});
     public static final BitSet FOLLOW_4 = new BitSet(new long[]{0x0000000000000012L});
     public static final BitSet FOLLOW_5 = new BitSet(new long[]{0x0000000000000042L});
     public static final BitSet FOLLOW_6 = new BitSet(new long[]{0x0000000000000010L});
     public static final BitSet FOLLOW_7 = new BitSet(new long[]{0x0000000000001000L});
     public static final BitSet FOLLOW_8 = new BitSet(new long[]{0x0000000000002050L});
     public static final BitSet FOLLOW_9 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_10 = new BitSet(new long[]{0x001E030000000830L});
+    public static final BitSet FOLLOW_10 = new BitSet(new long[]{0x00780C0000000830L});
     public static final BitSet FOLLOW_11 = new BitSet(new long[]{0x0000000000018002L});
     public static final BitSet FOLLOW_12 = new BitSet(new long[]{0x0000000000000020L});
     public static final BitSet FOLLOW_13 = new BitSet(new long[]{0x0000000000140002L});
@@ -8239,23 +8421,26 @@ public class InternalMyCsvParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_15 = new BitSet(new long[]{0x0000000000100002L});
     public static final BitSet FOLLOW_16 = new BitSet(new long[]{0x0000000000200000L});
     public static final BitSet FOLLOW_17 = new BitSet(new long[]{0x0000000000000050L});
-    public static final BitSet FOLLOW_18 = new BitSet(new long[]{0x0001F88000000850L});
+    public static final BitSet FOLLOW_18 = new BitSet(new long[]{0x0007E20000000850L});
     public static final BitSet FOLLOW_19 = new BitSet(new long[]{0x0000000018000000L});
-    public static final BitSet FOLLOW_20 = new BitSet(new long[]{0x001E030000004830L});
+    public static final BitSet FOLLOW_20 = new BitSet(new long[]{0x00780C0000004830L});
     public static final BitSet FOLLOW_21 = new BitSet(new long[]{0x0000000040000040L});
     public static final BitSet FOLLOW_22 = new BitSet(new long[]{0x0000000040000000L});
     public static final BitSet FOLLOW_23 = new BitSet(new long[]{0x0000000218000000L});
     public static final BitSet FOLLOW_24 = new BitSet(new long[]{0x0000000100000000L});
     public static final BitSet FOLLOW_25 = new BitSet(new long[]{0x0000000000000800L});
     public static final BitSet FOLLOW_26 = new BitSet(new long[]{0x0000001A18000000L});
-    public static final BitSet FOLLOW_27 = new BitSet(new long[]{0x0000002000000002L});
-    public static final BitSet FOLLOW_28 = new BitSet(new long[]{0x0001F88000000840L});
-    public static final BitSet FOLLOW_29 = new BitSet(new long[]{0x0000004000000002L});
-    public static final BitSet FOLLOW_30 = new BitSet(new long[]{0x0001F80000000040L});
-    public static final BitSet FOLLOW_31 = new BitSet(new long[]{0x0020010000000002L});
-    public static final BitSet FOLLOW_32 = new BitSet(new long[]{0x001E030000000810L});
-    public static final BitSet FOLLOW_33 = new BitSet(new long[]{0x00C0000000000002L});
-    public static final BitSet FOLLOW_34 = new BitSet(new long[]{0x0000000000000040L});
-    public static final BitSet FOLLOW_35 = new BitSet(new long[]{0x0000040000000000L});
+    public static final BitSet FOLLOW_27 = new BitSet(new long[]{0x0000000010000000L});
+    public static final BitSet FOLLOW_28 = new BitSet(new long[]{0x0000004000000040L});
+    public static final BitSet FOLLOW_29 = new BitSet(new long[]{0x0000004000000000L});
+    public static final BitSet FOLLOW_30 = new BitSet(new long[]{0x0000000000000040L});
+    public static final BitSet FOLLOW_31 = new BitSet(new long[]{0x0000008000000002L});
+    public static final BitSet FOLLOW_32 = new BitSet(new long[]{0x0007E20000000840L});
+    public static final BitSet FOLLOW_33 = new BitSet(new long[]{0x0000010000000002L});
+    public static final BitSet FOLLOW_34 = new BitSet(new long[]{0x0007E00000000040L});
+    public static final BitSet FOLLOW_35 = new BitSet(new long[]{0x0080040000000002L});
+    public static final BitSet FOLLOW_36 = new BitSet(new long[]{0x00780C0000000810L});
+    public static final BitSet FOLLOW_37 = new BitSet(new long[]{0x0300000000000002L});
+    public static final BitSet FOLLOW_38 = new BitSet(new long[]{0x0000100000000000L});
 
 }

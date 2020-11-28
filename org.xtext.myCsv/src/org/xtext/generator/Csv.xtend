@@ -11,6 +11,7 @@ import java.io.IOException
 import java.util.Comparator
 import org.xtext.myCsv.BinOpRel
 import java.io.FileNotFoundException
+import org.xtext.myCsv.Field
 
 class Csv {
 	
@@ -359,6 +360,12 @@ class Csv {
 			&& data.equals(other.data)
 			&& header.equals(other.header)		
 	}
+	
+	def renameField(String l_field, String n_field) {
+		header.set(header.indexOf(l_field), n_field)
+		refreshHeaderDict
+	}
+	
 }
 
 class Value {

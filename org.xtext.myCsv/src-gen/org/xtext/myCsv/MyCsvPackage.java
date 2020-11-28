@@ -1028,6 +1028,43 @@ public interface MyCsvPackage extends EPackage
   int PRINT_EXPR_FEATURE_COUNT = PRINT_FEATURE_COUNT + 1;
 
   /**
+   * The meta object id for the '{@link org.xtext.myCsv.impl.RenameFieldImpl <em>Rename Field</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.myCsv.impl.RenameFieldImpl
+   * @see org.xtext.myCsv.impl.MyCsvPackageImpl#getRenameField()
+   * @generated
+   */
+  int RENAME_FIELD = 33;
+
+  /**
+   * The feature id for the '<em><b>Last field</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int RENAME_FIELD__LAST_FIELD = STATEMENT_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>New field</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int RENAME_FIELD__NEW_FIELD = STATEMENT_FEATURE_COUNT + 1;
+
+  /**
+   * The number of structural features of the '<em>Rename Field</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int RENAME_FIELD_FEATURE_COUNT = STATEMENT_FEATURE_COUNT + 2;
+
+  /**
    * The meta object id for the '{@link org.xtext.myCsv.impl.ExpressionLogImpl <em>Expression Log</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1035,7 +1072,7 @@ public interface MyCsvPackage extends EPackage
    * @see org.xtext.myCsv.impl.MyCsvPackageImpl#getExpressionLog()
    * @generated
    */
-  int EXPRESSION_LOG = 33;
+  int EXPRESSION_LOG = 34;
 
   /**
    * The feature id for the '<em><b>Expr</b></em>' containment reference.
@@ -1063,7 +1100,7 @@ public interface MyCsvPackage extends EPackage
    * @see org.xtext.myCsv.impl.MyCsvPackageImpl#getOrExpression()
    * @generated
    */
-  int OR_EXPRESSION = 34;
+  int OR_EXPRESSION = 35;
 
   /**
    * The feature id for the '<em><b>Lhs</b></em>' containment reference.
@@ -1100,7 +1137,7 @@ public interface MyCsvPackage extends EPackage
    * @see org.xtext.myCsv.impl.MyCsvPackageImpl#getAndExpression()
    * @generated
    */
-  int AND_EXPRESSION = 35;
+  int AND_EXPRESSION = 36;
 
   /**
    * The feature id for the '<em><b>Lhs</b></em>' containment reference.
@@ -1137,7 +1174,7 @@ public interface MyCsvPackage extends EPackage
    * @see org.xtext.myCsv.impl.MyCsvPackageImpl#getUnaryLogExpression()
    * @generated
    */
-  int UNARY_LOG_EXPRESSION = 36;
+  int UNARY_LOG_EXPRESSION = 37;
 
   /**
    * The feature id for the '<em><b>Not</b></em>' attribute.
@@ -1174,7 +1211,7 @@ public interface MyCsvPackage extends EPackage
    * @see org.xtext.myCsv.impl.MyCsvPackageImpl#getExpressionLogPrimary()
    * @generated
    */
-  int EXPRESSION_LOG_PRIMARY = 37;
+  int EXPRESSION_LOG_PRIMARY = 38;
 
   /**
    * The number of structural features of the '<em>Expression Log Primary</em>' class.
@@ -1193,7 +1230,7 @@ public interface MyCsvPackage extends EPackage
    * @see org.xtext.myCsv.impl.MyCsvPackageImpl#getNestedLogExpression()
    * @generated
    */
-  int NESTED_LOG_EXPRESSION = 38;
+  int NESTED_LOG_EXPRESSION = 39;
 
   /**
    * The feature id for the '<em><b>Expr</b></em>' containment reference.
@@ -1221,7 +1258,7 @@ public interface MyCsvPackage extends EPackage
    * @see org.xtext.myCsv.impl.MyCsvPackageImpl#getExpressionRel()
    * @generated
    */
-  int EXPRESSION_REL = 39;
+  int EXPRESSION_REL = 40;
 
   /**
    * The feature id for the '<em><b>Field</b></em>' containment reference.
@@ -1267,7 +1304,7 @@ public interface MyCsvPackage extends EPackage
    * @see org.xtext.myCsv.impl.MyCsvPackageImpl#getExpressionCalcul()
    * @generated
    */
-  int EXPRESSION_CALCUL = 40;
+  int EXPRESSION_CALCUL = 41;
 
   /**
    * The feature id for the '<em><b>Expr</b></em>' containment reference.
@@ -1295,7 +1332,7 @@ public interface MyCsvPackage extends EPackage
    * @see org.xtext.myCsv.impl.MyCsvPackageImpl#getAdditiveExpression()
    * @generated
    */
-  int ADDITIVE_EXPRESSION = 41;
+  int ADDITIVE_EXPRESSION = 42;
 
   /**
    * The feature id for the '<em><b>Lhs</b></em>' containment reference.
@@ -1332,7 +1369,7 @@ public interface MyCsvPackage extends EPackage
    * @see org.xtext.myCsv.impl.MyCsvPackageImpl#getAdditiveExpressionRhs()
    * @generated
    */
-  int ADDITIVE_EXPRESSION_RHS = 42;
+  int ADDITIVE_EXPRESSION_RHS = 43;
 
   /**
    * The feature id for the '<em><b>Op</b></em>' attribute.
@@ -1369,7 +1406,7 @@ public interface MyCsvPackage extends EPackage
    * @see org.xtext.myCsv.impl.MyCsvPackageImpl#getMultiplicativeExpression()
    * @generated
    */
-  int MULTIPLICATIVE_EXPRESSION = 43;
+  int MULTIPLICATIVE_EXPRESSION = 44;
 
   /**
    * The feature id for the '<em><b>Lhs</b></em>' containment reference.
@@ -1406,7 +1443,7 @@ public interface MyCsvPackage extends EPackage
    * @see org.xtext.myCsv.impl.MyCsvPackageImpl#getMultiplicativeExpressionRhs()
    * @generated
    */
-  int MULTIPLICATIVE_EXPRESSION_RHS = 44;
+  int MULTIPLICATIVE_EXPRESSION_RHS = 45;
 
   /**
    * The feature id for the '<em><b>Op</b></em>' attribute.
@@ -1443,7 +1480,7 @@ public interface MyCsvPackage extends EPackage
    * @see org.xtext.myCsv.impl.MyCsvPackageImpl#getUnaryExpression()
    * @generated
    */
-  int UNARY_EXPRESSION = 45;
+  int UNARY_EXPRESSION = 46;
 
   /**
    * The feature id for the '<em><b>Op</b></em>' attribute.
@@ -1480,7 +1517,7 @@ public interface MyCsvPackage extends EPackage
    * @see org.xtext.myCsv.impl.MyCsvPackageImpl#getExpressionCalculPrimary()
    * @generated
    */
-  int EXPRESSION_CALCUL_PRIMARY = 46;
+  int EXPRESSION_CALCUL_PRIMARY = 47;
 
   /**
    * The number of structural features of the '<em>Expression Calcul Primary</em>' class.
@@ -1499,7 +1536,7 @@ public interface MyCsvPackage extends EPackage
    * @see org.xtext.myCsv.impl.MyCsvPackageImpl#getAggregatExpression()
    * @generated
    */
-  int AGGREGAT_EXPRESSION = 47;
+  int AGGREGAT_EXPRESSION = 48;
 
   /**
    * The feature id for the '<em><b>Aggregat Op</b></em>' attribute.
@@ -1536,7 +1573,7 @@ public interface MyCsvPackage extends EPackage
    * @see org.xtext.myCsv.impl.MyCsvPackageImpl#getLitteralInt()
    * @generated
    */
-  int LITTERAL_INT = 48;
+  int LITTERAL_INT = 49;
 
   /**
    * The feature id for the '<em><b>Val</b></em>' attribute.
@@ -1564,7 +1601,7 @@ public interface MyCsvPackage extends EPackage
    * @see org.xtext.myCsv.impl.MyCsvPackageImpl#getLitteralFloat()
    * @generated
    */
-  int LITTERAL_FLOAT = 49;
+  int LITTERAL_FLOAT = 50;
 
   /**
    * The feature id for the '<em><b>Val</b></em>' attribute.
@@ -1592,7 +1629,7 @@ public interface MyCsvPackage extends EPackage
    * @see org.xtext.myCsv.impl.MyCsvPackageImpl#getLitteralString()
    * @generated
    */
-  int LITTERAL_STRING = 50;
+  int LITTERAL_STRING = 51;
 
   /**
    * The feature id for the '<em><b>Val</b></em>' attribute.
@@ -1620,7 +1657,7 @@ public interface MyCsvPackage extends EPackage
    * @see org.xtext.myCsv.impl.MyCsvPackageImpl#getNestedExpressionCalcul()
    * @generated
    */
-  int NESTED_EXPRESSION_CALCUL = 51;
+  int NESTED_EXPRESSION_CALCUL = 52;
 
   /**
    * The feature id for the '<em><b>Expr</b></em>' containment reference.
@@ -1648,7 +1685,7 @@ public interface MyCsvPackage extends EPackage
    * @see org.xtext.myCsv.impl.MyCsvPackageImpl#getPrintTable()
    * @generated
    */
-  int PRINT_TABLE = 52;
+  int PRINT_TABLE = 53;
 
   /**
    * The number of structural features of the '<em>Print Table</em>' class.
@@ -1667,7 +1704,7 @@ public interface MyCsvPackage extends EPackage
    * @see org.xtext.myCsv.impl.MyCsvPackageImpl#getNbField()
    * @generated
    */
-  int NB_FIELD = 53;
+  int NB_FIELD = 54;
 
   /**
    * The number of structural features of the '<em>Nb Field</em>' class.
@@ -1686,7 +1723,7 @@ public interface MyCsvPackage extends EPackage
    * @see org.xtext.myCsv.impl.MyCsvPackageImpl#getBinOpRel()
    * @generated
    */
-  int BIN_OP_REL = 54;
+  int BIN_OP_REL = 55;
 
   /**
    * The meta object id for the '{@link org.xtext.myCsv.Aggregat <em>Aggregat</em>}' enum.
@@ -1696,7 +1733,7 @@ public interface MyCsvPackage extends EPackage
    * @see org.xtext.myCsv.impl.MyCsvPackageImpl#getAggregat()
    * @generated
    */
-  int AGGREGAT = 55;
+  int AGGREGAT = 56;
 
   /**
    * The meta object id for the '{@link org.xtext.myCsv.BinOpAdd <em>Bin Op Add</em>}' enum.
@@ -1706,7 +1743,7 @@ public interface MyCsvPackage extends EPackage
    * @see org.xtext.myCsv.impl.MyCsvPackageImpl#getBinOpAdd()
    * @generated
    */
-  int BIN_OP_ADD = 56;
+  int BIN_OP_ADD = 57;
 
   /**
    * The meta object id for the '{@link org.xtext.myCsv.BinOpMult <em>Bin Op Mult</em>}' enum.
@@ -1716,7 +1753,7 @@ public interface MyCsvPackage extends EPackage
    * @see org.xtext.myCsv.impl.MyCsvPackageImpl#getBinOpMult()
    * @generated
    */
-  int BIN_OP_MULT = 57;
+  int BIN_OP_MULT = 58;
 
 
   /**
@@ -2444,6 +2481,38 @@ public interface MyCsvPackage extends EPackage
    * @generated
    */
   EReference getPrintExpr_Exp();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.myCsv.RenameField <em>Rename Field</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Rename Field</em>'.
+   * @see org.xtext.myCsv.RenameField
+   * @generated
+   */
+  EClass getRenameField();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.myCsv.RenameField#getLast_field <em>Last field</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Last field</em>'.
+   * @see org.xtext.myCsv.RenameField#getLast_field()
+   * @see #getRenameField()
+   * @generated
+   */
+  EReference getRenameField_Last_field();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.myCsv.RenameField#getNew_field <em>New field</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>New field</em>'.
+   * @see org.xtext.myCsv.RenameField#getNew_field()
+   * @see #getRenameField()
+   * @generated
+   */
+  EReference getRenameField_New_field();
 
   /**
    * Returns the meta object for class '{@link org.xtext.myCsv.ExpressionLog <em>Expression Log</em>}'.
@@ -3643,6 +3712,32 @@ public interface MyCsvPackage extends EPackage
      * @generated
      */
     EReference PRINT_EXPR__EXP = eINSTANCE.getPrintExpr_Exp();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.myCsv.impl.RenameFieldImpl <em>Rename Field</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.myCsv.impl.RenameFieldImpl
+     * @see org.xtext.myCsv.impl.MyCsvPackageImpl#getRenameField()
+     * @generated
+     */
+    EClass RENAME_FIELD = eINSTANCE.getRenameField();
+
+    /**
+     * The meta object literal for the '<em><b>Last field</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference RENAME_FIELD__LAST_FIELD = eINSTANCE.getRenameField_Last_field();
+
+    /**
+     * The meta object literal for the '<em><b>New field</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference RENAME_FIELD__NEW_FIELD = eINSTANCE.getRenameField_New_field();
 
     /**
      * The meta object literal for the '{@link org.xtext.myCsv.impl.ExpressionLogImpl <em>Expression Log</em>}' class.

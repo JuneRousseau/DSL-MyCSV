@@ -170,23 +170,23 @@ public class MyCsvBenchmarkTest {
           int interpReturnCode = 0;
           long tstart_interp = 0;
           long tend_interp = 0;
-          try {
-            for (int i = 0; (i < N); i++) {
-              {
+          for (int i = 0; (i < N); i++) {
+            {
+              try {
                 tstart_interp = System.nanoTime();
                 interpreter.interpretProgram(prog);
                 tend_interp = System.nanoTime();
-                interpTimes.add(Long.valueOf((tend_interp - tstart_interp)));
                 outStream.flush();
+              } catch (final Throwable _t) {
+                if (_t instanceof Exception) {
+                  final Exception e = (Exception)_t;
+                  interpReturnCode = 1;
+                  e.printStackTrace();
+                } else {
+                  throw Exceptions.sneakyThrow(_t);
+                }
               }
-            }
-          } catch (final Throwable _t) {
-            if (_t instanceof Exception) {
-              final Exception e = (Exception)_t;
-              interpReturnCode = 1;
-              e.printStackTrace();
-            } else {
-              throw Exceptions.sneakyThrow(_t);
+              interpTimes.add(Long.valueOf((tend_interp - tstart_interp)));
             }
           }
           System.setOut(mainOut);

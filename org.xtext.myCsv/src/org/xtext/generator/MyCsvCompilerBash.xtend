@@ -44,6 +44,7 @@ import org.xtext.myCsv.LitteralFloat
 import org.xtext.myCsv.LitteralString
 import java.util.ArrayList
 import java.util.HashSet
+import org.xtext.myCsv.RenameField
 
 /**
  * Compiler to Bash
@@ -60,6 +61,7 @@ class MyCsvCompilerBash {
 		res += "# INTRO\n\n"
 		res += "# Workspace\n"
 		res += "mkdir -p "+tmpCompilerPath+"\n"
+		res += "echo \"\" > "+currentCsvPath+"\n"
 		res += "sep='" + Csv.defaultSep + "'\n\n"	
 		
 		// Some useful functions (two is some)
@@ -188,6 +190,7 @@ class MyCsvCompilerBash {
 			}
 			
 		res += "cat "+l.path.value+" >> "+currentCsvPath+"\n"
+		res += "sed -i 's/\\r//g' "+currentCsvPath+"\n"
 		res += refreshRoutine()
 		return res
 	}
@@ -413,13 +416,17 @@ class MyCsvCompilerBash {
 		var res = "# INSERT FIELD\n"
 		res += l.values.compile
 		val tmpCsvInsert = tmpCompilerPath + "tmpInsert.csv"
-		res += "echo $(echo ${headerString})${sep}"+l.fieldname.value+">>"+ tmpCsvInsert + "\n"
+		res += "unset localSep ; localSep=$sep\n"
+		res += "if [ $(echo 0$headerString) = \"0\" ] ; then\n"
+			res += "\tlocalSep=\"\"\n"
+		res += "fi\n"
+		res += "echo $(echo ${headerString})${localSep}"+l.fieldname.value+">>"+ tmpCsvInsert + "\n"
 		res += "len_values=${#values[@]}\n"
 		res += "for i in `seq $(countLines)` ; do\n"
 			res += "\tj=$(($i-1))\n"
 			res += "\tindex=$(echo $j%$len_values | bc)\n"
 			res += "\tvalue=${values[$index]}\n"
-			res += "\thead -n $(($i+1)) "+currentCsvPath+" | tail -n 1 | sed \"s/[[:space:]]*$/$sep$value/\">>"+tmpCsvInsert+"\n"
+			res += "\thead -n $(($i+1)) "+currentCsvPath+" | tail -n 1 | sed \"s/[[:space:]]*$/$localSep$value/\">>"+tmpCsvInsert+"\n"
 		res +="done\n"
 		res +="mv "+tmpCsvInsert+" "+ currentCsvPath +"\n"
 		res += refreshRoutine()
@@ -541,6 +548,24 @@ class MyCsvCompilerBash {
 	def dispatch String compile(PrintExpr l){
 		var res = "# PRINT EXPR\n"
 	 	return res + "echo " + l.exp.compileValue
+	}
+	
+	def dispatch String compile(RenameField l){
+		var res = "# RENAME FIELD\n"
+		val tmpCsvRename = tmpCompilerPath + "tmpRename.csv"
+		res += "new_headers=\"\"\n"
+		res += "for f in `seq 0 $(($nbField-1))` ; do\n"
+			res += "\tif [ $(echo $f) = ${headerDict[\""+l.last_field.value+"\"]} ] ; then\n"
+				res += "\t\tnew_headers=$(echo $new_headers \""+l.new_field.value+"\")\n"
+			res += "\telse\n"
+				res += "\t\tnew_headers=$(echo $new_headers ${header[$f]})\n"
+			res += "\tfi\n"
+		res +="done\n"
+		res +="echo $new_headers | sed \"s/\\ /$sep/g\" > "+tmpCsvRename+"\n"
+		res +="tail -n $(countLines) "+currentCsvPath+" >> "+tmpCsvRename+"\n"
+		res += "mv "+tmpCsvRename+" "+currentCsvPath+"\n"
+		res += "refreshHeaderMetaInfo\n"
+	 	return res
 	}
 
 	def String compileExpressionLog(ExpressionLog l){

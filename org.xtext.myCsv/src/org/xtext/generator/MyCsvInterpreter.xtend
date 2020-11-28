@@ -44,6 +44,8 @@ import org.xtext.myCsv.LitteralFloat
 import org.xtext.myCsv.LitteralString
 import java.util.ArrayList
 import java.util.HashSet
+import org.xtext.myCsv.RenameField
+import org.xtext.myCsv.Field
 
 /**
  * Interpreter for MyCsv
@@ -53,6 +55,7 @@ class MyCsvInterpreter {
 	var Csv currentCsv = new Csv
 
 	def void interpretProgram(Program p){
+		currentCsv= new Csv
 		for(stmt : p.stmts) {
 			stmt.interpret
 		}
@@ -195,7 +198,11 @@ class MyCsvInterpreter {
 	def dispatch void interpret(PrintExpr l){
 		println(l.exp.interpretValue)
 	}
-
+	
+	def dispatch void interpret(RenameField l){
+		currentCsv.renameField(l.last_field.value, l.new_field.value)
+	}
+	
 	def dispatch boolean interpretLogicalExpression(ExpressionLog l, ArrayList<Value> row){	 	
 		return l.expr.interpretLogicalExpression(row)
 	}

@@ -321,6 +321,15 @@ public interface MyCsvFactory extends EFactory
   PrintExpr createPrintExpr();
 
   /**
+   * Returns a new object of class '<em>Rename Field</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Rename Field</em>'.
+   * @generated
+   */
+  RenameField createRenameField();
+
+  /**
    * Returns a new object of class '<em>Expression Log</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

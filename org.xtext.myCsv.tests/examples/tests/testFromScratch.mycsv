@@ -1,0 +1,6 @@
+Insert field id: [1]
+Insert field name: ["nom"]
+Insert line 1;"Mathieu"
+Insert line 2;"Bastien"
+Print table
+Store "outputFromScratch.csv" sep=";"

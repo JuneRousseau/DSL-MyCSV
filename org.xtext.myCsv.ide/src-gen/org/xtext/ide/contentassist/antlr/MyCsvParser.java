@@ -74,6 +74,7 @@ public class MyCsvParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getPrintFieldAccess().getGroup(), "rule__PrintField__Group__0");
 			builder.put(grammarAccess.getPrintCellAccess().getGroup(), "rule__PrintCell__Group__0");
 			builder.put(grammarAccess.getPrintExprAccess().getGroup(), "rule__PrintExpr__Group__0");
+			builder.put(grammarAccess.getRenameFieldAccess().getGroup(), "rule__RenameField__Group__0");
 			builder.put(grammarAccess.getOrExpressionAccess().getGroup(), "rule__OrExpression__Group__0");
 			builder.put(grammarAccess.getOrExpressionAccess().getGroup_1(), "rule__OrExpression__Group_1__0");
 			builder.put(grammarAccess.getAndExpressionAccess().getGroup(), "rule__AndExpression__Group__0");
@@ -128,6 +129,8 @@ public class MyCsvParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getPrintFieldAccess().getFieldsAssignment_1(), "rule__PrintField__FieldsAssignment_1");
 			builder.put(grammarAccess.getPrintCellAccess().getCellAssignment_1(), "rule__PrintCell__CellAssignment_1");
 			builder.put(grammarAccess.getPrintExprAccess().getExpAssignment_1(), "rule__PrintExpr__ExpAssignment_1");
+			builder.put(grammarAccess.getRenameFieldAccess().getLast_fieldAssignment_2(), "rule__RenameField__Last_fieldAssignment_2");
+			builder.put(grammarAccess.getRenameFieldAccess().getNew_fieldAssignment_4(), "rule__RenameField__New_fieldAssignment_4");
 			builder.put(grammarAccess.getExpressionLogAccess().getExprAssignment(), "rule__ExpressionLog__ExprAssignment");
 			builder.put(grammarAccess.getOrExpressionAccess().getLhsAssignment_0(), "rule__OrExpression__LhsAssignment_0");
 			builder.put(grammarAccess.getOrExpressionAccess().getRhsAssignment_1_1(), "rule__OrExpression__RhsAssignment_1_1");

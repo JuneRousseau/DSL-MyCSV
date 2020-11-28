@@ -117,6 +117,12 @@
   <eClassifiers xsi:type="ecore:EClass" name="PrintExpr" eSuperTypes="#//Print">
     <eStructuralFeatures xsi:type="ecore:EReference" name="exp" eType="#//Value" containment="true"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RenameField" eSuperTypes="#//Statement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="last_field" eType="#//Field"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="new_field" eType="#//Field"
+        containment="true"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ExpressionLog">
     <eStructuralFeatures xsi:type="ecore:EReference" name="expr" eType="#//OrExpression"
         containment="true"/>

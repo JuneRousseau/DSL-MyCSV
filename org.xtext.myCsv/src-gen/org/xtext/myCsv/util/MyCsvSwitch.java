@@ -339,6 +339,14 @@ public class MyCsvSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case MyCsvPackage.RENAME_FIELD:
+      {
+        RenameField renameField = (RenameField)theEObject;
+        T result = caseRenameField(renameField);
+        if (result == null) result = caseStatement(renameField);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case MyCsvPackage.EXPRESSION_LOG:
       {
         ExpressionLog expressionLog = (ExpressionLog)theEObject;
@@ -1025,6 +1033,22 @@ public class MyCsvSwitch<T> extends Switch<T>
    * @generated
    */
   public T casePrintExpr(PrintExpr object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Rename Field</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Rename Field</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseRenameField(RenameField object)
   {
     return null;
   }
