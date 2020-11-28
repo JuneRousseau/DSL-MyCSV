@@ -31,3 +31,23 @@ TODO
 
 ### Interpreteur
 TODO
+
+### Benchmarks
+TODO
+
+## How to use MyCsv
+
+### Compile the project
+In Eclipse IDE:
+- Right clic on `org.xtext.myCsv.tests > Export ... > Java/Runnable Jar`
+- Set "Launch Configuration" to `MyCsvMain - org.xtext.myCsv.tests`
+- Choose your export destination
+
+### Use it
+From the command line:
+
+Compilateur bash: `java -jar $nameJar compile-bash /path/to/input.mycsv /path/to/output.sh`
+
+Compilateur python:  `java -jar $nameJar compile-python /path/to/input.mycsv /path/to/output.py`
+
+Interpreter: `java -jar $nameJar$ interpret /path/to/input.mycsv`
