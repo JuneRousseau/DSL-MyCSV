@@ -152,7 +152,7 @@ class MyCsvCompilerPython {
 		
 		 if(l.noHeader) {
 			res += "\tfor i in range(len(data[0])):\n"
-			res += "\t\theader.append(i)\n"
+			res += "\t\theader.append(\"field\"+str(i))\n"
 		}
 		res +="refreshHeaderDict()\n"
 		

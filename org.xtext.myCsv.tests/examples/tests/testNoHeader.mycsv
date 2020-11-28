@@ -1,2 +1,3 @@
 Load "../noheader.csv" sep="," no header
+Delete field field2
 Store "outputNoHeader.csv" sep=";"

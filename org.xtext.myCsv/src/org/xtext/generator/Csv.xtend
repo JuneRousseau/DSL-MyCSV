@@ -46,7 +46,7 @@ class Csv {
 					data.add(ind)
 					header = new ArrayList<String>
 					for(var i = 0; i < ind.length ; i++){
-						header.add(i.toString)
+						header.add("field"+i.toString)
 					}
 				} else {
 					throw new IllegalArgumentException("Empty CSV not handled.")

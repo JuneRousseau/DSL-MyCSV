@@ -42,7 +42,8 @@ import org.xtext.myCsv.AggregatExpression
 import org.xtext.myCsv.LitteralInt
 import org.xtext.myCsv.LitteralFloat
 import org.xtext.myCsv.LitteralString
-
+import java.util.ArrayList
+import java.util.HashSet
 
 /**
  * Compiler to Bash
@@ -178,7 +179,11 @@ class MyCsvCompilerBash {
 		if(l.noHeader) {
 			res += "headerString=$(head -n 1 "+ l.path.value +")\n"
 			res += "nbField=$(awk -F\"${sep}\" '{print NF}' <<< \"${headerString}\")\n"
-			res += "headerLine=$(echo `seq 0 $(($nbField-1))` | sed \"s/ /$sep/g\" )\n"
+			res += "unset heads ; declare -a heads \n"
+			res += "for n in `seq 0 $(($nbField-1))` ; do\n"
+				res += "\theads[$(($n+1))]=$(echo field$n)\n"
+			res +="done\n"
+			res+= "headerLine=$(echo ${heads[@]}| sed \"s/ /$sep/g\" )\n"
 			res += "echo $headerLine >> "+currentCsvPath+"\n"
 			}
 			
@@ -218,11 +223,25 @@ class MyCsvCompilerBash {
 	 	return res
 	}
 	
+	def ArrayList<Integer> uniquefy(ArrayList<Integer> arg){
+		val memo = new HashSet<Integer>
+		val res = new ArrayList<Integer>
+		for (i : arg){
+			if(!memo.contains(i)){
+				memo.add(i)
+				res.add(i)
+			}
+		}
+		return res
+	}
+	
 	def dispatch String compile(LineIndexNum f){
 		var res = "unset lineIndex\n"
 		res += "declare lineIndex\n"
-		for(i : f.lines){
-			res += "lineIndex["+i+2+"]="+(i+2)+"\n"
+		var cpt=1
+		for(i : uniquefy(new ArrayList(f.lines))){
+			res += "lineIndex["+cpt+"]="+(i+2)+"\n"
+			cpt++
 		}
 		return res
 	}
