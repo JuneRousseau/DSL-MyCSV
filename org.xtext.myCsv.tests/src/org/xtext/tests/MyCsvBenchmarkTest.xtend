@@ -54,6 +54,7 @@ class MyCsvBenchmarkTest {
 	
 	@Test
 	def void compileTests() {
+		val N=1
 		val File directoryPath = new File("examples/tests/")
 		
 		prepareDirectories()
@@ -111,12 +112,28 @@ class MyCsvBenchmarkTest {
 				val String cmdExecSh = "./"+basename+".sh"
 				val File bashFile = new File(compiledShPath)
 				bashFile.setExecutable(true);
+				println("Execution time:")
+				
+				
+				val pyTimes=new ArrayList<Long>()
+				val shTimes=new ArrayList<Long>()
+				val interpTimes=new ArrayList<Long>()
+				
+				//benchmark python
+				for (var i=0; i<N; i++)
+				{
+					val tstart_python = System.nanoTime()
+					val Process prPy = rt.exec(cmdExecPy, null, new File("examples-gen/python"));
+					prPy.waitFor
+					val tend_python = System.nanoTime()
+					pyTimes.add(tend_python-tstart_python)
+				}
+				val pyTime=mean(pyTimes)
+				println("\tpython: "+pyTime+" ns ("+pyTime/1000000+" ms)")
 				
 				// EXECUTE PYTHON
-				val tstart_python = System.nanoTime()
 				val Process prPy = rt.exec(cmdExecPy, null, new File("examples-gen/python"));
 				val pyTerm=prPy.waitFor
-				val tend_python = System.nanoTime()
 				val BufferedReader bfrPy = new BufferedReader(new InputStreamReader(prPy.getInputStream()));
 				var stdoutPy = new StringBuilder
 				while ((line = bfrPy.readLine()) !== null)
@@ -124,6 +141,17 @@ class MyCsvBenchmarkTest {
 					stdoutPy.append(line + "\n");
 				}
 				Files.writeString(Paths.get(stdoutPyPath), stdoutPy.toString, StandardCharsets.UTF_8);
+				
+				for(var i=0; i<N; i++)
+				{
+					val tstart_bash = System.nanoTime()
+					val Process prSh = rt.exec(cmdExecSh, null, new File("examples-gen/bash"));
+					val shTerm=prSh.waitFor
+					val tend_bash = System.nanoTime()
+					shTimes.add(tend_bash-tstart_bash)
+				}
+				val shTime=mean(shTimes)
+				println("\tbash: "+shTime+" ns ("+shTime/1000000+" ms)")
 				
 				// EXECUTE BASH
 				val tstart_bash = System.nanoTime()
@@ -150,10 +178,14 @@ class MyCsvBenchmarkTest {
 				var long tstart_interp=0
 				var long tend_interp=0
 				try {
+					for(var i=0; i<N; i++)
+					{
 					tstart_interp = System.nanoTime()
 					interpreter.interpretProgram(prog)
 					tend_interp = System.nanoTime()
+					interpTimes.add(tend_interp-tstart_interp)
 					outStream.flush()
+					}
 				} catch (Exception e){
 					interpReturnCode = 1
 					e.printStackTrace
@@ -163,16 +195,11 @@ class MyCsvBenchmarkTest {
 				System.setOut(mainOut)
 				System.setProperty("user.dir", mainPath)
 				
+				val interpTime=mean(interpTimes)
+				println("\tinterpreter: "+interpTime+" ns ("+interpTime/1000000+" ms)")
+				
 				// ASSERTIONS
 				
-				println("Execution time:")
-				val pyTime=tend_python-tstart_python
-				val shTime=tend_bash-tstart_bash
-				val interpTime=tend_interp-tstart_interp
-				
-				println("\tpython: "+pyTime+" ns ("+pyTime/1000000+" ms)")
-				println("\tbash: "+shTime+" ns ("+shTime/1000000+" ms)")
-				println("\tinterpreter: "+interpTime+" ns ("+interpTime/1000000+" ms)")
 							
 				// Executions should fail together
 				
@@ -200,6 +227,18 @@ class MyCsvBenchmarkTest {
 				Assertions.fail("Exception occured.")
 			}
 		}
+	}
+	
+	def mean(ArrayList<Long> l)
+	{
+		var long sum=0
+		var long len=0
+		for(i : l)
+		{
+			sum+=i
+			len+=1
+		}
+		return (sum/len)
 	}
 	
 	def compareCsv(String outPath1, String outPath2) {

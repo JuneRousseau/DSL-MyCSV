@@ -346,6 +346,10 @@ class Csv {
 		return headerDict.get(fieldName)
 	}
 	
+	def getSep(){
+		return this.sep
+	}
+	
 	override equals(Object o){
 		if(!(o instanceof Csv)){
 			return false

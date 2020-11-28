@@ -58,6 +58,7 @@ class MyCsvCompilerPython {
 		res += "data = []\n"
 		res += "header = []\n"
 		res += "headerDict = {}\n\n"
+		res += "sep=\""+Csv.defaultSep+"\"\n"
 		
 		res += "def Count(x):\n"
 		res += "\treturn len(data)\n\n"
@@ -131,13 +132,13 @@ class MyCsvCompilerPython {
 		res += "data = []\n"
 		res += "header = []\n"
 		res += "headerDict = {}\n"
-		res += "with open('" + l.getPath.value + "', newline='') as csvfile:\n"
-		
-		res += "\treader = csv.reader(csvfile"
+
 		if (l.isSepDefined()){
-			res += ', delimiter = "' + l.sep + '"'
+			res += "sep=\""+l.sep+"\"\n"
+			
 		}
-		res += ")\n"
+		res += "with open('" + l.getPath.value + "', newline='') as csvfile:\n"
+		res += "\treader = csv.reader(csvfile, delimiter = sep)\n"
 		
 		if(!l.noHeader){
 			res += "\theader = next(reader)\n"

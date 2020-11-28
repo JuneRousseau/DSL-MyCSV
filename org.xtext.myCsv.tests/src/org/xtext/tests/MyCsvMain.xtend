@@ -32,9 +32,9 @@ class MyCsvMain {
 		}
 		else
 		{
-			print("Mode "+ mode+" unknown: please use compile-bash , compile-python or interpret")
+			print("Mode "+ mode+" unknown: please use compile-bash , compile-python or interpret\n")
 		}
-		print("Done")
+		print("Done\n")
 	}
 	
 	def static void interpret(String inputMyCsv){

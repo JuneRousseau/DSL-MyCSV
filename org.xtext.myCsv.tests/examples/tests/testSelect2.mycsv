@@ -1,0 +1,4 @@
+Load "../input.csv" sep=","
+Select 5 4 3 2 1 0
+Projection 3 2 1 0
+Store "outputSelect2.csv" sep=";"

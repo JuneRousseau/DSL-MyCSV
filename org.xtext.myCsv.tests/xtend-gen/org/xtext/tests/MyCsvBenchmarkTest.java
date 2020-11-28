@@ -63,6 +63,7 @@ public class MyCsvBenchmarkTest {
   
   @Test
   public void compileTests() {
+    final int N = 1;
     final File directoryPath = new File("examples/tests/");
     this.prepareDirectories();
     InputOutput.<String>println("----------TESTS----------");
@@ -111,11 +112,25 @@ public class MyCsvBenchmarkTest {
           final String cmdExecSh = (("./" + basename) + ".sh");
           final File bashFile = new File(compiledShPath);
           bashFile.setExecutable(true);
-          final long tstart_python = System.nanoTime();
+          InputOutput.<String>println("Execution time:");
+          final ArrayList<Long> pyTimes = new ArrayList<Long>();
+          final ArrayList<Long> shTimes = new ArrayList<Long>();
+          final ArrayList<Long> interpTimes = new ArrayList<Long>();
+          for (int i = 0; (i < N); i++) {
+            {
+              final long tstart_python = System.nanoTime();
+              File _file = new File("examples-gen/python");
+              final Process prPy = rt.exec(cmdExecPy, null, _file);
+              prPy.waitFor();
+              final long tend_python = System.nanoTime();
+              pyTimes.add(Long.valueOf((tend_python - tstart_python)));
+            }
+          }
+          final long pyTime = this.mean(pyTimes);
+          InputOutput.<String>println((((("\tpython: " + Long.valueOf(pyTime)) + " ns (") + Long.valueOf((pyTime / 1000000))) + " ms)"));
           File _file = new File("examples-gen/python");
           final Process prPy = rt.exec(cmdExecPy, null, _file);
           final int pyTerm = prPy.waitFor();
-          final long tend_python = System.nanoTime();
           InputStream _inputStream = prPy.getInputStream();
           InputStreamReader _inputStreamReader = new InputStreamReader(_inputStream);
           final BufferedReader bfrPy = new BufferedReader(_inputStreamReader);
@@ -124,6 +139,18 @@ public class MyCsvBenchmarkTest {
             stdoutPy.append((line + "\n"));
           }
           Files.writeString(Paths.get(stdoutPyPath), stdoutPy.toString(), StandardCharsets.UTF_8);
+          for (int i = 0; (i < N); i++) {
+            {
+              final long tstart_bash = System.nanoTime();
+              File _file_1 = new File("examples-gen/bash");
+              final Process prSh = rt.exec(cmdExecSh, null, _file_1);
+              final int shTerm = prSh.waitFor();
+              final long tend_bash = System.nanoTime();
+              shTimes.add(Long.valueOf((tend_bash - tstart_bash)));
+            }
+          }
+          final long shTime = this.mean(shTimes);
+          InputOutput.<String>println((((("\tbash: " + Long.valueOf(shTime)) + " ns (") + Long.valueOf((shTime / 1000000))) + " ms)"));
           final long tstart_bash = System.nanoTime();
           File _file_1 = new File("examples-gen/bash");
           final Process prSh = rt.exec(cmdExecSh, null, _file_1);
@@ -144,10 +171,15 @@ public class MyCsvBenchmarkTest {
           long tstart_interp = 0;
           long tend_interp = 0;
           try {
-            tstart_interp = System.nanoTime();
-            interpreter.interpretProgram(prog);
-            tend_interp = System.nanoTime();
-            outStream.flush();
+            for (int i = 0; (i < N); i++) {
+              {
+                tstart_interp = System.nanoTime();
+                interpreter.interpretProgram(prog);
+                tend_interp = System.nanoTime();
+                interpTimes.add(Long.valueOf((tend_interp - tstart_interp)));
+                outStream.flush();
+              }
+            }
           } catch (final Throwable _t) {
             if (_t instanceof Exception) {
               final Exception e = (Exception)_t;
@@ -159,12 +191,7 @@ public class MyCsvBenchmarkTest {
           }
           System.setOut(mainOut);
           System.setProperty("user.dir", mainPath);
-          InputOutput.<String>println("Execution time:");
-          final long pyTime = (tend_python - tstart_python);
-          final long shTime = (tend_bash - tstart_bash);
-          final long interpTime = (tend_interp - tstart_interp);
-          InputOutput.<String>println((((("\tpython: " + Long.valueOf(pyTime)) + " ns (") + Long.valueOf((pyTime / 1000000))) + " ms)"));
-          InputOutput.<String>println((((("\tbash: " + Long.valueOf(shTime)) + " ns (") + Long.valueOf((shTime / 1000000))) + " ms)"));
+          final long interpTime = this.mean(interpTimes);
           InputOutput.<String>println((((("\tinterpreter: " + Long.valueOf(interpTime)) + " ns (") + Long.valueOf((interpTime / 1000000))) + " ms)"));
           Assertions.assertEquals(Boolean.valueOf((interpReturnCode == 0)), Boolean.valueOf((pyTerm == 0)));
           Assertions.assertEquals(Boolean.valueOf((interpReturnCode == 0)), Boolean.valueOf((shTerm == 0)));
@@ -188,6 +215,20 @@ public class MyCsvBenchmarkTest {
         }
       }
     }
+  }
+  
+  public long mean(final ArrayList<Long> l) {
+    long sum = 0;
+    long len = 0;
+    for (final Long i : l) {
+      {
+        long _sum = sum;
+        sum = (_sum + (i).longValue());
+        long _len = len;
+        len = (_len + 1);
+      }
+    }
+    return (sum / len);
   }
   
   public boolean compareCsv(final String outPath1, final String outPath2) {

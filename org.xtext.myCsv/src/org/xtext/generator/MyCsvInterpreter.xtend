@@ -67,7 +67,7 @@ class MyCsvInterpreter {
 	}
 	
 	def dispatch void interpret(Store l){
-		var sep = Csv.defaultSep
+		var sep = currentCsv.getSep
 		if (l.isSepDefined()){
 			sep = l.sep
 		}

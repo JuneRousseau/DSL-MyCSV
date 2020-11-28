@@ -53,7 +53,6 @@ class MyCsvCompilerBash {
 
 	val tmpCompilerPath="/tmp/myCsvCompilerBash/"	
 	val currentCsvPath= tmpCompilerPath+"current.csv"
-	var String sep = Csv.defaultSep
 		
 	def dispatch String compile(Program p){
 		var res = "#!/bin/bash\n"
@@ -168,13 +167,13 @@ class MyCsvCompilerBash {
 		
 		res += "rm -f "+currentCsvPath+"\n"
 		
-		var localSep = ""
+		var sep = ""
 		if (l.isSepDefined()){
-			localSep = l.sep
+			sep = l.sep
 		} else {
-			localSep = sep
+			sep = Csv.defaultSep
 		}
-		res += "sep='"+localSep+"'\n"
+		res += "sep='"+sep+"'\n"
 		
 		if(l.noHeader) {
 			res += "headerString=$(head -n 1 "+ l.path.value +")\n"
@@ -192,7 +191,7 @@ class MyCsvCompilerBash {
 		var res = "# STORE\n"
 		
 		if (l.isSepDefined()){
-			res += "sed 's/"+ sep + "/"+l.sep+"/g' "+currentCsvPath+" > "+l.path.value+"\n"
+			res += "sed \"s/$sep/"+l.sep+"/g\" "+currentCsvPath+" > "+l.path.value+"\n"
 		} else {
 			res += "cp "+currentCsvPath+" "+l.path.value+"\n"
 		}
