@@ -175,7 +175,7 @@ class MyCsvCompilerPython {
 		res += "with open('" + l.getPath.value + "', 'w', newline='') as csvfile:\n"
 		
 		if (l.isSepDefined()){
-			res += "sep=\""+l.sep+"\"\n"
+			res += "\tsep=\""+l.sep+"\"\n"
 			
 		}
 		

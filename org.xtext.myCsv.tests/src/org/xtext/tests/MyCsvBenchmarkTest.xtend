@@ -45,7 +45,7 @@ class MyCsvBenchmarkTest {
 		for(String s : listFiles)
 		{
 			val f = new File(s)
-			if (!f.exists && !f.directory){
+			if (!f.exists){
 			Files.createDirectory(Paths.get(s))
 			}
 		}

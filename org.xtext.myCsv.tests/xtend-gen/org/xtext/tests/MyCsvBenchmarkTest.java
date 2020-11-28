@@ -51,7 +51,9 @@ public class MyCsvBenchmarkTest {
       for (final String s : listFiles) {
         {
           final File f = new File(s);
-          if (((!f.exists()) && (!f.isDirectory()))) {
+          boolean _exists = f.exists();
+          boolean _not = (!_exists);
+          if (_not) {
             Files.createDirectory(Paths.get(s));
           }
         }
