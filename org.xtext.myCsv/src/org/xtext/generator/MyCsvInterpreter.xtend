@@ -45,7 +45,6 @@ import org.xtext.myCsv.LitteralString
 import java.util.ArrayList
 import java.util.HashSet
 import org.xtext.myCsv.RenameField
-import org.xtext.myCsv.Field
 
 /**
  * Interpreter for MyCsv

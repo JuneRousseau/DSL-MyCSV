@@ -54,7 +54,7 @@ class MyCsvBenchmarkTest {
 	
 	@Test
 	def void compileTests() {
-		val N=1
+		val N=5
 		val File directoryPath = new File("examples/tests/")
 		
 		prepareDirectories()
@@ -71,12 +71,22 @@ class MyCsvBenchmarkTest {
 		val PrintStream mainOut = System.out
 		val String mainPath = System.getProperty("user.dir")
 		val String interpreterPath = new File("examples-gen/interpreter").absolutePath
+		
+		//benchmarks
+		val benchmarksRunCsvPath="examples-gen/benchmarksRuns.csv"
+		var benchmarksRun = new StringBuilder() 
+		
+		val benchmarksMeanCsvPath="examples-gen/benchmarksMean.csv"
+		var benchmarksMean = new StringBuilder() 
+		benchmarksMean.append("testName,timePython_ns,timePython_ms,timeBash_ns,timeBash_ms,timeInterpreter_ns,timeInterpreter_ms\n")
+		benchmarksRun.append("testName,timePython_ns,timePython_ms,timeBash_ns,timeBash_ms,timeInterpreter_ns,timeInterpreter_ms\n")
 				
 		for (testFile : directoryPath.list())
 		{
 			
 			val basename= testFile.substring(0, testFile.indexOf("."))
 			val outputBasename = "output"+basename.substring("test".length, basename.length())
+			benchmarksMean.append(basename+",")
 			try {
 				// PREPARING testfile
 				println("TESTING "+ basename +"...")
@@ -113,7 +123,7 @@ class MyCsvBenchmarkTest {
 				val File bashFile = new File(compiledShPath)
 				bashFile.setExecutable(true);
 				println("Execution time:")
-				
+						
 				
 				val pyTimes=new ArrayList<Long>()
 				val shTimes=new ArrayList<Long>()
@@ -130,6 +140,7 @@ class MyCsvBenchmarkTest {
 				}
 				val pyTime=mean(pyTimes)
 				println("\tpython: "+pyTime+" ns ("+pyTime/1000000+" ms)")
+				benchmarksMean.append(pyTime+","+(pyTime/1000000)+",")
 				
 				// EXECUTE PYTHON
 				val Process prPy = rt.exec(cmdExecPy, null, new File("examples-gen/python"));
@@ -146,18 +157,17 @@ class MyCsvBenchmarkTest {
 				{
 					val tstart_bash = System.nanoTime()
 					val Process prSh = rt.exec(cmdExecSh, null, new File("examples-gen/bash"));
-					val shTerm=prSh.waitFor
+					prSh.waitFor
 					val tend_bash = System.nanoTime()
 					shTimes.add(tend_bash-tstart_bash)
 				}
 				val shTime=mean(shTimes)
 				println("\tbash: "+shTime+" ns ("+shTime/1000000+" ms)")
+				benchmarksMean.append(shTime+","+(shTime/1000000)+",")
 				
 				// EXECUTE BASH
-				val tstart_bash = System.nanoTime()
 				val Process prSh = rt.exec(cmdExecSh, null, new File("examples-gen/bash"));
 				val shTerm=prSh.waitFor
-				val tend_bash = System.nanoTime()
 				val BufferedReader bfrSh = new BufferedReader(new InputStreamReader(prSh.getInputStream()));
 				var stdoutSh = new StringBuilder
 				while ((line = bfrSh.readLine()) !== null)
@@ -198,6 +208,12 @@ class MyCsvBenchmarkTest {
 				
 				val interpTime=mean(interpTimes)
 				println("\tinterpreter: "+interpTime+" ns ("+interpTime/1000000+" ms)")
+				benchmarksMean.append(interpTime+","+(interpTime/1000000)+"\n")
+				
+				for(var i=0; i<N;i++)
+				{
+					benchmarksRun.append(basename+","+pyTimes.get(i)+","+(pyTimes.get(i)/1000000)+","+shTimes.get(i)+","+(shTimes.get(i)/1000000)+","+interpTimes.get(i)+","+(interpTimes.get(i)/1000000)+"\n")
+				}
 				
 				// ASSERTIONS
 				
@@ -227,7 +243,10 @@ class MyCsvBenchmarkTest {
 				e.printStackTrace
 				Assertions.fail("Exception occured.")
 			}
+			
 		}
+		Files.writeString(Paths.get(benchmarksRunCsvPath), benchmarksRun.toString, StandardCharsets.UTF_8);
+		Files.writeString(Paths.get(benchmarksMeanCsvPath), benchmarksMean.toString, StandardCharsets.UTF_8);
 	}
 	
 	def mean(ArrayList<Long> l)

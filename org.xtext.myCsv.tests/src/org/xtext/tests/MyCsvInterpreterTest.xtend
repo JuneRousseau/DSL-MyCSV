@@ -15,7 +15,6 @@ import org.xtext.MyCsvStandaloneSetupGenerated
 import java.io.File
 import java.util.Scanner
 import org.xtext.generator.MyCsvInterpreter
-import java.io.PrintStream
 
 @ExtendWith(InjectionExtension)
 @InjectWith(MyCsvInjectorProvider)
@@ -30,7 +29,6 @@ class MyCsvInterpreterTest {
 		val interpreter = new MyCsvInterpreter
 		
 		// Runtime settings
-		val PrintStream mainOut = System.out
 		val String mainPath = System.getProperty("user.dir")
 		val String interpreterPath = new File("examples-gen/interpreter").absolutePath
 		
@@ -41,9 +39,7 @@ class MyCsvInterpreterTest {
 		{
 			
 			val basename= testFile.substring(0, testFile.indexOf("."))
-			val outputBasename = "output"+basename.substring("test".length, basename.length())
 			val inputMyCsv= "examples/tests/"+basename+".mycsv"
-			val stdoutInterpreterPath= "examples-gen/stdout/"+basename+"-Interpreter.stdout.txt"
 			
 			try{	
 			

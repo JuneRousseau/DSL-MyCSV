@@ -65,157 +65,204 @@ public class MyCsvBenchmarkTest {
   
   @Test
   public void compileTests() {
-    final int N = 1;
-    final File directoryPath = new File("examples/tests/");
-    this.prepareDirectories();
-    InputOutput.<String>println("----------TESTS----------");
-    final MyCsvCompilerPython pythonCompiler = new MyCsvCompilerPython();
-    final MyCsvCompilerBash bashCompiler = new MyCsvCompilerBash();
-    final MyCsvInterpreter interpreter = new MyCsvInterpreter();
-    String line = null;
-    final PrintStream mainOut = System.out;
-    final String mainPath = System.getProperty("user.dir");
-    final String interpreterPath = new File("examples-gen/interpreter").getAbsolutePath();
-    String[] _list = directoryPath.list();
-    for (final String testFile : _list) {
-      {
-        final String basename = testFile.substring(0, testFile.indexOf("."));
-        String _substring = basename.substring("test".length(), basename.length());
-        final String outputBasename = ("output" + _substring);
-        try {
-          InputOutput.<String>println((("TESTING " + basename) + "..."));
-          final String inputMyCsv = (("examples/tests/" + basename) + ".mycsv");
-          final String compiledPyPath = (("examples-gen/python/" + basename) + ".py");
-          final String compiledShPath = (("examples-gen/bash/" + basename) + ".sh");
-          final String stdoutPyPath = (("examples-gen/stdout/" + basename) + "-Py.stdout.txt");
-          final String stdoutShPath = (("examples-gen/stdout/" + basename) + "-Sh.stdout.txt");
-          final String stdoutInterpreterPath = (("examples-gen/stdout/" + basename) + "-Interpreter.stdout.txt");
-          final String outputPyPath = (("examples-gen/python/" + outputBasename) + ".csv");
-          final String outputShPath = (("examples-gen/bash/" + outputBasename) + ".csv");
-          final String outputInterpreterPath = (("examples-gen/interpreter/" + outputBasename) + ".csv");
-          final String outputJsonPyPath = (("examples-gen/python/" + outputBasename) + ".json");
-          final String outputJsonShPath = (("examples-gen/bash/" + outputBasename) + ".json");
-          final String outputJsonInterpreterPath = (("examples-gen/interpreter/" + outputBasename) + ".json");
-          final Program prog = this.loadMyCSV(URI.createURI(inputMyCsv));
-          Assertions.assertNotNull(prog);
-          final EList<Resource.Diagnostic> errors = prog.eResource().getErrors();
-          boolean _isEmpty = errors.isEmpty();
-          StringConcatenation _builder = new StringConcatenation();
-          _builder.append("Unexpected errors: ");
-          String _join = IterableExtensions.join(errors, ", ");
-          _builder.append(_join);
-          Assertions.assertTrue(_isEmpty, _builder.toString());
-          final String compiledPy = pythonCompiler.compile(prog);
-          final String compiledSh = bashCompiler.compile(prog);
-          Files.writeString(Paths.get(compiledPyPath), compiledPy, StandardCharsets.UTF_8);
-          Files.writeString(Paths.get(compiledShPath), compiledSh, StandardCharsets.UTF_8);
-          final Runtime rt = Runtime.getRuntime();
-          final String cmdExecPy = (("python3 " + basename) + ".py");
-          final String cmdExecSh = (("./" + basename) + ".sh");
-          final File bashFile = new File(compiledShPath);
-          bashFile.setExecutable(true);
-          InputOutput.<String>println("Execution time:");
-          final ArrayList<Long> pyTimes = new ArrayList<Long>();
-          final ArrayList<Long> shTimes = new ArrayList<Long>();
-          final ArrayList<Long> interpTimes = new ArrayList<Long>();
-          for (int i = 0; (i < N); i++) {
-            {
-              final long tstart_python = System.nanoTime();
-              File _file = new File("examples-gen/python");
-              final Process prPy = rt.exec(cmdExecPy, null, _file);
-              prPy.waitFor();
-              final long tend_python = System.nanoTime();
-              pyTimes.add(Long.valueOf((tend_python - tstart_python)));
-            }
-          }
-          final long pyTime = this.mean(pyTimes);
-          InputOutput.<String>println((((("\tpython: " + Long.valueOf(pyTime)) + " ns (") + Long.valueOf((pyTime / 1000000))) + " ms)"));
-          File _file = new File("examples-gen/python");
-          final Process prPy = rt.exec(cmdExecPy, null, _file);
-          final int pyTerm = prPy.waitFor();
-          InputStream _inputStream = prPy.getInputStream();
-          InputStreamReader _inputStreamReader = new InputStreamReader(_inputStream);
-          final BufferedReader bfrPy = new BufferedReader(_inputStreamReader);
-          StringBuilder stdoutPy = new StringBuilder();
-          while (((line = bfrPy.readLine()) != null)) {
-            stdoutPy.append((line + "\n"));
-          }
-          Files.writeString(Paths.get(stdoutPyPath), stdoutPy.toString(), StandardCharsets.UTF_8);
-          for (int i = 0; (i < N); i++) {
-            {
-              final long tstart_bash = System.nanoTime();
-              File _file_1 = new File("examples-gen/bash");
-              final Process prSh = rt.exec(cmdExecSh, null, _file_1);
-              final int shTerm = prSh.waitFor();
-              final long tend_bash = System.nanoTime();
-              shTimes.add(Long.valueOf((tend_bash - tstart_bash)));
-            }
-          }
-          final long shTime = this.mean(shTimes);
-          InputOutput.<String>println((((("\tbash: " + Long.valueOf(shTime)) + " ns (") + Long.valueOf((shTime / 1000000))) + " ms)"));
-          final long tstart_bash = System.nanoTime();
-          File _file_1 = new File("examples-gen/bash");
-          final Process prSh = rt.exec(cmdExecSh, null, _file_1);
-          final int shTerm = prSh.waitFor();
-          final long tend_bash = System.nanoTime();
-          InputStream _inputStream_1 = prSh.getInputStream();
-          InputStreamReader _inputStreamReader_1 = new InputStreamReader(_inputStream_1);
-          final BufferedReader bfrSh = new BufferedReader(_inputStreamReader_1);
-          StringBuilder stdoutSh = new StringBuilder();
-          while (((line = bfrSh.readLine()) != null)) {
-            stdoutSh.append((line + "\n"));
-          }
-          Files.writeString(Paths.get(stdoutShPath), stdoutSh.toString(), StandardCharsets.UTF_8);
-          System.setProperty("user.dir", interpreterPath);
-          final PrintStream outStream = new PrintStream(stdoutInterpreterPath);
-          System.setOut(outStream);
-          int interpReturnCode = 0;
-          long tstart_interp = 0;
-          long tend_interp = 0;
-          for (int i = 0; (i < N); i++) {
-            {
-              try {
-                tstart_interp = System.nanoTime();
-                interpreter.interpretProgram(prog);
-                tend_interp = System.nanoTime();
-                outStream.flush();
-              } catch (final Throwable _t) {
-                if (_t instanceof Exception) {
-                  final Exception e = (Exception)_t;
-                  interpReturnCode = 1;
-                  e.printStackTrace();
-                } else {
-                  throw Exceptions.sneakyThrow(_t);
-                }
+    try {
+      final int N = 5;
+      final File directoryPath = new File("examples/tests/");
+      this.prepareDirectories();
+      InputOutput.<String>println("----------TESTS----------");
+      final MyCsvCompilerPython pythonCompiler = new MyCsvCompilerPython();
+      final MyCsvCompilerBash bashCompiler = new MyCsvCompilerBash();
+      final MyCsvInterpreter interpreter = new MyCsvInterpreter();
+      String line = null;
+      final PrintStream mainOut = System.out;
+      final String mainPath = System.getProperty("user.dir");
+      final String interpreterPath = new File("examples-gen/interpreter").getAbsolutePath();
+      final String benchmarksRunCsvPath = "examples-gen/benchmarksRuns.csv";
+      StringBuilder benchmarksRun = new StringBuilder();
+      final String benchmarksMeanCsvPath = "examples-gen/benchmarksMean.csv";
+      StringBuilder benchmarksMean = new StringBuilder();
+      benchmarksMean.append("testName,timePython_ns,timePython_ms,timeBash_ns,timeBash_ms,timeInterpreter_ns,timeInterpreter_ms\n");
+      benchmarksRun.append("testName,timePython_ns,timePython_ms,timeBash_ns,timeBash_ms,timeInterpreter_ns,timeInterpreter_ms\n");
+      String[] _list = directoryPath.list();
+      for (final String testFile : _list) {
+        {
+          final String basename = testFile.substring(0, testFile.indexOf("."));
+          String _substring = basename.substring("test".length(), basename.length());
+          final String outputBasename = ("output" + _substring);
+          benchmarksMean.append((basename + ","));
+          try {
+            InputOutput.<String>println((("TESTING " + basename) + "..."));
+            final String inputMyCsv = (("examples/tests/" + basename) + ".mycsv");
+            final String compiledPyPath = (("examples-gen/python/" + basename) + ".py");
+            final String compiledShPath = (("examples-gen/bash/" + basename) + ".sh");
+            final String stdoutPyPath = (("examples-gen/stdout/" + basename) + "-Py.stdout.txt");
+            final String stdoutShPath = (("examples-gen/stdout/" + basename) + "-Sh.stdout.txt");
+            final String stdoutInterpreterPath = (("examples-gen/stdout/" + basename) + "-Interpreter.stdout.txt");
+            final String outputPyPath = (("examples-gen/python/" + outputBasename) + ".csv");
+            final String outputShPath = (("examples-gen/bash/" + outputBasename) + ".csv");
+            final String outputInterpreterPath = (("examples-gen/interpreter/" + outputBasename) + ".csv");
+            final String outputJsonPyPath = (("examples-gen/python/" + outputBasename) + ".json");
+            final String outputJsonShPath = (("examples-gen/bash/" + outputBasename) + ".json");
+            final String outputJsonInterpreterPath = (("examples-gen/interpreter/" + outputBasename) + ".json");
+            final Program prog = this.loadMyCSV(URI.createURI(inputMyCsv));
+            Assertions.assertNotNull(prog);
+            final EList<Resource.Diagnostic> errors = prog.eResource().getErrors();
+            boolean _isEmpty = errors.isEmpty();
+            StringConcatenation _builder = new StringConcatenation();
+            _builder.append("Unexpected errors: ");
+            String _join = IterableExtensions.join(errors, ", ");
+            _builder.append(_join);
+            Assertions.assertTrue(_isEmpty, _builder.toString());
+            final String compiledPy = pythonCompiler.compile(prog);
+            final String compiledSh = bashCompiler.compile(prog);
+            Files.writeString(Paths.get(compiledPyPath), compiledPy, StandardCharsets.UTF_8);
+            Files.writeString(Paths.get(compiledShPath), compiledSh, StandardCharsets.UTF_8);
+            final Runtime rt = Runtime.getRuntime();
+            final String cmdExecPy = (("python3 " + basename) + ".py");
+            final String cmdExecSh = (("./" + basename) + ".sh");
+            final File bashFile = new File(compiledShPath);
+            bashFile.setExecutable(true);
+            InputOutput.<String>println("Execution time:");
+            final ArrayList<Long> pyTimes = new ArrayList<Long>();
+            final ArrayList<Long> shTimes = new ArrayList<Long>();
+            final ArrayList<Long> interpTimes = new ArrayList<Long>();
+            for (int i = 0; (i < N); i++) {
+              {
+                final long tstart_python = System.nanoTime();
+                File _file = new File("examples-gen/python");
+                final Process prPy = rt.exec(cmdExecPy, null, _file);
+                prPy.waitFor();
+                final long tend_python = System.nanoTime();
+                pyTimes.add(Long.valueOf((tend_python - tstart_python)));
               }
-              interpTimes.add(Long.valueOf((tend_interp - tstart_interp)));
             }
-          }
-          System.setOut(mainOut);
-          System.setProperty("user.dir", mainPath);
-          final long interpTime = this.mean(interpTimes);
-          InputOutput.<String>println((((("\tinterpreter: " + Long.valueOf(interpTime)) + " ns (") + Long.valueOf((interpTime / 1000000))) + " ms)"));
-          Assertions.assertEquals(Boolean.valueOf((interpReturnCode == 0)), Boolean.valueOf((pyTerm == 0)));
-          Assertions.assertEquals(Boolean.valueOf((interpReturnCode == 0)), Boolean.valueOf((shTerm == 0)));
-          final Csv csvInterpreter = new Csv(outputInterpreterPath, ";", false);
-          Csv _csv = new Csv(outputPyPath, ";", false);
-          Assertions.assertEquals(csvInterpreter, _csv);
-          Csv _csv_1 = new Csv(outputShPath, ";", false);
-          Assertions.assertEquals(csvInterpreter, _csv_1);
-          Assertions.assertTrue(this.compareJson(outputJsonInterpreterPath, outputJsonPyPath));
-          Assertions.assertTrue(this.compareJson(outputJsonInterpreterPath, outputJsonShPath));
-          InputOutput.<String>println("DONE\n");
-        } catch (final Throwable _t) {
-          if (_t instanceof Exception) {
-            final Exception e = (Exception)_t;
-            System.out.println((((("ERROR: test of " + basename) + " aborted:\n") + e) + "\n"));
-            e.printStackTrace();
-            Assertions.<String>fail("Exception occured.");
-          } else {
-            throw Exceptions.sneakyThrow(_t);
+            final long pyTime = this.mean(pyTimes);
+            InputOutput.<String>println((((("\tpython: " + Long.valueOf(pyTime)) + " ns (") + Long.valueOf((pyTime / 1000000))) + " ms)"));
+            String _plus = (Long.valueOf(pyTime) + ",");
+            String _plus_1 = (_plus + Long.valueOf((pyTime / 1000000)));
+            String _plus_2 = (_plus_1 + ",");
+            benchmarksMean.append(_plus_2);
+            File _file = new File("examples-gen/python");
+            final Process prPy = rt.exec(cmdExecPy, null, _file);
+            final int pyTerm = prPy.waitFor();
+            InputStream _inputStream = prPy.getInputStream();
+            InputStreamReader _inputStreamReader = new InputStreamReader(_inputStream);
+            final BufferedReader bfrPy = new BufferedReader(_inputStreamReader);
+            StringBuilder stdoutPy = new StringBuilder();
+            while (((line = bfrPy.readLine()) != null)) {
+              stdoutPy.append((line + "\n"));
+            }
+            Files.writeString(Paths.get(stdoutPyPath), stdoutPy.toString(), StandardCharsets.UTF_8);
+            for (int i = 0; (i < N); i++) {
+              {
+                final long tstart_bash = System.nanoTime();
+                File _file_1 = new File("examples-gen/bash");
+                final Process prSh = rt.exec(cmdExecSh, null, _file_1);
+                prSh.waitFor();
+                final long tend_bash = System.nanoTime();
+                shTimes.add(Long.valueOf((tend_bash - tstart_bash)));
+              }
+            }
+            final long shTime = this.mean(shTimes);
+            InputOutput.<String>println((((("\tbash: " + Long.valueOf(shTime)) + " ns (") + Long.valueOf((shTime / 1000000))) + " ms)"));
+            String _plus_3 = (Long.valueOf(shTime) + ",");
+            String _plus_4 = (_plus_3 + Long.valueOf((shTime / 1000000)));
+            String _plus_5 = (_plus_4 + ",");
+            benchmarksMean.append(_plus_5);
+            File _file_1 = new File("examples-gen/bash");
+            final Process prSh = rt.exec(cmdExecSh, null, _file_1);
+            final int shTerm = prSh.waitFor();
+            InputStream _inputStream_1 = prSh.getInputStream();
+            InputStreamReader _inputStreamReader_1 = new InputStreamReader(_inputStream_1);
+            final BufferedReader bfrSh = new BufferedReader(_inputStreamReader_1);
+            StringBuilder stdoutSh = new StringBuilder();
+            while (((line = bfrSh.readLine()) != null)) {
+              stdoutSh.append((line + "\n"));
+            }
+            Files.writeString(Paths.get(stdoutShPath), stdoutSh.toString(), StandardCharsets.UTF_8);
+            System.setProperty("user.dir", interpreterPath);
+            final PrintStream outStream = new PrintStream(stdoutInterpreterPath);
+            System.setOut(outStream);
+            int interpReturnCode = 0;
+            long tstart_interp = 0;
+            long tend_interp = 0;
+            for (int i = 0; (i < N); i++) {
+              {
+                try {
+                  tstart_interp = System.nanoTime();
+                  interpreter.interpretProgram(prog);
+                  tend_interp = System.nanoTime();
+                  outStream.flush();
+                } catch (final Throwable _t) {
+                  if (_t instanceof Exception) {
+                    final Exception e = (Exception)_t;
+                    interpReturnCode = 1;
+                    e.printStackTrace();
+                  } else {
+                    throw Exceptions.sneakyThrow(_t);
+                  }
+                }
+                interpTimes.add(Long.valueOf((tend_interp - tstart_interp)));
+              }
+            }
+            System.setOut(mainOut);
+            System.setProperty("user.dir", mainPath);
+            final long interpTime = this.mean(interpTimes);
+            InputOutput.<String>println((((("\tinterpreter: " + Long.valueOf(interpTime)) + " ns (") + Long.valueOf((interpTime / 1000000))) + " ms)"));
+            String _plus_6 = (Long.valueOf(interpTime) + ",");
+            String _plus_7 = (_plus_6 + Long.valueOf((interpTime / 1000000)));
+            String _plus_8 = (_plus_7 + "\n");
+            benchmarksMean.append(_plus_8);
+            for (int i = 0; (i < N); i++) {
+              Long _get = pyTimes.get(i);
+              String _plus_9 = ((basename + ",") + _get);
+              String _plus_10 = (_plus_9 + ",");
+              Long _get_1 = pyTimes.get(i);
+              long _divide = ((_get_1).longValue() / 1000000);
+              String _plus_11 = (_plus_10 + Long.valueOf(_divide));
+              String _plus_12 = (_plus_11 + ",");
+              Long _get_2 = shTimes.get(i);
+              String _plus_13 = (_plus_12 + _get_2);
+              String _plus_14 = (_plus_13 + ",");
+              Long _get_3 = shTimes.get(i);
+              long _divide_1 = ((_get_3).longValue() / 1000000);
+              String _plus_15 = (_plus_14 + Long.valueOf(_divide_1));
+              String _plus_16 = (_plus_15 + ",");
+              Long _get_4 = interpTimes.get(i);
+              String _plus_17 = (_plus_16 + _get_4);
+              String _plus_18 = (_plus_17 + ",");
+              Long _get_5 = interpTimes.get(i);
+              long _divide_2 = ((_get_5).longValue() / 1000000);
+              String _plus_19 = (_plus_18 + Long.valueOf(_divide_2));
+              String _plus_20 = (_plus_19 + "\n");
+              benchmarksRun.append(_plus_20);
+            }
+            Assertions.assertEquals(Boolean.valueOf((interpReturnCode == 0)), Boolean.valueOf((pyTerm == 0)));
+            Assertions.assertEquals(Boolean.valueOf((interpReturnCode == 0)), Boolean.valueOf((shTerm == 0)));
+            final Csv csvInterpreter = new Csv(outputInterpreterPath, ";", false);
+            Csv _csv = new Csv(outputPyPath, ";", false);
+            Assertions.assertEquals(csvInterpreter, _csv);
+            Csv _csv_1 = new Csv(outputShPath, ";", false);
+            Assertions.assertEquals(csvInterpreter, _csv_1);
+            Assertions.assertTrue(this.compareJson(outputJsonInterpreterPath, outputJsonPyPath));
+            Assertions.assertTrue(this.compareJson(outputJsonInterpreterPath, outputJsonShPath));
+            InputOutput.<String>println("DONE\n");
+          } catch (final Throwable _t) {
+            if (_t instanceof Exception) {
+              final Exception e = (Exception)_t;
+              System.out.println((((("ERROR: test of " + basename) + " aborted:\n") + e) + "\n"));
+              e.printStackTrace();
+              Assertions.<String>fail("Exception occured.");
+            } else {
+              throw Exceptions.sneakyThrow(_t);
+            }
           }
         }
       }
+      Files.writeString(Paths.get(benchmarksRunCsvPath), benchmarksRun.toString(), StandardCharsets.UTF_8);
+      Files.writeString(Paths.get(benchmarksMeanCsvPath), benchmarksMean.toString(), StandardCharsets.UTF_8);
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
     }
   }
   

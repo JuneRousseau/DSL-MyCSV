@@ -11,7 +11,6 @@ import java.io.IOException
 import java.util.Comparator
 import org.xtext.myCsv.BinOpRel
 import java.io.FileNotFoundException
-import org.xtext.myCsv.Field
 
 class Csv {
 	
