@@ -13,6 +13,8 @@ Specification of the project can be found at the following URL:
 
 https://github.com/FAMILIAR-project/HackOurLanguages-SIF/blob/master/slides/project20.pdf
 
+Specification of the MyCsv language, and how to use it, is available at report/MyCsv\_User\_Manual.pdf
+
 ## Import the project
 - Clone this git repository
 - Import the project DSL-MyCSV in Eclipse-IDE with `Import > Projects from Git (with smart import) > Existing local repository`
