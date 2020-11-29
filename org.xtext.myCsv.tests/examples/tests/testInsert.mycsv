@@ -1,5 +1,6 @@
 Load "../input.csv" sep=","
-Select 0 1 2 3 4 5
-Insert line 42;"prenom_de_qqn";"nom";"mail"
-Insert field age: 40;41;42
+Insert line 6666;"prenom_de_qqn";"nom";"mail"
+Insert line 66662;"prenom_de_qqn2";"nom2";"mail2@mail.fr";"mail2@mail2.fr";"nothing";"too";"long"
+Insert line 66663;"prenom_de_qqn3";"nom3";"mail3@mail.fr";"mail3@mail2.fr";"something_great"
+Insert field age: 22;42;34
 Store "outputInsert.csv" sep=";"

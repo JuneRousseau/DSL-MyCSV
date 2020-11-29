@@ -1,6 +1,8 @@
 Insert field id: [1]
-Insert field name: ["nom"]
-Insert line 1;"Mathieu"
-Insert line 2;"Bastien"
-Print table
+Insert field name: "nom"]
+Insert field status: "status"
+Insert line [1;"Poirier";"student"
+Insert line 2;"Rousseau";"student"
+Insert line 3;"Acher";"professor"
+Insert line 4;"Jezequel";"professor"
 Store "outputFromScratch.csv" sep=";"

@@ -1,10 +1,7 @@
 Load "../input.csv" sep=","
-Delete line id>105 and id<1095
-Delete line 1 2 3 4
-Print table
-Delete line 1
-Print table
 Delete field email2
 Delete field 2 4
-Print table
+Delete line id>105 and id<205
+Delete line 1 2 3 4
+Delete line 1
 Store "outputDelete.csv" sep=";"

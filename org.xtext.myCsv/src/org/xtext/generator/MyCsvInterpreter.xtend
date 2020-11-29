@@ -323,7 +323,7 @@ class MyCsvInterpreter {
 		return l.getVal
 	}
 	def dispatch double interpretExpressionCalcul(NestedExpressionCalcul l){
-		return l.expr.interpretExpressionCalcul
+		return l.expr.expr.interpretExpressionCalcul
 	}	
 	def dispatch Value interpretValue(LitteralString l){
 		return new Value(l.getVal)

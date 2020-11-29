@@ -1,2 +1,0 @@
-Load "../input.csv" sep=","
-Store "outputLoadStore.csv" sep=";"

@@ -1,6 +1,5 @@
 Load "../input.csv" sep=","
-Select 0 1 2 3 4 5 6 7 8 9 10
-Print expr "-> La table (tronquée) complète :"
+Print expr "-> La table complète :"
 Print table
 Print expr "-> Les fields 0 et 2 :"
 Print field 0 2
@@ -13,4 +12,6 @@ Print cell (0,0)
 Print cell (5,5)
 Print cell (7, id)
 Print cell (2, firstname)
+Print expr " -> quelque expression"
+Print expr 2*(2+3)
 Print expr "-> GoodBye World!"

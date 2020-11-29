@@ -1,0 +1,2 @@
+Load "../input.csv" sep=","
+Store "outputChangeSep.csv" sep=";"

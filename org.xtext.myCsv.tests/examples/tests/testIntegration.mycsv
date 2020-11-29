@@ -1,0 +1,10 @@
+Load "../input.csv" sep=","
+Select profession=="developer" or profession=="firefighter"
+Insert field age: 20;46;16;-12;78;96;54;18;28;98;65;150;15
+Delete line age<18
+Print expr Mean age
+Projection id firstname email2
+Rename field email2 := email
+Modify cell (5,firstname) with "J_son"
+ExportJson "outputIntegration.json"
+Store "outputIntegration.csv" sep=";"

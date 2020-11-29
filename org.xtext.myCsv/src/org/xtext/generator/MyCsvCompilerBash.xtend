@@ -608,7 +608,7 @@ class MyCsvCompilerBash {
 	}
 
 	def dispatch String compile(NestedLogExpression l){
-		return "(" + l.expr.compile + ")"
+		return "\\(" + l.expr.compileExpressionLog + "\\)"
 	}
 
 	def dispatch String compileValue(ExpressionCalcul l){
@@ -678,7 +678,7 @@ class MyCsvCompilerBash {
 		return l.getVal.toString
 	}
 	def dispatch String compileExpressionCalcul(NestedExpressionCalcul l){
-		return "(" + l.expr.compileExpressionCalcul + ")"
+		return "\\(" + l.expr.expr.compileExpressionCalcul + "\\)"
 	}
 	def dispatch String compileValue(LitteralString l){
 		return '"' + l.getVal + '"'

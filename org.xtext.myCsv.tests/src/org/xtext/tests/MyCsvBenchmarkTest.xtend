@@ -26,6 +26,8 @@ import org.xtext.generator.Csv
 import org.json.simple.parser.JSONParser
 import java.io.FileReader
 import java.util.ArrayList
+import static java.nio.file.StandardCopyOption.*;
+import java.nio.file.StandardOpenOption
 
 @ExtendWith(InjectionExtension)
 @InjectWith(MyCsvInjectorProvider)
@@ -41,6 +43,7 @@ class MyCsvBenchmarkTest {
 		listFiles.add("examples-gen/python")
 		listFiles.add("examples-gen/bash")
 		listFiles.add("examples-gen/stdout")
+		listFiles.add("examples-gen/benchmarks")
 		
 		for(String s : listFiles)
 		{
@@ -52,9 +55,22 @@ class MyCsvBenchmarkTest {
 		
 	}
 	
+	def prepareBenchmark(String benchmarksRunCsvPath,String benchmarksMeanCsvPath)
+	{
+		var f = new File(benchmarksRunCsvPath)
+		if (!f.exists){
+			Files.createFile(Paths.get(benchmarksRunCsvPath))
+		}
+		
+		f = new File(benchmarksMeanCsvPath)
+		if (!f.exists){
+			Files.createFile(Paths.get(benchmarksMeanCsvPath))
+		}
+	}
+	
 	@Test
 	def void compileTests() {
-		val N=5
+		val nbRuns=20
 		val File directoryPath = new File("examples/tests/")
 		
 		prepareDirectories()
@@ -66,6 +82,7 @@ class MyCsvBenchmarkTest {
 		val interpreter = new MyCsvInterpreter
 		// Buffer
 		var String line;
+		var runId=0
 		
 		// Runtime settings
 		val PrintStream mainOut = System.out
@@ -73,180 +90,198 @@ class MyCsvBenchmarkTest {
 		val String interpreterPath = new File("examples-gen/interpreter").absolutePath
 		
 		//benchmarks
-		val benchmarksRunCsvPath="examples-gen/benchmarksRuns.csv"
-		var benchmarksRun = new StringBuilder() 
+		val csvFilePath="examples/csvFiles/"
+		val csvFileNoHeaderPath=csvFilePath+"noheader/"
+		val csvFileWithHeaderPath=csvFilePath+"withHeader/"
+		val benchmarksRunCsvPath="examples-gen/benchmarks/benchmarksRuns.csv"
 		
-		val benchmarksMeanCsvPath="examples-gen/benchmarksMean.csv"
-		var benchmarksMean = new StringBuilder() 
-		benchmarksMean.append("testName,timePython_ns,timePython_ms,timeBash_ns,timeBash_ms,timeInterpreter_ns,timeInterpreter_ms\n")
-		benchmarksRun.append("testName,timePython_ns,timePython_ms,timeBash_ns,timeBash_ms,timeInterpreter_ns,timeInterpreter_ms\n")
-				
-		for (testFile : directoryPath.list())
+		val benchmarksMeanCsvPath="examples-gen/benchmarks/benchmarksMean.csv"
+		prepareBenchmark(benchmarksRunCsvPath,benchmarksMeanCsvPath)
+		
+		val headerMean="inputSize,testName,timePython_ns,timePython_ms,timeBash_ns,timeBash_ms,timeInterpreter_ns,timeInterpreter_ms\n"
+		val headerRuns="runId,inputSize,testName,timePython_ns,timePython_ms,timeBash_ns,timeBash_ms,timeInterpreter_ns,timeInterpreter_ms\n"
+		
+		Files.writeString(Paths.get(benchmarksRunCsvPath), headerRuns, StandardCharsets.UTF_8)
+		Files.writeString(Paths.get(benchmarksMeanCsvPath), headerMean, StandardCharsets.UTF_8)
+		
+		
+		for (var int sizeEntry=1; sizeEntry<=16; sizeEntry++)
 		{
-			
-			val basename= testFile.substring(0, testFile.indexOf("."))
-			val outputBasename = "output"+basename.substring("test".length, basename.length())
-			benchmarksMean.append(basename+",")
-			try {
-				// PREPARING testfile
-				println("TESTING "+ basename +"...")
+			val inputSize=sizeEntry*100
+			val nameInput="withheader"+sizeEntry+".csv"
+			val nameNoHeader="noheader"+sizeEntry+".csv"
+			Files.copy(Paths.get(csvFileWithHeaderPath+nameInput), Paths.get("examples-gen/input.csv"), REPLACE_EXISTING)
+			Files.copy(Paths.get(csvFileNoHeaderPath+nameNoHeader), Paths.get("examples-gen/noheader.csv"), REPLACE_EXISTING)
 				
-				val inputMyCsv= "examples/tests/"+basename+".mycsv"
-				val compiledPyPath= "examples-gen/python/"+basename+".py"
-				val compiledShPath= "examples-gen/bash/"+basename+".sh"
-				val stdoutPyPath= "examples-gen/stdout/"+basename+"-Py.stdout.txt"
-				val stdoutShPath= "examples-gen/stdout/"+basename+"-Sh.stdout.txt"
-				val stdoutInterpreterPath= "examples-gen/stdout/"+basename+"-Interpreter.stdout.txt"
-				val outputPyPath= "examples-gen/python/"+outputBasename+".csv"
-				val outputShPath= "examples-gen/bash/"+outputBasename+".csv"
-				val outputInterpreterPath= "examples-gen/interpreter/"+outputBasename+".csv"
-				val outputJsonPyPath= "examples-gen/python/"+outputBasename+".json"
-				val outputJsonShPath= "examples-gen/bash/"+outputBasename+".json"
-				val outputJsonInterpreterPath= "examples-gen/interpreter/"+outputBasename+".json"
+			for (testFile : directoryPath.list())
+			{
+				var benchmarksMean = new StringBuilder() 
+				var benchmarksRun = new StringBuilder()
 				
-				// GETTING MYCSV AST
-				val prog = loadMyCSV(URI.createURI(inputMyCsv))
-				Assertions.assertNotNull(prog)
-				val errors = prog.eResource.errors
-				Assertions.assertTrue(errors.isEmpty, '''Unexpected errors: «errors.join(", ")»''')
-				
-				// COMPILING AND WRITING RESULTS
-				val compiledPy = pythonCompiler.compile(prog)
-				val compiledSh = bashCompiler.compile(prog)
-				Files.writeString(Paths.get(compiledPyPath), compiledPy, StandardCharsets.UTF_8);
-	    		Files.writeString(Paths.get(compiledShPath), compiledSh, StandardCharsets.UTF_8);
-				
-				// PREPARE EXECUTION
-				val Runtime rt = Runtime.getRuntime();
-				val String cmdExecPy = "python3 "+basename+".py"
-				val String cmdExecSh = "./"+basename+".sh"
-				val File bashFile = new File(compiledShPath)
-				bashFile.setExecutable(true);
-				println("Execution time:")
-						
-				
-				val pyTimes=new ArrayList<Long>()
-				val shTimes=new ArrayList<Long>()
-				val interpTimes=new ArrayList<Long>()
-				
-				//benchmark python
-				for (var i=0; i<N; i++)
-				{
-					val tstart_python = System.nanoTime()
-					val Process prPy = rt.exec(cmdExecPy, null, new File("examples-gen/python"));
-					prPy.waitFor
-					val tend_python = System.nanoTime()
-					pyTimes.add(tend_python-tstart_python)
-				}
-				val pyTime=mean(pyTimes)
-				println("\tpython: "+pyTime+" ns ("+pyTime/1000000+" ms)")
-				benchmarksMean.append(pyTime+","+(pyTime/1000000)+",")
-				
-				// EXECUTE PYTHON
-				val Process prPy = rt.exec(cmdExecPy, null, new File("examples-gen/python"));
-				val pyTerm=prPy.waitFor
-				val BufferedReader bfrPy = new BufferedReader(new InputStreamReader(prPy.getInputStream()));
-				var stdoutPy = new StringBuilder
-				while ((line = bfrPy.readLine()) !== null)
-				{
-					stdoutPy.append(line + "\n");
-				}
-				Files.writeString(Paths.get(stdoutPyPath), stdoutPy.toString, StandardCharsets.UTF_8);
-				
-				for(var i=0; i<N; i++)
-				{
-					val tstart_bash = System.nanoTime()
-					val Process prSh = rt.exec(cmdExecSh, null, new File("examples-gen/bash"));
-					prSh.waitFor
-					val tend_bash = System.nanoTime()
-					shTimes.add(tend_bash-tstart_bash)
-				}
-				val shTime=mean(shTimes)
-				println("\tbash: "+shTime+" ns ("+shTime/1000000+" ms)")
-				benchmarksMean.append(shTime+","+(shTime/1000000)+",")
-				
-				// EXECUTE BASH
-				val Process prSh = rt.exec(cmdExecSh, null, new File("examples-gen/bash"));
-				val shTerm=prSh.waitFor
-				val BufferedReader bfrSh = new BufferedReader(new InputStreamReader(prSh.getInputStream()));
-				var stdoutSh = new StringBuilder
-				while ((line = bfrSh.readLine()) !== null)
-				{
-					stdoutSh.append(line + "\n");
-				}
-				Files.writeString(Paths.get(stdoutShPath), stdoutSh.toString, StandardCharsets.UTF_8);
-				
-				// EXECUTE INTERPRETER
-				
-				// changing context
-				System.setProperty("user.dir", interpreterPath)
-				val outStream = new PrintStream(stdoutInterpreterPath)
-				System.setOut(outStream)
-				
-				// execution
-				var int interpReturnCode = 0
-				var long tstart_interp=0
-				var long tend_interp=0
-				for(var i=0; i<N; i++)
-				{
-					try {
-						
-						tstart_interp = System.nanoTime()
-						interpreter.interpretProgram(prog)
-						tend_interp = System.nanoTime()
-						outStream.flush()
-					} catch (Exception e){
-						interpReturnCode = 1
-						e.printStackTrace
-					}
-				interpTimes.add(tend_interp-tstart_interp)
-				}
-				
-				// restoring context
-				System.setOut(mainOut)
-				System.setProperty("user.dir", mainPath)
-				
-				val interpTime=mean(interpTimes)
-				println("\tinterpreter: "+interpTime+" ns ("+interpTime/1000000+" ms)")
-				benchmarksMean.append(interpTime+","+(interpTime/1000000)+"\n")
-				
-				for(var i=0; i<N;i++)
-				{
-					benchmarksRun.append(basename+","+pyTimes.get(i)+","+(pyTimes.get(i)/1000000)+","+shTimes.get(i)+","+(shTimes.get(i)/1000000)+","+interpTimes.get(i)+","+(interpTimes.get(i)/1000000)+"\n")
-				}
-				
-				// ASSERTIONS
-				
+				val basename= testFile.substring(0, testFile.indexOf("."))
+				val outputBasename = "output"+basename.substring("test".length, basename.length())
+				benchmarksMean.append(inputSize+","+basename+",")
+				try {
+					// PREPARING testfile
+					println("TESTING "+ basename +"...")
+					
+					val inputMyCsv= "examples/tests/"+basename+".mycsv"
+					val compiledPyPath= "examples-gen/python/"+basename+".py"
+					val compiledShPath= "examples-gen/bash/"+basename+".sh"
+					val stdoutPyPath= "examples-gen/stdout/"+basename+"-Py.stdout.txt"
+					val stdoutShPath= "examples-gen/stdout/"+basename+"-Sh.stdout.txt"
+					val stdoutInterpreterPath= "examples-gen/stdout/"+basename+"-Interpreter.stdout.txt"
+					val outputPyPath= "examples-gen/python/"+outputBasename+".csv"
+					val outputShPath= "examples-gen/bash/"+outputBasename+".csv"
+					val outputInterpreterPath= "examples-gen/interpreter/"+outputBasename+".csv"
+					val outputJsonPyPath= "examples-gen/python/"+outputBasename+".json"
+					val outputJsonShPath= "examples-gen/bash/"+outputBasename+".json"
+					val outputJsonInterpreterPath= "examples-gen/interpreter/"+outputBasename+".json"
+					
+					// GETTING MYCSV AST
+					val prog = loadMyCSV(URI.createURI(inputMyCsv))
+					Assertions.assertNotNull(prog)
+					val errors = prog.eResource.errors
+					Assertions.assertTrue(errors.isEmpty, '''Unexpected errors: «errors.join(", ")»''')
+					
+					// COMPILING AND WRITING RESULTS
+					val compiledPy = pythonCompiler.compile(prog)
+					val compiledSh = bashCompiler.compile(prog)
+					Files.writeString(Paths.get(compiledPyPath), compiledPy, StandardCharsets.UTF_8);
+		    		Files.writeString(Paths.get(compiledShPath), compiledSh, StandardCharsets.UTF_8);
+					
+					// PREPARE EXECUTION
+					val Runtime rt = Runtime.getRuntime();
+					val String cmdExecPy = "python3 "+basename+".py"
+					val String cmdExecSh = "./"+basename+".sh"
+					val File bashFile = new File(compiledShPath)
+					bashFile.setExecutable(true);
+					println("Execution time ("+inputSize+" lines):")
 							
-				// Executions should fail together
+					
+					val pyTimes=new ArrayList<Long>()
+					val shTimes=new ArrayList<Long>()
+					val interpTimes=new ArrayList<Long>()
+					
+					//benchmark python
+					for (var i=0; i<nbRuns; i++)
+					{
+						val tstart_python = System.nanoTime()
+						val Process prPy = rt.exec(cmdExecPy, null, new File("examples-gen/python"));
+						prPy.waitFor
+						val tend_python = System.nanoTime()
+						pyTimes.add(tend_python-tstart_python)
+					}
+					val pyTime=mean(pyTimes)
+					println("\tpython: "+pyTime+" ns ("+pyTime/1000000+" ms)")
+					benchmarksMean.append(pyTime+","+(pyTime/1000000)+",")
+					
+					// EXECUTE PYTHON
+					val Process prPy = rt.exec(cmdExecPy, null, new File("examples-gen/python"));
+					val pyTerm=prPy.waitFor
+					val BufferedReader bfrPy = new BufferedReader(new InputStreamReader(prPy.getInputStream()));
+					var stdoutPy = new StringBuilder
+					while ((line = bfrPy.readLine()) !== null)
+					{
+						stdoutPy.append(line + "\n");
+					}
+					Files.writeString(Paths.get(stdoutPyPath), stdoutPy.toString, StandardCharsets.UTF_8);
+					
+					for(var i=0; i<nbRuns; i++)
+					{
+						val tstart_bash = System.nanoTime()
+						val Process prSh = rt.exec(cmdExecSh, null, new File("examples-gen/bash"));
+						prSh.waitFor
+						val tend_bash = System.nanoTime()
+						shTimes.add(tend_bash-tstart_bash)
+					}
+					val shTime=mean(shTimes)
+					println("\tbash: "+shTime+" ns ("+shTime/1000000+" ms)")
+					benchmarksMean.append(shTime+","+(shTime/1000000)+",")
+					
+					// EXECUTE BASH
+					val Process prSh = rt.exec(cmdExecSh, null, new File("examples-gen/bash"));
+					val shTerm=prSh.waitFor
+					val BufferedReader bfrSh = new BufferedReader(new InputStreamReader(prSh.getInputStream()));
+					var stdoutSh = new StringBuilder
+					while ((line = bfrSh.readLine()) !== null)
+					{
+						stdoutSh.append(line + "\n");
+					}
+					Files.writeString(Paths.get(stdoutShPath), stdoutSh.toString, StandardCharsets.UTF_8);
+					
+					// EXECUTE INTERPRETER
+					
+					// changing context
+					System.setProperty("user.dir", interpreterPath)
+					val outStream = new PrintStream(stdoutInterpreterPath)
+					System.setOut(outStream)
+					
+					// execution
+					var int interpReturnCode = 0
+					var long tstart_interp=0
+					var long tend_interp=0
+					for(var i=0; i<nbRuns; i++)
+					{
+						try {
+							
+							tstart_interp = System.nanoTime()
+							interpreter.interpretProgram(prog)
+							tend_interp = System.nanoTime()
+							outStream.flush()
+						} catch (Exception e){
+							interpReturnCode = 1
+							e.printStackTrace
+						}
+					interpTimes.add(tend_interp-tstart_interp)
+					}
+					
+					// restoring context
+					System.setOut(mainOut)
+					System.setProperty("user.dir", mainPath)
+					
+					val interpTime=mean(interpTimes)
+					println("\tinterpreter: "+interpTime+" ns ("+interpTime/1000000+" ms)")
+					benchmarksMean.append(interpTime+","+(interpTime/1000000)+"\n")
+					
+					for(var i=0; i<nbRuns;i++)
+					{
+						runId+=1
+						benchmarksRun.append(runId+","+inputSize+","+basename+","+pyTimes.get(i)+","+(pyTimes.get(i)/1000000)+","+shTimes.get(i)+","+(shTimes.get(i)/1000000)+","+interpTimes.get(i)+","+(interpTimes.get(i)/1000000)+"\n")
+					}
+					
+					Files.writeString(Paths.get(benchmarksRunCsvPath), benchmarksRun, StandardCharsets.UTF_8, StandardOpenOption.APPEND)
+					Files.writeString(Paths.get(benchmarksMeanCsvPath), benchmarksMean, StandardCharsets.UTF_8, StandardOpenOption.APPEND)	
+					
+					// ASSERTIONS
+					// Executions should fail together
+					
+					Assertions.assertEquals(interpReturnCode == 0, pyTerm == 0) 
+					Assertions.assertEquals(interpReturnCode == 0, shTerm == 0)
+					
+					// Output should be the same
+					val csvInterpreter = new Csv(outputInterpreterPath, ";", false)
+					Assertions.assertEquals(csvInterpreter, new Csv(outputPyPath, ";", false))
+					Assertions.assertEquals(csvInterpreter, new Csv(outputShPath, ";", false))
+					// FIXME: hardcoding the separator isn't robust.
+					
+					// Compare Json output
+					Assertions.assertTrue(compareJson(outputJsonInterpreterPath, outputJsonPyPath))
+					Assertions.assertTrue(compareJson(outputJsonInterpreterPath, outputJsonShPath))
+					
+					// Remark: stdout comparison is done manually because MyCsv doesn't specify the exact way to print.
+					
+					// DONE
+					println("DONE\n")
 				
-				Assertions.assertEquals(interpReturnCode == 0, pyTerm == 0) 
-				Assertions.assertEquals(interpReturnCode == 0, shTerm == 0)
-				
-				// Output should be the same
-				val csvInterpreter = new Csv(outputInterpreterPath, ";", false)
-				Assertions.assertEquals(csvInterpreter, new Csv(outputPyPath, ";", false))
-				Assertions.assertEquals(csvInterpreter, new Csv(outputShPath, ";", false))
-				// FIXME: hardcoding the separator isn't robust.
-				
-				// Compare Json output
-				Assertions.assertTrue(compareJson(outputJsonInterpreterPath, outputJsonPyPath))
-				Assertions.assertTrue(compareJson(outputJsonInterpreterPath, outputJsonShPath))
-				
-				// Remark: stdout comparison is done manually because MyCsv doesn't specify the exact way to print.
-				
-				// DONE
-				println("DONE\n")
-			
-			} catch (Exception e) {
-				System.out.println("ERROR: test of " + basename + " aborted:\n"+e+"\n");
-				e.printStackTrace
-				Assertions.fail("Exception occured.")
+				} catch (Exception e) {
+					System.out.println("ERROR: test of " + basename + " aborted:\n"+e+"\n");
+					e.printStackTrace
+					Assertions.fail("Exception occured.")
+				}
 			}
-			
 		}
-		Files.writeString(Paths.get(benchmarksRunCsvPath), benchmarksRun.toString, StandardCharsets.UTF_8);
-		Files.writeString(Paths.get(benchmarksMeanCsvPath), benchmarksMean.toString, StandardCharsets.UTF_8);
+
 	}
 	
 	def mean(ArrayList<Long> l)

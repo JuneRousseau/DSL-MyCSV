@@ -1,5 +1,4 @@
 Insert line 1;"Mathieu"
 Insert line 2;"Bastien"
-Insert field id: 0
-Print table
+Insert field id: 0;1
 Store "outputFromScratch2.csv" sep=";"
