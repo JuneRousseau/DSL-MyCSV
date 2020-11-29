@@ -1,42 +1,27 @@
 # DSL MyCSV
-*Projet M1/M2 SIF - UE DSL*
-*Mathieu Poirier et June Rousseau*
+*Project M1/M2 SIF - DSL*
+*Mathieu Poirier and June Rousseau*
 
-## Objectif
+## MyCSV
+My CSV is a Domain-Specific for CSV manipulation. This repository provides:
+- an interpreter
+- a compiler to python
+- a compiler to bash
 
-DSL de manipulation de CSV fournissant:
-- un interpréteur
-- un compilateur vers python
-- un compilateur vers bash
+Specification of the project can be found at the following URL:
 
 https://github.com/FAMILIAR-project/HackOurLanguages-SIF/blob/master/slides/project20.pdf
 
-## Importer le projet
-- Cloner le repository git
-- Importer le projet DSL-MyCSV dans Eclipse via l'option `Import > Projects from Git (with smart import) > Existing local repository`
-- Decocher la case DSL-MyCsv
+## Import the project
+- Clone this git repository
+- Import the project DSL-MyCSV in Eclipse-IDE with `Import > Projects from Git (with smart import) > Existing local repository`
+- Uncheck the box DSL-MyCsl
 
-Si nécessaire:
-- Creer un nouveau repertoire xtend-gen dans les projet org.xtext.myCsv.ide et org.xtext.myCsv.ui
-- Creer un nouveau repertoire src dans le projet org.xtext.myCsv.ui.tests
-
-## Tester le DSL
-### Compilateur Python
-Executer org.xtext.myCsv.tests/src/org.xtext.tests/MyCsvCompilerPythonTest.xtend dans Eclipse en tant que Test JUnit
-Les fichiers de tests sont dans le dossier org.xtext.myCsv.tests/examples/tests
-Les scripts python sont générés dans org.xtext.myCsv.tests/examples-gen
-
-### Compilateur Bash
-TODO
-
-### Interpreteur
-TODO
-
-### Benchmarks
-TODO
+If necessary::
+- Create directory `xtend-gen` in `org.xtext.myCsv.ide` and `org.xtext.myCsv.ui`
+- Create directory `src` in `org.xtext.myCsv.ui.tests`
 
 ## How to use MyCsv
-
 ### Compile the project
 In Eclipse IDE:
 - Right clic on `org.xtext.myCsv.tests > Export ... > Java/Runnable Jar`
@@ -50,4 +35,25 @@ Compilateur bash: `java -jar $nameJar compile-bash /path/to/input.mycsv /path/to
 
 Compilateur python:  `java -jar $nameJar compile-python /path/to/input.mycsv /path/to/output.py`
 
-Interpreter: `java -jar $nameJar$ interpret /path/to/input.mycsv`
+Interpreter: `java -jar $nameJar interpret /path/to/input.mycsv`
+
+## Test my CSV
+This project provides a set of MyCsv programs in the directory `org.xtext.myCsv.tests/examples/tests`. These are used to benchmark implementations. 
+
+### Python Compiler
+In Eclipse-IDE:
+Execute `org.xtext.myCsv.tests/src/org.xtext.tests/MyCsvCompilerPythonTest.xtend` as a Test JUnit
+Python scripts are generated in `org.xtext.myCsv.tests/examples-gen/python`
+
+### Compilateur Bash
+In Eclipse-IDE:
+Execute `org.xtext.myCsv.tests/src/org.xtext.tests/MyCsvCompilerBashTest.xtend` as a Test JUnit
+Bash scripts are generated in `org.xtext.myCsv.tests/examples-gen/bash`
+
+### Interpreteur
+In Eclipse-IDE:
+Execute `org.xtext.myCsv.tests/src/org.xtext.tests/MyCsvCompilerInterpreterTest.xtend` as a Test JUnit
+
+### Benchmarks
+In Eclipse-IDE:
+Execute `org.xtext.myCsv.tests/src/org.xtext.tests/MyCsvCompilerBenchmarkTest.xtend` as a Test JUnit
