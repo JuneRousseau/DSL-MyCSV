@@ -118,7 +118,7 @@ public class MyCsvBenchmarkTest {
       final String headerRuns = "runId,inputSize,testName,timePython_ns,timePython_ms,timeBash_ns,timeBash_ms,timeInterpreter_ns,timeInterpreter_ms\n";
       Files.writeString(Paths.get(benchmarksRunCsvPath), headerRuns, StandardCharsets.UTF_8);
       Files.writeString(Paths.get(benchmarksMeanCsvPath), headerMean, StandardCharsets.UTF_8);
-      for (int sizeEntry = 5; (sizeEntry <= 16); sizeEntry++) {
+      for (int sizeEntry = 1; (sizeEntry <= 4); sizeEntry++) {
         {
           final int inputSize = (sizeEntry * 100);
           final String nameInput = (("withheader" + Integer.valueOf(sizeEntry)) + ".csv");

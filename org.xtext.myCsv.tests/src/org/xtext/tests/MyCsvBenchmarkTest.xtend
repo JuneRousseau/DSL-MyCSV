@@ -105,7 +105,7 @@ class MyCsvBenchmarkTest {
 		Files.writeString(Paths.get(benchmarksMeanCsvPath), headerMean, StandardCharsets.UTF_8)
 		
 		
-		for (var int sizeEntry=5; sizeEntry<=16; sizeEntry++)
+		for (var int sizeEntry=1; sizeEntry<=16; sizeEntry++)
 		{
 			val inputSize=sizeEntry*100
 			val nameInput="withheader"+sizeEntry+".csv"
