@@ -11,6 +11,7 @@ import java.io.IOException
 import java.util.Comparator
 import org.xtext.myCsv.BinOpRel
 import java.io.FileNotFoundException
+import java.util.Locale
 
 class Csv {
 	
@@ -394,9 +395,17 @@ class Value {
 	
 	def static build(String s) {
 		var Scanner sc= new Scanner(s)
-			if (sc.hasNextInt) return new Value(sc.nextInt)
-			else if (sc.hasNextDouble) return new Value(sc.nextDouble)
-			else new Value(s)
+			sc.useLocale(Locale.US);
+			if (sc.hasNextInt) {
+				return new Value(sc.nextInt)
+				}
+			else if (sc.hasNextDouble) {
+				return new Value(sc.nextDouble)
+				}
+			else {
+				return new Value(s)
+				
+				}
 	}
 	
 	override toString() {

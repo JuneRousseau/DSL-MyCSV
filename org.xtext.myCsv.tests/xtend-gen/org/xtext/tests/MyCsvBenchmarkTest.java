@@ -96,7 +96,7 @@ public class MyCsvBenchmarkTest {
   @Test
   public void compileTests() {
     try {
-      final int nbRuns = 20;
+      final int nbRuns = 5;
       final File directoryPath = new File("examples/tests/");
       this.prepareDirectories();
       InputOutput.<String>println("----------TESTS----------");
@@ -118,7 +118,7 @@ public class MyCsvBenchmarkTest {
       final String headerRuns = "runId,inputSize,testName,timePython_ns,timePython_ms,timeBash_ns,timeBash_ms,timeInterpreter_ns,timeInterpreter_ms\n";
       Files.writeString(Paths.get(benchmarksRunCsvPath), headerRuns, StandardCharsets.UTF_8);
       Files.writeString(Paths.get(benchmarksMeanCsvPath), headerMean, StandardCharsets.UTF_8);
-      for (int sizeEntry = 1; (sizeEntry <= 16); sizeEntry++) {
+      for (int sizeEntry = 5; (sizeEntry <= 16); sizeEntry++) {
         {
           final int inputSize = (sizeEntry * 100);
           final String nameInput = (("withheader" + Integer.valueOf(sizeEntry)) + ".csv");
@@ -178,6 +178,11 @@ public class MyCsvBenchmarkTest {
                     final long tstart_python = System.nanoTime();
                     File _file = new File("examples-gen/python");
                     final Process prPy = rt.exec(cmdExecPy, null, _file);
+                    InputStream _inputStream = prPy.getInputStream();
+                    InputStreamReader _inputStreamReader = new InputStreamReader(_inputStream);
+                    final BufferedReader bfrPy = new BufferedReader(_inputStreamReader);
+                    while (((line = bfrPy.readLine()) != null)) {
+                    }
                     prPy.waitFor();
                     final long tend_python = System.nanoTime();
                     pyTimes.add(Long.valueOf((tend_python - tstart_python)));
@@ -191,7 +196,6 @@ public class MyCsvBenchmarkTest {
                 benchmarksMean.append(_plus_5);
                 File _file = new File("examples-gen/python");
                 final Process prPy = rt.exec(cmdExecPy, null, _file);
-                final int pyTerm = prPy.waitFor();
                 InputStream _inputStream = prPy.getInputStream();
                 InputStreamReader _inputStreamReader = new InputStreamReader(_inputStream);
                 final BufferedReader bfrPy = new BufferedReader(_inputStreamReader);
@@ -199,12 +203,18 @@ public class MyCsvBenchmarkTest {
                 while (((line = bfrPy.readLine()) != null)) {
                   stdoutPy.append((line + "\n"));
                 }
+                final int pyTerm = prPy.waitFor();
                 Files.writeString(Paths.get(stdoutPyPath), stdoutPy.toString(), StandardCharsets.UTF_8);
                 for (int i = 0; (i < nbRuns); i++) {
                   {
                     final long tstart_bash = System.nanoTime();
                     File _file_1 = new File("examples-gen/bash");
                     final Process prSh = rt.exec(cmdExecSh, null, _file_1);
+                    InputStream _inputStream_1 = prSh.getInputStream();
+                    InputStreamReader _inputStreamReader_1 = new InputStreamReader(_inputStream_1);
+                    final BufferedReader bfrSh = new BufferedReader(_inputStreamReader_1);
+                    while (((line = bfrSh.readLine()) != null)) {
+                    }
                     prSh.waitFor();
                     final long tend_bash = System.nanoTime();
                     shTimes.add(Long.valueOf((tend_bash - tstart_bash)));
@@ -218,7 +228,6 @@ public class MyCsvBenchmarkTest {
                 benchmarksMean.append(_plus_8);
                 File _file_1 = new File("examples-gen/bash");
                 final Process prSh = rt.exec(cmdExecSh, null, _file_1);
-                final int shTerm = prSh.waitFor();
                 InputStream _inputStream_1 = prSh.getInputStream();
                 InputStreamReader _inputStreamReader_1 = new InputStreamReader(_inputStream_1);
                 final BufferedReader bfrSh = new BufferedReader(_inputStreamReader_1);
@@ -226,6 +235,7 @@ public class MyCsvBenchmarkTest {
                 while (((line = bfrSh.readLine()) != null)) {
                   stdoutSh.append((line + "\n"));
                 }
+                final int shTerm = prSh.waitFor();
                 Files.writeString(Paths.get(stdoutShPath), stdoutSh.toString(), StandardCharsets.UTF_8);
                 System.setProperty("user.dir", interpreterPath);
                 final PrintStream outStream = new PrintStream(stdoutInterpreterPath);

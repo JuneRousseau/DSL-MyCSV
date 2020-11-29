@@ -70,7 +70,7 @@ class MyCsvBenchmarkTest {
 	
 	@Test
 	def void compileTests() {
-		val nbRuns=20
+		val nbRuns=5
 		val File directoryPath = new File("examples/tests/")
 		
 		prepareDirectories()
@@ -105,7 +105,7 @@ class MyCsvBenchmarkTest {
 		Files.writeString(Paths.get(benchmarksMeanCsvPath), headerMean, StandardCharsets.UTF_8)
 		
 		
-		for (var int sizeEntry=1; sizeEntry<=16; sizeEntry++)
+		for (var int sizeEntry=5; sizeEntry<=16; sizeEntry++)
 		{
 			val inputSize=sizeEntry*100
 			val nameInput="withheader"+sizeEntry+".csv"
@@ -168,6 +168,8 @@ class MyCsvBenchmarkTest {
 					{
 						val tstart_python = System.nanoTime()
 						val Process prPy = rt.exec(cmdExecPy, null, new File("examples-gen/python"));
+						val BufferedReader bfrPy = new BufferedReader(new InputStreamReader(prPy.getInputStream()));
+						while ((line = bfrPy.readLine()) !== null){}
 						prPy.waitFor
 						val tend_python = System.nanoTime()
 						pyTimes.add(tend_python-tstart_python)
@@ -178,19 +180,24 @@ class MyCsvBenchmarkTest {
 					
 					// EXECUTE PYTHON
 					val Process prPy = rt.exec(cmdExecPy, null, new File("examples-gen/python"));
-					val pyTerm=prPy.waitFor
 					val BufferedReader bfrPy = new BufferedReader(new InputStreamReader(prPy.getInputStream()));
 					var stdoutPy = new StringBuilder
 					while ((line = bfrPy.readLine()) !== null)
 					{
 						stdoutPy.append(line + "\n");
 					}
+					val pyTerm=prPy.waitFor()
 					Files.writeString(Paths.get(stdoutPyPath), stdoutPy.toString, StandardCharsets.UTF_8);
 					
+					
+					
+					//benchmark bash
 					for(var i=0; i<nbRuns; i++)
 					{
 						val tstart_bash = System.nanoTime()
 						val Process prSh = rt.exec(cmdExecSh, null, new File("examples-gen/bash"));
+						val BufferedReader bfrSh = new BufferedReader(new InputStreamReader(prSh.getInputStream()));
+						while ((line = bfrSh.readLine()) !== null){}
 						prSh.waitFor
 						val tend_bash = System.nanoTime()
 						shTimes.add(tend_bash-tstart_bash)
@@ -201,13 +208,13 @@ class MyCsvBenchmarkTest {
 					
 					// EXECUTE BASH
 					val Process prSh = rt.exec(cmdExecSh, null, new File("examples-gen/bash"));
-					val shTerm=prSh.waitFor
 					val BufferedReader bfrSh = new BufferedReader(new InputStreamReader(prSh.getInputStream()));
 					var stdoutSh = new StringBuilder
 					while ((line = bfrSh.readLine()) !== null)
 					{
 						stdoutSh.append(line + "\n");
 					}
+					val shTerm=prSh.waitFor
 					Files.writeString(Paths.get(stdoutShPath), stdoutSh.toString, StandardCharsets.UTF_8);
 					
 					// EXECUTE INTERPRETER
